@@ -1,0 +1,81 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>toString()</strong></code> method returns a string representing object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>obj</var>.toString()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>Every object has a <code>toString()</code> method that is automatically called when the object is to be represented as a text value or when an object is referred to in a manner in which a string is expected. By default, the <code>toString()</code> method is inherited by every object descended from <code>Object</code>. If this method is not overridden in a custom object, <code>toString()</code> returns &quot;[object <em>type</em>]&quot;, where <code><em>type</em></code> is the object type. The following code illustrates this:</p>
+<prism-js language="javascript">var o = new Object();
+o.toString();           // returns [object Object]
+</prism-js>
+<div class="note">
+ <p><strong>Note:</strong> Starting in JavaScript 1.8.5 <code>toString()</code> called on <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> returns <code>[object <em>Null</em>]</code>, and <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> returns <code>[object <em>Undefined</em>]</code>, as defined in the 5th Edition of ECMAScript and a subsequent Errata. See <a href="#/Object.prototype.toString()#Example:_Using_toString_to_detect_object_type">Using toString to detect object type</a>.</p>
+</div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Overriding_the_default_toString_method" name="Example:_Overriding_the_default_toString_method">Example: Overriding the default <code>toString</code> method</h3>
+<p>You can create a function to be called in place of the default <code>toString()</code> method. The <code>toString()</code> method takes no arguments and should return a string. The <code>toString()</code> method you create can be any value you want, but it will be most useful if it carries information about the object.</p>
+<p>The following code defines the <code>Dog</code> object type and creates <code>theDog</code>, an object of type <code>Dog</code>:</p>
+<prism-js language="javascript">function Dog(name, breed, color, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+  this.sex = sex;
+}
+theDog = new Dog(&apos;Gabby&apos;, &apos;Lab&apos;, &apos;chocolate&apos;, &apos;female&apos;);
+</prism-js>
+<p>If you call the <code>toString()</code> method on this custom object, it returns the default value inherited from <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>:</p>
+<prism-js language="javascript">theDog.toString(); // returns [object Object]
+</prism-js>
+<p>The following code creates and assigns <code>dogToString()</code> to override the default <code>toString()</code> method. This function generates a string containing the name, breed, color, and sex of the object, in the form &quot;<code>property = value;</code>&quot;.</p>
+<prism-js language="javascript">Dog.prototype.toString = function dogToString() {
+  var ret = &apos;Dog &apos; + this.name + &apos; is a &apos; + this.sex + &apos; &apos; + this.color + &apos; &apos; + this.breed;
+  return ret;
+}
+</prism-js>
+<p>With the preceding code in place, any time <code>theDog</code> is used in a string context, JavaScript automatically calls the <code>dogToString()</code> function, which returns the following string:</p>
+<pre>Dog Gabby is a female chocolate Lab
+</pre>
+<h3 id="Example:_Using_toString_to_detect_object_type" name="Example:_Using_toString_to_detect_object_type">Example: Using <code>toString()</code> to detect object class</h3>
+<p><code>toString()</code> can be used with every object and allows you to get its class. To use the <code>Object.prototype.toString()</code> with every object, you need to call <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>Function.prototype.apply()</code></a> on it, passing the object you want to inspect as the first parameter called <code>thisArg</code>.</p>
+<prism-js language="javascript">var toString = Object.prototype.toString;
+toString.call(new Date);    // [object Date]
+toString.call(new String);  // [object String]
+toString.call(Math);        // [object Math]
+// Since JavaScript 1.8.5
+toString.call(undefined);   // [object Undefined]
+toString.call(null);        // [object Null]
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Call on <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> returns <code>[object <em>Null</em>]</code>, and <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> returns <code>[object <em>Undefined</em>]</code></td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype.tostring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a></li>
+ <li><a href="#/Object.prototype.valueOf()" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,107 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.keys()</strong></code> method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="The for..in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed."><code>for...in</code></a> loop (the difference being that a for-in loop enumerates properties in the prototype chain as well).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.keys(<var>obj</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>obj</code></dt>
+ <dd>The object whose enumerable own properties are to be returned.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>Object.keys</code> returns an array whose elements are strings corresponding to the enumerable properties found directly upon <code>object</code>. The ordering of the properties is the same as that given by looping over the properties of the object manually.</p>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+console.log(Object.keys(arr)); // console: [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;]
+// array like object
+var obj = { 0: &apos;a&apos;, 1: &apos;b&apos;, 2: &apos;c&apos; };
+console.log(Object.keys(obj)); // console: [&apos;0&apos;, &apos;1&apos;, &apos;2&apos;]
+// array like object with random key ordering
+var an_obj = { 100: &apos;a&apos;, 2: &apos;b&apos;, 7: &apos;c&apos; };
+console.log(Object.keys(an_obj)); // console: [&apos;2&apos;, &apos;7&apos;, &apos;100&apos;]
+// getFoo is property which isn&apos;t enumerable
+var my_obj = Object.create({}, { getFoo: { value: function() { return this.foo; } } });
+my_obj.foo = 1;
+console.log(Object.keys(my_obj)); // console: [&apos;foo&apos;]
+</prism-js>
+<p>If you want all properties, even not enumerables, see <a href="#/Object.getOwnPropertyNames()" title="The Object.getOwnPropertyNames() method returns an array of all properties (enumerable or not) found directly upon a given object."><code>Object.getOwnPropertyNames()</code></a>.</p>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be coerced to an object.</p>
+<prism-js language="javascript">&gt; Object.keys(&quot;foo&quot;)
+TypeError: &quot;foo&quot; is not an object // ES5 code
+&gt; Object.keys(&quot;foo&quot;)
+[&quot;0&quot;, &quot;1&quot;, &quot;2&quot;]                   // ES6 code
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>To add compatible <code>Object.keys</code> support in older environments that do not natively support it, copy the following snippet:</p>
+<prism-js language="javascript">// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+  Object.keys = (function() {
+    &apos;use strict&apos;;
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable(&apos;toString&apos;),
+        dontEnums = [
+          &apos;toString&apos;,
+          &apos;toLocaleString&apos;,
+          &apos;valueOf&apos;,
+          &apos;hasOwnProperty&apos;,
+          &apos;isPrototypeOf&apos;,
+          &apos;propertyIsEnumerable&apos;,
+          &apos;constructor&apos;
+        ],
+        dontEnumsLength = dontEnums.length;
+    return function(obj) {
+      if (typeof obj !== &apos;object&apos; &amp;&amp; (typeof obj !== &apos;function&apos; || obj === null)) {
+        throw new TypeError(&apos;Object.keys called on non-object&apos;);
+      }
+      var result = [], prop, i;
+      for (prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+      if (hasDontEnumBug) {
+        for (i = 0; i &lt; dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+      return result;
+    };
+  }());
+}
+</prism-js>
+<p>Please note that the above code includes non-enumerable keys in IE7 (and maybe IE8), when passing in an object from a different window.</p>
+<p>For a simple browser polyfill, see <a class="external" href="http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html">Javascript - Object.keys Browser Compatibility</a>.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.14" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.keys&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.keys" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.keys&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li>
+ <li><a href="#/Object.prototype.propertyIsEnumerable()" title="The propertyIsEnumerable() method returns a Boolean indicating whether the specified property is enumerable."><code>Object.prototype.propertyIsEnumerable()</code></a></li>
+ <li><a href="#/Object.create()" title="The Object.create() method creates a new object with the specified prototype object and properties."><code>Object.create()</code></a></li>
+ <li><a href="#/Object.getOwnPropertyNames()" title="The Object.getOwnPropertyNames() method returns an array of all properties (enumerable or not) found directly upon a given object."><code>Object.getOwnPropertyNames()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

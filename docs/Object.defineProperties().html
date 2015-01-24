@@ -1,0 +1,150 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.defineProperties()</strong></code> method defines new or modifies existing properties directly on an object, returning the object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.defineProperties(<var>obj</var>, <var>props</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object on which to define or modify properties.</dd>
+ <dt>
+  <code>props</code></dt>
+ <dd>
+  An object whose own enumerable properties constitute descriptors for the properties to be defined or modified. Properties have the following optional keys:
+  <dl>
+   <dt>
+    <code>configurable</code></dt>
+   <dd>
+    <code>true</code> if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.<br>
+    <strong>Defaults to <code>false</code>.</strong></dd>
+   <dt>
+    <code>enumerable</code></dt>
+   <dd>
+    <code>true</code> if and only if this property shows up during enumeration of the properties on the corresponding object.<br>
+    <strong>Defaults to <code>false</code>.</strong></dd>
+  </dl>
+  <dl>
+   <dt>
+    <code>value</code></dt>
+   <dd>
+    The value associated with the property. Can be any valid JavaScript value (number, object, function, etc).<br>
+    <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+   <dt>
+    <code>writable</code></dt>
+   <dd>
+    <code>true</code> if and only if the value associated with the property may be changed with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators" title="An assignment operator assigns a value to its left operand based on the value of its right operand.">assignment operator</a>.<br>
+    <strong>Defaults to <code>false</code>.</strong></dd>
+  </dl>
+  <dl>
+   <dt>
+    <code>get</code></dt>
+   <dd>
+    A function which serves as a getter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no getter. The function return will be used as the value of property.<br>
+    <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+   <dt>
+    <code>set</code></dt>
+   <dd>
+    A function which serves as a setter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no setter. The function will receive as only argument the new value being assigned to the property.<br>
+    <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+  </dl>
+ </dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>Object.defineProperties</code>, in essence, defines all properties corresponding to the enumerable own properties of <code>props</code> on the object <code>obj</code> object.</p>
+<h2 id="Example">Example</h2>
+<prism-js language="javascript">Object.defineProperties(obj, {
+  &quot;property1&quot;: {
+    value: true,
+    writable: true
+  },
+  &quot;property2&quot;: {
+    value: &quot;Hello&quot;,
+    writable: false
+  }
+  // etc. etc.
+});
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>Assuming a pristine execution environment with all names and properties referring to their initial values, <code>Object.defineProperties</code> is almost completely equivalent (note the comment in <code>isCallable</code>) to the following reimplementation in JavaScript:</p>
+<prism-js language="javascript">function defineProperties(obj, properties) {
+  function convertToDescriptor(desc) {
+    function hasProperty(obj, prop) {
+      return Object.prototype.hasOwnProperty.call(obj, prop);
+    }
+    function isCallable(v) {
+      // NB: modify as necessary if other values than functions are callable.
+      return typeof v === &quot;function&quot;;
+    }
+    if (typeof desc !== &quot;object&quot; || desc === null)
+      throw new TypeError(&quot;bad desc&quot;);
+    var d = {};
+    if (hasProperty(desc, &quot;enumerable&quot;))
+      d.enumerable = !!obj.enumerable;
+    if (hasProperty(desc, &quot;configurable&quot;))
+      d.configurable = !!obj.configurable;
+    if (hasProperty(desc, &quot;value&quot;))
+      d.value = obj.value;
+    if (hasProperty(desc, &quot;writable&quot;))
+      d.writable = !!desc.writable;
+    if (hasProperty(desc, &quot;get&quot;)) {
+      var g = desc.get;
+      if (!isCallable(g) &amp;&amp; typeof g !== &quot;undefined&quot;)
+        throw new TypeError(&quot;bad get&quot;);
+      d.get = g;
+    }
+    if (hasProperty(desc, &quot;set&quot;)) {
+      var s = desc.set;
+      if (!isCallable(s) &amp;&amp; typeof s !== &quot;undefined&quot;)
+        throw new TypeError(&quot;bad set&quot;);
+      d.set = s;
+    }
+    if ((&quot;get&quot; in d || &quot;set&quot; in d) &amp;&amp; (&quot;value&quot; in d || &quot;writable&quot; in d))
+      throw new TypeError(&quot;identity-confused descriptor&quot;);
+    return d;
+  }
+  if (typeof obj !== &quot;object&quot; || obj === null)
+    throw new TypeError(&quot;bad obj&quot;);
+  properties = Object(properties);
+  var keys = Object.keys(properties);
+  var descs = [];
+  for (var i = 0; i &lt; keys.length; i++)
+    descs.push([keys[i], convertToDescriptor(properties[keys[i]])]);
+  for (var i = 0; i &lt; descs.length; i++)
+    Object.defineProperty(obj, descs[i][0], descs[i][1]);
+  return obj;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.7" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.defineProperties&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition.<br>
+    Implemented in JavaScript 1.8.5</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.defineproperties" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.defineProperties&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty()</code></a></li>
+ <li><a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

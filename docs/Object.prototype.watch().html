@@ -1,0 +1,97 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<div class="warning">
+ <p><strong>Warning:</strong> Generally you should avoid using <code>watch()</code> and <a href="#/Object.prototype.unwatch()" title="The unwatch() method removes a watchpoint set with the watch() method."><code>unwatch()</code></a> when possible. These two methods are implemented only in Gecko, and they&apos;re intended primarily for debugging use. In addition, using watchpoints has a serious negative impact on performance, which is especially true when used on global objects, such as <code>window</code>. You can usually use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters">setters and getters</a> or proxies instead. See <a href="#/Object.prototype.watch()#Browser_compatibility">Browser compatibility</a> for details. Also, do not confuse <a href="#/Object.prototype.watch()" title="The watch() method watches for a property to be assigned a value and runs a function when that occurs."><code>Object.watch</code></a> with <a href="#/Object.observe()" title="The&#xA0;object.observe() method is used for asynchronously observing the changes to an object. &#xA0;It provides a stream of changes in the order in which they occur."><code>Object.observe</code></a>.</p>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>watch()</strong></code> method watches for a property to be assigned a value and runs a function when that occurs.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>obj</var>.watch(<var>prop</var>, <var>handler</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>prop</code></dt>
+ <dd>
+  The name of a property of the object on which you wish to monitor changes.</dd>
+ <dt>
+  <code>handler</code></dt>
+ <dd>
+  A function to call when the specified property&apos;s value changes.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Watches for assignment to a property named <code>prop</code> in this object, calling <code>handler(prop, oldval, newval)</code> whenever <code>prop</code> is set and storing the return value in that property. A watchpoint can filter (or nullify) the value assignment, by returning a modified <code>newval</code> (or by returning <code>oldval</code>).</p>
+<p>If you delete a property for which a watchpoint has been set, that watchpoint does not disappear. If you later recreate the property, the watchpoint is still in effect.</p>
+<p>To remove a watchpoint, use the <a href="#/Object.prototype.unwatch()" title="The unwatch() method removes a watchpoint set with the watch() method."><code>unwatch()</code></a> method. By default, the <code>watch</code> method is inherited by every object descended from <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>.</p>
+<p>The JavaScript debugger has functionality similar to that provided by this method, as well as other debugging options. For information on the debugger, see <a href="https://developer.mozilla.org/en-US/docs/Venkman">Venkman</a>.</p>
+<p>In Firefox, <code>handler</code> is only called from assignments in script, not from native code. For example, <code>window.watch(&apos;location&apos;, myHandler)</code> will not call <code>myHandler</code> if the user clicks a link to an anchor within the current document. However, <code>window.location += &apos;#myAnchor&apos;</code> will call <code>myHandler</code>.</p>
+<div class="note">
+ <p><strong>Note:</strong> Calling <code>watch()</code> on an object for a specific property overrides any previous handler attached for that property.</p>
+</div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_watch_and_unwatch" name="Example:_Using_watch_and_unwatch">Example: Using <code>watch</code> and <code>unwatch</code></h3>
+<prism-js language="javascript">var o = { p: 1 };
+o.watch(&apos;p&apos;, function (id, oldval, newval) {
+  console.log(&apos;o.&apos; + id + &apos; changed from &apos; + oldval + &apos; to &apos; + newval);
+  return newval;
+});
+o.p = 2;
+o.p = 3;
+delete o.p;
+o.p = 4;
+o.unwatch(&apos;p&apos;);
+o.p = 5;
+</prism-js>
+<p>This script displays the following:</p>
+<pre>o.p changed from 1 to 2
+o.p changed from 2 to 3
+o.p changed from undefined to 4
+</pre>
+<h3 id="Example:_Using_watch_to_validate_an_object.27s_properties" name="Example:_Using_watch_to_validate_an_object.27s_properties">Example: Using <code>watch</code> to validate an object&apos;s properties</h3>
+<p>You can use <code>watch</code> to test any assignment to an object&apos;s properties. This example ensures that every Person always has a valid name and an age between 0 and 200.</p>
+<prism-js language="javascript">Person = function(name, age) {
+  this.watch(&apos;age&apos;, Person.prototype._isValidAssignment);
+  this.watch(&apos;name&apos;, Person.prototype._isValidAssignment);
+  this.name = name;
+  this.age = age;
+};
+Person.prototype.toString = function() {
+  return this.name + &apos;, &apos; + this.age;
+};
+Person.prototype._isValidAssignment = function(id, oldval, newval) {
+  if (id === &apos;name&apos; &amp;&amp; (!newval || newval.length &gt; 30)) {
+    throw new RangeError(&apos;invalid name for &apos; + this);
+  }
+  if (id === &apos;age&apos;  &amp;&amp; (newval &lt; 0 || newval &gt; 200)) {
+    throw new RangeError(&apos;invalid age for &apos; + this);
+  }
+  return newval;
+}
+will = new Person(&apos;Will&apos;, 29);
+print(will);   // Will, 29
+try {
+  will.name = &apos;&apos;;
+} catch (e) {
+  print(e);
+}
+try {
+  will.age = -4;
+} catch (e) {
+  print(e);
+}
+</prism-js>
+<p>This script displays the following:</p>
+<pre>Will, 29
+RangeError: invalid name for Will, 29
+RangeError: invalid age for Will, 29
+</pre>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<p>Not part of any specifications. Implemented in JavaScript 1.2.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.unwatch()" title="The unwatch() method removes a watchpoint set with the watch() method."><code>Object.unwatch()</code></a></li>
+ <li><a href="#/Object.observe()" title="The&#xA0;object.observe() method is used for asynchronously observing the changes to an object. &#xA0;It provides a stream of changes in the order in which they occur."><code>Object.observe()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch">Object.prototype.watch()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

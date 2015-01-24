@@ -1,0 +1,260 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="summary" name="summary">Summary</h2>
+<p>The <code><strong>Object.defineProperty()</strong></code> method defines a new property directly on an object, or modifies an existing property on an object, and returns the object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.defineProperty(<var>obj</var>, <var>prop</var>, <var>descriptor</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object on which to define the property.</dd>
+ <dt>
+  <code>prop</code></dt>
+ <dd>
+  The name of the property to be defined or modified.</dd>
+ <dt>
+  <code>descriptor</code></dt>
+ <dd>
+  The descriptor for the property being defined or modified.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>This method allows precise addition to or modification of a property on an object. Normal property addition through assignment creates properties which show up during property enumeration (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="The for..in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed."><code>for...in</code></a> loop or <a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys</code></a> method), whose values may be changed, and which may be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete" title="The delete operator removes a property from an object.">deleted</a>. This method allows these extra details to be changed from their defaults.</p>
+<p>Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. A <em><dfn>data descriptor</dfn></em> is a property that has a value, which may or may not be writable. An <dfn>accessor descriptor</dfn> is a property described by a getter-setter pair of functions. A descriptor must be one of these two flavors; it cannot be both.</p>
+<p>Both data and accessor descriptors are objects. They share the following <span class="b-translation__text">required</span> keys:</p>
+<dl>
+ <dt>
+  <code>configurable</code></dt>
+ <dd>
+  <code>true</code> if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.<br>
+  <strong>Defaults to <code>false</code>.</strong></dd>
+ <dt>
+  <code>enumerable</code></dt>
+ <dd>
+  <code>true</code> if and only if this property shows up during enumeration of the properties on the corresponding object.<br>
+  <strong>Defaults to <code>false</code>.</strong></dd>
+</dl>
+<p>A data descriptor also has the following optional keys:</p>
+<dl>
+ <dt>
+  <code>value</code></dt>
+ <dd>
+  The value associated with the property. Can be any valid JavaScript value (number, object, function, etc).<br>
+  <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+ <dt>
+  <code>writable</code></dt>
+ <dd>
+  <code>true</code> if and only if the value associated with the property may be changed with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators" title="An assignment operator assigns a value to its left operand based on the value of its right operand.">assignment operator</a>.<br>
+  <strong>Defaults to <code>false</code>.</strong></dd>
+</dl>
+<p>An accessor descriptor also has the following optional keys:</p>
+<dl>
+ <dt>
+  <code>get</code></dt>
+ <dd>
+  A function which serves as a getter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no getter. The function return will be used as the value of property.<br>
+  <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+ <dt>
+  <code>set</code></dt>
+ <dd>
+  A function which serves as a setter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no setter. The function will receive as only argument the new value being assigned to the property.<br>
+  <strong>Defaults to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>.</strong></dd>
+</dl>
+<p>Bear in mind that these options are not necessarily own properties so, if inherited, will be considered too. In order to ensure these defaults are preserved you might freeze the <a href="#/Object.prototype" title="The Object.prototype property represents the Object prototype object."><code>Object.prototype</code></a> upfront, specify all options explicitly, or point to <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> as <a href="#/Object.prototype.__proto__" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>__proto__</code></a> property.</p>
+<prism-js language="javascript">// using __proto__
+Object.defineProperty(obj, &apos;key&apos;, {
+  __proto__: null, // no inherited properties
+  value: &apos;static&apos;  // not enumerable
+                   // not configurable
+                   // not writable
+                   // as defaults
+});
+// being explicit
+Object.defineProperty(obj, &apos;key&apos;, {
+  enumerable: false,
+  configurable: false,
+  writable: false,
+  value: &apos;static&apos;
+});
+// recycling same object
+function withValue(value) {
+  var d = withValue.d || (
+    withValue.d = {
+      enumerable: false,
+      writable: false,
+      configurable: false,
+      value: null
+    }
+  );
+  d.value = value;
+  return d;
+}
+// ... and ...
+Object.defineProperty(obj, &apos;key&apos;, withValue(&apos;static&apos;));
+// if freeze is available, prevents the code to add
+// value, get, set, enumerable, writable, configurable
+// to the Object prototype
+(Object.freeze || Object)(Object.prototype);
+</prism-js>
+<h2 id="Examples" name="Examples">Examples</h2>
+<p>If you want to see how to use the <code>Object.defineProperty</code> method with a <em>binary-flags-like</em> syntax, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty/Additional_examples">additional examples</a>.</p>
+<h3 id="Example:_Creating_a_property" name="Example:_Creating_a_property">Example: Creating a property</h3>
+<p>When the property specified doesn&apos;t exist in the object, <code>Object.defineProperty()</code> creates a new property as described. Fields may be omitted from the descriptor, and default values for those fields are imputed. All of the Boolean-valued fields default to <code>false</code>. The <code>value</code>, <code>get</code>, and <code>set</code> fields default to <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>. A property which is defined without <code>get</code>/<code>set</code>/<code>value</code>/<code>writable</code> is called &#x201C;generic&#x201D; and is &#x201C;typed&#x201D; as a data descriptor.</p>
+<prism-js language="javascript">var o = {}; // Creates a new object
+// Example of an object property added with defineProperty with a data property descriptor
+Object.defineProperty(o, &apos;a&apos;, {
+  value: 37,
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
+// &apos;a&apos; property exists in the o object and its value is 37
+// Example of an object property added with defineProperty with an accessor property descriptor
+var bValue = 38;
+Object.defineProperty(o, &apos;b&apos;, {
+  get: function() { return bValue; },
+  set: function(newValue) { bValue = newValue; },
+  enumerable: true,
+  configurable: true
+});
+o.b; // 38
+// &apos;b&apos; property exists in the o object and its value is 38
+// The value of o.b is now always identical to bValue, unless o.b is redefined
+// You cannot try to mix both:
+Object.defineProperty(o, &apos;conflict&apos;, {
+  value: 0x9f91102,
+  get: function() { return 0xdeadbeef; }
+});
+// throws a TypeError: value appears only in data descriptors, get appears only in accessor descriptors
+</prism-js>
+<h3 id="Example:_Modifying_a_property" name="Example:_Modifying_a_property">Example: Modifying a property</h3>
+<p>When the property already exists, <code>Object.defineProperty()</code> attempts to modify the property according to the values in the descriptor and the object&apos;s current configuration. If the old descriptor had its <code>configurable</code> attribute set to <code>false</code> (the property is said to be &#x201C;non-configurable&#x201D;), then no attribute besides <code>writable</code> can be changed. In that case, it is also not possible to switch back and forth between the data and accessor property types.</p>
+<p>If a property is non-configurable, its <code>writable</code> attribute can only be changed to <code>false</code>.</p>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> is thrown when attempts are made to change non-configurable property attributes (besides the <code>writable</code> attribute) unless the current and new values are the same.</p>
+<h4 id="Writable_attribute" name="Writable_attribute">Writable attribute</h4>
+<p>When the <code>writable</code> property attribute is set to <code>false</code>, the property is said to be &#x201C;non-writable&#x201D;. It cannot be reassigned.</p>
+<prism-js language="javascript">var o = {}; // Creates a new object
+Object.defineProperty(o, &apos;a&apos;, {
+  value: 37,
+  writable: false
+});
+console.log(o.a); // logs 37
+o.a = 25; // No error thrown (it would throw in strict mode, even if the value had been the same)
+console.log(o.a); // logs 37. The assignment didn&apos;t work.
+</prism-js>
+<p>As seen in the example, trying to write into the non-writable property doesn&apos;t change it but doesn&apos;t throw an error either.</p>
+<h4 id="Enumerable_attribute" name="Enumerable_attribute">Enumerable attribute</h4>
+<p>The <code>enumerable</code> property attribute defines whether the property shows up in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="The for..in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed."><code>for...in</code></a> loop and <a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a> or not.</p>
+<prism-js language="javascript">var o = {};
+Object.defineProperty(o, &apos;a&apos;, { value: 1, enumerable: true });
+Object.defineProperty(o, &apos;b&apos;, { value: 2, enumerable: false });
+Object.defineProperty(o, &apos;c&apos;, { value: 3 }); // enumerable defaults to false
+o.d = 4; // enumerable defaults to true when creating a property by setting it
+for (var i in o) {
+  console.log(i);
+}
+// logs &apos;a&apos; and &apos;d&apos; (in undefined order)
+Object.keys(o); // [&apos;a&apos;, &apos;d&apos;]
+o.propertyIsEnumerable(&apos;a&apos;); // true
+o.propertyIsEnumerable(&apos;b&apos;); // false
+o.propertyIsEnumerable(&apos;c&apos;); // false
+</prism-js>
+<h4 id="Configurable_attribute" name="Configurable_attribute">Configurable attribute</h4>
+<p>The <code>configurable</code> attribute controls at the same time whether the property can be deleted from the object and whether its attributes (other than <code>writable</code>) can be changed.</p>
+<prism-js language="javascript">var o = {};
+Object.defineProperty(o, &apos;a&apos;, {
+  get: function() { return 1; },
+  configurable: false
+});
+Object.defineProperty(o, &apos;a&apos;, { configurable: true }); // throws a TypeError
+Object.defineProperty(o, &apos;a&apos;, { enumerable: true }); // throws a TypeError
+Object.defineProperty(o, &apos;a&apos;, { set: function() {} }); // throws a TypeError (set was undefined previously)
+Object.defineProperty(o, &apos;a&apos;, { get: function() { return 1; } }); // throws a TypeError (even though the new get does exactly the same thing)
+Object.defineProperty(o, &apos;a&apos;, { value: 12 }); // throws a TypeError
+console.log(o.a); // logs 1
+delete o.a; // Nothing happens
+console.log(o.a); // logs 1
+</prism-js>
+<p>If the <code>configurable</code> attribute of <code>o.a</code> had been <code>true</code>, none of the errors would be thrown and the property would be deleted at the end.</p>
+<h3 id="Example:_Adding_properties_and_default_values" name="Example:_Adding_properties_and_default_values">Example: Adding properties and default values</h3>
+<p>It&apos;s important to consider the way default values of attributes are applied. There is often a difference between simply using dot notation to assign a value and using <code>Object.defineProperty()</code>, as shown in the example below.</p>
+<prism-js language="javascript">var o = {};
+o.a = 1;
+// is equivalent to:
+Object.defineProperty(o, &apos;a&apos;, {
+  value: 1,
+  writable: true,
+  configurable: true,
+  enumerable: true
+});
+// On the other hand,
+Object.defineProperty(o, &apos;a&apos;, { value: 1 });
+// is equivalent to:
+Object.defineProperty(o, &apos;a&apos;, {
+  value: 1,
+  writable: false,
+  configurable: false,
+  enumerable: false
+});
+</prism-js>
+<h3 id="Example:_Custom_setters_and_getters" name="Example:_Custom_setters_and_getters">Example: Custom Setters and Getters</h3>
+<p>Example below shows how to implement a self-archiving object. When <code>temperature</code> property is set, the <code>archive</code> array gets a log entry.</p>
+<prism-js language="javascript">function Archiver() {
+  var temperature = null;
+  var archive = [];
+  Object.defineProperty(this, &apos;temperature&apos;, {
+    get: function() {
+      console.log(&apos;get!&apos;);
+      return temperature;
+    },
+    set: function(value) {
+      temperature = value;
+      archive.push({ val: temperature });
+    }
+  });
+  this.getArchive = function() { return archive; };
+}
+var arc = new Archiver();
+arc.temperature; // &apos;get!&apos;
+arc.temperature = 11;
+arc.temperature = 13;
+arc.getArchive(); // [{ val: 11 }, { val: 13 }]
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.defineProperty&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.defineproperty" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.defineProperty&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li>
+ <li><a href="#/Object.defineProperties()" title="The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object."><code>Object.defineProperties()</code></a></li>
+ <li><a href="#/Object.prototype.propertyIsEnumerable()" title="The propertyIsEnumerable() method returns a Boolean indicating whether the specified property is enumerable."><code>Object.propertyIsEnumerable()</code></a></li>
+ <li><a href="#/Object.getOwnPropertyDescriptor()" title="The Object.getOwnPropertyDescriptor() method returns a property descriptor for an own property (that is, one directly present on an object, not present by dint of being along an object&apos;s prototype chain) of a given object."><code>Object.getOwnPropertyDescriptor()</code></a></li>
+ <li><a href="#/Object.prototype.watch()" title="The watch() method watches for a property to be assigned a value and runs a function when that occurs."><code>Object.prototype.watch()</code></a></li>
+ <li><a href="#/Object.prototype.unwatch()" title="The unwatch() method removes a watchpoint set with the watch() method."><code>Object.prototype.unwatch()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/get" title="The documentation about this has not yet been written; please consider contributing!"><code>get</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/set" title="The documentation about this has not yet been written; please consider contributing!"><code>set</code></a></li>
+ <li><a href="#/Object.create()" title="The Object.create() method creates a new object with the specified prototype object and properties."><code>Object.create()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty/Additional_examples">Additional <code>Object.defineProperty</code> examples</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

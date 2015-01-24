@@ -1,0 +1,65 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Object.isExtensible()</code></strong> method determines if an object is extensible (whether it can have new properties added to it).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.isExtensible(<var>obj</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>obj</code></dt>
+ <dd>The object which should be checked.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Objects are extensible by default: they can have new properties added to them, and (in engines that support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>__proto__</code></a> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span> their __proto__ property) can be modified. An object can be marked as non-extensible using <a href="#/Object.preventExtensions()" title="The Object.preventExtensions() method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object)."><code>Object.preventExtensions()</code></a>, <a href="#/Object.seal()" title="The Object.seal() method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable."><code>Object.seal()</code></a>, or <a href="#/Object.freeze()" title="The Object.freeze() method freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed. In essence the object is made effectively immutable. The method returns the object being frozen."><code>Object.freeze()</code></a>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">// New objects are extensible.
+var empty = {};
+assert(Object.isExtensible(empty) === true);
+// ...but that can be changed.
+Object.preventExtensions(empty);
+assert(Object.isExtensible(empty) === false);
+// Sealed objects are by definition non-extensible.
+var sealed = Object.seal({});
+assert(Object.isExtensible(sealed) === false);
+// Frozen objects are also by definition non-extensible.
+var frozen = Object.freeze({});
+assert(Object.isExtensible(frozen) === false);
+</prism-js>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be treated as if it was a non-extensible ordinary object, simply return <code>false</code>.</p>
+<prism-js language="javascript">&gt; Object.isExtensible(1)
+TypeError: 1 is not an object // ES5 code
+&gt; Object.isExtensible(1)
+false                         // ES6 code
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.13" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.isExtensible&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.isextensible" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.isExtensible&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.preventExtensions()" title="The Object.preventExtensions() method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object)."><code>Object.preventExtensions()</code></a></li>
+ <li><a href="#/Object.seal()" title="The Object.seal() method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable."><code>Object.seal()</code></a></li>
+ <li><a href="#/Object.isSealed()" title="The Object.isSealed() method determines if an object is sealed."><code>Object.isSealed()</code></a></li>
+ <li><a href="#/Object.freeze()" title="The Object.freeze() method freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed. In essence the object is made effectively immutable. The method returns the object being frozen."><code>Object.freeze()</code></a></li>
+ <li><a href="#/Object.isFrozen()" title="The Object.isFrozen() determines if an object is frozen."><code>Object.isFrozen()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible">Object.isExtensible()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

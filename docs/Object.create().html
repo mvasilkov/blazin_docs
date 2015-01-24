@@ -1,0 +1,160 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.create()</strong></code> method creates a new object with the specified prototype object and properties.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.create(<var>proto</var>[, <var>propertiesObject</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>proto</code></dt>
+ <dd>
+  The object which should be the prototype of the newly-created object.</dd>
+ <dt>
+  <code>propertiesObject</code></dt>
+ <dd>
+  Optional. If specified and not <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>, an object whose enumerable own properties (that is, those properties defined upon itself and <em>not</em> enumerable properties along its prototype chain) specify property descriptors to be added to the newly-created object, with the corresponding property names. These properties correspond to the second argument of <a href="#/Object.defineProperties()" title="The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object."><code>Object.defineProperties()</code></a>.</dd>
+</dl>
+<h3 id="Throws" name="Throws">Throws</h3>
+<p>Throws a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception if the <code>proto</code> parameter isn&apos;t <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> or an object.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Classical_inheritance_with_Object.create" name="Example:_Classical_inheritance_with_Object.create">Example: Classical inheritance with <code>Object.create</code></h3>
+<p>Below is an example of how to use <code>Object.create</code> to achieve classical inheritance. This is for single inheritance, which is all that Javascript supports.</p>
+<prism-js language="javascript">// Shape - superclass
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+// superclass method
+Shape.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+  console.info(&apos;Shape moved.&apos;);
+};
+// Rectangle - subclass
+function Rectangle() {
+  Shape.call(this); // call super constructor.
+}
+// subclass extends superclass
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+var rect = new Rectangle();
+console.log(&quot;Is rect an instance of Rectangle? &quot; + (rect instanceof Rectangle)); // true
+console.log(&quot;Is rect an instance of Shape? &quot; + (rect instanceof Shape)); // true
+rect.move(1, 1); // Outputs, &apos;Shape moved.&apos;
+</prism-js>
+<p>If you wish to inherit from multiple objects, then mixins are a possibility.</p>
+<prism-js language="javascript">function MyClass() {
+  SuperClass.call(this);
+  OtherSuperClass.call(this);
+}
+MyClass.prototype = Object.create(SuperClass.prototype); // inherit
+mixin(MyClass.prototype, OtherSuperClass.prototype); // mixin
+MyClass.prototype.myMethod = function() {
+  // do a thing
+};
+</prism-js>
+<p>The <code>mixin</code> function would copy the functions from the superclass prototype to the subclass prototype, the mixin function needs to be supplied by the user. An example of a mixin like function would be <a class="external" href="http://api.jquery.com/jQuery.extend/">jQuery.extend</a>.</p>
+<h3 id="Example:_Using_propertiesObject_argument_with_Object.create" name="Example:_Using_propertiesObject_argument_with_Object.create">Example: Using <code>propertiesObject</code> argument with <code>Object.create</code></h3>
+<prism-js language="javascript">var o;
+// create an object with null as prototype
+o = Object.create(null);
+o = {};
+// is equivalent to:
+o = Object.create(Object.prototype);
+// Example where we create an object with a couple of sample properties.
+// (Note that the second parameter maps keys to *property descriptors*.)
+o = Object.create(Object.prototype, {
+  // foo is a regular &apos;value property&apos;
+  foo: { writable: true, configurable: true, value: &apos;hello&apos; },
+  // bar is a getter-and-setter (accessor) property
+  bar: {
+    configurable: false,
+    get: function() { return 10; },
+    set: function(value) { console.log(&apos;Setting `o.bar` to&apos;, value); }
+/* with ES5 Accessors our code can look like this
+    get function() { return 10 },
+    set function(value) { console.log(&apos;setting `o.bar` to&apos;, value) } */
+  }
+});
+function Constructor() {}
+o = new Constructor();
+// is equivalent to:
+o = Object.create(Constructor.prototype);
+// Of course, if there is actual initialization code in the
+// Constructor function, the Object.create cannot reflect it
+// create a new object whose prototype is a new, empty object
+// and a adding single property &apos;p&apos;, with value 42
+o = Object.create({}, { p: { value: 42 } });
+// by default properties ARE NOT writable, enumerable or configurable:
+o.p = 24;
+o.p;
+// 42
+o.q = 12;
+for (var prop in o) {
+  console.log(prop);
+}
+// &apos;q&apos;
+delete o.p;
+// false
+// to specify an ES3 property
+o2 = Object.create({}, {
+  p: {
+    value: 42,
+    writable: true,
+    enumerable: true,
+    configurable: true
+  }
+});
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>This polyfill covers the main use case which is creating a new object for which the prototype has been chosen but doesn&apos;t take the second argument into account.</p>
+<prism-js language="javascript">if (typeof Object.create != &apos;function&apos;) {
+  Object.create = (function() {
+    var Temp = function() {};
+    return function (prototype) {
+      if (arguments.length &gt; 1) {
+        throw Error(&apos;Second argument not supported&apos;);
+      }
+      if (typeof prototype != &apos;object&apos;) {
+        throw TypeError(&apos;Argument must be an object&apos;);
+      }
+      Temp.prototype = prototype;
+      var result = new Temp();
+      Temp.prototype = null;
+      return result;
+    };
+  })();
+}
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.create&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.create" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.create&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty</code></a></li>
+ <li><a href="#/Object.defineProperties()" title="The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object."><code>Object.defineProperties</code></a></li>
+ <li><a href="#/Object.prototype.isPrototypeOf()" title="The isPrototypeOf() method tests for an object in another object&apos;s prototype chain."><code>Object.prototype.isPrototypeOf</code></a></li>
+ <li>John Resig&apos;s post on <a class="external" href="http://ejohn.org/blog/objectgetprototypeof/">getPrototypeOf</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Object.create()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

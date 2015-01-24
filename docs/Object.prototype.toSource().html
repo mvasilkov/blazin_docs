@@ -1,0 +1,83 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>toSource()</code></strong> method returns a string representing the source code of the object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.toSource();
+<var>obj</var>.toSource();
+</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<p>None.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>toSource()</code> method returns the following values:</p>
+<ul>
+ <li>For the built-in <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a> object, <code>toSource()</code> returns the following string indicating that the source code is not available:
+<prism-js language="javascript">function Object() {
+    [native code]
+}
+</prism-js>
+</li>
+ <li>For instances of <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>, <code>toSource()</code> returns a string representing the source code.</li>
+</ul>
+<p>You can call <code>toSource()</code> while debugging to examine the contents of an object.</p>
+<h3 id="Overriding_the_toSource()_method">Overriding the <code>toSource()</code> method</h3>
+<p>It is safe for objects to override the <code>toSource()</code> method. For example:</p>
+<prism-js language="javascript">function Person(name) {
+  this.name = name;
+}
+Person.prototype.toSource = function Person_toSource() {
+  return &apos;new Person(&apos; + uneval(this.name) + &apos;)&apos;;
+};
+console.log(new Person(&apos;Joe&apos;).toSource()); // ---&gt; new Person(&quot;Joe&quot;)
+</prism-js>
+<h3 id="Built-in_toString_methods" name="Built-in_toString_methods">Built-in <code>toSource()</code> methods</h3>
+<p>Each core JavaScript type has its own <code>toSource()</code> method. These objects are:</p>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSource" title="The toSource() method returns a string representing the source code of the array."><code>Array.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Boolean.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Date.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Function.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> Object method.</li>
+ <li><a href="#/Number.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Number.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Regexp/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Regexp.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toSource" title="The toSource() method returns a string representing the source code of the object."><code>String.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> Object method.</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Symbol.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span>&#xA0;&#x2014; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol" title="A symbol is a unique and immutable data type and may be used as an identifier for object properties. The symbol object is an implicit object wrapper for the symbol primitive data type."><code>Symbol</code></a> Object method.</li>
+ <li><code>Math.toSource()</code>&#xA0;&#x2014; Returns the String &quot;Math&quot;.</li>
+</ul>
+<h3 id="Limitations_on_cyclical_objects">Limitations on cyclical objects</h3>
+<p>In the case of objects that contain references to themselves, e.g. a cyclically linked list or a tree that can be traversed both ways,&#xA0;<code>toSource()</code> will not recreate the self-reference, as of Firefox 24. For example:</p>
+<prism-js language="javascript">var obj1 = {};
+var obj2 = { a: obj1 };
+obj1.b = obj2;
+console.log(&apos;Cyclical: &apos; + (obj1.b.a == obj1));
+var objSource = obj1.toSource(); // returns &quot;({b:{a:{}}})&quot;
+obj1 = eval(objSource);
+console.log(&apos;Cyclical: &apos; + (obj1.b.a == obj1));
+</prism-js>
+<p>If a cyclical structure is employed and <code>toSource()</code> is needed, the object must provide an override to <code>toSource()</code>, either using a reference to a constructor or providing an anonymous function.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toSource" name="Example:_Using_toSource">Example: Using <code>toSource()</code></h3>
+<p>The following code defines the <code>Dog</code> object type and creates <code>theDog</code>, an object of type <code>Dog</code>:</p>
+<prism-js language="javascript">function Dog(name, breed, color, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+  this.sex = sex;
+}
+theDog = new Dog(&apos;Gabby&apos;, &apos;Lab&apos;, &apos;chocolate&apos;, &apos;female&apos;);
+</prism-js>
+<p>Calling the <code>toSource()</code> method of <code>theDog</code> displays the JavaScript source that defines the object:</p>
+<prism-js language="javascript">theDog.toSource();
+// returns ({name:&quot;Gabby&quot;, breed:&quot;Lab&quot;, color:&quot;chocolate&quot;, sex:&quot;female&quot;})
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<p>Not part of any standard. Implemented in JavaScript 1.3.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource">Object.prototype.toSource()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

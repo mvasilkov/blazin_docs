@@ -1,0 +1,109 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>Returns a reference to the <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a> function that created the instance&apos;s prototype. Note that the value of this property is a reference to the function itself, not a string containing the function&apos;s name. The value is only read-only for primitive values such as&#xA0;<code>1</code>,&#xA0;<code>true</code> and&#xA0;<code>&quot;test&quot;</code>.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>All objects inherit a <code>constructor</code> property from their <code>prototype</code>:</p>
+<prism-js language="javascript">var o = {};
+o.constructor === Object; // true
+var a = [];
+a.constructor === Array; // true
+var n = new Number(3);
+n.constructor === Number; // true
+</prism-js>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Displaying_the_constructor_of_an_object" name="Example:_Displaying_the_constructor_of_an_object">Example: Displaying the constructor of an object</h3>
+<p>The following example creates a prototype, <code>Tree</code>, and an object of that type, <code>theTree</code>. The example then displays the <code>constructor</code> property for the object <code>theTree</code>.</p>
+<prism-js language="javascript">function Tree(name) {
+  this.name = name;
+}
+var theTree = new Tree(&apos;Redwood&apos;);
+console.log(&apos;theTree.constructor is &apos; + theTree.constructor);
+</prism-js>
+<p>This example displays the following output:</p>
+<prism-js language="javascript">theTree.constructor is function Tree(name) {
+  this.name = name;
+}
+</prism-js>
+<h3 id="Example:_Changing_the_constructor_of_an_object" name="Example:_Changing_the_constructor_of_an_object">Example: Changing the constructor of an object</h3>
+<p>The following example shows how to modify constructor value of generic objects. Only <code>true</code>, <code>1</code> and <code>&quot;test&quot;</code>&#xA0;will not be affected as they have read-only native constructors. This example shows that it is not always safe to rely on the <code>constructor</code> property of an object.</p>
+<prism-js language="javascript">function Type () {}
+var types = [
+  new Array(),
+  [],
+  new Boolean(),
+  true,             // remains unchanged
+  new Date(),
+  new Error(),
+  new Function(),
+  function () {},
+  Math,
+  new Number(),
+  1,                // remains unchanged
+  new Object(),
+  {},
+  new RegExp(),
+  /(?:)/,
+  new String(),
+  &apos;test&apos;            // remains unchanged
+];
+for (var i = 0; i &lt; types.length; i++) {
+  types[i].constructor = Type;
+  types[i] = [types[i].constructor, types[i] instanceof Type, types[i].toString()];
+}
+console.log(types.join(&apos;\n&apos;));
+</prism-js>
+<p>This example displays the following output:</p>
+<prism-js language="javascript">function Type() {},false,
+function Type() {},false,
+function Type() {},false,false
+function Boolean() {
+    [native code]
+},false,true
+function Type() {},false,Mon Sep 01 2014 16:03:49 GMT+0600
+function Type() {},false,Error
+function Type() {},false,function anonymous() {
+}
+function Type() {},false,function () {}
+function Type() {},false,[object Math]
+function Type() {},false,0
+function Number() {
+    [native code]
+},false,1
+function Type() {},false,[object Object]
+function Type() {},false,[object Object]
+function Type() {},false,/(?:)/
+function Type() {},false,/(?:)/
+function Type() {},false,
+function String() {
+    [native code]
+},false,&#x442;&#x435;&#x441;&#x442;
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.prototype.constructor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype.constructor" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.prototype.constructor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor">Object.prototype.constructor</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

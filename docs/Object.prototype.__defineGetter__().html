@@ -1,0 +1,59 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>__defineGetter__</strong></code> method binds an object&apos;s property to a function to be called when that property is looked up.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>obj</var>.__defineGetter__(<var>prop</var>, <var>func</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>prop</code></dt>
+ <dd>
+  A string containing the name of the property to bind to the given function.</dd>
+ <dt>
+  <code>func</code></dt>
+ <dd>
+  A function to be bound to a lookup of the specified property.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>__defineGetter__</code> allows a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/get" title="The documentation about this has not yet been written; please consider contributing!">getter</a> to be defined on a pre-existing object.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">// Non-standard and deprecated way
+var o = {};
+o.__defineGetter__(&apos;gimmeFive&apos;, function() { return 5; });
+console.log(o.gimmeFive); // 5
+// Standard-compliant ways
+// Using the get operator
+var o = { get gimmeFive() { return 5; } };
+console.log(o.gimmeFive); // 5
+// Using Object.defineProperty
+var o = {};
+Object.defineProperty(o, &apos;gimmeFive&apos;, {
+  get: function() {
+    return 5;
+  }
+});
+console.log(o.gimmeFive); // 5
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<p>Not part of any specifications.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.__defineSetter__()" title="The __defineSetter__ method binds an object&apos;s property to a function to be called when an attempt is made to set that property."><code>Object.prototype.__defineSetter__()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/get" title="The documentation about this has not yet been written; please consider contributing!"><code>get</code></a> operator</li>
+ <li><a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty()</code></a></li>
+ <li><a href="#/Object.prototype.__lookupGetter__()" title="The __lookupGetter__ method returns the function bound as a getter to the specified property."><code>Object.prototype.__lookupGetter__()</code></a></li>
+ <li><a href="#/Object.prototype.__lookupSetter__()" title="The __lookupSetter__ method returns the function bound as a setter to the specified property."><code>Object.prototype.__lookupSetter__()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters">JS Guide: Defining Getters and Setters</a></li>
+ <li><a class="external" href="http://whereswalden.com/2010/04/16/more-spidermonkey-changes-ancient-esoteric-very-rarely-used-syntax-for-creating-getters-and-setters-is-being-removed/">[Blog Post] Deprecation of __defineGetter__ and __defineSetter__</a></li>
+ <li><a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=647423" title="Remove __defineGetter__ and __defineSetter__ support">bug&#xA0;647423</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineGetter__">Object.prototype.__defineGetter__()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

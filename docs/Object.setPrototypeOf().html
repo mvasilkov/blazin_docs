@@ -1,0 +1,138 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div class="warning">
+ <p><strong>Warning:</strong> Mutating the <code>[[Prototype]]</code> of an object is, by the nature of how modern JavaScript engines optimize property accesses, a very slow operation, in <strong><em>every</em></strong> browser and JavaScript engine. The effects on performance of mutating prototypes are subtle and far-flung, and are not limited to simply the time spent in <code>Object.setPrototypeOf</code>, but may extend to <strong><em>any</em></strong> code that has access to <strong><em>any</em></strong> object whose <code>[[Prototype]]</code> has been mutated. If you care about performance you should avoid mutating the <code>[[Prototype]]</code> of an object. Instead, create the object with the desired <code>[[Prototype]]</code> using <a href="#/Object.create()"><code>Object.create</code></a>.</p>
+</div>
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the ECMAScript 6 (Harmony) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Object.setPrototypeOf()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.setPrototype()</strong></code> method sets the prototype (i.e., the internal <code>[[Prototype]]</code> property) of a specified object to another object or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.setPrototypeOf(<var>obj</var>, <var>prototype</var>);</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object which is to have its prototype set.</dd>
+ <dt>
+  <code>prototype</code></dt>
+ <dd>
+  The object&apos;s new prototype (an object or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>).</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Throws a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception if the object whose <code>[[Prototype]]</code> is to be modified is non-extensible according to <a href="#/Object.isExtensible()" title="The Object.isExtensible() method determines if an object is extensible (whether it can have new properties added to it)."><code>Object.isExtensible()</code></a>. Does nothing if the <code>prototype</code> parameter isn&apos;t an object or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> (i.e., number, string, boolean, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>). Otherwise, this method changes the <code>[[Prototype]]</code> of <code>obj</code> to the new value.</p>
+<p><code>Object.setPrototypeOf()</code> is in the latest ECMAScript 6 standard draft. It is generally considered the proper way to set the prototype of an object, vs. the more controversial&#xA0;<a href="#/Object.prototype.__proto__" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>Object.prototype.__proto__</code></a> property.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">var dict = Object.setPrototypeOf({}, null);
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>Using the older <a href="#/Object.prototype.__proto__" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>Object.prototype.__proto__</code></a> property, we can easily define <code>Object.setPrototypeOf</code>&#xA0;if it isn&apos;t available already:</p>
+<prism-js language="javascript">Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
+  obj.__proto__ = proto;
+  return obj;
+}
+</prism-js>
+<h2 id="Appending_Prototype_Chains">Appending Prototype Chains</h2>
+<p>A combination of <code>Object.getPrototypeOf()</code> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>Object.prototype.__proto__</code></a> permits appending a whole prototype chain to a new prototype object:</p>
+<prism-js language="javascript">/**
+*** Object.appendChain(@object, @prototype)
+*
+* Appends the first non-native prototype of a chain to a new prototype.
+* Returns @object (if it was a primitive value it will transformed into an object).
+*
+*** Object.appendChain(@object [, &quot;@arg_name_1&quot;, &quot;@arg_name_2&quot;, &quot;@arg_name_3&quot;, &quot;...&quot;], &quot;@function_body&quot;)
+*** Object.appendChain(@object [, &quot;@arg_name_1, @arg_name_2, @arg_name_3, ...&quot;], &quot;@function_body&quot;)
+*
+* Appends the first non-native prototype of a chain to the native Function.prototype object, then appends a
+* new Function([&quot;@arg&quot;(s)], &quot;@function_body&quot;) to that chain.
+* Returns the function.
+*
+**/
+Object.appendChain = function(oChain, oProto) {
+  if (arguments.length &lt; 2) {
+    throw new TypeError(&apos;Object.appendChain - Not enough arguments&apos;);
+  }
+  if (typeof oProto === &apos;number&apos; || typeof oProto === &apos;boolean&apos;) {
+    throw new TypeError(&apos;second argument to Object.appendChain must be an object or a string&apos;);
+  }
+  var oNewProto = oProto,
+      oReturn = o2nd = oLast = oChain instanceof this ? oChain : new oChain.constructor(oChain);
+  for (var o1st = this.getPrototypeOf(o2nd);
+    o1st !== Object.prototype &amp;&amp; o1st !== Function.prototype;
+    o1st = this.getPrototypeOf(o2nd)
+  ) {
+    o2nd = o1st;
+  }
+  if (oProto.constructor === String) {
+    oNewProto = Function.prototype;
+    oReturn = Function.apply(null, Array.prototype.slice.call(arguments, 1));
+    this.setPrototypeOf(oReturn, oLast);
+  }
+  this.setPrototypeOf(o2nd, oNewProto);
+  return oReturn;
+}
+</prism-js>
+<h3 id="Usage">Usage</h3>
+<h4 id="First_example.3A_Appending_a_chain_to_a_prototype">First example: Appending a chain to a prototype</h4>
+<prism-js language="javascript">function Mammal() {
+  this.isMammal = &apos;yes&apos;;
+}
+function MammalSpecies(sMammalSpecies) {
+  this.species = sMammalSpecies;
+}
+MammalSpecies.prototype = new Mammal();
+MammalSpecies.prototype.constructor = MammalSpecies;
+var oCat = new MammalSpecies(&apos;Felis&apos;);
+alert(oCat.isMammal); // &apos;yes&apos;
+function Animal() {
+  this.breathing = &apos;yes&apos;;
+}
+Object.appendChain(oCat, new Animal());
+alert(oCat.breathing); // &apos;yes&apos;
+</prism-js>
+<h4 id="Second_example.3A_Transforming_a_primitive_value_into_an_instance_of_its_constructor_and_append_its_chain_to_a_prototype">Second example: Transforming a primitive value into an instance of its constructor and append its chain to a prototype</h4>
+<prism-js language="javascript">function Symbol() {
+  this.isSymbol = &apos;yes&apos;;
+}
+var nPrime = 17;
+alert(typeof nPrime); // &apos;number&apos;
+var oPrime = Object.appendChain(nPrime, new Symbol());
+alert(oPrime); // &apos;17&apos;
+alert(oPrime.isSymbol); // &apos;yes&apos;
+alert(typeof oPrime); // &apos;object&apos;
+</prism-js>
+<h4 id="Third_example.3A_Appending_a_chain_to_the_Function.prototype_object_and_appending_a_new_function_to_that_chain">Third example: Appending a chain to the Function.prototype object and appending a new function to that chain</h4>
+<prism-js language="javascript">function Person(sName) {
+  this.identity = sName;
+}
+var george = Object.appendChain(new Person(&apos;George&apos;),
+                                &apos;alert(&quot;Hello guys!!&quot;);&apos;);
+alert(george.identity); // &apos;George&apos;
+george(); // &apos;Hello guys!!&apos;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.setprototypeof" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.setProtoypeOf&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.isPrototypeOf()" title="The isPrototypeOf() method tests for an object in another object&apos;s prototype chain."><code>Object.prototype.isPrototypeOf()</code></a></li>
+ <li><a href="#/Object.getPrototypeOf()" title="The Object.getPrototypeOf() method returns the prototype (i.e. the value of the internal [[Prototype]] property) of the specified object."><code>Object.getPrototypeOf()</code></a></li>
+ <li><a href="#/Object.prototype.__proto__" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>Object.prototype.__proto__</code></a>&#xA0;</li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf">Object.setPrototypeOf()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

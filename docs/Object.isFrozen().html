@@ -1,0 +1,103 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.isFrozen()</strong></code> determines if an object is frozen.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.isFrozen(<var>obj</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object which should be checked.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>An object is frozen if and only if it is not <a href="#/Object.isExtensible()" title="The Object.isExtensible() method determines if an object is extensible (whether it can have new properties added to it).">extensible</a>, all its properties are non-configurable, and all its data properties (that is, properties which are not accessor properties with getter or setter components) are non-writable.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">// A new object is extensible, so it is not frozen.
+assert(Object.isFrozen({}) === false);
+// An empty object which is not extensible is vacuously frozen.
+var vacuouslyFrozen = Object.preventExtensions({});
+assert(Object.isFrozen(vacuouslyFrozen) === true);
+// A new object with one property is also extensible, ergo not frozen.
+var oneProp = { p: 42 };
+assert(Object.isFrozen(oneProp) === false);
+// Preventing extensions to the object still doesn&apos;t make it frozen,
+// because the property is still configurable (and writable).
+Object.preventExtensions(oneProp);
+assert(Object.isFrozen(oneProp) === false);
+// ...but then deleting that property makes the object vacuously frozen.
+delete oneProp.p;
+assert(Object.isFrozen(oneProp) === true);
+// A non-extensible object with a non-writable but still configurable property is not frozen.
+var nonWritable = { e: &apos;plep&apos; };
+Object.preventExtensions(nonWritable);
+Object.defineProperty(nonWritable, &apos;e&apos;, { writable: false }); // make non-writable
+assert(Object.isFrozen(nonWritable) === false);
+// Changing that property to non-configurable then makes the object frozen.
+Object.defineProperty(nonWritable, &apos;e&apos;, { configurable: false }); // make non-configurable
+assert(Object.isFrozen(nonWritable) === true);
+// A non-extensible object with a non-configurable but still writable property also isn&apos;t frozen.
+var nonConfigurable = { release: &apos;the kraken!&apos; };
+Object.preventExtensions(nonConfigurable);
+Object.defineProperty(nonConfigurable, &apos;release&apos;, { configurable: false });
+assert(Object.isFrozen(nonConfigurable) === false);
+// Changing that property to non-writable then makes the object frozen.
+Object.defineProperty(nonConfigurable, &apos;release&apos;, { writable: false });
+assert(Object.isFrozen(nonConfigurable) === true);
+// A non-extensible object with a configurable accessor property isn&apos;t frozen.
+var accessor = { get food() { return &apos;yum&apos;; } };
+Object.preventExtensions(accessor);
+assert(Object.isFrozen(accessor) === false);
+// ...but make that property non-configurable and it becomes frozen.
+Object.defineProperty(accessor, &apos;food&apos;, { configurable: false });
+assert(Object.isFrozen(accessor) === true);
+// But the easiest way for an object to be frozen is if Object.freeze has been called on it.
+var frozen = { 1: 81 };
+assert(Object.isFrozen(frozen) === false);
+Object.freeze(frozen);
+assert(Object.isFrozen(frozen) === true);
+// By definition, a frozen object is non-extensible.
+assert(Object.isExtensible(frozen) === false);
+// Also by definition, a frozen object is sealed.
+assert(Object.isSealed(frozen) === true);
+</prism-js>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be treated as if it was a frozen ordinary object, simply return <code>true</code>.</p>
+<prism-js language="javascript">&gt; Object.isFrozen(1)
+TypeError: 1 is not an object // ES5 code
+&gt; Object.isFrozen(1)
+true                          // ES6 code
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.12" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.isFrozen&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.isfrozen" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.isFrozen&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.freeze()" title="The Object.freeze() method freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed. In essence the object is made effectively immutable. The method returns the object being frozen."><code>Object.freeze()</code></a></li>
+ <li><a href="#/Object.preventExtensions()" title="The Object.preventExtensions() method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object)."><code>Object.preventExtensions()</code></a></li>
+ <li><a href="#/Object.isExtensible()" title="The Object.isExtensible() method determines if an object is extensible (whether it can have new properties added to it)."><code>Object.isExtensible()</code></a></li>
+ <li><a href="#/Object.seal()" title="The Object.seal() method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable."><code>Object.seal()</code></a></li>
+ <li><a href="#/Object.isSealed()" title="The Object.isSealed() method determines if an object is sealed."><code>Object.isSealed()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen">Object.isFrozen()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

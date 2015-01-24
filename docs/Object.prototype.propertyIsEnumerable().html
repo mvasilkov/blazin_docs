@@ -1,0 +1,92 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>propertyIsEnumerable()</strong></code> method returns a Boolean indicating whether the specified property is enumerable.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>obj</var>.propertyIsEnumerable(<var>prop</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>prop</code></dt>
+ <dd>The name of the property to test.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Every object has a <code>propertyIsEnumerable</code> method. This method can determine whether the specified property in an object can be enumerated by a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="The for..in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed."><code>for...in</code></a> loop, with the exception of properties inherited through the prototype chain. If the object does not have the specified property, this method returns <code>false</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_A_basic_use_of_propertyIsEnumerable" name="Example:_A_basic_use_of_propertyIsEnumerable">Example: A basic use of <code>propertyIsEnumerable</code></h3>
+<p>The following example shows the use of <code>propertyIsEnumerable</code> on objects and arrays:</p>
+<prism-js language="javascript">var o = {};
+var a = [];
+o.prop = &apos;is enumerable&apos;;
+a[0] = &apos;is enumerable&apos;;
+o.propertyIsEnumerable(&apos;prop&apos;);   // returns true
+a.propertyIsEnumerable(0);        // returns true
+</prism-js>
+<h3 id="Example:_User-defined_versus_built-in_objects" name="Example:_User-defined_versus_built-in_objects">Example: User-defined versus built-in objects</h3>
+<p>The following example demonstrates the enumerability of user-defined versus built-in properties:</p>
+<prism-js language="javascript">var a = [&apos;is enumerable&apos;];
+a.propertyIsEnumerable(0);          // returns true
+a.propertyIsEnumerable(&apos;length&apos;);   // returns false
+Math.propertyIsEnumerable(&apos;random&apos;);   // returns false
+this.propertyIsEnumerable(&apos;Math&apos;);     // returns false
+</prism-js>
+<h3 id="Example:_Direct_versus_inherited_properties" name="Example:_Direct_versus_inherited_properties">Example: Direct versus inherited properties</h3>
+<prism-js language="javascript">var a = [];
+a.propertyIsEnumerable(&apos;constructor&apos;);         // returns false
+function firstConstructor() {
+  this.property = &apos;is not enumerable&apos;;
+}
+firstConstructor.prototype.firstMethod = function() {};
+function secondConstructor() {
+  this.method = function method() { return &apos;is enumerable&apos;; };
+}
+secondConstructor.prototype = new firstConstructor;
+secondConstructor.prototype.constructor = secondConstructor;
+var o = new secondConstructor();
+o.arbitraryProperty = &apos;is enumerable&apos;;
+o.propertyIsEnumerable(&apos;arbitraryProperty&apos;);   // returns true
+o.propertyIsEnumerable(&apos;method&apos;);              // returns true
+o.propertyIsEnumerable(&apos;property&apos;);            // returns false
+o.property = &apos;is enumerable&apos;;
+o.propertyIsEnumerable(&apos;property&apos;);            // returns true
+// These return false as they are on the prototype which
+// propertyIsEnumerable does not consider (even though the last two
+// are iteratable with for-in)
+o.propertyIsEnumerable(&apos;prototype&apos;);   // returns false (as of JS 1.8.1/FF3.6)
+o.propertyIsEnumerable(&apos;constructor&apos;); // returns false
+o.propertyIsEnumerable(&apos;firstMethod&apos;); // returns false
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4.7" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.prototype.propertyIsEnumerable&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype.propertyisenumerable" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.prototype.propertyIsEnumerable&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in" title="The for..in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed."><code>for...in</code></a></li>
+ <li><a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a></li>
+ <li><a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable">Object.prototype.propertyIsEnumerable()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

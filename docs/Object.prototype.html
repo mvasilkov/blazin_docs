@@ -1,0 +1,184 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.prototype</strong></code> property represents the <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a> prototype object.</p>
+<p></p><table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>Object.prototype</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table><p></p>
+<h2 id="Description" name="Description">Description</h2>
+<p>All objects in JavaScript are descended from <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>; all objects inherit methods and properties from <code>Object.prototype</code>, although they may be overridden (except an <code>Object</code> with a <code>null</code> prototype, i.e. <code>Object.create(null)</code>). For example, other constructors&apos; prototypes override the <code>constructor</code> property and provide their own <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>toString()</code></a> methods. Changes to the <code>Object</code> prototype object are propagated to all objects unless the properties and methods subject to those changes are overridden further along the prototype chain.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt>
+  <a href="#/Object.prototype.constructor" title="Returns a reference to the Object function that created the instance&apos;s prototype. Note that the value of this property is a reference to the function itself, not a string containing the function&apos;s name. The value is only read-only for primitive values such as&#xA0;1,&#xA0;true and&#xA0;&quot;test&quot;."><code>Object.prototype.constructor</code></a></dt>
+ <dd>
+  Specifies the function that creates an object&apos;s prototype.</dd>
+ <dt>
+  <a href="#/Object.prototype.__proto__" title="The __proto__ property of Object.prototype is an accessor property (a getter function and a setter function) that exposes the internal [[Prototype]] (either an object or null) of the object through which it is accessed."><code>Object.prototype.__proto__</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Points to the object which was used as prototype when the object was instantiated.</dd>
+ <dt>
+  <a href="#/Object.prototype.__noSuchMethod__" title="The __noSuchMethod__ property references a function to be executed when a non-existent method is called on an object."><code>Object.prototype.__noSuchMethod__</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Allows a function to be defined that will be executed when an undefined object member is called as a method.</dd>
+ <dt>
+  <s class="obsoleteElement"><a class="new" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__count__" title="The documentation about this has not yet been written; please consider contributing!"><code>Object.prototype.__count__</code></a> <span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></s></dt>
+ <dd>
+  <s class="obsoleteElement">Used to return the number of enumerable properties directly on a user-defined object, but has been removed.</s></dd>
+ <dt>
+  <s class="obsoleteElement"><a class="new" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__parent__" title="The documentation about this has not yet been written; please consider contributing!"><code>Object.prototype.__parent__</code></a> <span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></s></dt>
+ <dd>
+  <s class="obsoleteElement">Used to point to an object&apos;s context, but has been removed.</s></dd>
+</dl>
+<h2 id="Methods" name="Methods">Methods</h2>
+<dl>
+ <dt>
+  <a href="#/Object.prototype.__defineGetter__()" title="The __defineGetter__ method binds an object&apos;s property to a function to be called when that property is looked up."><code>Object.prototype.__defineGetter__()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>
+  Associates a function with a property that, when accessed, executes that function and returns its return value.</dd>
+ <dt>
+  <a href="#/Object.prototype.__defineSetter__()" title="The __defineSetter__ method binds an object&apos;s property to a function to be called when an attempt is made to set that property."><code>Object.prototype.__defineSetter__()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>
+  Associates a function with a property that, when set, executes that function which modifies the property.</dd>
+ <dt>
+  <a href="#/Object.prototype.__lookupGetter__()" title="The __lookupGetter__ method returns the function bound as a getter to the specified property."><code>Object.prototype.__lookupGetter__()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>
+  Returns the function associated with the specified property by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineGetter" title="The documentation about this has not yet been written; please consider contributing!"><code>__defineGetter__</code></a> method.</dd>
+ <dt>
+  <a href="#/Object.prototype.__lookupSetter__()" title="The __lookupSetter__ method returns the function bound as a setter to the specified property."><code>Object.prototype.__lookupSetter__()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>
+  Returns the function associated with the specified property by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineSetter" title="The documentation about this has not yet been written; please consider contributing!"><code>__defineSetter__</code></a> method.</dd>
+ <dt>
+  <a href="#/Object.prototype.hasOwnProperty()" title="The hasOwnProperty() method returns a boolean indicating whether the object has the specified property."><code>Object.prototype.hasOwnProperty()</code></a></dt>
+ <dd>
+  Returns a boolean indicating whether an object contains the specified property as a direct property of that object and not inherited through the prototype chain.</dd>
+ <dt>
+  <a href="#/Object.prototype.isPrototypeOf()" title="The isPrototypeOf() method tests for an object in another object&apos;s prototype chain."><code>Object.prototype.isPrototypeOf()</code></a></dt>
+ <dd>
+  Returns a boolean indication whether the specified object is in the prototype chain of the object this method is called upon.</dd>
+ <dt>
+  <a href="#/Object.prototype.propertyIsEnumerable()" title="The propertyIsEnumerable() method returns a Boolean indicating whether the specified property is enumerable."><code>Object.prototype.propertyIsEnumerable()</code></a></dt>
+ <dd>
+  Returns a boolean indicating if the internal <a href="https://developer.mozilla.org/en-US/docs/ECMAScript_DontEnum_attribute" title="ECMAScript_DontEnum_attribute">ECMAScript DontEnum attribute</a> is set.</dd>
+ <dt>
+  <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns string containing the source of an object literal representing the object that this method is called upon; you can use this value to create a new object.</dd>
+ <dt>
+  <a href="#/Object.prototype.toLocaleString()" title="The toLocaleString() method returns a string representing the object. This method is meant to be overriden by derived objects for locale-specific purposes."><code>Object.prototype.toLocaleString()</code></a></dt>
+ <dd>
+  Calls <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>toString()</code></a>.</dd>
+ <dt>
+  <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string representation of the object.</dd>
+ <dt>
+  <a href="#/Object.prototype.unwatch()" title="The unwatch() method removes a watchpoint set with the watch() method."><code>Object.prototype.unwatch()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Removes a watchpoint from a property of the object.</dd>
+ <dt>
+  <a href="#/Object.prototype.valueOf()" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a></dt>
+ <dd>
+  Returns the primitive value of the specified object.</dd>
+ <dt>
+  <a href="#/Object.prototype.watch()" title="The watch() method watches for a property to be assigned a value and runs a function when that occurs."><code>Object.prototype.watch()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Adds a watchpoint to a property of the object.</dd>
+ <dt>
+  <s class="obsoleteElement"><a href="#/Object.prototype.eval()" title="The Object.eval() method used to evaluate a string of JavaScript code in the context of an object, however, this method has been removed."><code>Object.prototype.eval()</code></a> <span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></s></dt>
+ <dd>
+  <s class="obsoleteElement">Used to evaluate a string of JavaScript code in the context of the specified object, but has been removed.</s></dd>
+</dl>
+<h2 id="Examples" name="Examples">Examples</h2>
+<p>Since Javascript doesn&apos;t exactly have sub-class objects, prototype is a useful workaround to make a &#x201C;base class&#x201D; object of certain functions that act as objects. For example:</p>
+<prism-js language="javascript">var Person = function() {
+  this.canTalk = true;
+  this.greet = function() {
+    if (this.canTalk) {
+      console.log(&apos;Hi, I\&apos;m &apos; + this.name);
+    }
+  };
+};
+var Employee = function(name, title) {
+  this.name = name;
+  this.title = title;
+  this.greet = function() {
+    if (this.canTalk) {
+      console.log(&quot;Hi, I&apos;m &quot; + this.name + &quot;, the &quot; + this.title);
+    }
+  };
+};
+Employee.prototype = new Person();
+var Customer = function(name) {
+  this.name = name;
+};
+Customer.prototype = new Person();
+var Mime = function(name) {
+  this.name = name;
+  this.canTalk = false;
+};
+Mime.prototype = new Person();
+var bob = new Employee(&apos;Bob&apos;, &apos;Builder&apos;);
+var joe = new Customer(&apos;Joe&apos;);
+var rg = new Employee(&apos;Red Green&apos;, &apos;Handyman&apos;);
+var mike = new Customer(&apos;Mike&apos;);
+var mime = new Mime(&apos;Mime&apos;);
+bob.greet();
+joe.greet();
+rg.greet();
+mike.greet();
+mime.greet();
+</prism-js>
+<p>This will output:</p>
+<pre>Hi, I&apos;m Bob, the Builder
+Hi, I&apos;m Joe
+Hi, I&apos;m Red Green, the Handyman
+Hi, I&apos;m Mike
+</pre>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition. Implemented in JavaScript 1.0.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.prototype&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.prototype" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.prototype&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype">Object.prototype</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

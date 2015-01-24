@@ -1,0 +1,96 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong>Object.getOwnPropertyDescriptor()</strong></code> method returns a property descriptor for an <dfn>own property</dfn> (that is, one directly present on an object, not present by dint of being along an object&apos;s prototype chain) of a given object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.getOwnPropertyDescriptor(<var>obj</var>, <var>prop</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object in which to look for the property.</dd>
+ <dt>
+  <code>prop</code></dt>
+ <dd>
+  The name of the property whose description is to be retrieved.</dd>
+</dl>
+<h3 id="Returns">Returns</h3>
+<p>A property descriptor of the given property if it exists on the object, <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> otherwise.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>This method permits examination of the precise description of a property. A <dfn>property</dfn> in JavaScript consists of a string-valued name and a property descriptor. Further information about property descriptor types and their attributes can be found in <a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty()</code></a>.</p>
+<p>A <dfn>property descriptor</dfn> is a record with some of the following attributes:</p>
+<dl>
+ <dt>
+  <code>value</code></dt>
+ <dd>
+  The value associated with the property (data descriptors only).</dd>
+ <dt>
+  <code><strong>writable</strong></code></dt>
+ <dd>
+  <code>true</code> if and only if the value associated with the property may be changed (data descriptors only).</dd>
+ <dt>
+  <code>get</code></dt>
+ <dd>
+  A function which serves as a getter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no getter (accessor descriptors only).</dd>
+ <dt>
+  <code>set</code></dt>
+ <dd>
+  A function which serves as a setter for the property, or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if there is no setter (accessor descriptors only).</dd>
+ <dt>
+  <code>configurable</code></dt>
+ <dd>
+  <code>true</code> if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.</dd>
+ <dt>
+  <code>enumerable</code></dt>
+ <dd>
+  <code>true</code> if and only if this property shows up during enumeration of the properties on the corresponding object.</dd>
+</dl>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">var o, d;
+o = { get foo() { return 17; } };
+d = Object.getOwnPropertyDescriptor(o, &apos;foo&apos;);
+// d is { configurable: true, enumerable: true, get: /*the getter function*/, set: undefined }
+o = { bar: 42 };
+d = Object.getOwnPropertyDescriptor(o, &apos;bar&apos;);
+// d is { configurable: true, enumerable: true, value: 42, writable: true }
+o = {};
+Object.defineProperty(o, &apos;baz&apos;, { value: 8675309, writable: false, enumerable: false });
+d = Object.getOwnPropertyDescriptor(o, &apos;baz&apos;);
+// d is { value: 8675309, writable: false, enumerable: false, configurable: false }
+</prism-js>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>In ES5, if the first argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object first argument will be coerced to an object at first.</p>
+<prism-js language="javascript">&gt; Object.getOwnPropertyDescriptor(&quot;foo&quot;, 0)
+TypeError: &quot;foo&quot; is not an object  // ES5 code
+&gt; Object.getOwnPropertyDescriptor(&quot;foo&quot;, 0)
+{configurable:false, enumerable:true, value:&quot;f&quot;, writable:false}  // ES6 code
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.getOwnPropertyDescriptor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.getownpropertydescriptor" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Object.getOwnPropertyDescriptor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

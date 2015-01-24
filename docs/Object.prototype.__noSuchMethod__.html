@@ -1,0 +1,115 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>__noSuchMethod__</code></strong> property references a function to be executed when a non-existent method is called on an object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>obj</var>.__noSuchMethod__ = <var>fun</var></code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>fun</code></dt>
+ <dd>A function that takes the form</dd>
+ <dd>
+  <pre><code>function (<var>id</var>, <var>args</var>) { . . . }</code></pre>
+  <dl>
+   <dt><code>id</code></dt>
+   <dd>The name of the non-existent method that was called</dd>
+   <dt><code>args</code></dt>
+   <dd>An array of the arguments passed to the method</dd>
+  </dl>
+ </dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>By default, an attempt to call a method that doesn&apos;t exist on an object results in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> being thrown. This behavior can be circumvented by defining a function at that object&apos;s <code>__noSuchMethod__</code> member. The function takes two arguments, the first is the name of the method attempted and the second is an array of the arguments that were passed in the method call. The second argument is an actual array (that is, it inherits through the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype" title="The Array.prototype property represents the prototype for the Array constructor."><code>Array.prototype</code></a> chain) and not the array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="JavaScript/Reference/Functions/arguments">arguments object</a>.</p>
+<p>If this method cannot be called, either as if <code>undefined</code> by default, if deleted, or if manually set to a non-function, the JavaScript engine will revert to throwing <code>TypeError</code>s.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example.3A_Simple_test_of___noSuchMethod__" name="Example.3A_Simple_test_of___noSuchMethod__">Example: Simple test of <code>__noSuchMethod__</code></h3>
+<prism-js language="javascript">var o = {
+  __noSuchMethod__: function(id, args) { console.log(id, &apos;(&apos; + args.join(&apos;, &apos;) + &apos;)&apos;); }
+};
+o.foo(1, 2, 3);
+o.bar(4, 5);
+o.baz();
+// Output
+// foo (1, 2, 3)
+// bar (4, 5)
+// baz ()
+</prism-js>
+<h3 id="Example.3A_Using___noSuchMethod___to_simulate_multiple_inheritance" name="Example.3A_Using___noSuchMethod___to_simulate_multiple_inheritance">Example: Using <code>__noSuchMethod__</code> to simulate multiple inheritance</h3>
+<p>An example of code that implements a primitive form of multiple inheritance is shown below.</p>
+<prism-js language="javascript">// Doesn&apos;t work with multiple inheritance objects as parents
+function noMethod(name, args) {
+  var parents = this.__parents_;
+  // Go through all parents
+  for (var i = 0; i &lt; parents.length; i++) {
+    // If we find a function on the parent, we call it
+    if (typeof parents[i][name] == &quot;function&quot;) {
+      return parents[i][name].apply(this, args);
+    }
+  }
+  // If we get here, the method hasn&apos;t been found
+  throw new TypeError;
+}
+// Used to add a parent for multiple inheritance
+function addParent(obj, parent) {
+  // If the object isn&apos;t initialized, initialize it
+  if (!obj.__parents_) {
+    obj.__parents_ = [];
+    obj.__noSuchMethod__ = noMethod;
+  }
+  // Add the parent
+  obj.__parents_.push(parent);
+}
+</prism-js>
+<p>An example of using this idea is shown below.</p>
+<prism-js language="javascript">// Example base class 1
+function NamedThing(name){
+  this.name=name;
+}
+NamedThing.prototype = {
+  getName: function() { return this.name; },
+  setName: function(newName) { this.name = newName; }
+}
+// Example base class 2
+function AgedThing(age) {
+  this.age = age;
+}
+AgedThing.prototype = {
+  getAge: function() { return this.age; },
+  setAge: function(age) { this.age = age; }
+}
+// Child class. inherits from NamedThing and AgedThing as well as defining address
+function Person(name, age, address){
+  addParent(this, NamedThing.prototype);
+  NamedThing.call(this, name);
+  addParent(this, AgedThing.prototype);
+  AgedThing.call(this, age);
+  this.address = address;
+}
+Person.prototype = {
+  getAddr: function() { return this.address; },
+  setAddr: function(addr) { this.address = addr; }
+}
+var bob = new Person(&quot;bob&quot;, 25, &quot;New York&quot;);
+console.log(&quot;getAge is &quot; + ((&quot;getAge&quot; in bob) ? &quot;in&quot; : &quot;not in&quot;) + &quot; bob&quot;);
+console.log(&quot;bob&apos;s age is: &quot; + bob.getAge());
+console.log(&quot;getName is &quot; + ((&quot;getName&quot; in bob) ? &quot;in&quot; : &quot;not in&quot;) + &quot; bob&quot;);
+console.log(&quot;bob&apos;s name is: &quot; + bob.getName());
+console.log(&quot;getAddr is &quot; + ((&quot;getAddr&quot; in bob) ? &quot;in&quot; : &quot;not in&quot;) + &quot; bob&quot;);
+console.log(&quot;bob&apos;s address is: &quot; + bob.getAddr());
+</prism-js>
+<p>Example output would be follows:</p>
+<pre>getAge is not in bob
+bob&apos;s age is: 25
+getName is not in bob
+bob&apos;s name is: bob
+getAddr is in bob
+bob&apos;s address is: New York
+</pre>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<p>Not part of any specifications.</p>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__noSuchMethod__">Object.prototype.__noSuchMethod__</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

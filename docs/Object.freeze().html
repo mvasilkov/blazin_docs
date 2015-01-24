@@ -1,0 +1,111 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Object.freeze()</strong></code> method freezes an object: that is, prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed. In essence the object is made effectively immutable. The method returns the object being frozen.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Object.freeze(<var>obj</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>obj</code></dt>
+ <dd>
+  The object to freeze.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Nothing can be added to or removed from the properties set of a frozen object. Any attempt to do so will fail, either silently or by throwing a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception (most commonly, but not exclusively, when in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" title="The documentation about this has not yet been written; please consider contributing!">strict mode</a>).</p>
+<p>Values cannot be changed for data properties. Accessor properties (getters and setters) work the same (and still give the illusion that you are changing the value). Note that values that are objects can still be modified, unless they are also frozen.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">var obj = {
+  prop: function() {},
+  foo: &apos;bar&apos;
+};
+// New properties may be added, existing properties may be changed or removed
+obj.foo = &apos;baz&apos;;
+obj.lumpy = &apos;woof&apos;;
+delete obj.prop;
+var o = Object.freeze(obj);
+assert(Object.isFrozen(obj) === true);
+// Now any changes will fail
+obj.foo = &apos;quux&apos;; // silently does nothing
+obj.quaxxor = &apos;the friendly duck&apos;; // silently doesn&apos;t add the property
+// ...and in strict mode such attempts will throw TypeErrors
+function fail(){
+  &apos;use strict&apos;;
+  obj.foo = &apos;sparky&apos;; // throws a TypeError
+  delete obj.quaxxor; // throws a TypeError
+  obj.sparky = &apos;arf&apos;; // throws a TypeError
+}
+fail();
+// Attempted changes through Object.defineProperty will also throw
+Object.defineProperty(obj, &apos;ohai&apos;, { value: 17 }); // throws a TypeError
+Object.defineProperty(obj, &apos;foo&apos;, { value: &apos;eit&apos; }); // throws a TypeError
+</prism-js>
+<p>The following example shows that object values in a frozen object can be mutated (freeze is shallow).</p>
+<prism-js language="javascript">obj = {
+  internal: {}
+};
+Object.freeze(obj);
+obj.internal.a = &apos;aValue&apos;;
+obj.internal.a // &apos;aValue&apos;
+// To make obj fully immutable, freeze each object in obj.
+// To do so, we use this function.
+function deepFreeze(o) {
+  var prop, propKey;
+  Object.freeze(o); // First freeze the object.
+  for (propKey in o) {
+    prop = o[propKey];
+    if (!o.hasOwnProperty(propKey) || !(typeof prop === &apos;object&apos;) || Object.isFrozen(prop)) {
+      // If the object is on the prototype, not an object, or is already frozen,
+      // skip it. Note that this might leave an unfrozen reference somewhere in the
+      // object if there is an already frozen object containing an unfrozen object.
+      continue;
+    }
+    deepFreeze(prop); // Recursively call deepFreeze.
+  }
+}
+obj2 = {
+  internal: {}
+};
+deepFreeze(obj2);
+obj2.internal.a = &apos;anotherValue&apos;;
+obj2.internal.a; // undefined
+</prism-js>
+<h2 id="Notes" name="Notes">Notes</h2>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be treated as if it was a &#xA0;frozen ordinary object, simply return it.</p>
+<prism-js language="javascript">&gt; Object.freeze(1)
+TypeError: 1 is not an object // ES5 code
+&gt; Object.freeze(1)
+1                             // ES6 code
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.9" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Object.freeze&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.freeze" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Object.freeze&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.isFrozen()" title="The Object.isFrozen() determines if an object is frozen."><code>Object.isFrozen()</code></a></li>
+ <li><a href="#/Object.preventExtensions()" title="The Object.preventExtensions() method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object)."><code>Object.preventExtensions()</code></a></li>
+ <li><a href="#/Object.isExtensible()" title="The Object.isExtensible() method determines if an object is extensible (whether it can have new properties added to it)."><code>Object.isExtensible()</code></a></li>
+ <li><a href="#/Object.seal()" title="The Object.seal() method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable."><code>Object.seal()</code></a></li>
+ <li><a href="#/Object.isSealed()" title="The Object.isSealed() method determines if an object is sealed."><code>Object.isSealed()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze">Object.freeze()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
