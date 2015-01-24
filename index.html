@@ -71,6 +71,7 @@
                     },
                     loadingPage: function (event) {
                         this.blazingPage = event.detail.path.substr(1) || "Blazin' Docs"
+                        this.$.appScaffold.closeDrawer()
                     },
                     afterLoadingPage: function () {
                         try {
