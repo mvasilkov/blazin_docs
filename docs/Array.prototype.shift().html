@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>shift()</strong></code> method removes the <strong>first</strong> element from an array and returns that element. This method changes the length of the array.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.shift()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>shift</code> method removes the element at the zeroeth index and shifts the values at consecutive indexes down, then returns the removed value. If the <a href="#/Array.length" title="The length property represents an unsigned, 32-bit integer that specifies the number of elements in an array."><code>length</code></a> property is 0, <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> is returned.</p>
+<p><code>shift</code> is intentionally generic; this method can be <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually.">called</a> or <a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object).">applied</a> to objects resembling arrays. Objects which do not contain a <code>length</code> property reflecting the last in a series of consecutive, zero-based numerical properties may not behave in any meaningful manner.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Removing_an_element_from_an_array" name="Example:_Removing_an_element_from_an_array">Example: Removing an element from an array</h3>
+<p>The following code displays the <code>myFish</code> array before and after removing its first element. It also displays the removed element:</p>
+<prism-js language="javascript">var myFish = [&apos;angel&apos;, &apos;clown&apos;, &apos;mandarin&apos;, &apos;surgeon&apos;];
+console.log(&apos;myFish before: &apos; + myFish);
+var shifted = myFish.shift();
+console.log(&apos;myFish after: &apos; + myFish);
+console.log(&apos;Removed this element: &apos; + shifted);
+</prism-js>
+<p>This example displays the following:</p>
+<pre>myFish before: angel,clown,mandarin,surgeon
+myFish after: clown,mandarin,surgeon
+Removed this element: angel
+</pre>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.9" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.shift&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.shift" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.shift&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.push()" title="The push() method adds one or more elements to the end of an array and returns the new length of the array."><code>Array.prototype.push()</code></a></li>
+ <li><a href="#/Array.prototype.pop()" title="The pop() method removes the last element from an array and returns that element."><code>Array.prototype.pop()</code></a></li>
+ <li><a href="#/Array.prototype.unshift()" title="The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array."><code>Array.prototype.unshift()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift">Array.prototype.shift()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

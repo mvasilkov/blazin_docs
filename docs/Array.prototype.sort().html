@@ -1,0 +1,170 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong>sort()</strong></code> method sorts the elements of an array <em>in place</em> and returns the array. The sort is not necessarily <a class="external" href="https://en.wikipedia.org/wiki/Sorting_algorithm#Stability">stable</a>. The default sort order is according to string Unicode code points.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.sort([<var>compareFunction</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>compareFunction</code></dt>
+ <dd>
+  Optional. Specifies a function that defines the sort order. If omitted, the array is sorted according to each character&apos;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals#Unicode">Unicode</a> code point value, according to the string conversion of each element.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If <code>compareFunction</code> is not supplied, elements are sorted by converting them to strings and comparing strings in Unicode code point order. For example,&#xA0;&quot;Cherry&quot; comes before &quot;banana&quot;. In a numeric sort, 9 comes before 80, but because numbers are converted to strings, &quot;80&quot; comes before &quot;9&quot; in Unicode order.</p>
+<prism-js language="javascript">var fruit = [&apos;apples&apos;, &apos;bananas&apos;, &apos;Cherries&apos;];
+fruit.sort(); // [&apos;Cherries&apos;, &apos;apples&apos;, &apos;bananas&apos;];
+var scores = [1, 2, 10, 21];
+scores.sort(); // [1, 10, 2, 21]
+var things = [&apos;word&apos;, &apos;Word&apos;, &apos;1 Word&apos;, &apos;2 Words&apos;];
+things.sort(); // [&apos;1 Word&apos;, &apos;2 Words&apos;, &apos;Word&apos;, &apos;word&apos;]
+// In Unicode, numbers come before upper case letters,
+// which come before lower case letters.
+</prism-js>
+<p>If <code>compareFunction</code> is supplied, the array elements are sorted according to the return value of the compare function. If <code>a</code> and <code>b</code> are two elements being compared, then:</p>
+<ul>
+ <li>If <code>compareFunction(a, b)</code> is less than 0, sort <code>a</code> to a lower index than <code>b</code>, i.e. <code>a</code> comes first.</li>
+ <li>If <code>compareFunction(a, b)</code> returns 0, leave <code>a</code> and <code>b</code> unchanged with respect to each other, but sorted with respect to all different elements. Note: the ECMAscript standard does not guarantee this behaviour, and thus not all browsers (e.g. Mozilla versions dating back to at least 2003) respect this.</li>
+ <li>If <code>compareFunction(a, b)</code> is greater than 0, sort <code>b</code> to a lower index than <code>a</code>.</li>
+ <li><code>compareFunction(a, b)</code> must always return the same value when given a specific pair of elements a and b as its two arguments. If inconsistent results are returned then the sort order is undefined</li>
+</ul>
+<p>So, the compare function has the following form:</p>
+<prism-js language="javascript">function compare(a, b) {
+  if (a is less than b by some ordering criterion) {
+    return -1;
+  }
+  if (a is greater than b by the ordering criterion) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+</prism-js>
+<p>To compare numbers instead of strings, the compare function can simply subtract <code>b</code> from <code>a</code>. The following function will sort the array ascending:</p>
+<prism-js language="javascript">function compareNumbers(a, b) {
+  return a - b;
+}
+</prism-js>
+<p>The <code>sort</code> method can be conveniently used with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function" title="The function keyword can be used to define a function inside an expression.">function expressions</a> (and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures">closures</a>):</p>
+<prism-js language="javascript">var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function(a, b) {
+  return a - b;
+});
+print(numbers);
+</prism-js>
+<p>Objects can be sorted given the value of one of their properties.</p>
+<prism-js language="javascript">var items = [
+  { name: &apos;Edward&apos;, value: 21 },
+  { name: &apos;Sharpe&apos;, value: 37 },
+  { name: &apos;And&apos;, value: 45 },
+  { name: &apos;The&apos;, value: -12 },
+  { name: &apos;Magnetic&apos; },
+  { name: &apos;Zeros&apos;, value: 37 }
+];
+items.sort(function (a, b) {
+  if (a.name &gt; b.name) {
+    return 1;
+  }
+  if (a.name &lt; b.name) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+</prism-js>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example:_Creating.2C_displaying.2C_and_sorting_an_array" name="Example:_Creating.2C_displaying.2C_and_sorting_an_array">Example: Creating, displaying, and sorting an array</h3>
+<p>The following example creates four arrays and displays the original array, then the sorted arrays. The numeric arrays are sorted without, then with, a compare function.</p>
+<prism-js language="javascript">var stringArray = [&apos;Blue&apos;, &apos;Humpback&apos;, &apos;Beluga&apos;];
+var numericStringArray = [&apos;80&apos;, &apos;9&apos;, &apos;700&apos;];
+var numberArray = [40, 1, 5, 200];
+var mixedNumericArray = [&apos;80&apos;, &apos;9&apos;, &apos;700&apos;, 40, 1, 5, 200];
+function compareNumbers(a, b) {
+  return a - b;
+}
+// again, assumes a print function is defined
+console.log(&apos;stringArray:&apos;, stringArray.join());
+console.log(&apos;Sorted:&apos;, stringArray.sort());
+console.log(&apos;numberArray:&apos;, numberArray.join());
+console.log(&apos;Sorted without a compare function:&apos;, numberArray.sort());
+console.log(&apos;Sorted with compareNumbers:&apos;, numberArray.sort(compareNumbers));
+console.log(&apos;numericStringArray:&apos;, numericStringArray.join());
+console.log(&apos;Sorted without a compare function:&apos;, numericStringArray.sort());
+console.log(&apos;Sorted with compareNumbers:&apos;, numericStringArray.sort(compareNumbers));
+console.log(&apos;mixedNumericArray:&apos;, mixedNumericArray.join());
+console.log(&apos;Sorted without a compare function:&apos;, mixedNumericArray.sort());
+console.log(&apos;Sorted with compareNumbers:&apos;, mixedNumericArray.sort(compareNumbers));
+</prism-js>
+<p>This example produces the following output. As the output shows, when a compare function is used, numbers sort correctly whether they are numbers or numeric strings.</p>
+<pre>stringArray: Blue,Humpback,Beluga
+Sorted: Beluga,Blue,Humpback
+numberArray: 40,1,5,200
+Sorted without a compare function: 1,200,40,5
+Sorted with compareNumbers: 1,5,40,200
+numericStringArray: 80,9,700
+Sorted without a compare function: 700,80,9
+Sorted with compareNumbers: 9,80,700
+mixedNumericArray: 80,9,700,40,1,5,200
+Sorted without a compare function: 1,200,40,5,700,80,9
+Sorted with compareNumbers: 1,5,9,40,80,200,700
+</pre>
+<h3 id="Example:_Sorting_non-ASCII_characters" name="Example:_Sorting_non-ASCII_characters">Example: Sorting non-ASCII characters</h3>
+<p>For sorting strings with non-ASCII characters, i.e. strings with accented characters (e, &#xE9;, &#xE8;, a, &#xE4;, etc.), strings from languages other than English: use <a href="#/String.prototype.localeCompare()" title="The localeCompare() method returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order."><code>String.localeCompare</code></a>. This function can compare those characters so they appear in the right order.</p>
+<prism-js language="javascript">var items = [&apos;r&#xE9;serv&#xE9;&apos;, &apos;premier&apos;, &apos;clich&#xE9;&apos;, &apos;communiqu&#xE9;&apos;, &apos;caf&#xE9;&apos;, &apos;adieu&apos;];
+items.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+// items is [&apos;adieu&apos;, &apos;caf&#xE9;&apos;, &apos;clich&#xE9;&apos;, &apos;communiqu&#xE9;&apos;, &apos;premier&apos;, &apos;r&#xE9;serv&#xE9;&apos;]
+</prism-js>
+<h3 id="Example:_Sorting_maps" name="Example:_Sorting_maps">Example: Sorting maps</h3>
+<p>The <code>compareFunction</code> can be invoked multiple times per element within the array. Depending on the <code>compareFunction</code>&apos;s nature, this may yield a high overhead. The more work a <code>compareFunction</code> does and the more elements there are to sort, the wiser it may be to consider using a map for sorting. The idea is to walk the array once to extract the actual values used for sorting into a temporary array, sort the temporary array and then walk the temporary array to bring the original array into the right order.</p>
+<prism-js language="javascript">// the array to be sorted
+var list = [&apos;Delta&apos;, &apos;alpha&apos;, &apos;CHARLIE&apos;, &apos;bravo&apos;];
+// temporary holder of position and sort-value
+var map = list.map(function(e, i) {
+  return { index: i, value: e.toLowerCase() };
+})
+// sorting the map containing the reduced values
+map.sort(function(a, b) {
+  return +(a.value &gt; b.value) || +(a.value === b.value) - 1;
+});
+// container for the resulting order
+var result = map.map(function(e){
+  return list[e.index];
+});
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.11" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Array.prototype.sort&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.sort" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Array.prototype.sort&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.reverse()" title="The reverse() method reverses an array in place. The first array element becomes the last and the last becomes the first."><code>Array.prototype.reverse()</code></a></li>
+ <li><a href="#/String.prototype.localeCompare()" title="The localeCompare() method returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order."><code>String.prototype.localeCompare()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

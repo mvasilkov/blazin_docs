@@ -1,0 +1,97 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the ECMAScript 6 (Harmony) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Array.prototype.fill()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>fill()</strong></code> method fills all the elements of an array from a start index to an end index with a static value.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.fill(<var>value</var>[, <var>start<var> = 0[, <var>end</var> = this.length]])</var></var></code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>value</code></dt>
+ <dd>
+  Value to fill an array.</dd>
+ <dt>
+  <code>start</code></dt>
+ <dd>
+  Optional. Start index.</dd>
+ <dt>
+  <code>end</code></dt>
+ <dd>
+  Optional. End index.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The elements interval to fill is [<code>start</code>, <code>end</code>).</p>
+<p>The <strong><code>fill</code></strong> method takes up to three arguments <code>value</code>, <code>start</code> and <code>end</code>. The <code>start</code> and <code>end</code> arguments are optional with default values of <code>0</code> and the <code>length</code> of the <code>this</code> object.</p>
+<p>If <code>start</code> is negative, it is treated as <code>length+start</code> where <code>length</code> is the length of the array. If <code>end</code> is negative, it is treated as <code>length+end</code>.</p>
+<p>The <strong>fill</strong> function is intentionally generic, it does not require that its <code>this</code> value be an Array object.</p>
+<p>The <strong>fill</strong> method is a mutable method, it will change <code>this</code> object itself, and return it, not just return a copy of it.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">[1, 2, 3].fill(4)               // [4, 4, 4]
+[1, 2, 3].fill(4, 1)            // [1, 4, 4]
+[1, 2, 3].fill(4, 1, 2)         // [1, 4, 3]
+[1, 2, 3].fill(4, 1, 1)         // [1, 2, 3]
+[1, 2, 3].fill(4, -3, -2)       // [4, 2, 3]
+[1, 2, 3].fill(4, NaN, NaN)     // [1, 2, 3]
+[].fill.call({ length: 3 }, 4)  // {0: 4, 1: 4, 2: 4, length: 3}
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<prism-js language="javascript">if (!Array.prototype.fill) {
+  Array.prototype.fill = function(value) {
+    // Steps 1-2.
+    if (this == null) {
+      throw new TypeError(&apos;this is null or not defined&apos;);
+    }
+    var O = Object(this);
+    // Steps 3-5.
+    var len = O.length &gt;&gt;&gt; 0;
+    // Steps 6-7.
+    var start = arguments[1];
+    var relativeStart = start &gt;&gt; 0;
+    // Step 8.
+    var k = relativeStart &lt; 0 ?
+      Math.max(len + relativeStart, 0) :
+      Math.min(relativeStart, len);
+    // Steps 9-10.
+    var end = arguments[2];
+    var relativeEnd = end === undefined ?
+      len : end &gt;&gt; 0;
+    // Step 11.
+    var final = relativeEnd &lt; 0 ?
+      Math.max(len + relativeEnd, 0) :
+      Math.min(relativeEnd, len);
+    // Step 12.
+    while (k &lt; final) {
+      O[k] = value;
+      k++;
+    }
+    // Step 13.
+    return O;
+  };
+}
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.fill" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.fill&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/fill" title="The fill() method fills all the elements of a typed array from a start index to an end index with a static value. This method has the same algorithm as Array.prototype.fill(). TypedArray is one of the typed array types here."><code>TypedArray.prototype.fill()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">Array.prototype.fill()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

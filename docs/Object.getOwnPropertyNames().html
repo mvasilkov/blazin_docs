@@ -52,7 +52,7 @@ alert(
 );
 </prism-js>
 <h3 id="Example.3A_Get_Non-Enumerable_Only">Example: Get Non-Enumerable Only</h3>
-<p>This uses the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" title="The filter() method creates a new array with all elements that pass the test implemented by the provided function."><code>Array.prototype.filter()</code></a> function to remove the enumerable keys (obtained with <a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a>) from a list of all keys (obtained with <code>Object.getOwnPropertyNames</code>) leaving only the non-enumerable keys.</p>
+<p>This uses the <a href="#/Array.prototype.filter()" title="The filter() method creates a new array with all elements that pass the test implemented by the provided function."><code>Array.prototype.filter()</code></a> function to remove the enumerable keys (obtained with <a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a>) from a list of all keys (obtained with <code>Object.getOwnPropertyNames</code>) leaving only the non-enumerable keys.</p>
 <prism-js language="javascript">var target = myObject;
 var enum_and_nonenum = Object.getOwnPropertyNames(target);
 var enum_only = Object.keys(target);
@@ -102,7 +102,7 @@ TypeError: &quot;foo&quot; is not an object // ES5 code
  <li><a href="#/Object.prototype.propertyIsEnumerable()" title="The propertyIsEnumerable() method returns a Boolean indicating whether the specified property is enumerable."><code>Object.prototype.propertyIsEnumerable()</code></a></li>
  <li><a href="#/Object.create()" title="The Object.create() method creates a new object with the specified prototype object and properties."><code>Object.create()</code></a></li>
  <li><a href="#/Object.keys()" title="The Object.keys() method returns an array of a given object&apos;s own enumerable properties, in the same order as that provided by a for...in loop (the difference being that a for-in loop enumerates properties in the prototype chain as well)."><code>Object.keys()</code></a></li>
- <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" title="The forEach() method executes a provided function once per array element."><code>Array.forEach()</code></a></li>
+ <li><a href="#/Array.prototype.forEach()" title="The forEach() method executes a provided function once per array element."><code>Array.forEach()</code></a></li>
 </ul>
 <div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
 </div></template>

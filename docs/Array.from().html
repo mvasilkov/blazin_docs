@@ -1,0 +1,151 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the ECMAScript 6 (Harmony) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Array.from()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Array.from()</strong></code> method creates a new <code>Array</code> instance from an array-like or iterable object.</p>
+<p>In ES6, class syntax allows for the subclassing of both built-in and user defined classes; as a result, class-side static methods such as <code><strong>Array.from</strong></code> are &quot;inherited&quot; by subclasses of <code><strong>Array</strong></code> and create new instances of the subclass, not <code><strong>Array</strong></code>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Array.from(arrayLike[, mapFn[, thisArg]])
+</code></pre>
+<h3 id="Parameters" name="Parameters"><span>Parameters</span></h3>
+<dl>
+ <dt><code>arrayLike</code></dt>
+ <dd>An array-like or iterable object to convert to an array.</dd>
+ <dt><code>mapFn</code></dt>
+ <dd>Optional. Map function to call on every element of the array.</dd>
+ <dt><code>thisArg</code></dt>
+ <dd>Optional. Value to use as <code>this</code> when executing <code>mapFn</code>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>Array.from()</code> lets you create <code>Arrays</code> from:</p>
+<ul>
+ <li>array-like objects (objects with a <code>length</code> property and indexed elements) or</li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/iterable">iterable objects</a> (objects where you can get its elements, such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" title="The Map object is a simple key/value map. Any value (both objects and primitive values) may be used as either a key or a value."><code>Map</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" title="The Set object lets you store unique values of any type, whether primitive values or object references."><code>Set</code></a>).</li>
+</ul>
+<p><code>Array.from()</code> has an optional parameter <code>mapFn</code>, which allows you to execute a <a href="#/Array.prototype.map()" title="The map() method creates a new array with the results of calling a provided function on every element in this array."><code>map</code></a> function on each element of the array (or subclass object) that is being created. More clearly,<code> Array.from(obj, mapFn, thisArg)</code> is the same as <code>Array.from(obj).map(mapFn, thisArg)</code>, except that it does not create an intermediate array. This is especially important for certain array subclasses, like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, since the intermediate array would necessarily have values truncated to fit into the appropriate type.</p>
+<p>The <code>length</code> property of the <code>from()</code> method is 1.</p>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">// Array-like object (arguments) to Array
+function f() {
+  return Array.from(arguments);
+}
+f(1, 2, 3);
+// [1, 2, 3]
+// Any iterable object...
+// Set
+var s = new Set([&quot;foo&quot;, window]);
+Array.from(s);
+// [&quot;foo&quot;, window]
+// Map
+var m = new Map([[1, 2], [2, 4], [4, 8]]);
+Array.from(m);
+// [[1, 2], [2, 4], [4, 8]]
+// String
+Array.from(&quot;foo&quot;);
+// [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;]
+// Using an arrow function as the map function to
+// manipulate the elements
+Array.from([1, 2, 3], x =&gt; x + x);
+// [2, 4, 6]
+// Generate a sequence of numbers
+Array.from({length: 5}, (v, k) =&gt; k);
+// [0, 1, 2, 3, 4]
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p><code>Array.from</code> was added to the ECMA-262 standard in the 6th edition; as such it may not be present in other implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of <code>Array.from</code> in implementations that don&apos;t natively support it.&#xA0; This algorithm is exactly the one specified in ECMA-262, 6th edition, assuming <code>Object</code> and <code>TypeError</code> have their original values and that <code>callback.call</code> evaluates to the original value of <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call</code></a>. In addition, since true iterables can not be polyfilled, this implementation does not support generic iterables as defined in the 6th edition of ECMA-262.</p>
+<prism-js language="javascript">// Production steps of ECMA-262, Edition 6, 22.1.2.1
+// Reference: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from
+if (!Array.from) {
+  Array.from = (function () {
+    var toStr = Object.prototype.toString;
+    var isCallable = function (fn) {
+      return typeof fn === &apos;function&apos; || toStr.call(fn) === &apos;[object Function]&apos;;
+    };
+    var toInteger = function (value) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; var number = Number(value);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (isNaN(number)) { return 0; }
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (number === 0 || !isFinite(number)) { return number; }
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return (number &gt; 0 ? 1 : -1) * Math.floor(Math.abs(number));
+&#xA0;&#xA0;  };
+    var maxSafeInteger = Math.pow(2, 53) - 1;
+    var toLength = function (value) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; var len = toInteger(value);
+      return Math.min(Math.max(len, 0), maxSafeInteger);
+&#xA0;&#xA0;&#xA0; };
+    // The length property of the from method is 1.
+    return function from(arrayLike/*, mapFn, thisArg */) {
+      // 1. Let C be the this value.
+      var C = this;
+      // 2. Let items be ToObject(arrayLike).
+      var items = Object(arrayLike);
+      // 3. ReturnIfAbrupt(items).
+      if (arrayLike == null) {
+        throw new TypeError(&quot;Array.from requires an array-like object - not null or undefined&quot;);
+      }
+      // 4. If mapfn is undefined, then let mapping be false.
+      var mapFn = arguments.length &gt; 1 ? arguments[1] : void undefined;
+      var T;
+      if (typeof mapFn !== &apos;undefined&apos;) {
+        // 5. else
+        // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+        if (!isCallable(mapFn)) {
+          throw new TypeError(&apos;Array.from: when provided, the second argument must be a function&apos;);
+        }
+        // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+&#xA0;&#xA0;  &#xA0;   if (arguments.length &gt; 2) {
+          T = arguments[2];
+        }
+      }
+      // 10. Let lenValue be Get(items, &quot;length&quot;).
+      // 11. Let len be ToLength(lenValue).
+      var len = toLength(items.length);
+      // 13. If IsConstructor(C) is true, then
+      // 13. a. Let A be the result of calling the [[Construct]] internal method of C with an argument list containing the single item len.
+      // 14. a. Else, Let A be ArrayCreate(len).
+      var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+      // 16. Let k be 0.
+      var k = 0;
+      // 17. Repeat, while k &lt; len&#x2026; (also steps a - h)
+      var kValue;
+      while (k &lt; len) {
+        kValue = items[k];
+        if (mapFn) {
+          A[k] = typeof T === &apos;undefined&apos; ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+        } else {
+          A[k] = kValue;
+        }
+        k += 1;
+      }
+      // 18. Let putStatus be Put(A, &quot;length&quot;, len, true).
+      A.length = len;
+      // 20. Return A.
+      return A;
+    };
+  }());
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.from" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.from&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a></li>
+ <li><a href="#/Array.prototype.map()" title="The map() method creates a new array with the results of calling a provided function on every element in this array."><code>Array.prototype.map()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/from" title="The %TypedArray%.from() method creates a new typed array from an array-like or iterable object. This method is nearly the same as Array.from()."><code>TypedArray.from()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

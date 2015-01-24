@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>pop()</strong></code> method removes the <strong>last</strong> element from an array and returns that element.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.pop()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>pop</code> method removes the last element from an array and returns that value to the caller.</p>
+<p><code>pop</code> is intentionally generic; this method can be <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually.">called</a> or <a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object).">applied</a> to objects resembling arrays. Objects which do not contain a <code>length</code> property reflecting the last in a series of consecutive, zero-based numerical properties may not behave in any meaningful manner.</p>
+<p>If you call <code>pop()</code> on an empty array, it returns an <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> value.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Removing_the_last_element_of_an_array" name="Example:_Removing_the_last_element_of_an_array">Example: Removing the last element of an array</h3>
+<p>The following code creates the <code>myFish</code> array containing four elements, then removes its last element.</p>
+<prism-js language="javascript">var myFish = [&apos;angel&apos;, &apos;clown&apos;, &apos;mandarin&apos;, &apos;sturgeon&apos;];
+console.log(myFish); // [&apos;angel&apos;, &apos;clown&apos;, &apos;mandarin&apos;, &apos;sturgeon&apos;]
+var popped = myFish.pop();
+console.log(myFish); // [&apos;angel&apos;, &apos;clown&apos;, &apos;mandarin&apos; ]
+console.log(popped); // &apos;sturgeon&apos;</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.pop&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.pop" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.pop&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.push()" title="The push() method adds one or more elements to the end of an array and returns the new length of the array."><code>Array.prototype.push()</code></a></li>
+ <li><a href="#/Array.prototype.shift()" title="The shift() method removes the first element from an array and returns that element. This method changes the length of the array."><code>Array.prototype.shift()</code></a></li>
+ <li><a href="#/Array.prototype.unshift()" title="The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array."><code>Array.prototype.unshift()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop">Array.prototype.pop()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

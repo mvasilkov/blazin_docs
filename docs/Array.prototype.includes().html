@@ -1,0 +1,67 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+  <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 7) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Array.prototype.includes()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong>includes()</strong></code> method determines whether an array includes a certain element, returning <code>true</code> or <code>false</code> as appropriate.</p>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>array</var>.includes(<var>searchElement</var>[, <var>fromIndex</var>])</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>searchElement</code></dt>
+ <dd>
+  The element to search for.</dd>
+ <dt>
+  <code>fromIndex</code></dt>
+ <dd>
+  Optional. The position in this array at which to begin searching for <code>searchElement</code>; defaults to 0.</dd>
+</dl>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">[1, 2, 3].includes(2);     // true
+[1, 2, 3].includes(4);     // false
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+[1, 2, NaN].includes(NaN); // true
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<prism-js language="javascript">if (![].includes) {
+&#xA0; Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {&apos;use strict&apos;;
+&#xA0;&#xA0;&#xA0; var O = Object(this);
+&#xA0;&#xA0;&#xA0; var len = parseInt(O.length) || 0;
+&#xA0;&#xA0;&#xA0; if (len === 0) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return false;
+&#xA0;&#xA0;&#xA0; }
+&#xA0;&#xA0;&#xA0; var n = parseInt(arguments[1]) || 0;
+&#xA0;&#xA0;&#xA0; var k;
+&#xA0;&#xA0;&#xA0; if (n &gt;= 0) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; k = n;
+&#xA0;&#xA0;&#xA0; } else {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; k = len + n;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (k &lt; 0) {k = 0;}
+&#xA0;&#xA0;&#xA0; }
+&#xA0;&#xA0;&#xA0; var currentElement;
+&#xA0;&#xA0;&#xA0; while (k &lt; len) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; currentElement = O[k];
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (searchElement === currentElement ||
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; (searchElement !== searchElement &amp;&amp; currentElement !== currentElement)) {
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return true;
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; }
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; k++;
+&#xA0;&#xA0;&#xA0; }
+&#xA0;&#xA0;&#xA0; return false;
+&#xA0; };
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<p>ES7 proposal: <a class="external" href="https://github.com/tc39/Array.prototype.includes">https://github.com/tc39/Array.prototype.includes</a>.</p>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/includes" title="The includes() method determines whether a typed array includes a certain element, returning true or false as appropriate. This method has the same algorithm as Array.prototype.includes(). TypedArray is one of the typed array types here."><code>TypedArray.prototype.includes()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></li>
+ <li><a href="#/String.prototype.includes()" title="The includes() method determines whether one string may be found within another string, returning true or false as appropriate."><code>String.prototype.includes()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></li>
+ <li><a href="#/Array.prototype.indexOf()" title="The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present."><code>Array.prototype.indexOf()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes">Array.prototype.includes()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

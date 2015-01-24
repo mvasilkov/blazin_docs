@@ -1,0 +1,146 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the ECMAScript 6 (Harmony) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Promise#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>Promise</code></strong> object is used for deferred and asynchronous computations. A <code>Promise</code> is in one of the three states:</p>
+<ul>
+ <li><em>pending</em>: initial state, not fulfilled or rejected.</li>
+ <li><em>fulfilled</em>: successful operation</li>
+ <li><em>rejected</em>: failed operation.</li>
+</ul>
+<p>Another term describing the state is <em>settled</em>: the Promise is either fulfilled or rejected, but not pending.</p>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox">new Promise(<em>executor</em>);
+new Promise(function(resolve, reject) { ... });</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>executor</dt>
+ <dd>Function object with two arguments <code>resolve</code> and <code>reject</code>. The first argument fulfills the promise, the second argument rejects it. We can call these functions, once our operation is completed.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p>The <code><strong>Promise</strong></code> interface represents a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers to an asynchronous action&apos;s eventual success or failure. This lets asynchronous methods return values like synchronous methods: instead of the final value, the asynchronous method returns a <em>promise</em> of having a value at some point in the future.</p>
+<p>A pending&#xA0;promise can become either <em>fulfilled</em> with a value, or <em>rejected</em> with a reason. When either of these happens, the associated handlers queued up by a promise&apos;s <code>then</code> method are called. (If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.)</p>
+<p>As the <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" title="The then() method returns a Promise. It takes two arguments, both are callback functions for the success and failure cases of the Promise."><code>Promise.prototype.then</code></a></code> and <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" title="The catch() method returns a Promise and deals with rejected cases only. It behaves the same as calling Promise.prototype.then(undefined, onRejected)."><code>Promise.prototype.catch</code></a></code> methods return promises, they can be chained&#x2014;an operation called <em>composition</em>.</p>
+<p><img alt="" src="https://mdn.mozillademos.org/files/8633/promises.png" style="width: 801px; height: 297px;"></p>
+<h2 id="Properties">Properties</h2>
+<dl>
+ <dt><code>Promise.length</code></dt>
+ <dd>Length property whose value is 1 (number of constructor arguments).</dd>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/prototype" title="The Promise.prototype property represents the prototype for the Promise constructor."><code>Promise.prototype</code></a></dt>
+ <dd>Represents the prototype for the <code>Promise</code> constructor.</dd>
+</dl>
+<h2 id="Methods">Methods</h2>
+<dl>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" title="The Promise.all(iterable) method returns a promise that resolves when all of the promises in the iterable argument have resolved."><code>Promise.all(iterable)</code></a></dt>
+ <dd>Returns a promise that resolves when all of the promises in the iterable argument have resolved.</dd>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race" title="The Promise.race(iterable) method returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves or rejects, with the value or reason from that promise."><code>Promise.race(iterable)</code></a></dt>
+ <dd>Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves or rejects, with the value or reason from that promise.</dd>
+</dl>
+<dl>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject" title="The Promise.reject(reason) method returns a Promise object that is rejected with the given reason."><code>Promise.reject(reason)</code></a></dt>
+ <dd>Returns a <code>Promise</code> object that is rejected with the given reason.</dd>
+</dl>
+<dl>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve" title="The Promise.resolve(value) method returns a Promise object that is resolved with the given value. If the value is a thenable (i.e. has a then method), the returned promise will &quot;follow&quot; that thenable, adopting its eventual state; otherwise the returned promise will be fulfilled with the value."><code>Promise.resolve(value)</code></a></dt>
+ <dd>Returns a <code>Promise</code> object that is resolved with the given value. If the value is a thenable (i.e. has a <code>then</code> method), the returned promise will &quot;follow&quot; that thenable, adopting its eventual state; otherwise the returned promise will be fulfilled with the value.</dd>
+</dl>
+<h2 id="Promise_prototype"><code>Promise</code> prototype</h2>
+<h3 id="Properties_2">Properties</h3>
+<p></p><dl><dt>
+  <code>Promise.prototype.constructor</code></dt>
+ <dd>
+  Returns the function that created an instance&apos;s prototype. This is the <a href="#/Promise" title="The Promise object is used for deferred and asynchronous computations. A Promise is in one of the three states:"><code>Promise</code></a> function by default.</dd>
+</dl><p></p>
+<h3 id="Methods_2">Methods</h3>
+<p></p><dl><dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" title="The catch() method returns a Promise and deals with rejected cases only. It behaves the same as calling Promise.prototype.then(undefined, onRejected)."><code>Promise.prototype.catch(onRejected)</code></a></dt>
+ <dd>
+  Appends a rejection handler callback to the promise, and returns a new promise resolving to the return value of the callback if it is called, or to its original fulfillment value if the promise is instead fulfilled.</dd>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" title="The then() method returns a Promise. It takes two arguments, both are callback functions for the success and failure cases of the Promise."><code>Promise.prototype.then(onFulfilled, onRejected)</code></a></dt>
+ <dd>
+  Appends fulfillment and rejection handlers to the promise, and returns a new promise resolving to the return value of the called handler.</dd>
+</dl><p></p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Creating_a_Promise">Creating a Promise</h3>
+<prism-js style="display: none;" language="javascript">&lt;button id=&quot;btn&quot;&gt;Make a promise!&lt;/button&gt;
+&lt;div id=&quot;log&quot;&gt;&lt;/div&gt;
+</prism-js>
+<p>This small example shows the mechanism of a <code>Promise</code>. The <code>testPromise()</code> method is called each time the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" title="The HTML &lt;button&gt; Element represents a clickable button."><code>&lt;button&gt;</code></a> is clicked. It creates a promise that will resolve, using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers.setTimeout"><code>window.setTimeout</code></a>, to the string <code>&apos;result&apos;</code> after <code>1s to 3s</code> (random).</p>
+<p>The fulfillment of the promise is simply logged, via a fulfill callback set using <code>p1.then</code>. A few logs shows how the synchronous part of the method is decoupled of the asynchronous completion of the promise.</p>
+<prism-js language="javascript">var promiseCount = 0;
+function testPromise() {
+  var thisPromiseCount = ++promiseCount;
+  var log = document.getElementById(&apos;log&apos;);
+  log.insertAdjacentHTML(&apos;beforeend&apos;, thisPromiseCount +
+      &apos;) Started (&lt;small&gt;Sync code started&lt;/small&gt;)&lt;br/&gt;&apos;);
+  // We make a new promise: we promise the string &apos;result&apos; (after waiting 3s)
+  var p1 = new Promise(
+    // The resolver function is called with the ability to resolve or
+    // reject the promise
+    function(resolve, reject) {
+      log.insertAdjacentHTML(&apos;beforeend&apos;, thisPromiseCount +
+          &apos;) Promise started (&lt;small&gt;Async code started&lt;/small&gt;)&lt;br/&gt;&apos;);
+      // This only is an example to create asynchronism
+      window.setTimeout(
+        function() {
+          // We fulfill the promise !
+          resolve(thisPromiseCount)
+        }, Math.random() * 2000 + 1000);
+    });
+  // We define what to do when the promise is fulfilled
+  p1.then(
+    // Just log the message and a value
+    function(val) {
+      log.insertAdjacentHTML(&apos;beforeend&apos;, val +
+          &apos;) Promise fulfilled (&lt;small&gt;Async code terminated&lt;/small&gt;)&lt;br/&gt;&apos;);
+    });
+  log.insertAdjacentHTML(&apos;beforeend&apos;, thisPromiseCount +
+      &apos;) Promise made (&lt;small&gt;Sync code terminated&lt;/small&gt;)&lt;br/&gt;&apos;);
+}
+</prism-js>
+<prism-js style="display: none;" language="javascript">if (&quot;Promise&quot; in window) {
+  btn = document.getElementById(&quot;btn&quot;);
+   btn.addEventListener(&quot;click&quot;,testPromise);
+}
+else {
+  log = document.getElementById(&apos;log&apos;);
+  log.innerHTML = &quot;Live example not available as your browser doesn&apos;t support the Promise interface.&quot;;
+}
+</prism-js>
+<p>This example is executed when clicking the button. You need a browser supporting <code>Promise</code>. By clicking several times the button in a short amount of time, you&apos;ll even see the different promise being fulfilled one after the other.</p>
+<p><iframe class="live-sample-frame" frameborder="0" height="200" src="https://mdn.mozillademos.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise$samples/Creating_a_Promise?revision=723575" width="500"></iframe></p>
+<h3 id="Loading_an_image_with_XHR">Loading an image with XHR</h3>
+<p>Another simple example using <code>Promise</code> and <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a></code> to load an image is available at the MDN GitHub<a class="external" href="https://github.com/mdn/promises-test/blob/gh-pages/index.html"> promise-test</a> repository. You can also <a class="external" href="http://mdn.github.io/promises-test/">see it in action</a>. Each step is commented and allows you to follow the Promise and XHR architecture closely.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="https://github.com/domenic/promises-unwrapping">domenic/promises-unwrapping</a></td>
+   <td>Draft</td>
+   <td>Standardization work is taking place here.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Promise&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition in an ECMA standard.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a class="external" href="http://promisesaplus.com/">Promises/A+ specification</a></li>
+ <li><a class="external" href="http://www.html5rocks.com/en/tutorials/es6/promises/">Jake Archibald: JavaScript Promises: There and Back Again</a></li>
+ <li><a class="external" href="http://de.slideshare.net/domenicdenicola/callbacks-promises-and-coroutines-oh-my-the-evolution-of-asynchronicity-in-javascript">Domenic Denicola: Callbacks, Promises, and Coroutines &#x2013; Asynchronous Programming Patter in JavaScript</a></li>
+ <li><a class="external" href="http://www.mattgreer.org/articles/promises-in-wicked-detail/">Matt Greer: JavaScript Promises ... In Wicked Detail</a></li>
+ <li><a class="external" href="https://www.promisejs.org/">Forbes Lindesay: promisejs.org</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

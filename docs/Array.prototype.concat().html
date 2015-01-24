@@ -1,0 +1,81 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>concat()</strong></code> method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>var <var>new_array</var> = <var>old_array</var>.concat(<var>value1</var>[, <var>value2</var>[, ...[, <var>valueN</var>]]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>value<em>N</em></code></dt>
+ <dd>
+  Arrays and/or values to concatenate into a new array. See the discussion below for details.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>concat</code> creates a new array consisting of the elements in the object on which it is called, followed in order by, for each argument, the elements of that argument (if the argument is an array) or the argument itself (if the argument is not an array).</p>
+<p><code>concat</code> does not alter <code>this</code> or any of the arrays provided as arguments but instead returns a shallow copy that contains copies of the same elements combined from the original arrays. Elements of the original arrays are copied into the new array as follows:</p>
+<ul>
+ <li>Object references (and not the actual object): <code>concat</code> copies object references into the new array. Both the original and new array refer to the same object. That is, if a referenced object is modified, the changes are visible to both the new and original arrays.</li>
+ <li>Strings and numbers (not <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> and <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> objects): <code>concat</code> copies the values of strings and numbers into the new array.</li>
+</ul>
+<div class="note">
+ <p><strong>Note:</strong> Concatenating array(s)/value(s) will leave the originals untouched. Furthermore, any operation on the new array will have no effect on the original arrays, and vice versa.</p>
+</div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Concatenating_two_arrays" name="Example:_Concatenating_two_arrays">Example: Concatenating two arrays</h3>
+<p>The following code concatenates two arrays:</p>
+<prism-js language="javascript">var alpha = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;],
+    numeric = [1, 2, 3];
+var alphaNumeric = alpha.concat(numeric);
+console.log(alphaNumeric); // Result: [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 1, 2, 3]
+</prism-js>
+<h3 id="Example:_Concatenating_three_arrays" name="Example:_Concatenating_three_arrays">Example: Concatenating three arrays</h3>
+<p>The following code concatenates three arrays:</p>
+<prism-js language="javascript">var num1 = [1, 2, 3],
+    num2 = [4, 5, 6],
+    num3 = [7, 8, 9];
+var nums = num1.concat(num2, num3);
+console.log(nums); // Result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+</prism-js>
+<h3 id="Example:_Concatenating_values_to_an_array" name="Example:_Concatenating_values_to_an_array">Example: Concatenating values to an array</h3>
+<p>The following code concatenates three values to an array:</p>
+<prism-js language="javascript">var alpha = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+var alphaNumeric = alpha.concat(1, [2, 3]);
+console.log(alphaNumeric); // Result: [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 1, 2, 3]
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.4" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Array.prototype.concat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.concat" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Array.prototype.concat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.push()" title="The push() method adds one or more elements to the end of an array and returns the new length of the array."><code>push</code></a> / <a href="#/Array.prototype.pop()" title="The pop() method removes the last element from an array and returns that element."><code>pop</code></a>&#xA0;&#x2014; add/remove elements from the end of the array</li>
+ <li><a href="#/Array.prototype.unshift()" title="The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array."><code>unshift</code></a> / <a href="#/Array.prototype.shift()" title="The shift() method removes the first element from an array and returns that element. This method changes the length of the array."><code>shift</code></a>&#xA0;&#x2014; add/remove elements from the beginning of the array</li>
+ <li><a href="#/Array.prototype.splice()" title="The splice() method changes the content of an array, adding new elements while removing old elements."><code>splice</code></a>&#xA0;&#x2014; add/remove elements from the specified location of the array</li>
+ <li><a href="#/String.prototype.concat()" title="The concat() method combines the text of two or more strings and returns a new string."><code>String.prototype.concat()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">Array.prototype.concat()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

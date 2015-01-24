@@ -1,0 +1,178 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>slice()</strong></code> method returns a shallow copy of a portion of an array into a new array object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.slice([<var>begin</var>[, <var>end</var>]])</code></pre>
+<h2 id="Parameters" name="Parameters">Parameters</h2>
+<dl>
+ <dt>
+  <code>begin</code></dt>
+ <dd>
+  Zero-based index at which to begin extraction.</dd>
+ <dd>
+  As a negative index, <code>begin</code> indicates an offset from the end of the sequence. <code>slice(-2)</code> extracts the last two elements in the sequence.</dd>
+ <dd>
+  If <code>begin</code> is omitted, <code>slice</code> begins from index <code>0</code>.</dd>
+ <dt>
+  <code>end</code></dt>
+ <dd>
+  Zero-based index at which to end extraction. <code>slice</code> extracts up to but not including <code>end</code>.</dd>
+ <dd>
+  <code>slice(1,4)</code> extracts the second element up to the fourth element (elements indexed 1, 2, and 3).</dd>
+ <dd>
+  As a negative index, <code>end</code> indicates an offset from the end of the sequence. <code>slice(2,-1)</code> extracts the third element through the second-to-last element in the sequence.</dd>
+ <dd>
+  If <code>end</code> is omitted, <code>slice</code> extracts to the end of the sequence (<code>arr.length</code>)<code>.</code></dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>slice</code>&#xA0;does not alter. It returns a shallow copy of elements from the original array. Elements of the original array are copied into the returned array as follows:</p>
+<ul>
+ <li>For object references (and not the actual object), <code>slice</code> copies object references into the new array. Both the original and new array refer to the same object. If a referenced object changes, the changes are visible to both the new and original arrays.</li>
+ <li>For strings and numbers (not <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> and <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> objects), <code>slice</code> copies strings and numbers into the new array. Changes to the string or number in one array does not affect the other array.</li>
+</ul>
+<p>If a new element is added to either array, the other array is not affected.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Return_a_portion_of_an_existing_array" name="Example:_Return_a_portion_of_an_existing_array">Example: Return a portion of an existing array</h3>
+<prism-js language="javascript">// Our good friend the citrus from fruits example
+var fruits = [&apos;Banana&apos;, &apos;Orange&apos;, &apos;Lemon&apos;, &apos;Apple&apos;, &apos;Mango&apos;];
+var citrus = fruits.slice(1, 3);
+// citrus contains [&apos;Orange&apos;,&apos;Lemon&apos;]
+</prism-js>
+<h3 id="Example:_Using_slice" name="Example:_Using_slice">Example: Using <code>slice</code></h3>
+<p>In the following example, <code>slice</code> creates a new array, <code>newCar</code>, from <code>myCar</code>. Both include a reference to the object <code>myHonda</code>. When the color of <code>myHonda</code> is changed to purple, both arrays reflect the change.</p>
+<prism-js language="javascript">// Using slice, create newCar from myCar.
+var myHonda = { color: &apos;red&apos;, wheels: 4, engine: { cylinders: 4, size: 2.2 } };
+var myCar = [myHonda, 2, &apos;cherry condition&apos;, &apos;purchased 1997&apos;];
+var newCar = myCar.slice(0, 2);
+// Display the values of myCar, newCar, and the color of myHonda
+//  referenced from both arrays.
+console.log(&apos;myCar = &apos; + myCar.toSource());
+console.log(&apos;newCar = &apos; + newCar.toSource());
+console.log(&apos;myCar[0].color = &apos; + myCar[0].color);
+console.log(&apos;newCar[0].color = &apos; + newCar[0].color);
+// Change the color of myHonda.
+myHonda.color = &apos;purple&apos;;
+console.log(&apos;The new color of my Honda is &apos; + myHonda.color);
+// Display the color of myHonda referenced from both arrays.
+console.log(&apos;myCar[0].color = &apos; + myCar[0].color);
+console.log(&apos;newCar[0].color = &apos; + newCar[0].color);
+</prism-js>
+<p>This script writes:</p>
+<prism-js language="javascript">myCar = [{color:&apos;red&apos;, wheels:4, engine:{cylinders:4, size:2.2}}, 2,
+         &apos;cherry condition&apos;, &apos;purchased 1997&apos;]
+newCar = [{color:&apos;red&apos;, wheels:4, engine:{cylinders:4, size:2.2}}, 2]
+myCar[0].color = red
+newCar[0].color = red
+The new color of my Honda is purple
+myCar[0].color = purple
+newCar[0].color = purple
+</prism-js>
+<h2 id="Array-like" name="Array-like">Array-like objects</h2>
+<p><code>slice</code> method can also be called to convert Array-like objects / collections to a new Array. You just bind the method to the object. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments</code></a> inside a function is an example of an &apos;array-like object&apos;.</p>
+<prism-js language="javascript">function list() {
+  return Array.prototype.slice.call(arguments, 0);
+}
+var list1 = list(1, 2, 3); // [1, 2, 3]
+</prism-js>
+<p>Binding can be done with the .<code>call</code> function of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="The Function.prototype property represents the Function prototype object."><code>Function.prototype</code></a> and it can also be reduced using <code>[].slice.call(arguments)</code> instead of <code>Array.prototype.slice.call</code>. Anyway, it can be simplified using <a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>bind</code></a>.</p>
+<prism-js language="javascript">var unboundSlice = Array.prototype.slice;
+var slice = Function.prototype.call.bind(unboundSlice);
+function list() {
+  return slice(arguments, 0);
+}
+var list1 = list(1, 2, 3); // [1, 2, 3]
+</prism-js>
+<h2 id="Streamlining_cross-browser_behavior" name="Streamlining_cross-browser_behavior">Streamlining cross-browser behavior</h2>
+<p>Although host objects (such as DOM objects) are not required by spec to follow the Mozilla behavior when converted by <code>Array.prototype.slice</code> and IE &lt; 9 does not do so, versions of IE starting with version 9 do allow this, &#x201C;shimming&#x201D; it can allow reliable cross-browser behavior. As long as other modern browsers continue to support this ability, as currently do IE, Mozilla, Chrome, Safari, and Opera, developers reading (DOM-supporting) slice code relying on this shim will not be misled by the semantics; they can safely rely on the semantics to provide the now apparently <em>de facto</em> standard behavior. (The shim also fixes IE to work with the second argument of <code>slice()</code> being an explicit <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>/<a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> value as earlier versions of IE also did not allow but all modern browsers, including IE &gt;= 9, now do.)</p>
+<prism-js language="javascript">/**
+ * Shim for &quot;fixing&quot; IE&apos;s lack of support (IE &lt; 9) for applying slice
+ * on host objects like NamedNodeMap, NodeList, and HTMLCollection
+ * (technically, since host objects have been implementation-dependent,
+ * at least before ES6, IE hasn&apos;t needed to work this way).
+ * Also works on strings, fixes IE &lt; 9 to allow an explicit undefined
+ * for the 2nd argument (as in Firefox), and prevents errors when
+ * called on other DOM objects.
+ */
+(function () {
+  &apos;use strict&apos;;
+  var _slice = Array.prototype.slice;
+  try {
+    // Can&apos;t be used with DOM elements in IE &lt; 9
+    _slice.call(document.documentElement);
+  } catch (e) { // Fails in IE &lt; 9
+    // This will work for genuine arrays, array-like objects,
+    // NamedNodeMap (attributes, entities, notations),
+    // NodeList (e.g., getElementsByTagName), HTMLCollection (e.g., childNodes),
+    // and will not fail on other DOM objects (as do DOM elements in IE &lt; 9)
+    Array.prototype.slice = function(begin, end) {
+      // IE &lt; 9 gets unhappy with an undefined end argument
+      end = (typeof end !== &apos;undefined&apos;) ? end : this.length;
+      // For native Array objects, we use the native slice function
+      if (Object.prototype.toString.call(this) === &apos;[object Array]&apos;){
+        return _slice.call(this, begin, end);
+      }
+      // For array like object we handle it ourselves.
+      var i, cloned = [],
+        size, len = this.length;
+      // Handle negative value for &quot;begin&quot;
+      var start = begin || 0;
+      start = (start &gt;= 0) ? start: len + start;
+      // Handle negative value for &quot;end&quot;
+      var upTo = (end) ? end : len;
+      if (end &lt; 0) {
+        upTo = len + end;
+      }
+      // Actual expected size of the slice
+      size = upTo - start;
+      if (size &gt; 0) {
+        cloned = new Array(size);
+        if (this.charAt) {
+          for (i = 0; i &lt; size; i++) {
+            cloned[i] = this.charAt(start + i);
+          }
+        } else {
+          for (i = 0; i &lt; size; i++) {
+            cloned[i] = this[start + i];
+          }
+        }
+      }
+      return cloned;
+    };
+  }
+}());
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.10" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.slice&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.slice" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.slice&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a></li>
+ <li><a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>Function.prototype.bind()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">Array.prototype.slice()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,41 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Array.prototype.entries()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>entries()</strong></code> method returns a new <code><strong>Array Iterator</strong></code> object that contains the key/value pairs for each index in the array.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.entries()</code></pre>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+var eArr = arr.entries();
+console.log(eArr.next().value); // [0, &apos;a&apos;]
+console.log(eArr.next().value); // [1, &apos;b&apos;]
+console.log(eArr.next().value); // [2, &apos;c&apos;]
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.entries" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.entries&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.keys()" title="The keys() method returns a new Array Iterator that contains the keys for each index in the array."><code>Array.prototype.keys()</code></a></li>
+ <li><a href="#/Array.prototype.forEach()" title="The forEach() method executes a provided function once per array element."><code>Array.prototype.forEach()</code></a></li>
+ <li><a href="#/Array.prototype.every()" title="The every() method tests whether all elements in the array pass the test implemented by the provided function."><code>Array.prototype.every()</code></a></li>
+ <li><a href="#/Array.prototype.some()" title="The some() method tests whether some element in the array passes the test implemented by the provided function."><code>Array.prototype.some()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries">Array.prototype.entries()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

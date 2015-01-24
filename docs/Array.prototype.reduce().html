@@ -1,0 +1,215 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>reduce()</strong></code> method applies a function against an accumulator and each value of the array (from left-to-right) has to reduce it to a single value.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.reduce(<var>callback</var>[, <var>initialValue</var>])</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt><code>callback</code></dt>
+ <dd>Function to execute on each value in the array, taking four arguments:
+ <dl>
+  <dt><code>previousValue</code></dt>
+  <dd>The value previously returned in the last invocation of the callback, or <code>initialValue</code>, if supplied. (See below.)</dd>
+  <dt><code>currentValue</code></dt>
+  <dd>The current element being processed in the array.</dd>
+  <dt><code>index</code></dt>
+  <dd>The index of the current element being processed in the array.</dd>
+  <dt><code>array</code></dt>
+  <dd>The array <code>reduce</code> was called upon.</dd>
+ </dl>
+ </dd>
+ <dt><code>initialValue</code></dt>
+ <dd>Optional. Object to use as the first argument to the first call of the <code>callback</code>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>reduce</code> executes the <code>callback</code> function once for each element present in the array, excluding holes in the array, receiving four arguments: the initial value (or value from the previous <code>callback</code> call), the value of the current element, the current index, and the array over which iteration is occurring.</p>
+<p>The first time the callback is called, <code>previousValue</code> and <code>currentValue</code> can be one of two values. If <code>initialValue</code> is provided in the call to <code>reduce</code>, then <code>previousValue</code> will be equal to <code>initialValue</code> and <code>currentValue</code> will be equal to the first value in the array. If no <code>initialValue</code> was provided, then <code>previousValue</code> will be equal to the first value in the array and <code>currentValue</code> will be equal to the second.</p>
+<p>If the array is empty and no <code>initialValue</code> was provided, <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> would be thrown. If the array has only one element (regardless of position) and no <code>initialValue</code> was provided, or if <code>initialValue</code> is provided but the array is empty, the solo value would be returned without calling <code>callback</code>.</p>
+<p>Suppose the following use of <code>reduce</code> occurred:</p>
+<prism-js language="javascript">[0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array) {
+  return previousValue + currentValue;
+});
+</prism-js>
+<p>The callback would be invoked four times, with the arguments and return values in each call being as follows:</p>
+<table style="width: 100%;">
+ <thead>
+  <tr>
+   <th scope="col">&#xA0;</th>
+   <th scope="col"><code>previousValue</code></th>
+   <th scope="col"><code>currentValue</code></th>
+   <th scope="col"><code>index</code></th>
+   <th scope="col"><code>array</code></th>
+   <th scope="col">return value</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">first call</th>
+   <td><code>0</code></td>
+   <td><code>1</code></td>
+   <td><code>1</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>1</code></td>
+  </tr>
+  <tr>
+   <th scope="row">second call</th>
+   <td><code>1</code></td>
+   <td><code>2</code></td>
+   <td><code>2</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>3</code></td>
+  </tr>
+  <tr>
+   <th scope="row">third call</th>
+   <td><code>3</code></td>
+   <td><code>3</code></td>
+   <td><code>3</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>6</code></td>
+  </tr>
+  <tr>
+   <th scope="row">fourth call</th>
+   <td><code>6</code></td>
+   <td><code>4</code></td>
+   <td><code>4</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>10</code></td>
+  </tr>
+ </tbody>
+</table>
+<p>The value returned by <code>reduce</code> would be that of the last callback invocation (<code>10</code>).</p>
+<p>If you were to provide an initial value as the second argument to <code>reduce</code>, the result would look like this:</p>
+<prism-js language="javascript">[0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array) {
+  return previousValue + currentValue;
+}, 10);
+</prism-js>
+<table style="width: 100%;">
+ <thead>
+  <tr>
+   <th scope="col">&#xA0;</th>
+   <th scope="col"><code>previousValue</code></th>
+   <th scope="col"><code>currentValue</code></th>
+   <th scope="col"><code>index</code></th>
+   <th scope="col"><code>array</code></th>
+   <th scope="col">return value</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">first call</th>
+   <td><code>10</code></td>
+   <td><code>0</code></td>
+   <td><code>0</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>10</code></td>
+  </tr>
+  <tr>
+   <th scope="row">second call</th>
+   <td><code>10</code></td>
+   <td><code>1</code></td>
+   <td><code>1</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>11</code></td>
+  </tr>
+  <tr>
+   <th scope="row">third call</th>
+   <td><code>11</code></td>
+   <td><code>2</code></td>
+   <td><code>2</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>13</code></td>
+  </tr>
+  <tr>
+   <th scope="row">fourth call</th>
+   <td><code>13</code></td>
+   <td><code>3</code></td>
+   <td><code>3</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>16</code></td>
+  </tr>
+  <tr>
+   <th scope="row">fifth call</th>
+   <td><code>16</code></td>
+   <td><code>4</code></td>
+   <td><code>4</code></td>
+   <td><code>[0, 1, 2, 3, 4]</code></td>
+   <td><code>20</code></td>
+  </tr>
+ </tbody>
+</table>
+<p>The value returned by <code>reduce</code> this time would be, of course, <code>20</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Sum_up_all_values_within_an_array" name="Example:_Sum_up_all_values_within_an_array">Example: Sum up all values within an array</h3>
+<prism-js language="javascript">var total = [0, 1, 2, 3].reduce(function(a, b) {
+  return a + b;
+});
+// total == 6
+</prism-js>
+<h3 id="Example:_Flatten_an_array_of_arrays" name="Example:_Flatten_an_array_of_arrays">Example: Flatten an array of arrays</h3>
+<prism-js language="javascript">var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+  return a.concat(b);
+});
+// flattened is [0, 1, 2, 3, 4, 5]
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p><code>Array.prototype.reduce</code> was added to the ECMA-262 standard in the 5th edition; as such it may not be present in all implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of <code>reduce</code> in implementations which do not natively support it.</p>
+<prism-js language="javascript">// Production steps of ECMA-262, Edition 5, 15.4.4.21
+// Reference: http://es5.github.io/#x15.4.4.21
+if (!Array.prototype.reduce) {
+  Array.prototype.reduce = function(callback /*, initialValue*/) {
+    &apos;use strict&apos;;
+    if (this == null) {
+      throw new TypeError(&apos;Array.prototype.reduce called on null or undefined&apos;);
+    }
+    if (typeof callback !== &apos;function&apos;) {
+      throw new TypeError(callback + &apos; is not a function&apos;);
+    }
+    var t = Object(this), len = t.length &gt;&gt;&gt; 0, k = 0, value;
+    if (arguments.length == 2) {
+      value = arguments[1];
+    } else {
+      while (k &lt; len &amp;&amp; ! k in t) {
+        k++;
+      }
+      if (k &gt;= len) {
+        throw new TypeError(&apos;Reduce of empty array with no initial value&apos;);
+      }
+      value = t[k++];
+    }
+    for (; k &lt; len; k++) {
+      if (k in t) {
+        value = callback(value, t[k], k, t);
+      }
+    }
+    return value;
+  };
+}
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.21" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.reduce&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.reduce" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.reduce&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.reduceRight()" title="The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value."><code>Array.prototype.reduceRight()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

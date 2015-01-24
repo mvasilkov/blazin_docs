@@ -1,0 +1,136 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>every()</strong></code> method tests whether all elements in the array pass the test implemented by the provided function.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>arr</var>.every(<var>callback</var>[, <var>thisArg</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>callback</code></dt>
+ <dd>
+  Function to test for each element, taking three arguments:
+  <dl>
+   <dt>
+    <code>currentValue</code></dt>
+   <dd>
+    The current element being processed in the array.</dd>
+   <dt>
+    <code>index</code></dt>
+   <dd>
+    The index of the current element being processed in the array.</dd>
+   <dt>
+    <code>array</code></dt>
+   <dd>
+    The array <code>every</code> was called upon.</dd>
+  </dl>
+ </dd>
+ <dt>
+  <code>thisArg</code></dt>
+ <dd>
+  Optional. Value to use as <code>this</code> when executing <code>callback</code>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>every</code> method executes the provided <code>callback</code> function once for each element present in the array until it finds one where <code>callback</code> returns a <em>falsy</em> value (a value that becomes false when converted to a Boolean). If such an element is found, the <code>every</code> method immediately returns <code>false</code>. Otherwise, if <code>callback</code> returned a true value for all elements, <code>every</code> will return <code>true</code>. <code>callback</code> is invoked only for indexes of the array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values.</p>
+<p><code>callback</code> is invoked with three arguments: the value of the element, the index of the element, and the Array object being traversed.</p>
+<p>If a <code>thisArg</code> parameter is provided to <code>every</code>, it will be passed to <code>callback</code> when invoked, for use as its <code>this</code> value.&#xA0; Otherwise, the value <code>undefined</code> will be passed for use as its <code>this</code> value.&#xA0; The <code>this</code> value ultimately observable by <code>callback</code> is determined according to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">the usual rules for determining the <code>this</code> seen by a function</a>.</p>
+<p><code>every</code> does not mutate the array on which it is called.</p>
+<p>The range of elements processed by <code>every</code> is set before the first invocation of <code>callback</code>. Elements which are appended to the array after the call to <code>every</code> begins will not be visited by <code>callback</code>. If existing elements of the array are changed, their value as passed to <code>callback</code> will be the value at the time <code>every</code> visits them; elements that are deleted are not visited.</p>
+<p><code>every</code> acts like the &quot;for all&quot; quantifier in mathematics. In particular, for an empty array, it returns true. (It is <a class="external" href="http://en.wikipedia.org/wiki/Vacuous_truth#Vacuous_truths_in_mathematics">vacuously true</a> that all elements of the <a class="external" href="http://en.wikipedia.org/wiki/Empty_set#Common_problems">empty set</a> satisfy any given condition.)</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Testing_size_of_all_array_elements" name="Example:_Testing_size_of_all_array_elements">Example: Testing size of all array elements</h3>
+<p>The following example tests whether all elements in the array are bigger than 10.</p>
+<prism-js language="javascript">function isBigEnough(element, index, array) {
+  return element &gt;= 10;
+}
+[12, 5, 8, 130, 44].every(isBigEnough);   // false
+[12, 54, 18, 130, 44].every(isBigEnough); // true
+</prism-js>
+<h3 id="Example.3A_Using_arrow_functions">Example: Using arrow functions</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow functions</a> provide a shorter syntax for the same test.</p>
+<prism-js language="javascript">[12, 5, 8, 130, 44].every(elem =&gt; elem &gt;= 10); // false
+[12, 54, 18, 130, 44].every(elem =&gt; elem &gt;= 10); // true</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p><code>every</code> was added to the ECMA-262 standard in the 5th edition; as such it may not be present in other implementations of the standard. You can work around this by inserting the following code at the beginning of your scripts, allowing use of <code>every</code> in implementations which do not natively support it. This algorithm is exactly the one specified in ECMA-262, 5th edition, assuming&#xA0;<code>Object</code>&#xA0;and&#xA0;<code>TypeError</code>&#xA0;have their original values and that&#xA0;<code>callbackfn.call</code>&#xA0;evaluates to the original value of <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call</code></a></p>
+<prism-js language="javascript">if (!Array.prototype.every) {
+  Array.prototype.every = function(callbackfn, thisArg) {
+    &apos;use strict&apos;;
+    var T, k;
+    if (this == null) {
+      throw new TypeError(&apos;this is null or not defined&apos;);
+    }
+    // 1. Let O be the result of calling ToObject passing the this
+    //    value as the argument.
+    var O = Object(this);
+    // 2. Let lenValue be the result of calling the Get internal method
+    //    of O with the argument &quot;length&quot;.
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length &gt;&gt;&gt; 0;
+    // 4. If IsCallable(callbackfn) is false, throw a TypeError exception.
+    if (typeof callbackfn !== &apos;function&apos;) {
+      throw new TypeError();
+    }
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length &gt; 1) {
+      T = thisArg;
+    }
+    // 6. Let k be 0.
+    k = 0;
+    // 7. Repeat, while k &lt; len
+    while (k &lt; len) {
+      var kValue;
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal
+      //    method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+        // i. Let kValue be the result of calling the Get internal method
+        //    of O with argument Pk.
+        kValue = O[k];
+        // ii. Let testResult be the result of calling the Call internal method
+        //     of callbackfn with T as the this value and argument list
+        //     containing kValue, k, and O.
+        var testResult = callbackfn.call(T, kValue, k, O);
+        // iii. If ToBoolean(testResult) is false, return false.
+        if (!testResult) {
+          return false;
+        }
+      }
+      k++;
+    }
+    return true;
+  };
+}
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.16" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.every&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.6.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-array.prototype.every" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Array.prototype.every&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Array.prototype.forEach()" title="The forEach() method executes a provided function once per array element."><code>Array.prototype.forEach()</code></a></li>
+ <li><a href="#/Array.prototype.some()" title="The some() method tests whether some element in the array passes the test implemented by the provided function."><code>Array.prototype.some()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/every" title="The every() method tests whether all elements in the typed array pass the test implemented by the provided function. This method has the same algorithm as Array.prototype.every(). TypedArray is one of the typed array types here."><code>TypedArray.prototype.every()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every">Array.prototype.every()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
