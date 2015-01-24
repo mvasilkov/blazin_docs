@@ -34,9 +34,15 @@ function buildPage(url) {
     })
 
     $('a').each(function () {
-        var p = pageNameCache[mdnDomain + $(this).attr('href')]
-        if (!p) return
-        $(this).attr('href', '#/' + p)
+        var link = $(this).attr('href')
+        if (!link) return
+        var name = pageNameCache[mdnDomain + link]
+        if (name) {
+            $(this).attr('href', '#/' + name)
+            return
+        }
+        if (link.indexOf('/en-US/docs/')) return
+        $(this).attr('href', mdnDomain + link)
     })
 
     var $article = $('#wikiArticle')
