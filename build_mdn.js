@@ -27,12 +27,18 @@ function buildPage(url) {
     $('#Quick_Links').remove()
     $('#Browser_compatibility').nextUntil('h2').addBack().remove()
 
+    $('pre[class^="brush"]').each(function (idx, tag) {
+        this.tagName = 'prism-js'
+        $(this).removeAttr('class').attr('language', 'javascript')
+    })
+
     var $article = $('#wikiArticle')
     assert.ok($article.length)
-    var html = '<template><div class="wikiArticle text-content">' + $article.html() +
-               '</div></template>'
+    var html = '<link rel="import" href="/bower_components/prism-js/prism-js.html">\n' +
+               '<template><div class="wikiArticle text-content">\n' + $article.html().trim() +
+               '\n</div></template>'
     html = html.split('\n')
-        .map(function (line) { return line.trim() })
+        .map(function (line) { return line.trimRight() })
         .filter(function (line) { return line.length != 0 })
         .join('\n')
 

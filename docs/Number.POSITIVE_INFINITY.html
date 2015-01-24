@@ -1,81 +1,82 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
 <template><div class="wikiArticle text-content">
 <div></div>
 <h2 id="Summary">Summary</h2>
 <p>The <strong><code>Number.POSITIVE_INFINITY</code></strong> property represents the positive Infinity value.</p>
 <p>You do not have to create a <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object to access this static property (use <code>Number.POSITIVE_INFINITY</code>).</p>
 <div><table class="standard-table">
-<thead>
-<tr>
-<th class="header" colspan="2">Property attributes of <code>Number.POSITIVE_INFINITY</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Writable</td>
-<td>no</td>
-</tr>
-<tr>
-<td>Enumerable</td>
-<td>no</td>
-</tr>
-<tr>
-<td>Configurable</td>
-<td>no</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>Number.POSITIVE_INFINITY</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
 </table></div>
 <h2 id="Description">Description</h2>
 <p>The value of <code>Number.POSITIVE_INFINITY</code> is the same as the value of the global object&apos;s <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity" title="The global Infinity property is a numeric value representing infinity."><code>Infinity</code></a> property.</p>
 <p>This value behaves slightly differently than mathematical infinity:</p>
 <ul>
-<li>Any positive value, including <code>POSITIVE_INFINITY</code>, multiplied by <code>POSITIVE_INFINITY</code> is <code>POSITIVE_INFINITY</code>.</li>
-<li>Any negative value, including <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>, multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>.</li>
-<li>Zero multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
-<li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a> multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
-<li><code>POSITIVE_INFINITY</code>, divided by any negative value except <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>, is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>.</li>
-<li><code>POSITIVE_INFINITY</code>, divided by any positive value except <code>POSITIVE_INFINITY</code>, is <code>POSITIVE_INFINITY</code>.</li>
-<li><code>POSITIVE_INFINITY</code>, divided by either <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a> or <code>POSITIVE_INFINITY</code>, is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
-<li>Any number divided by <code>POSITIVE_INFINITY</code> is Zero.</li>
+ <li>Any positive value, including <code>POSITIVE_INFINITY</code>, multiplied by <code>POSITIVE_INFINITY</code> is <code>POSITIVE_INFINITY</code>.</li>
+ <li>Any negative value, including <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>, multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>.</li>
+ <li>Zero multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a> multiplied by <code>POSITIVE_INFINITY</code> is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
+ <li><code>POSITIVE_INFINITY</code>, divided by any negative value except <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>, is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a>.</li>
+ <li><code>POSITIVE_INFINITY</code>, divided by any positive value except <code>POSITIVE_INFINITY</code>, is <code>POSITIVE_INFINITY</code>.</li>
+ <li><code>POSITIVE_INFINITY</code>, divided by either <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>NEGATIVE_INFINITY</code></a> or <code>POSITIVE_INFINITY</code>, is <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
+ <li>Any number divided by <code>POSITIVE_INFINITY</code> is Zero.</li>
 </ul>
 <p>You might use the <code>Number.POSITIVE_INFINITY</code> property to indicate an error condition that returns a finite number in case of success. Note, however, that <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite" title="The global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number."><code>isFinite</code></a> would be more appropriate in such a case.</p>
 <h2 id="Examples">Examples</h2>
 <h3 id="Example.3A_Using_POSITIVE_INFINITY">Example: Using <code>POSITIVE_INFINITY</code></h3>
 <p>In the following example, the variable <code>bigNumber</code> is assigned a value that is larger than the maximum value. When the <a href="/en-US/docs/Web/JavaScript/Reference/Statements/if...else" title="The if statement executes a statement if a specified condition is true. If the condition is false, another statement can be executed."><code>if</code></a> statement executes, <code>bigNumber</code> has the value <code>Infinity</code>, so <code>bigNumber</code> is set to a more manageable value before continuing.</p>
-<pre class="brush: js">var bigNumber = Number.MAX_VALUE * 2;
+<prism-js language="javascript">var bigNumber = Number.MAX_VALUE * 2;
 if (bigNumber == Number.POSITIVE_INFINITY) {
-bigNumber = returnFinite();
+  bigNumber = returnFinite();
 }
-</pre>
+</prism-js>
 <h2 id="Specifications">Specifications</h2>
 <table class="standard-table">
-<tbody>
-<tr>
-<th scope="col">Specification</th>
-<th scope="col">Status</th>
-<th scope="col">Comment</th>
-</tr>
-<tr>
-<td>ECMAScript 1st Edition.</td>
-<td>Standard</td>
-<td>Initial definition. Implemented in JavaScript 1.1.</td>
-</tr>
-<tr>
-<td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Number.POSITIVE_INFINITY&apos; in that specification.</small></a></td>
-<td><span class="spec-Standard">Standard</span></td>
-<td>&#xA0;</td>
-</tr>
-<tr>
-<td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.positive_infinity" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.POSITIVE_INFINITY&apos; in that specification.</small></a></td>
-<td><span class="spec-Draft">Draft</span></td>
-<td>&#xA0;</td>
-</tr>
-</tbody>
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Number.POSITIVE_INFINITY&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.positive_infinity" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.POSITIVE_INFINITY&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
 </table>
 <h2 id="See_also" name="See_also">See also</h2>
 <ul>
-<li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>Number.NEGATIVE_INFINITY</code></a></li>
-<li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite" title="The Number.isFinite() method determines whether the passed value is finite."><code>Number.isFinite()</code></a></li>
-<li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity" title="The global Infinity property is a numeric value representing infinity."><code>Infinity</code></a></li>
-<li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite" title="The global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number."><code>isFinite()</code></a></li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>Number.NEGATIVE_INFINITY</code></a></li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite" title="The Number.isFinite() method determines whether the passed value is finite."><code>Number.isFinite()</code></a></li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity" title="The global Infinity property is a numeric value representing infinity."><code>Infinity</code></a></li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite" title="The global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number."><code>isFinite()</code></a></li>
 </ul>
 </div></template>

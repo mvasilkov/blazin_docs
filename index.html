@@ -20,19 +20,21 @@
         <link rel="import" href="/bower_components/core-menu/core-menu.html">
         <link rel="import" href="/bower_components/core-item/core-item.html">
         <link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
+        <link rel="import" href="/bower_components/prism-js/prism-js.html">
     </head>
     <body fullbleed unresolved>
         <polymer-element name="blazin-app">
             <template>
                 <link rel="stylesheet" href="/pub/mdn.css">
                 <link rel="stylesheet" href="/pub/wiki.css">
+                <link rel="stylesheet" href="/pub/codesnippets.css">
                 <link rel="stylesheet" href="/pub/blazin.css">
                 <core-scaffold drawerWidth="320px">
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
                             <core-field id="searchField">
                                 <core-icon icon="search"></core-icon>
-                                <input is="core-input" value="{{search}}" placeholder="Search" flex>
+                                <input is="core-input" value="{{search}}" placeholder="Search" flex autofocus>
                             </core-field>
                         </core-toolbar>
                         <core-menu id="searchResults" selectedItem="{{selected}}"></core-menu>

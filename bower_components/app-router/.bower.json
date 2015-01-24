@@ -37,6 +37,5 @@
   },
   "_source": "git://github.com/erikringsmuth/app-router.git",
   "_target": "~2.3.2",
-  "_originalSource": "app-router",
-  "_direct": true
+  "_originalSource": "app-router"
 }

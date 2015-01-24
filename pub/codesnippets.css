@@ -1,0 +1,242 @@
+:host /deep/ code[class*=language-],
+:host /deep/ pre[class*=language-] {
+    font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none
+}
+:host /deep/ code[class*=language-]::-moz-selection,
+:host /deep/ code[class*=language-]::-moz-selection,
+:host /deep/ pre[class*=language-]::-moz-selection,
+:host /deep/ pre[class*=language-]::-moz-selection {
+    text-shadow: none;
+    background: #b3d4fc
+}
+:host /deep/ code[class*=language-]::selection,
+:host /deep/ code[class*=language-]::selection,
+:host /deep/ pre[class*=language-]::selection,
+:host /deep/ pre[class*=language-]::selection {
+    text-shadow: none;
+    background: #b3d4fc
+}
+:host /deep/ pre[class*=language-] {
+    padding: 1em;
+    overflow: auto
+}
+:host /deep/ :not(pre)>code[class*=language-] {
+    padding: .1em;
+    border-radius: .3em
+}
+:host /deep/ .token.cdata,
+:host /deep/ .token.comment,
+:host /deep/ .token.doctype,
+:host /deep/ .token.prolog {
+    color: #708090
+}
+:host /deep/ .token.punctuation {
+    color: #999
+}
+:host /deep/ .namespace {
+    opacity: .7
+}
+:host /deep/ .token.boolean,
+:host /deep/ .token.constant,
+:host /deep/ .token.number,
+:host /deep/ .token.property,
+:host /deep/ .token.symbol,
+:host /deep/ .token.tag {
+    color: #905
+}
+:host /deep/ .token.attr-name,
+:host /deep/ .token.builtin,
+:host /deep/ .token.selector,
+:host /deep/ .token.string {
+    color: #690
+}
+:host /deep/ .language-css .token.string,
+:host /deep/ .style .token.string,
+:host /deep/ .token.entity,
+:host /deep/ .token.operator,
+:host /deep/ .token.url,
+:host /deep/ .token.variable {
+    color: #a67f59;
+    background: hsla(0, 0%, 100%, .5)
+}
+:host /deep/ .token.atrule,
+:host /deep/ .token.attr-value,
+:host /deep/ .token.keyword {
+    color: #07a
+}
+:host /deep/ .token.function {
+    color: #DD4A68
+}
+:host /deep/ .token.important,
+:host /deep/ .token.regex {
+    color: #e90
+}
+:host /deep/ .token.important {
+    font-weight: 700
+}
+:host /deep/ .token.entity {
+    cursor: help
+}
+:host /deep/ pre[data-line] {
+    position: relative;
+    padding: 1em 0 1em 3em
+}
+:host /deep/ .line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 1em;
+    background: hsla(24, 20%, 50%, .08);
+    background: -moz-linear-gradient(left, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+    background: -webkit-linear-gradient(left, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+    background: -o-linear-gradient(left, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+    background: linear-gradient(left, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre
+}
+:host /deep/ .line-highlight:before,
+:host /deep/ .line-highlight[data-end]:after {
+    content: attr(data-start);
+    position: absolute;
+    top: .4em;
+    left: .6em;
+    min-width: 1em;
+    padding: 0 .5em;
+    background-color: hsla(24, 20%, 50%, .4);
+    color: #f4f1ef;
+    font: 700 65%/1.5 sans-serif;
+    text-align: center;
+    vertical-align: .3em;
+    border-radius: 999px;
+    text-shadow: none;
+    box-shadow: 0 1px #fff
+}
+:host /deep/ .line-highlight[data-end]:after {
+    content: attr(data-end);
+    top: auto;
+    bottom: .4em
+}
+:host /deep/ .token a {
+    color: inherit
+}
+:host /deep/ pre[data-number] {
+    position: relative;
+    padding: 1em 0 1em 3em
+}
+:host /deep/ .redesign pre[data-number] {
+    padding-left: 30px
+}
+:host /deep/ .line-number {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 1em;
+    background: 0 0;
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre
+}
+:host /deep/ .line-number:before,
+:host /deep/ .line-number[data-end]:after {
+    content: attr(data-start);
+    position: absolute;
+    top: .4em;
+    left: .6em;
+    min-width: 1em;
+    padding: 0 .5em;
+    color: #999;
+    font: 700 65%/1.5 sans-serif;
+    text-align: center;
+    vertical-align: .3em;
+    border-radius: 999px;
+    text-shadow: none;
+    border: 0
+}
+:host /deep/ .line-number[data-end]:after {
+    content: attr(data-end);
+    top: auto;
+    bottom: .4em
+}
+:host /deep/ .token.key {
+    color: #960
+}
+:host /deep/ :not(pre)>code[class*=language-],
+:host /deep/ pre.syntaxbox,
+:host /deep/ pre.twopartsyntaxbox,
+:host /deep/ pre[class*=language-] {
+    background: #fafbfc;
+    border-left: 6px solid #558abb;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    -moz-hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none
+}
+:host /deep/ code[class*=language-],
+:host /deep/ pre[class*=language-] {
+    color: inherit;
+    text-shadow: none
+}
+:host /deep/ pre[class*=language-] {
+    margin: 0 0 20px
+}
+:host /deep/ pre[class*=language-] span.comment {
+    display: inherit
+}
+:host /deep/ pre em code[class*=language-] {
+    background: 0 0;
+    border-left: 0
+}
+:host /deep/ pre.syntaxbox,
+:host /deep/ pre.twopartsyntaxbox {
+    background-color: rgba(212, 221, 228, .15);
+    box-shadow: inset 0 -1px 0 0 rgba(212, 221, 228, .5);
+}
+:host /deep/ pre.twopartsyntaxbox {
+    margin-bottom: 0
+}
+:host /deep/ pre.syntaxbox code[class*=language-],
+:host /deep/ pre.twopartsyntaxbox code[class*=language-] {
+    white-space: pre-line
+}
+:host /deep/ .syntaxbox-help {
+    height: 1.2em;
+    float: left;
+    font-size: 20px;
+    width: 1.1em;
+    margin-left: -1.1em;
+    margin-top: -4px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center
+}
+:host /deep/ .syntaxbox-help.isOpaque,
+:host /deep/ .syntaxbox-help:focus,
+:host /deep/ .syntaxbox-help:hover {
+    opacity: 1
+}
+:host /deep/ .error pre[class*=language-] {
+    margin: 10px 0 0;
+    background: 0 0
+}

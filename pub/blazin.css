@@ -72,3 +72,7 @@ core-icon.heading-icon {
     border-width: 9px;
     margin-left: -9px;
 }
+
+:host /deep/ prism-js {
+    margin-bottom: 24px;
+}
