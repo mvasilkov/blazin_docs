@@ -7,6 +7,7 @@ var cheerio = require('cheerio')
 var fetch_mdn = require('./fetch_mdn.js')
 var filenameCache = fetch_mdn.filenameCache
 var isBlank = fetch_mdn.isBlank
+var mdnDomain = 'https://developer.mozilla.org'
 
 var pageNameCache = {}
 
@@ -27,9 +28,15 @@ function buildPage(url) {
     $('#Quick_Links').remove()
     $('#Browser_compatibility').nextUntil('h2').addBack().remove()
 
-    $('pre[class^="brush"]').each(function (idx, tag) {
+    $('pre[class^="brush"]').each(function () {
         this.tagName = 'prism-js'
         $(this).removeAttr('class').attr('language', 'javascript')
+    })
+
+    $('a').each(function () {
+        var p = pageNameCache[mdnDomain + $(this).attr('href')]
+        if (!p) return
+        $(this).attr('href', '#/' + p)
     })
 
     var $article = $('#wikiArticle')
