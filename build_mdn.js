@@ -41,6 +41,10 @@ function buildPage(url) {
             $(this).attr('href', '#/' + name)
             return
         }
+        if (link[0] == '#') {
+            $(this).attr('href', '#/' + pageNameCache[url] + link)
+            return
+        }
         if (link.indexOf('/en-US/docs/')) return
         $(this).attr('href', mdnDomain + link)
     })
