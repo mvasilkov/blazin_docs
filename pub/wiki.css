@@ -3186,7 +3186,7 @@ table.diff {
     clear: both;
     margin: 5px 0 15px;
     width: 100%;
-    font-family: 'Courier New', 'Andale Mono', monospace
+    font-family: 'Source Code Pro', 'Consolas', monospace
 }
 td.diff_header {
     text-align: right
@@ -3444,7 +3444,8 @@ pre em code[class*=language-] {
 }
 pre.syntaxbox,
 pre.twopartsyntaxbox {
-    background: #dde4e9
+    background-color: rgba(212, 221, 228, .15);
+    box-shadow: inset 0 -1px 0 0 rgba(212, 221, 228, .5);
 }
 pre.twopartsyntaxbox {
     margin-bottom: 0
