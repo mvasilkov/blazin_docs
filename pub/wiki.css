@@ -3418,7 +3418,7 @@ pre[data-number] {
 pre.syntaxbox,
 pre.twopartsyntaxbox,
 pre[class*=language-] {
-    background: url(/media/redesign/img/blueprint-dark.png) top center #fafbfc;
+    background: #fafbfc;
     border-left: 6px solid #558abb;
     -moz-tab-size: 4;
     tab-size: 4;

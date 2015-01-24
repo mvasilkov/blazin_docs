@@ -35,21 +35,11 @@
                                 <input is="core-input" value="{{search}}" placeholder="Search" flex>
                             </core-field>
                         </core-toolbar>
-                        <core-menu id="searchResults" selectedItem="{{selected}}">
-                            <core-item icon="bookmark" label="Infinity">
-                                <a href="#/Infinity"><paper-ripple fit></paper-ripple></a>
-                            </core-item>
-                            <core-item icon="bookmark" label="Number.NEGATIVE_INFINITY">
-                                <a href="#/Number.NEGATIVE_INFINITY"><paper-ripple fit></paper-ripple></a>
-                            </core-item>
-                            <core-item icon="bookmark" label="Number.POSITIVE_INFINITY">
-                                <a href="#/Number.POSITIVE_INFINITY"><paper-ripple fit></paper-ripple></a>
-                            </core-item>
-                        </core-menu>
+                        <core-menu id="searchResults" selectedItem="{{selected}}"></core-menu>
                     </core-header-panel>
-                    <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{selected.label}}</div>
+                    <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{blazingPage}}</div>
                     <div class="content">
-                        <app-router mode="hash" id="router">
+                        <app-router mode="hash" id="router" on-activate-route-start="{{loadingPage}}">
                             <app-route path="*" import="/docs/Infinity.html" template></app-route>
                         </app-router>
                     </div>
@@ -60,7 +50,7 @@
                 Polymer('blazin-app', {
                     publish: {
                         search: '',
-                        title: ''
+                        blazingPage: ''
                     },
                     ready: function () {
                         for (var i = 0; i < window.blazinAllPages.length; ++i) {
@@ -71,11 +61,33 @@
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
+                        this.searchIndex = FuzzySet(window.blazinAllPages)
+                        this.searchChanged()
+                    },
+                    loadingPage: function (event) {
+                        this.blazingPage = event.detail.path.substr(1)
+                    },
+                    searchChanged: function () {
+                        var html = ''
+                        var results = this.search? (this.searchIndex.get(this.search) || []): []
+                        for (var i = 0; i < results.length; ++i) {
+                            var res = results[i][1]
+                            html += '<core-item icon="bookmark" label="' + res + '">' +
+                                    '<a href="#/' + res + '"><paper-ripple fit></paper-ripple></a>' +
+                                    '</core-item>'
+                        }
+                        if (!html) {
+                            html = '<div class="nothingFound">Search for a JavaScript object or method, ' +
+                                   'such as <code>Array</code> or <code>querySelector()</code>.</div>'
+                        }
+                        this.$.searchResults.selected = undefined
+                        this.injectBoundHTML(html, this.$.searchResults)
                     }
                 })
             </script>
         </polymer-element>
 
+        <script src="/pub/fuzzyset.js"></script>
         <script src="/docs/index.js"></script>
         <blazin-app></blazin-app>
     </body>

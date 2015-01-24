@@ -39,10 +39,20 @@ core-icon.heading-icon {
     width: 240px;
 }
 
+#searchField /deep/ core-icon {
+    color: #404040;
+}
+
 [navigation] core-toolbar {
     background: #2196f3;
 }
 
 :host /deep/ core-toolbar {
     background: #1e88e5;
+}
+
+:host /deep/ .nothingFound {
+    background: #ff4080;
+    color: #fff;
+    padding: 8px 12px;
 }
