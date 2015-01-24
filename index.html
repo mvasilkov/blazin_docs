@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Blazin' Docs</title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+        <link rel="import" href="/bower_components/polymer/polymer.html">
+        <link rel="import" href="/bower_components/app-router/app-router.html">
+        <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html">
+        <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
+        <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+    </head>
+    <body unresolved>
+        <polymer-element name="blazin-app">
+            <template>
+                <core-scaffold>
+                    <core-header-panel navigation flex mode="seamed">
+                        <core-toolbar>
+                            Blazin' Docs
+                        </core-toolbar>
+                    </core-header-panel>
+                    <div tool>
+                        EVERYTHING IS MISPLACED FOREVER
+                    </div>
+                    <div class="content">
+                        A problem has been detected and Windows has been shut down to prevent damage to your computer.
+                    </div>
+                </core-scaffold>
+            </template>
+
+            <script>
+                Polymer('blazin-app', {
+                })
+            </script>
+        </polymer-element>
+
+        <blazin-app></blazin-app>
+    </body>
+</html>
