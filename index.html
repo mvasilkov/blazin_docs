@@ -4,9 +4,8 @@
         <meta charset="UTF-8">
         <title>Blazin' Docs</title>
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-        <link rel="stylesheet" href="/pub/mdn.css">
-        <link rel="stylesheet" href="/pub/wiki.css">
-        <link rel="stylesheet" href="/pub/blazin.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic">
+        <link rel="stylesheet" href="/pub/basic.css" shim-shadowdom>
         <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
         <link rel="import" href="/bower_components/polymer/polymer.html">
@@ -24,6 +23,9 @@
     <body fullbleed unresolved>
         <polymer-element name="blazin-app">
             <template>
+                <link rel="stylesheet" href="/pub/mdn.css">
+                <link rel="stylesheet" href="/pub/wiki.css">
+                <link rel="stylesheet" href="/pub/blazin.css">
                 <core-scaffold drawerWidth="320px">
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
@@ -32,7 +34,7 @@
                                 <input is="core-input" value="{{search}}" placeholder="Search" flex>
                             </core-field>
                         </core-toolbar>
-                        <core-menu id="searchResults">
+                        <core-menu id="searchResults" selectedItem="{{selected}}">
                             <core-item icon="bookmark" label="Infinity">
                                 <a href="#/Infinity"><paper-ripple fit></paper-ripple></a>
                             </core-item>
@@ -44,9 +46,9 @@
                             </core-item>
                         </core-menu>
                     </core-header-panel>
-                    <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{title}}</div>
+                    <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{selected.label}}</div>
                     <div class="content">
-                        <app-router mode="hash" id="router" on-activate-route-start="{{loading}}">
+                        <app-router mode="hash" id="router">
                             <app-route path="*" import="/docs/Infinity.html" template></app-route>
                         </app-router>
                     </div>
@@ -68,9 +70,6 @@
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
-                    },
-                    loading: function (event) {
-                        this.title = event.detail.path.substr(1)
                     }
                 })
             </script>

@@ -6,7 +6,7 @@
     padding: 16px 24px;
 }
 
-#mainPanel {
+:host /deep/ #mainPanel {
     background-color: #FCFCFB;
 }
 
@@ -15,7 +15,7 @@
     font-weight: normal;
 }
 
-#searchResults core-icon {
+#searchResults /deep/ core-icon {
     color: rgba(0,0,0,0.25);
     margin-right: 8px;
 }
@@ -37,4 +37,12 @@ core-icon.heading-icon {
 #searchField input {
     margin-right: 8px;
     width: 240px;
+}
+
+[navigation] core-toolbar {
+    background: #2196f3;
+}
+
+:host /deep/ core-toolbar {
+    background: #1e88e5;
 }

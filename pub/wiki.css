@@ -533,7 +533,7 @@ body .topicpage-table tr {
     vertical-align: top
 }
 .topicpage-table h2 {
-    font-family: 'Open Sans Light', sans-serif
+    font-family: 'Open Sans', sans-serif
 }
 .topicpage-table ul {
     padding-left: 20px
@@ -1910,8 +1910,8 @@ table.compat-table th {
     border: 1px solid #fff;
     border: 1px solid rgba(212, 221, 228, 0);
     background: 0 0;
-    font-weight: 200;
-    font-family: 'Open Sans Light', sans-serif;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 100%;
     padding: 2px 4px 8px
@@ -2000,7 +2000,7 @@ ul.card-grid li {
     }
     .card-grid>li span {
         display: block;
-        font-family: 'Open Sans Light', Arial, Helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
         font-size: 22px;
         letter-spacing: -1px;
         line-height: 22px;
@@ -2502,8 +2502,8 @@ dt.landingPageList {
     color: #4d4e53;
     display: inline;
     font-size: 14px;
-    font-weight: 200;
-    font-family: 'Open Sans Light', sans-serif;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
     height: 32px;
     list-style-type: none;
     margin: auto;
@@ -3020,7 +3020,7 @@ html[dir=rtl] .zone-landing-header .zone-image {
     letter-spacing: -1px
 }
 .zone-article-header .zone-title a {
-    font-family: 'Open Sans Light', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: #fff
 }
 .zone-article-header .zone-image {
