@@ -1,0 +1,2 @@
+all:
+	divshot push production

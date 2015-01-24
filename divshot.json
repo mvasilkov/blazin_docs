@@ -1,7 +1,7 @@
 {
   "name": "ss15-jesuischarlie",
   "root": "./",
-  "exclude": ["mdn.txt", "fetch_mdn.js", "build_mdn.js", "mdn_cache", "node_modules"],
+  "exclude": ["mdn.txt", "fetch_mdn.js", "build_mdn.js", "mdn_cache", "node_modules", "package.json", "bower.json", "Makefile"],
   "clean_urls": false,
   "error_page": "blue_screen_of_death.html"
 }

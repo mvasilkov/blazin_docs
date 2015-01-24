@@ -1,0 +1,24 @@
+body {
+    background: #2067B2;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    font: 18px 'Droid Sans Mono', monospace;
+    margin: 20% 0 20px;
+}
+
+.inv {
+    background: #fff;
+    color: #2067B2;
+    padding: 5px 8px 4px;
+}
+
+p {
+    font: 15px 'Droid Sans Mono', monospace;
+}
+
+a {
+    color: #fff;
+}
