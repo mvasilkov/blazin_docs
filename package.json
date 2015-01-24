@@ -15,6 +15,7 @@
   "homepage": "https://github.com/staticshowdown/ss15-jesuischarlie",
   "private": true,
   "dependencies": {
+    "cheerio": "^0.18.0",
     "request": "^2.51.0"
   }
 }

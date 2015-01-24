@@ -55,3 +55,7 @@ function loop(fn) {
 }
 
 if (require.main === module) main()
+else module.exports = {
+    filenameCache: filenameCache,
+    isBlank: isBlank
+}
