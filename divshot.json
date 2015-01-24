@@ -1,0 +1,6 @@
+{
+  "name": "ss15-jesuischarlie",
+  "root": "./",
+  "clean_urls": false,
+  "error_page": "blue_screen_of_death.html"
+}
