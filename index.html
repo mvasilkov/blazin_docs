@@ -56,12 +56,13 @@
                         blazingPage: 'Blazin\' Docs'
                     },
                     ready: function () {
+                        var fn = window.__env? (function (x) { return x }): encodeURIComponent
                         for (var i = 0; i < window.blazinAllPages.length; ++i) {
                             var name = window.blazinAllPages[i]
                             var route = document.createElement('app-route')
                             route.setAttribute('path', '/' + name)
                             route.setAttribute('import', '/docs/' +
-                                encodeURIComponent(encodeURIComponent(name)) + '.html')
+                                fn(encodeURIComponent(name)) + '.html')
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
@@ -106,6 +107,7 @@
 
         <script src="/pub/fuzzyset.js"></script>
         <script src="/docs/index.js"></script>
+        <script src="/__/env.js"></script>
         <blazin-app></blazin-app>
     </body>
 </html>
