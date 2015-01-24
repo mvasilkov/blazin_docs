@@ -10,6 +10,10 @@
     background-color: #FCFCFB;
 }
 
+#searchResults core-item {
+    overflow: hidden;
+}
+
 #searchResults core-item.core-selected {
     background-color: #F1F0ED;
     font-weight: normal;
