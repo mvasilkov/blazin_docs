@@ -67,7 +67,7 @@ function buildPage(url) {
 }
 
 function filenamePage(url) {
-    return pageNameCache[url] + '.html'
+    return encodeURIComponent(pageNameCache[url]) + '.html'
 }
 
 function mdnFooter(url) {

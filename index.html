@@ -60,7 +60,8 @@
                             var name = window.blazinAllPages[i]
                             var route = document.createElement('app-route')
                             route.setAttribute('path', '/' + name)
-                            route.setAttribute('import', '/docs/' + name + '.html')
+                            route.setAttribute('import', '/docs/' +
+                                encodeURIComponent(encodeURIComponent(name)) + '.html')
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
