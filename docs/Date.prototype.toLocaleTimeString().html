@@ -1,0 +1,153 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>toLocaleTimeString()</code></strong> method returns a string with a language sensitive representation of the time portion of this date. The new <code>locales</code> and <code>options</code> arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the <code>locales</code> and <code>options</code> arguments, the locale used and the form of the string returned are entirely implementation dependent.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>dateObj</var>.toLocaleTimeString([<var>locales</var>[, <var>options</var>]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<p>Check the <a href="#/Date.prototype.toLocaleTimeString()#Browser_Compatibility">Browser compatibility</a> section to see which browsers support the <code>locales</code> and <code>options</code> arguments, and the <a href="#/Date.prototype.toLocaleTimeString()#Example:_Checking_for_support_for_locales_and_options_arguments">Example: Checking for support for <code>locales</code> and <code>options</code> arguments</a> for feature detection.</p>
+<div><dl><dt><code>locales</code></dt>
+ <dd>
+  <p>Optional. A string with a BCP 47 language tag, or an array of such strings. For the general form and interpretation of the <code>locales</code> argument, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation" title="The Intl object is the namespace for the ECMAScript Internationalization API, which provides language sensitive string comparison, number formatting, and date and time formatting. The constructors for Collator, NumberFormat, and DateTimeFormat objects are properties of the Intl object. This page documents these properties as well as functionality common to the internationalization constructors and other language sensitive functions.">Intl page</a>. The following Unicode extension keys are allowed:</p>
+  <dl><dt><code>nu</code></dt>
+   <dd>Numbering system. Possible values include: <code>&quot;arab&quot;</code>, <code>&quot;arabext&quot;</code>, <code>&quot;bali&quot;</code>, <code>&quot;beng&quot;</code>, <code>&quot;deva&quot;</code>, <code>&quot;fullwide&quot;</code>, <code>&quot;gujr&quot;</code>, <code>&quot;guru&quot;</code>, <code>&quot;hanidec&quot;</code>, <code>&quot;khmr&quot;</code>, <code>&quot;knda&quot;</code>, <code>&quot;laoo&quot;</code>, <code>&quot;latn&quot;</code>, <code>&quot;limb&quot;</code>, <code>&quot;mlym&quot;</code>, <code>&quot;mong&quot;</code>, <code>&quot;mymr&quot;</code>, <code>&quot;orya&quot;</code>, <code>&quot;tamldec&quot;</code>, <code>&quot;telu&quot;</code>, <code>&quot;thai&quot;</code>, <code>&quot;tibt&quot;</code>.</dd>
+   <dt><code>ca</code></dt>
+   <dd>Calendar. Possible values include: <code>&quot;buddhist&quot;</code>, <code>&quot;chinese&quot;</code>, <code>&quot;coptic&quot;</code>, <code>&quot;ethioaa&quot;</code>, <code>&quot;ethiopic&quot;</code>, <code>&quot;gregory&quot;</code>, <code>&quot;hebrew&quot;</code>, <code>&quot;indian&quot;</code>, <code>&quot;islamic&quot;</code>, <code>&quot;islamicc&quot;</code>, <code>&quot;iso8601&quot;</code>, <code>&quot;japanese&quot;</code>, <code>&quot;persian&quot;</code>, <code>&quot;roc&quot;</code>.</dd>
+  </dl></dd>
+ <dt><code>options</code></dt>
+ <dd>
+ <p>Optional. An object with some or all of the following properties:</p>
+  <dl><dt><code>localeMatcher</code></dt>
+   <dd>The locale matching algorithm to use. Possible values are <code>&quot;lookup&quot;</code> and <code>&quot;best fit&quot;</code>; the default is <code>&quot;best fit&quot;</code>. For information about this option, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation" title="The Intl object is the namespace for the ECMAScript Internationalization API, which provides language sensitive string comparison, number formatting, and date and time formatting. The constructors for Collator, NumberFormat, and DateTimeFormat objects are properties of the Intl object. This page documents these properties as well as functionality common to the internationalization constructors and other language sensitive functions.">Intl page</a>.</dd>
+   <dt><code>timeZone</code></dt>
+   <dd>The time zone to use. The only value implementations must recognize is <code>&quot;UTC&quot;</code>; the default is the runtime&apos;s default time zone. Implementations may also recognize the time zone names of the <a class="external" href="https://www.iana.org/time-zones">IANA time zone database</a>, such as <code>&quot;Asia/Shanghai&quot;</code>, <code>&quot;Asia/Kolkata&quot;</code>, <code>&quot;America/New_York&quot;</code>.</dd>
+   <dt><code>hour12</code></dt>
+   <dd>Whether to use 12-hour time (as opposed to 24-hour time). Possible values are <code>true</code> and <code>false</code>; the default is locale dependent.</dd>
+   <dt><code>formatMatcher</code></dt>
+   <dd>The format matching algorithm to use. Possible values are <code>&quot;basic&quot;</code> and <code>&quot;best fit&quot;</code>; the default is <code>&quot;best fit&quot;</code>. See the following paragraphs for information about the use of this property.</dd>
+  </dl><p>The following properties describe the date-time components to use in formatted output, and their desired representations. Implementations are required to support at least the following subsets:</p>
+  <ul><li><code>weekday</code>, <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, <code>minute</code>, <code>second</code></li>
+   <li><code>weekday</code>, <code>year</code>, <code>month</code>, <code>day</code></li>
+   <li><code>year</code>, <code>month</code>, <code>day</code></li>
+   <li><code>year</code>, <code>month</code></li>
+   <li><code>month</code>, <code>day</code></li>
+   <li><code>hour</code>, <code>minute</code>, <code>second</code></li>
+   <li><code>hour</code>, <code>minute</code></li>
+  </ul><p>Implementations may support other subsets, and requests will be negotiated against all available subset-representation combinations to find the best match. Two algorithms are available for this negotiation and selected by the <code>formatMatcher</code> property: A <a class="external" href="http://www.ecma-international.org/ecma-402/1.0/#BasicFormatMatcher">fully specified <code>&quot;basic&quot;</code> algorithm</a> and an implementation dependent <code>&quot;best fit&quot;</code> algorithm.</p>
+  <dl><dt><code>weekday</code></dt>
+   <dd>The representation of the weekday. Possible values are <code>&quot;narrow&quot;</code>, <code>&quot;short&quot;</code>, <code>&quot;long&quot;</code>.</dd>
+   <dt><code>era</code></dt>
+   <dd>The representation of the era. Possible values are <code>&quot;narrow&quot;</code>, <code>&quot;short&quot;</code>, <code>&quot;long&quot;</code>.</dd>
+   <dt><code>year</code></dt>
+   <dd>The representation of the year. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>.</dd>
+   <dt><code>month</code></dt>
+   <dd>The representation of the month. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>, <code>&quot;narrow&quot;</code>, <code>&quot;short&quot;</code>, <code>&quot;long&quot;</code>.</dd>
+   <dt><code>day</code></dt>
+   <dd>The representation of the day. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>.</dd>
+   <dt><code>hour</code></dt>
+   <dd>The representation of the hour. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>.</dd>
+   <dt><code>minute</code></dt>
+   <dd>The representation of the minute. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>.</dd>
+   <dt><code>second</code></dt>
+   <dd>The representation of the second. Possible values are <code>&quot;numeric&quot;</code>, <code>&quot;2-digit&quot;</code>.</dd>
+   <dt><code>timeZoneName</code></dt>
+   <dd>The representation of the time zone name. Possible values are <code>&quot;short&quot;</code>, <code>&quot;long&quot;</code>.</dd>
+  </dl></dd>
+</dl></div>
+<p>The default value for each date-time component property is <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>, but if the <code>hour</code>, <code>minute</code>, <code>second</code> properties are all <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>, then <code>hour</code>, <code>minute</code>, and <code>second</code> are assumed to be <code>&quot;numeric&quot;</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toLocaleTimeString" name="Example:_Using_toLocaleTimeString">Example: Using <code>toLocaleTimeString()</code></h3>
+<p>In basic use without specifying a locale, a formatted string in the default locale and with default options is returned.</p>
+<prism-js language="javascript">var date = new Date(Date.UTC(2012, 11, 12, 3, 0, 0));
+// toLocaleTimeString() without arguments depends on the implementation,
+// the default locale, and the default time zone
+console.log(date.toLocaleTimeString());
+// &#x2192; &quot;7:00:00 PM&quot; if run in en-US locale with time zone America/Los_Angeles
+</prism-js>
+<h3 id="Example:_Checking_for_support_for_locales_and_options_arguments" name="Example:_Checking_for_support_for_locales_and_options_arguments">Example: Checking for support for <code>locales</code> and <code>options</code> arguments</h3>
+<p>The <code>locales</code> and <code>options</code> arguments are not supported in all browsers yet. To check whether an implementation supports them already, you can use the requirement that illegal language tags are rejected with a <a href="#/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a> exception:</p>
+<prism-js language="javascript">function toLocaleTimeStringSupportsLocales() {
+  try {
+    new Date().toLocaleTimeString(&apos;i&apos;);
+  } catch (e) {
+    return e&#x200B;.name === &apos;RangeError&apos;;
+  }
+  return false;
+}
+</prism-js>
+<h3 id="Example:_Using_locales" name="Example:_Using_locales">Example: Using <code>locales</code></h3>
+<p>This example shows some of the variations in localized time formats. In order to get the format of the language used in the user interface of your application, make sure to specify that language (and possibly some fallback languages) using the <code>locales</code> argument:</p>
+<prism-js language="javascript">var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+// formats below assume the local time zone of the locale;
+// America/Los_Angeles for the US
+// US English uses 12-hour time with AM/PM
+console.log(date.toLocaleTimeString(&apos;en-US&apos;));
+// &#x2192; &quot;7:00:00 PM&quot;
+// British English uses 24-hour time without AM/PM
+console.log(date.toLocaleTimeString(&apos;en-GB&apos;));
+// &#x2192; &quot;03:00:00&quot;
+// Korean uses 12-hour time with AM/PM
+console.log(date.toLocaleTimeString(&apos;ko-KR&apos;));
+// &#x2192; &quot;&#xC624;&#xD6C4; 12:00:00&quot;
+// Arabic in most Arabic speaking countries uses real Arabic digits
+console.log(date.toLocaleTimeString(&apos;ar-EG&apos;));
+// &#x2192; &quot;<span dir="rtl">&#x667;:&#x660;&#x660;:&#x660;&#x660; &#x645;</span>&quot;
+// when requesting a language that may not be supported, such as
+// Balinese, include a fallback language, in this case Indonesian
+console.log(date.toLocaleTimeString([&apos;ban&apos;, &apos;id&apos;]));
+// &#x2192; &quot;11.00.00&quot;
+</prism-js>
+<h3 id="Example:_Using_options" name="Example:_Using_options">Example: Using <code>options</code></h3>
+<p>The results provided by <code>toLocaleTimeString()</code> can be customized using the <code>options</code> argument:</p>
+<prism-js language="javascript">var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+// an application may want to use UTC and make that visible
+var options = { timeZone: &apos;UTC&apos;, timeZoneName: &apos;short&apos; };
+console.log(date.toLocaleTimeString(&apos;en-US&apos;, options));
+// &#x2192; &quot;3:00:00 AM GMT&quot;
+// sometimes even the US needs 24-hour time
+console.log(date.toLocaleTimeString(&apos;en-US&apos;, { hour12: false }));
+// &#x2192; &quot;19:00:00&quot;
+</prism-js>
+<h2 id="Performance" name="Performance">Performance</h2>
+<p>When formatting large numbers of dates, it is better to create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat" title="The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting."><code>Intl.DateTimeFormat</code></a> object and use the function provided by its <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat/format" title="The Intl.DateTimeFormat.prototype.format property returns a getter function that formats a date according to the locale and formatting options of this DateTimeFormat object."><code>format</code></a> property.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition. Implemented in JavaScript 1.0.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.7" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Date.prototype.toLocaleTimeString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-date.prototype.tolocalestring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Date.prototype.toLocaleTimeString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-402/1.0/#sec-13.3.3" hreflang="en" lang="en">ECMAScript Internationalization API 1.0 (ECMA-402)<br><small>The definition of &apos;Date.prototype.toLocaleTimeString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Defines <code>locales</code> and <code>options</code> arguments.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat" title="The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting."><code>Intl.DateTimeFormat</code></a></li>
+ <li><a href="#/Date.prototype.toLocaleDateString()" title="The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleDateString()</code></a></li>
+ <li><a href="#/Date.prototype.toLocaleString()" title="The toLocaleString() method returns a string with a language sensitive representation of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleString()</code></a></li>
+ <li><a href="#/Date.prototype.toTimeString()" title="The toTimeString() method returns the time portion of a Date object in human readable form in American English."><code>Date.prototype.toTimeString()</code></a></li>
+ <li><a href="#/Date.prototype.toString()" title="The toString() method returns a string representing the specified Date object."><code>Date.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString">Date.prototype.toLocaleTimeString()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

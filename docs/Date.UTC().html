@@ -1,0 +1,70 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Date.UTC()</code></strong> method accepts the same parameters as the longest form of the constructor, and returns the number of milliseconds in a <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object since January 1, 1970, 00:00:00, universal time.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Date.UTC(<var>year</var>, <var>month</var>[, <var>day</var>[, <var>hour</var>[, <var>minute</var>[, <var>second</var>[, <var>millisecond</var>]]]]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>year</code></dt>
+ <dd>A year after 1900.</dd>
+ <dt><code>month</code></dt>
+ <dd>An integer between 0 and 11 representing the month.</dd>
+ <dt><code>day</code></dt>
+ <dd>Optional. An integer between 1 and 31 representing the day of the month.</dd>
+ <dt><code>hour</code></dt>
+ <dd>Optional. An integer between 0 and 23 representing the hours.</dd>
+ <dt><code>minute</code></dt>
+ <dd>Optional. An integer between 0 and 59 representing the minutes.</dd>
+ <dt><code>second</code></dt>
+ <dd>Optional. An integer between 0 and 59 representing the seconds.</dd>
+ <dt><code>millisecond</code></dt>
+ <dd>Optional. An integer between 0 and 999 representing the milliseconds.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>UTC()</code> takes comma-delimited date parameters and returns the number of milliseconds between January 1, 1970, 00:00:00, universal time and the time you specified.</p>
+<p>You should specify a full year for the <code>year</code>; for example, 1998. If a year between 0 and 99 is specified, the method converts the year to a year in the 20th century <code>(1900 + year)</code>; for example, if you specify 95, the year 1995 is used.</p>
+<p>The <code>UTC()</code> method differs from the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> constructor in two ways.</p>
+<ul>
+ <li><code>Date.UTC()</code> uses universal time instead of the local time.</li>
+ <li><code>Date.UTC()</code> returns a time value as a number instead of creating a <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object.</li>
+</ul>
+<p>If a parameter you specify is outside of the expected range, the <code>UTC()</code> method updates the other parameters to allow for your number. For example, if you use 15 for month, the year will be incremented by 1 <code>(year + 1)</code>, and 3 will be used for the month.</p>
+<p>Because <code>UTC()</code> is a static method of <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a>, you always use it as <code>Date.UTC()</code>, rather than as a method of a <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object you created.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Date.UTC" name="Example:_Using_Date.UTC">Example: Using <code>Date.UTC()</code></h3>
+<p>The following statement creates a <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object using UTC instead of local time:</p>
+<prism-js language="javascript">var utcDate = new Date(Date.UTC(96, 11, 1, 0, 0, 0));
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.4.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Date.UTC&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-date.utc" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Date.UTC&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Date.parse()" title="The Date.parse() method parses a string representation of a date, and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC."><code>Date.parse()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC">Date.UTC()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

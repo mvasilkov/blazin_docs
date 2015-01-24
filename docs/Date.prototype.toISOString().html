@@ -1,0 +1,64 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>toISOString()</code></strong> method returns a string in ISO format (<a class="external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 Extended Format</a>), which can be described as follows: <strong><code>YYYY-MM-DDTHH:mm:ss.sssZ</code></strong>. The timezone is always UTC as denoted by the suffix <code>&quot;Z&quot;</code>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>dateObj</var>.toISOString()</code></pre>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_toISOString()">Example: Using <code>toISOString()</code></h3>
+<prism-js language="javascript">var today = new Date(&apos;05 October 2011 14:48 UTC&apos;);
+console.log(today.toISOString()); // Returns 2011-10-05T14:48:00.000Z
+</prism-js>
+<p>The above example uses parsing of a non&#x2013;standard string value that may not be correctly parsed in non&#x2013;Mozilla browsers.</p>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>This method was standardized in ECMA-262 5th edition. Engines which have not been updated to support this method can work around the absence of this method using the following shim:</p>
+<prism-js language="javascript">if (!Date.prototype.toISOString) {
+  (function() {
+    function pad(number) {
+      if (number &lt; 10) {
+        return &apos;0&apos; + number;
+      }
+      return number;
+    }
+    Date.prototype.toISOString = function() {
+      return this.getUTCFullYear() +
+        &apos;-&apos; + pad(this.getUTCMonth() + 1) +
+        &apos;-&apos; + pad(this.getUTCDate()) +
+        &apos;T&apos; + pad(this.getUTCHours()) +
+        &apos;:&apos; + pad(this.getUTCMinutes()) +
+        &apos;:&apos; + pad(this.getUTCSeconds()) +
+        &apos;.&apos; + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
+        &apos;Z&apos;;
+    };
+  }());
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.43" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Date.prototype.toISOString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-date.prototype.toisostring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Date.prototype.toISOString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Date.prototype.toLocaleDateString()" title="The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleDateString()</code></a></li>
+ <li><a href="#/Date.prototype.toTimeString()" title="The toTimeString() method returns the time portion of a Date object in human readable form in American English."><code>Date.prototype.toTimeString()</code></a></li>
+ <li><a href="#/Date.prototype.toUTCString()" title="The toUTCString() method converts a date to a string, using the UTC time zone."><code>Date.prototype.toUTCString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">Date.prototype.toISOString()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,36 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The non-standard <strong><code>toLocaleFormat()</code></strong> method converts a date to a string using the specified formatting. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat" title="The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting."><code>Intl.DateTimeFormat</code></a> is an alternative to format dates in a standards-compliant way. See also the newer version of <a href="#/Date.prototype.toLocaleDateString()" title="The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleDateString()</code></a>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>dateObj</var>.toLocaleFormat(<var>formatString</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>formatString</code></dt>
+ <dd>A format string in the same format expected by the <a class="external" href="http://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html"><code>strftime()</code></a> function in C.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>toLocaleFormat()</code> method provides greater software control over the formatting of the generated date and/or time. Names for months and days of the week are localized using the operating system&apos;s locale. However, ordering of the day and month and other localization tasks are not handled automatically since you have control over the order in which they occur. You should take care that the format string is localized properly according to the user&apos;s system settings. Be aware that the locale used is not necessarily the same as the locale of the browser.</p>
+<p>Extension and XULRunner developers should know that just loading the format string from a <code>.dtd</code> or <code>.properties</code> file using a <code>chrome://<em>somedomain</em>/locale/<em>somefile.ext</em></code> URI should be <strong>avoided</strong>, as the <code>.dtd</code>/<code>.properties</code> file and the <code>toLocaleFormat()</code> method does not not necessarily use the same locale, which could result in odd looking or even ambiguous or unreadable dates.</p>
+<p>Also note that the behavior of the used locale depends on the platform, and the user might customize the locale used, so using the system locale the choose the format string might in some cases not even be adequate. You might consider using some of the more general <code>toLocale*</code> methods of the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object or doing your own custom localization of the date to be displayed using some of the <code>get*</code> methods of the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object instead of using this method.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toLocaleFormat" name="Example:_Using_toLocaleFormat">Example: Using <code>toLocaleFormat()</code></h3>
+<prism-js language="javascript">var today = new Date();
+var date = today.toLocaleFormat(&apos;%A, %B %e, %Y&apos;); // Bad example
+</prism-js>
+<p>In this example, <code>toLocaleFormat()</code> returns a string such as &quot;Wednesday, October 3, 2007&quot;. Note that the format string in this example is not properly localized, which will result in the problems described above.</p>
+<h2 id="Specifications">Specifications</h2>
+<p>Not part of any specification. Implemented in JavaScript 1.6.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat" title="The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting."><code>Intl.DateTimeFormat</code></a></li>
+ <li><a href="#/Date.prototype.toLocaleString()" title="The toLocaleString() method returns a string with a language sensitive representation of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleString()</code></a></li>
+ <li><a href="#/Date.prototype.toLocaleDateString()" title="The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleDateString()</code></a></li>
+ <li><a href="#/Date.prototype.toLocaleTimeString()" title="The toLocaleTimeString() method returns a string with a language sensitive representation of the time portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleTimeString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleFormat">Date.prototype.toLocaleFormat()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

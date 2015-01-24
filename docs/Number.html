@@ -152,9 +152,9 @@ var notANum = Number.NaN;
 <prism-js language="javascript">var biggestInt = 9007199254740992;
 var smallestInt = -9007199254740992;
 </prism-js>
-<p>When parsing data that has been serialized to JSON, integer values falling out of this range can be expected to become corrupted when JSON parser coerces them to <code>Number</code> type. Using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> instead is a possible workaround.</p>
+<p>When parsing data that has been serialized to JSON, integer values falling out of this range can be expected to become corrupted when JSON parser coerces them to <code>Number</code> type. Using <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> instead is a possible workaround.</p>
 <h3 id="Example:_Using_Number_to_convert_a_Date_object" name="Example:_Using_Number_to_convert_a_Date_object">Example: Using <code>Number</code> to convert a <code>Date</code> object</h3>
-<p>The following example converts the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object to a numerical value using <code>Number</code> as a function:</p>
+<p>The following example converts the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object to a numerical value using <code>Number</code> as a function:</p>
 <prism-js language="javascript">var d = new Date(&apos;December 17, 1995 03:24:00&apos;);
 print(Number(d));
 </prism-js>

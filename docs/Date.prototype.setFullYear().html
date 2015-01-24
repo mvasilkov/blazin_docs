@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>setFullYear()</code></strong> method sets the full year for a specified date according to local time.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>dateObj</var>.setFullYear(<var>yearValue</var>[, <var>monthValue</var>[, <var>dayValue</var>]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>yearValue</code></dt>
+ <dd>An integer specifying the numeric value of the year, for example, 1995.</dd>
+ <dt><code>monthValue</code></dt>
+ <dd>Optional. An integer between 0 and 11 representing the months January through December.</dd>
+ <dt><code>dayValue</code></dt>
+ <dd>Optional. An integer between 1 and 31 representing the day of the month. If you specify the <code>dayValue</code> parameter, you must also specify the <code>monthValue</code>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If you do not specify the <code>monthValue</code> and <code>dayValue</code> parameters, the values returned from the <a href="#/Date.prototype.getMonth()" title="The getMonth() method returns the month in the specified date according to local time, as a zero-based value (where zero indicates the first month of the year)."><code>getMonth()</code></a> and <a href="#/Date.prototype.getDate()" title="The getDate() method returns the day of the month for the specified date according to local time."><code>getDate()</code></a> methods are used.</p>
+<p>If a parameter you specify is outside of the expected range, <code>setFullYear()</code> attempts to update the other parameters and the date information in the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object accordingly. For example, if you specify 15 for <code>monthValue</code>, the year is incremented by 1 (<code>yearValue + 1</code>), and 3 is used for the month.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_setFullYear" name="Example:_Using_setFullYear">Example: Using <code>setFullYear()</code></h3>
+<prism-js language="javascript">var theBigDay = new Date();
+theBigDay.setFullYear(1997);
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.3.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.40" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Date.prototype.setFullYear&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-date.prototype.setfullyear" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Date.prototype.setFullYear&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Date.prototype.getUTCFullYear()" title="The getUTCFullYear() method returns the year in the specified date according to universal time."><code>Date.prototype.getUTCFullYear()</code></a></li>
+ <li><a href="#/Date.prototype.setUTCFullYear()" title="The setUTCFullYear() method sets the full year for a specified date according to universal time."><code>Date.prototype.setUTCFullYear()</code></a></li>
+ <li><a href="#/Date.prototype.setYear()" title="The setYear() method sets the year for a specified date according to local time. Because setYear does not set full years (&quot;year 2000 problem&quot;), it is no longer used and has been replaced by the setFullYear method."><code>Date.prototype.setYear()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear">Date.prototype.setFullYear()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

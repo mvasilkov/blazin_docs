@@ -10,6 +10,7 @@ var isBlank = fetch_mdn.isBlank
 var mdnDomain = 'https://developer.mozilla.org'
 
 var pageNameCache = {}
+var newUrls = {}
 
 function loadPageName(url) {
     var path = 'mdn_cache/' + filenameCache(url)
@@ -49,6 +50,7 @@ function buildPage(url) {
         }
         if (link.indexOf('/en-US/docs/')) return
         $(this).attr('href', mdnDomain + link)
+        newUrls[mdnDomain + link] = 1
     })
 
     var $article = $('#wikiArticle')
@@ -90,6 +92,11 @@ function main() {
     console.log(pageNameCache)
     pages.forEach(buildPage)
     saveDocsIndex()
+    console.log(Object.keys(newUrls).filter(function (url) {
+        return !/\$(edit|history|locales)$/.test(url)
+    }).filter(function (url) {
+        return url.indexOf('/en-US/docs/tag/') == -1
+    }).sort().join('\n'))
 }
 
 if (require.main === module) main()

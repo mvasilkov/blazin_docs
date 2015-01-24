@@ -1,0 +1,55 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>setTime()</code></strong> method sets the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>dateObj</var>.setTime(<var>timeValue</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>timeValue</code></dt>
+ <dd>
+  An integer representing the number of milliseconds since 1 January 1970, 00:00:00 UTC.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Use the <code>setTime()</code> method to help assign a date and time to another <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_setTime" name="Example:_Using_setTime">Example: Using <code>setTime()</code></h3>
+<prism-js language="javascript">var theBigDay = new Date(&apos;July 1, 1999&apos;);
+var sameAsBigDay = new Date();
+sameAsBigDay.setTime(theBigDay.getTime());
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5.27" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Date.prototype.setTime&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-date.prototype.settime" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Date.prototype.setTime&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Date.prototype.getTime()" title="The getTime() method returns the numeric value corresponding to the time for the specified date according to universal time."><code>Date.prototype.getTime()</code></a></li>
+ <li><a href="#/Date.prototype.setUTCHours()" title="The setUTCHours() method sets the hour for a specified date according to universal time,&#xA0;and returns the number of milliseconds since 1 January 1970 00:00:00 UTC until the time represented by the updated&#xA0;Date&#xA0;instance."><code>Date.prototype.setUTCHours()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime">Date.prototype.setTime()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

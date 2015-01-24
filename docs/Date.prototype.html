@@ -1,0 +1,175 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Date.prototype</code></strong> property represents the prototype for the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> constructor.</p>
+<div><table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>Date.prototype</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p>JavaScript <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> instances inherit from <code>Date.prototype</code>. You can modify the constructor&apos;s prototype object to affect properties and methods inherited by JavaScript <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> instances.</p>
+<p>For compatibility with millennium calculations (in other words, to take into account the year 2000), you should always specify the year in full; for example, use 1998, not 98. To assist you in specifying the complete year, JavaScript includes the methods <a href="#/Date.prototype.getFullYear()" title="The getFullYear() method returns the year of the specified date according to local time."><code>getFullYear()</code></a>, <a href="#/Date.prototype.setFullYear()" title="The setFullYear() method sets the full year for a specified date according to local time."><code>setFullYear()</code></a>, <a href="#/Date.prototype.getUTCFullYear()" title="The getUTCFullYear() method returns the year in the specified date according to universal time."><code>getUTCFullYear()</code></a> and <a href="#/Date.prototype.setUTCFullYear()" title="The setUTCFullYear() method sets the full year for a specified date according to universal time."><code>setUTCFullYear()</code></a>.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt><code>Date.prototype.constructor</code></dt>
+ <dd>Returns the function that created an instance. This is the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> constructor by default.</dd>
+</dl>
+<div><div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Properties inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent"><code>__parent__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Proto"><code>__proto__</code></a></div>
+</div></div>
+<h2 id="Methods" name="Methods">Methods</h2>
+<h3 id="Getter">Getter</h3>
+<dl>
+ <dt><a href="#/Date.prototype.getDate()" title="The getDate() method returns the day of the month for the specified date according to local time."><code>Date.prototype.getDate()</code></a></dt>
+ <dd>Returns the day of the month (1-31) for the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getDay()" title="The getDay() method returns the day of the week for the specified date according to local time, where 0 represents Sunday."><code>Date.prototype.getDay()</code></a></dt>
+ <dd>Returns the day of the week (0-6) for the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getFullYear()" title="The getFullYear() method returns the year of the specified date according to local time."><code>Date.prototype.getFullYear()</code></a></dt>
+ <dd>Returns the year (4 digits for 4-digit years) of the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getHours()" title="The getHours() method returns the hour for the specified date, according to local time."><code>Date.prototype.getHours()</code></a></dt>
+ <dd>Returns the hour (0-23) in the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getMilliseconds()" title="The getMilliseconds() method returns the milliseconds in the specified date according to local time."><code>Date.prototype.getMilliseconds()</code></a></dt>
+ <dd>Returns the milliseconds (0-999) in the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getMinutes()" title="The getMinutes() method returns the minutes in the specified date according to local time."><code>Date.prototype.getMinutes()</code></a></dt>
+ <dd>Returns the minutes (0-59) in the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getMonth()" title="The getMonth() method returns the month in the specified date according to local time, as a zero-based value (where zero indicates the first month of the year)."><code>Date.prototype.getMonth()</code></a></dt>
+ <dd>Returns the month (0-11) in the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getSeconds()" title="The getSeconds() method returns the seconds in the specified date according to local time."><code>Date.prototype.getSeconds()</code></a></dt>
+ <dd>Returns the seconds (0-59) in the specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.getTime()" title="The getTime() method returns the numeric value corresponding to the time for the specified date according to universal time."><code>Date.prototype.getTime()</code></a></dt>
+ <dd>Returns the numeric value of the specified date as the number of milliseconds since January 1, 1970, 00:00:00 UTC (negative for prior times).</dd>
+ <dt><a href="#/Date.prototype.getTimezoneOffset()" title="The getTimezoneOffset() method returns the time-zone offset from UTC, in minutes, for the current locale."><code>Date.prototype.getTimezoneOffset()</code></a></dt>
+ <dd>Returns the time-zone offset in minutes for the current locale.</dd>
+ <dt><a href="#/Date.prototype.getUTCDate()" title="The getUTCDate() method returns the day (date) of the month in the specified date according to universal time."><code>Date.prototype.getUTCDate()</code></a></dt>
+ <dd>Returns the day (date) of the month (1-31) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCDay()" title="The getUTCDay() method returns the day of the week in the specified date according to universal time, where 0 represents Sunday."><code>Date.prototype.getUTCDay()</code></a></dt>
+ <dd>Returns the day of the week (0-6) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCFullYear()" title="The getUTCFullYear() method returns the year in the specified date according to universal time."><code>Date.prototype.getUTCFullYear()</code></a></dt>
+ <dd>Returns the year (4 digits for 4-digit years) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCHours()" title="The getUTCHours() method returns the hours in the specified date according to universal time."><code>Date.prototype.getUTCHours()</code></a></dt>
+ <dd>Returns the hours (0-23) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCMilliseconds()" title="The getUTCMilliseconds() method returns the milliseconds in the specified date according to universal time."><code>Date.prototype.getUTCMilliseconds()</code></a></dt>
+ <dd>Returns the milliseconds (0-999) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCMinutes()" title="The getUTCMinutes() method returns the minutes in the specified date according to universal time."><code>Date.prototype.getUTCMinutes()</code></a></dt>
+ <dd>Returns the minutes (0-59) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCMonth()" title="The getUTCMonth() returns the month of the specified date according to universal time."><code>Date.prototype.getUTCMonth()</code></a></dt>
+ <dd>Returns the month (0-11) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getUTCSeconds()" title="The getUTCSeconds() method returns the seconds in the specified date according to universal time."><code>Date.prototype.getUTCSeconds()</code></a></dt>
+ <dd>Returns the seconds (0-59) in the specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.getYear()" title="The getYear() method returns the year in the specified date according to local time. Because getYear does not return full years (&quot;year 2000 problem&quot;), it is no longer used and has been replaced by the getFullYear method."><code>Date.prototype.getYear()</code></a> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>Returns the year (usually 2-3 digits) in the specified date according to local time. Use <a href="#/Date.prototype.getFullYear()" title="The getFullYear() method returns the year of the specified date according to local time."><code>getFullYear()</code></a> instead.</dd>
+</dl>
+<h3 id="Setter">Setter</h3>
+<dl>
+ <dt><a href="#/Date.prototype.setDate()" title="The setDate() method sets the day of the month for a specified date according to local time."><code>Date.prototype.setDate()</code></a></dt>
+ <dd>Sets the day of the month for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setFullYear()" title="The setFullYear() method sets the full year for a specified date according to local time."><code>Date.prototype.setFullYear()</code></a></dt>
+ <dd>Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setHours()" title="The setHours() method sets the hours for a specified date according to local time, and returns the number of milliseconds since 1 January 1970 00:00:00 UTC until the time represented by the updated Date instance."><code>Date.prototype.setHours()</code></a></dt>
+ <dd>Sets the hours for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setMilliseconds()" title="The setMilliseconds() method sets the milliseconds for a specified date according to local time."><code>Date.prototype.setMilliseconds()</code></a></dt>
+ <dd>Sets the milliseconds for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setMinutes()" title="The setMinutes() method sets the minutes for a specified date according to local time."><code>Date.prototype.setMinutes()</code></a></dt>
+ <dd>Sets the minutes for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setMonth()" title="The setMonth() method sets the month for a specified date according to local time."><code>Date.prototype.setMonth()</code></a></dt>
+ <dd>Sets the month for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setSeconds()" title="The setSeconds() method sets the seconds for a specified date according to local time."><code>Date.prototype.setSeconds()</code></a></dt>
+ <dd>Sets the seconds for a specified date according to local time.</dd>
+ <dt><a href="#/Date.prototype.setTime()" title="The setTime() method sets the Date object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC."><code>Date.prototype.setTime()</code></a></dt>
+ <dd>Sets the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC, allowing for negative numbers for times prior.</dd>
+ <dt><a href="#/Date.prototype.setUTCDate()" title="The setUTCDate() method sets the day of the month for a specified date according to universal time."><code>Date.prototype.setUTCDate()</code></a></dt>
+ <dd>Sets the day of the month for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCFullYear()" title="The setUTCFullYear() method sets the full year for a specified date according to universal time."><code>Date.prototype.setUTCFullYear()</code></a></dt>
+ <dd>Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCHours()" title="The setUTCHours() method sets the hour for a specified date according to universal time,&#xA0;and returns the number of milliseconds since 1 January 1970 00:00:00 UTC until the time represented by the updated&#xA0;Date&#xA0;instance."><code>Date.prototype.setUTCHours()</code></a></dt>
+ <dd>Sets the hour for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCMilliseconds()" title="The setUTCMilliseconds() method sets the milliseconds for a specified date according to universal time."><code>Date.prototype.setUTCMilliseconds()</code></a></dt>
+ <dd>Sets the milliseconds for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCMinutes()" title="The setUTCMinutes() method sets the minutes for a specified date according to universal time."><code>Date.prototype.setUTCMinutes()</code></a></dt>
+ <dd>Sets the minutes for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCMonth()" title="The setUTCMonth() method sets the month for a specified date according to universal time."><code>Date.prototype.setUTCMonth()</code></a></dt>
+ <dd>Sets the month for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setUTCSeconds()" title="The setUTCSeconds() method sets the seconds for a specified date according to universal time."><code>Date.prototype.setUTCSeconds()</code></a></dt>
+ <dd>Sets the seconds for a specified date according to universal time.</dd>
+ <dt><a href="#/Date.prototype.setYear()" title="The setYear() method sets the year for a specified date according to local time. Because setYear does not set full years (&quot;year 2000 problem&quot;), it is no longer used and has been replaced by the setFullYear method."><code>Date.prototype.setYear()</code></a> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>Sets the year (usually 2-3 digits) for a specified date according to local time. Use <a href="#/Date.prototype.setFullYear()" title="The setFullYear() method sets the full year for a specified date according to local time."><code>setFullYear()</code></a> instead.</dd>
+</dl>
+<h3 id="Conversion_getter">Conversion getter</h3>
+<dl>
+ <dt><a href="#/Date.prototype.toDateString()" title="The toDateString() method returns the date portion of a Date object in human readable form in American English."><code>Date.prototype.toDateString()</code></a></dt>
+ <dd>Returns the &quot;date&quot; portion of the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> as a human-readable string.</dd>
+ <dt><a href="#/Date.prototype.toISOString()" title="The toISOString() method returns a string in ISO format (ISO 8601 Extended Format), which can be described as follows: YYYY-MM-DDTHH:mm:ss.sssZ. The timezone is always UTC as denoted by the suffix &quot;Z&quot;."><code>Date.prototype.toISOString()</code></a></dt>
+ <dd>Converts a date to a string following the ISO 8601 Extended Format.</dd>
+ <dt><a href="#/Date.prototype.toJSON()" title="The toJSON() method returns a JSON representation of the Date object."><code>Date.prototype.toJSON()</code></a></dt>
+ <dd>Returns a string representing the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> using <a href="#/Date.prototype.toISOString()" title="The toISOString() method returns a string in ISO format (ISO 8601 Extended Format), which can be described as follows: YYYY-MM-DDTHH:mm:ss.sssZ. The timezone is always UTC as denoted by the suffix &quot;Z&quot;."><code>toISOString()</code></a>. Intended for use by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" title="The JSON.stringify() method converts a value to JSON, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified."><code>JSON.stringify()</code></a>.</dd>
+ <dt><a href="#/Date.prototype.toGMTString()" title="The toGMTString() method converts a date to a string, using Internet Greenwich Mean Time (GMT) conventions. The exact format of the value returned by toGMTString() varies according to the platform and browser, in general it should represent a human readable date string."><code>Date.prototype.toGMTString()</code></a> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>Returns a string representing the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> based on the GMT (UT) time zone. Use <a href="#/Date.prototype.toUTCString()" title="The toUTCString() method converts a date to a string, using the UTC time zone."><code>toUTCString()</code></a> instead.</dd>
+ <dt><a href="#/Date.prototype.toLocaleDateString()" title="The toLocaleDateString() method returns a string with a language sensitive representation of the date portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and allow to customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleDateString()</code></a></dt>
+ <dd>Returns a string with a locality sensitive representation of the date portion of this date based on system settings.</dd>
+ <dt><a href="#/Date.prototype.toLocaleFormat()" title="The non-standard toLocaleFormat() method converts a date to a string using the specified formatting. DateTimeFormat is an alternative to format dates in a standards-compliant way. See also the newer version of Date.prototype.toLocaleDateString()."><code>Date.prototype.toLocaleFormat()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Converts a date to a string, using a format string.</dd>
+ <dt><a href="#/Date.prototype.toLocaleString()" title="The toLocaleString() method returns a string with a language sensitive representation of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleString()</code></a></dt>
+ <dd>Returns a string with a locality sensitive representation of this date. Overrides the <a href="#/Object.prototype.toLocaleString()" title="The toLocaleString() method returns a string representing the object. This method is meant to be overriden by derived objects for locale-specific purposes."><code>Object.prototype.toLocaleString()</code></a> method.</dd>
+ <dt><a href="#/Date.prototype.toLocaleTimeString()" title="The toLocaleTimeString() method returns a string with a language sensitive representation of the time portion of this date. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent."><code>Date.prototype.toLocaleTimeString()</code></a></dt>
+ <dd>Returns a string with a locality sensitive representation of the time portion of this date based on system settings.</dd>
+ <dt><a href="#/Date.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Date.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Returns a string representing the source for an equivalent <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object; you can use this value to create a new object. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt><a href="#/Date.prototype.toString()" title="The toString() method returns a string representing the specified Date object."><code>Date.prototype.toString()</code></a></dt>
+ <dd>Returns a string representing the specified <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+ <dt><a href="#/Date.prototype.toTimeString()" title="The toTimeString() method returns the time portion of a Date object in human readable form in American English."><code>Date.prototype.toTimeString()</code></a></dt>
+ <dd>Returns the &quot;time&quot; portion of the <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> as a human-readable string.</dd>
+ <dt><a href="#/Date.prototype.toUTCString()" title="The toUTCString() method converts a date to a string, using the UTC time zone."><code>Date.prototype.toUTCString()</code></a></dt>
+ <dd>Converts a date to a string using the UTC timezone.</dd>
+ <dt><a href="#/Date.prototype.valueOf()" title="The valueOf() method returns the primitive value of a Date object."><code>Date.prototype.valueOf()</code></a></dt>
+ <dd>Returns the primitive value of a <a href="#/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object. Overrides the <a href="#/Object.prototype.valueOf()" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a> method.</dd>
+</dl>
+<div><div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineGetter"><code>__defineGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineSetter"><code>__defineSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/HasOwnProperty"><code>hasOwnProperty</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/IsPrototypeOf"><code>isPrototypeOf</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupGetter"><code>__lookupGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupSetter"><code>__lookupSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/NoSuchMethod"><code>__noSuchMethod__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/PropertyIsEnumerable"><code>propertyIsEnumerable</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Unwatch"><code>unwatch</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Watch"><code>watch</code></a></div>
+</div></div>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Date.prototype&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-properties-of-the-date-prototype-object" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Date.prototype&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/prototype">Date.prototype</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
