@@ -1,3 +1,20 @@
 .wikiArticle {
     background: #fff;
 }
+
+#mainPanel {
+    background-color: #FCFCFB;
+}
+
+#searchResults core-item.core-selected {
+    background-color: #F1F0ED;
+    font-weight: normal;
+}
+
+#searchResults core-icon {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+#searchResults paper-ripple {
+    color: rgba(0, 0, 0, 0.3333);
+}

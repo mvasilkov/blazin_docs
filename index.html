@@ -14,6 +14,12 @@
         <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html">
         <link rel="import" href="/bower_components/core-header-panel/core-header-panel.html">
         <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="/bower_components/core-field/core-field.html">
+        <link rel="import" href="/bower_components/core-icons/core-icons.html">
+        <link rel="import" href="/bower_components/core-input/core-input.html">
+        <link rel="import" href="/bower_components/core-menu/core-menu.html">
+        <link rel="import" href="/bower_components/core-item/core-item.html">
+        <link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
     </head>
     <body unresolved>
         <polymer-element name="blazin-app">
@@ -21,8 +27,17 @@
                 <core-scaffold>
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
-                            Blazin' Docs
+                            <core-field>
+                                <core-icon icon="search"></core-icon>
+                                <input is="core-input" value="{{search}}" placeholder="Search" flex>
+                            </core-field>
                         </core-toolbar>
+                        <core-menu id="searchResults">
+                            <core-item icon="bookmark" label="Infinity">
+                                <a href="#/Infinity"></a>
+                                <paper-ripple fit></paper-ripple>
+                            </core-item>
+                        </core-menu>
                     </core-header-panel>
                     <div tool>
                         EVERYTHING IS MISPLACED FOREVER
