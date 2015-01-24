@@ -29,7 +29,7 @@
                 <link rel="stylesheet" href="/pub/wiki.css">
                 <link rel="stylesheet" href="/pub/codesnippets.css">
                 <link rel="stylesheet" href="/pub/blazin.css">
-                <core-scaffold drawerWidth="320px">
+                <core-scaffold drawerWidth="320px" id="appScaffold">
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
                             <core-field id="searchField">
@@ -41,7 +41,8 @@
                     </core-header-panel>
                     <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{blazingPage}}</div>
                     <div class="content">
-                        <app-router mode="hash" id="router" on-activate-route-start="{{loadingPage}}" init="manual">
+                        <app-router mode="hash" id="router" on-activate-route-start="{{loadingPage}}"
+                            on-activate-route-end="{{afterLoadingPage}}" init="manual">
                             <app-route path="*" import="/docs/BlazinDocsIndexPage.html" template></app-route>
                         </app-router>
                     </div>
@@ -69,6 +70,14 @@
                     },
                     loadingPage: function (event) {
                         this.blazingPage = event.detail.path.substr(1) || "Blazin' Docs"
+                    },
+                    afterLoadingPage: function () {
+                        try {
+                            this.$.appScaffold.$.drawerPanel
+                                .getElementsByTagName('core-header-panel')[0]
+                                .scroller.scrollTop = 0
+                        }
+                        catch (_) {}
                     },
                     searchChanged: function () {
                         var html = ''
