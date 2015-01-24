@@ -1,3 +1,7 @@
+/* FuzzySet data structure by Mike Axiak and Glen Chiacchieri
+ * https://github.com/axiak/fuzzyset
+ * https://github.com/willlma/fuzzyset.js
+ * License: BSD */
 (function() {
 
 window.FuzzySet = function(arr, useLevenshtein, gramSizeLower, gramSizeUpper) {

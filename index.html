@@ -39,8 +39,8 @@
                     </core-header-panel>
                     <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{blazingPage}}</div>
                     <div class="content">
-                        <app-router mode="hash" id="router" on-activate-route-start="{{loadingPage}}">
-                            <app-route path="*" import="/docs/Infinity.html" template></app-route>
+                        <app-router mode="hash" id="router" on-activate-route-start="{{loadingPage}}" init="manual">
+                            <app-route path="*" import="/docs/BlazinDocsIndexPage.html" template></app-route>
                         </app-router>
                     </div>
                 </core-scaffold>
@@ -50,7 +50,7 @@
                 Polymer('blazin-app', {
                     publish: {
                         search: '',
-                        blazingPage: ''
+                        blazingPage: 'Blazin\' Docs'
                     },
                     ready: function () {
                         for (var i = 0; i < window.blazinAllPages.length; ++i) {
@@ -61,11 +61,12 @@
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
+                        this.$.router.init()
                         this.searchIndex = FuzzySet(window.blazinAllPages)
                         this.searchChanged()
                     },
                     loadingPage: function (event) {
-                        this.blazingPage = event.detail.path.substr(1)
+                        this.blazingPage = event.detail.path.substr(1) || "Blazin' Docs"
                     },
                     searchChanged: function () {
                         var html = ''
