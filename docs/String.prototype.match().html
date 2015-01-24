@@ -1,0 +1,82 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>match()</code></strong> method retrieves the matches when matching a <em>string</em> against a <em>regular expression</em>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.match(<var>regexp</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>regexp</code></dt>
+ <dd>
+  A regular expression object. If a non-RegExp object <code>obj</code> is passed, it is implicitly converted to a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> by using <code>new RegExp(obj)</code>.</dd>
+</dl>
+<h3 id="Returns" name="Returns">Returns</h3>
+<dl>
+ <dt>
+  <code>array</code></dt>
+ <dd>
+  An <a href="#/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> containing the matched results or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> if there were no matches.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If the regular expression does not include the <code>g</code> flag, returns the same result as <a href="#/RegExp.prototype.exec()" title="The exec() method executes a search for a match in a specified string. Returns a result array, or null."><code>RegExp.exec()</code></a>. The returned <a href="#/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> has an extra <code>input</code> property, which contains the original string that was parsed. In addition, it has an <code>index</code> property, which represents the zero-based index of the match in the string.</p>
+<p>If the regular expression includes the <code>g</code> flag, the method returns an <a href="#/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> containing all matches. If there were no matches, the method returns <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>.</p>
+<h3 id="See_also:_RegExp_methods" name="See_also:_RegExp_methods">See also: <code>RegExp</code> methods</h3>
+<ul>
+ <li>If you need to know if a string matches a regular expression <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a>, use <a href="#/String.prototype.search()" title="The search() method executes a search for a match between a regular expression and this String object."><code>search()</code></a>.</li>
+ <li>If you only want the first match found, you might want to use <a href="#/RegExp.prototype.exec()" title="The exec() method executes a search for a match in a specified string. Returns a result array, or null."><code>RegExp.exec()</code></a> instead.</li>
+</ul>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_match" name="Example:_Using_match">Example: Using <code>match()</code></h3>
+<p>In the following example, <code>match()</code> is used to find <code>&apos;Chapter&apos;</code> followed by 1 or more numeric characters followed by a decimal point and numeric character 0 or more times. The regular expression includes the <code>i</code> flag so that case will be ignored.</p>
+<prism-js language="javascript">var str = &apos;For more information, see Chapter 3.4.5.1&apos;;
+var re = /(chapter \d+(\.\d)*)/i;
+var found = str.match(re);
+console.log(found);
+// logs [&apos;Chapter 3.4.5.1&apos;, &apos;Chapter 3.4.5.1&apos;, &apos;.1&apos;]
+// &apos;Chapter 3.4.5.1&apos; is the first match and the first value
+// remembered from `(Chapter \d+(\.\d)*)`.
+// &apos;.1&apos; is the last value remembered from `(\.\d)`.
+</prism-js>
+<h3 id="Example:_Using_global_and_ignore_case_flags_with_match" name="Example:_Using_global_and_ignore_case_flags_with_match">Example: Using global and ignore case flags with <code>match()</code></h3>
+<p>The following example demonstrates the use of the global and ignore case flags with <code>match()</code>. All letters A through E and a through e are returned, each its own element in the array.</p>
+<prism-js language="javascript">var str = &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&apos;;
+var regexp = /[A-E]/gi;
+var matches_array = str.match(regexp);
+console.log(matches_array);
+// [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.10" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.match&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.match" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.match&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/RegExp.prototype.exec()" title="The exec() method executes a search for a match in a specified string. Returns a result array, or null."><code>RegExp.prototype.exec()</code></a></li>
+ <li><a href="#/RegExp.prototype.test()" title="The test() method executes a search for a match between a regular expression and a specified string. Returns true or false."><code>RegExp.prototype.test()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">String.prototype.match()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

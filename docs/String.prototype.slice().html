@@ -1,0 +1,65 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>slice()</code></strong> method extracts a section of a string and returns a new string.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.slice(<var>beginSlice</var>[, <var>endSlice</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>beginSlice</code></dt>
+ <dd>The zero-based index at which to begin extraction. If negative, it is treated as <code>sourceLength + beginSlice</code> where <code>sourceLength</code> is the length of the string (for example, if <code>beginSlice</code> is -3 it is treated as <code>sourceLength - 3</code>).</dd>
+ <dt><code>endSlice</code></dt>
+ <dd>Optional. The zero-based index at which to end extraction. If omitted, <code>slice()</code> extracts to the end of the string. If negative, it is treated as <code>sourceLength - endSlice</code> where <code>sourceLength</code> is the length of the string.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>slice()</code> extracts the text from one string and returns a new string. Changes to the text in one string do not affect the other string.</p>
+<p><code>slice()</code> extracts up to but not including <code>endSlice</code>. <code>str.slice(1, 4)</code> extracts the second character through the fourth character (characters indexed 1, 2, and 3).</p>
+<p>As an example, <code>str.slice(2, -1)</code> extracts the third character through the second to last character in the string.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_slice_to_create_a_new_string" name="Example:_Using_slice_to_create_a_new_string">Example: Using <code>slice()</code> to create a new string</h3>
+<p>The following example uses <code>slice()</code> to create a new string.</p>
+<prism-js language="javascript">var str1 = &apos;The morning is upon us.&apos;;
+var str2 = str1.slice(4, -2);
+console.log(str2); // OUTPUT: morning is upon u
+</prism-js>
+<h3 id="Example:_Using_slice_with_negative_indexes" name="Example:_Using_slice_with_negative_indexes">Example: Using <code>slice()</code> with negative indexes</h3>
+<p>The following example uses <code>slice()</code> with negative indexes.</p>
+<prism-js language="javascript">var str = &apos;The morning is upon us.&apos;;
+str.slice(-3);     // returns &apos;us.&apos;
+str.slice(-3, -1); // returns &apos;us&apos;
+str.slice(0, -1);  // returns &apos;The morning is upon us&apos;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.13" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.slice&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.slice" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.slice&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.substr()" title="The substr() method returns the characters in a string beginning at the specified location through the specified number of characters, or the end of the string."><code>String.prototype.substr()</code></a></li>
+ <li><a href="#/String.prototype.substring()" title="The substring() method returns a subset of a string between one index and another, or through the end of the string."><code>String.prototype.substring()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" title="The slice() method returns a shallow copy of a portion of an array into a new array object."><code>Array.prototype.slice()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice">String.prototype.slice()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

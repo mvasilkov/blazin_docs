@@ -1,0 +1,122 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>split()</code></strong> method splits a <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> object into an array of strings by separating the string into substrings.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.split([<var>separator</var>[, <var>limit</var>]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>separator</code></dt>
+ <dd>
+  Optional. Specifies the character(s) to use for separating the string. The <code>separator</code> is treated as a string or a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern.">regular expression</a>. If <code>separator</code> is omitted, the array returned contains one element consisting of the entire string. If <code>separator</code> is an empty string, <code>str</code> is converted to an array of characters.</dd>
+ <dt>
+  <code>limit</code></dt>
+ <dd>
+  Optional. Integer specifying a limit on the number of splits to be found. The <code>split()</code> method still splits on every match of <code>separator</code>, but it truncates the returned array to at most <code>limit</code> elements.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>split()</code> method returns the new array.</p>
+<p>When found, <code>separator</code> is removed from the string and the substrings are returned in an array. If <code>separator</code> is omitted, the array contains one element consisting of the entire string. If <code>separator</code> is an empty string, <code>str</code> is converted to an array of characters.</p>
+<p>If <code>separator</code> is a regular expression that contains capturing parentheses, then each time <code>separator</code> is matched, the results (including any undefined results) of the capturing parentheses are spliced into the output array. However, not all browsers support this capability.</p>
+<p></p><div class="note"><strong>Note:</strong>&#xA0;When the string is empty, <code>split()</code> returns an array containing one empty string, rather than an empty array.</div><p></p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_split" name="Example:_Using_split">Example: Using <code>split()</code></h3>
+<p>The following example defines a function that splits a string into an array of strings using the specified separator. After splitting the string, the function displays messages indicating the original string (before the split), the separator used, the number of elements in the array, and the individual array elements.</p>
+<prism-js language="javascript">function splitString(stringToSplit, separator) {
+  var arrayOfStrings = stringToSplit.split(separator);
+  console.log(&apos;The original string is: &quot;&apos; + stringToSplit + &apos;&quot;&apos;);
+  console.log(&apos;The separator is: &quot;&apos; + separator + &apos;&quot;&apos;);
+  console.log(&apos;The array has &apos; + arrayOfStrings.length + &apos; elements: &apos; + arrayOfStrings.join(&apos; / &apos;));
+}
+var tempestString = &apos;Oh brave new world that has such people in it.&apos;;
+var monthString = &apos;Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec&apos;;
+var space = &apos; &apos;;
+var comma = &apos;,&apos;;
+splitString(tempestString, space);
+splitString(tempestString);
+splitString(monthString, comma);
+</prism-js>
+<p>This example produces the following output:</p>
+<pre>The original string is: &quot;Oh brave new world that has such people in it.&quot;
+The separator is: &quot; &quot;
+The array has 10 elements: Oh / brave / new / world / that / has / such / people / in / it.
+The original string is: &quot;Oh brave new world that has such people in it.&quot;
+The separator is: &quot;undefined&quot;
+The array has 1 elements: Oh brave new world that has such people in it.
+The original string is: &quot;Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec&quot;
+The separator is: &quot;,&quot;
+The array has 12 elements: Jan / Feb / Mar / Apr / May / Jun / Jul / Aug / Sep / Oct / Nov / Dec
+</pre>
+<h3 id="Example:_Removing_spaces_from_a_string" name="Example:_Removing_spaces_from_a_string">Example: Removing spaces from a string</h3>
+<p>In the following example, <code>split()</code> looks for 0 or more spaces followed by a semicolon followed by 0 or more spaces and, when found, removes the spaces from the string. <code>nameList</code> is the array returned as a result of <code>split()</code>.</p>
+<prism-js language="javascript">var names = &apos;Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand &apos;;
+console.log(names);
+var re = /\s*;\s*/;
+var nameList = names.split(re);
+console.log(nameList);
+</prism-js>
+<p>This prints two lines; the first line prints the original string, and the second line prints the resulting array.</p>
+<pre>Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand
+Harry Trump,Fred Barney,Helen Rigby,Bill Abel,Chris Hand
+</pre>
+<h3 id="Example:_Returning_a_limited_number_of_splits" name="Example:_Returning_a_limited_number_of_splits">Example: Returning a limited number of splits</h3>
+<p>In the following example, <code>split()</code> looks for 0 or more spaces in a string and returns the first 3 splits that it finds.</p>
+<prism-js language="javascript">var myString = &apos;Hello World. How are you doing?&apos;;
+var splits = myString.split(&apos; &apos;, 3);
+console.log(splits);
+</prism-js>
+<p>This script displays the following:</p>
+<pre>Hello,World.,How
+</pre>
+<h3 id="Example:_Capturing_parentheses" name="Example:_Capturing_parentheses">Example: Capturing parentheses</h3>
+<p>If <code>separator</code> contains capturing parentheses, matched results are returned in the array.</p>
+<prism-js language="javascript">var myString = &apos;Hello 1 word. Sentence number 2.&apos;;
+var splits = myString.split(/(\d)/);
+console.log(splits);
+</prism-js>
+<p>This script displays the following:</p>
+<pre>Hello ,1, word. Sentence number ,2,.
+</pre>
+<h3 id="Example:_Reversing_a_String_using_split" name="Example:_Reversing_a_String_using_split">Example: Reversing a String using <code>split()</code></h3>
+<prism-js language="javascript">var str = &apos;asdfghjkl&apos;;
+var strReverse = str.split(&apos;&apos;).reverse().join(&apos;&apos;); // &apos;lkjhgfdsa&apos;
+// split() returns an array on which reverse() and join() can be applied
+</prism-js>
+<p><strong>Bonus:</strong> use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Identity_.2F_strict_equality_(.3D.3D.3D)" title="JavaScript has both strict and type&#x2013;converting comparisons. A strict comparison (e.g., ===) is only true if the operands are of the same type. The more commonly used abstract comparison (e.g. ==) converts the operands to the same Type before making the comparison. For relational abstract comparisons (e.g., &lt;=), the operands are first converted to primitives, then to the same type, before comparison."><code>===</code></a> operator to test if the original string was palindrome.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.14" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.split&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.split" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.split&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.charAt()" title="The charAt() method returns the specified character from a string."><code>String.prototype.charAt()</code></a></li>
+ <li><a href="#/String.prototype.indexOf()" title="The indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found."><code>String.prototype.indexOf()</code></a></li>
+ <li><a href="#/String.prototype.lastIndexOf()" title="The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex."><code>String.prototype.lastIndexOf()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" title="The join() method joins all elements of an array into a string."><code>Array.prototype.join()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">String.prototype.split()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

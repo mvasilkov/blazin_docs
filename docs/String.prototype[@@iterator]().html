@@ -1,0 +1,40 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/String.prototype[@@iterator]()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <code>[@@iterator]()</code> method returns a new <code>Iterator</code> object that iterates over the code points of a String value, returning each code point as a String value.</p>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><em>string</em>[Symbol.iterator]</code></pre>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_.5B.40.40iterator.5D()">Example: Using <code>[@@iterator]()</code></h3>
+<prism-js language="javascript">var string = &quot;A\uD835\uDC68&quot;;
+var strIter = str[Symbol.iterator]();
+console.log(strIter.next().value); // &quot;A&quot;
+console.log(strIter.next().value); // &quot;\uD835\uDC68&quot;
+</prism-js>
+<h3 id="Example.3A_Using_.5B.40.40iterator.5D()_with_for..of">Example: Using <code>[@@iterator]()</code> with <code>for..of</code></h3>
+<prism-js language="javascript">var string = &quot;A\uD835\uDC68B\uD835\uDC69C\uD835\uDC6A&quot;;
+for (var v of string) {
+  console.log(v);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype-@@iterator" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype[@@iterator]()&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/@@iterator">String.prototype[@@iterator]()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

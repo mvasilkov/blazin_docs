@@ -1,0 +1,97 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/String.prototype.codePointAt()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>codePointAt()</code></strong> method returns a non-negative integer that is the UTF-16 encoded code point value.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.codePointAt(<var>pos</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>pos</code></dt>
+ <dd>
+  Position of an element in the String to return the code point value from.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If there is no element at the specified position, <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> is returned. If no UTF-16 surrogate pair begins at <code>pos</code>, the code unit at <code>pos</code> is returned.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example.3A_Using_codePointAt()">Example: Using <code>codePointAt()</code></h3>
+<prism-js language="javascript">&apos;ABC&apos;.codePointAt(1);          // 66
+&apos;\uD800\uDC00&apos;.codePointAt(0); // 65536
+&apos;XYZ&apos;.codePointAt(42); // undefined
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>The following extends Strings to include the <code>codePointAt()</code> function as specified in ECMAScript 6 for browsers not supporting it natively.</p>
+<prism-js language="javascript">/*! http://mths.be/codepointat v0.1.0 by @mathias */
+if (!String.prototype.codePointAt) {
+  (function() {
+    &apos;use strict&apos;; // needed to support `apply`/`call` with `undefined`/`null`
+    var codePointAt = function(position) {
+      if (this == null) {
+        throw TypeError();
+      }
+      var string = String(this);
+      var size = string.length;
+      // `ToInteger`
+      var index = position ? Number(position) : 0;
+      if (index != index) { // better `isNaN`
+        index = 0;
+      }
+      // Account for out-of-bounds indices:
+      if (index &lt; 0 || index &gt;= size) {
+        return undefined;
+      }
+      // Get the first code unit
+      var first = string.charCodeAt(index);
+      var second;
+      if ( // check if it&#x2019;s the start of a surrogate pair
+        first &gt;= 0xD800 &amp;&amp; first &lt;= 0xDBFF &amp;&amp; // high surrogate
+        size &gt; index + 1 // there is a next code unit
+      ) {
+        second = string.charCodeAt(index + 1);
+        if (second &gt;= 0xDC00 &amp;&amp; second &lt;= 0xDFFF) { // low surrogate
+          // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+          return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
+        }
+      }
+      return first;
+    };
+    if (Object.defineProperty) {
+      Object.defineProperty(String.prototype, &apos;codePointAt&apos;, {
+        &apos;value&apos;: codePointAt,
+        &apos;configurable&apos;: true,
+        &apos;writable&apos;: true
+      });
+    } else {
+      String.prototype.codePointAt = codePointAt;
+    }
+  }());
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.codepointat" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.codePointAt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.fromCodePoint()" title="The static String.fromCodePoint() method returns a string created by using the specified sequence of code points."><code>String.fromCodePoint()</code></a></li>
+ <li><a href="#/String.fromCharCode()" title="The static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values."><code>String.fromCharCode()</code></a></li>
+ <li><a href="#/String.prototype.charCodeAt()" title="The charCodeAt() method returns the numeric Unicode value of the character at the given index (except for unicode codepoints &gt; 0x10000)."><code>String.prototype.charCodeAt()</code></a></li>
+ <li><a href="#/String.prototype.charAt()" title="The charAt() method returns the specified character from a string."><code>String.prototype.charAt()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt">String.prototype.codePointAt()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

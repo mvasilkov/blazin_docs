@@ -1,0 +1,185 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>charAt()</code></strong> method returns the specified character from a string.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.charAt(<var>index</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>index</code></dt>
+ <dd>An integer between 0 and 1-less-than the length of the string.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Characters in a string are indexed from left to right. The index of the first character is 0, and the index of the last character in a string called <code>stringName</code> is <code>stringName.length - 1</code>. If the <code>index</code> you supply is out of range, JavaScript returns an empty string.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Displaying_characters_at_different_locations_in_a_string" name="Example:_Displaying_characters_at_different_locations_in_a_string">Example: Displaying characters at different locations in a string</h3>
+<p>The following example displays characters at different locations in the string <code>&quot;Brave new world&quot;</code>:</p>
+<prism-js language="javascript">var anyString = &apos;Brave new world&apos;;
+console.log(&quot;The character at index 0   is &apos;&quot; + anyString.charAt(0)   + &quot;&apos;&quot;);
+console.log(&quot;The character at index 1   is &apos;&quot; + anyString.charAt(1)   + &quot;&apos;&quot;);
+console.log(&quot;The character at index 2   is &apos;&quot; + anyString.charAt(2)   + &quot;&apos;&quot;);
+console.log(&quot;The character at index 3   is &apos;&quot; + anyString.charAt(3)   + &quot;&apos;&quot;);
+console.log(&quot;The character at index 4   is &apos;&quot; + anyString.charAt(4)   + &quot;&apos;&quot;);
+console.log(&quot;The character at index 999 is &apos;&quot; + anyString.charAt(999) + &quot;&apos;&quot;);
+</prism-js>
+<p>These lines display the following:</p>
+<prism-js language="javascript">The character at index 0   is &apos;B&apos;
+The character at index 1   is &apos;r&apos;
+The character at index 2   is &apos;a&apos;
+The character at index 3   is &apos;v&apos;
+The character at index 4   is &apos;e&apos;
+The character at index 999 is &apos;&apos;
+</prism-js>
+<h3 id="Example.3A_Getting_whole_characters">Example: Getting whole characters</h3>
+<p>The following provides a means of ensuring that going through a string loop always provides a whole character, even if the string contains characters that are not in the Basic Multi-lingual Plane.</p>
+<prism-js language="javascript">var str = &apos;A \uD87E\uDC04 Z&apos;; // We could also use a non-BMP character directly
+for (var i = 0, chr; i &lt; str.length; i++) {
+  if ((chr = getWholeChar(str, i)) === false) {
+    continue;
+  }
+  // Adapt this line at the top of each loop, passing in the whole string and
+  // the current iteration and returning a variable to represent the
+  // individual character
+  console.log(chr);
+}
+function getWholeChar(str, i) {
+  var code = str.charCodeAt(i);
+  if (isNaN(code)) {
+    return &apos;&apos;; // Position not found
+  }
+  if (code &lt; 0xD800 || code &gt; 0xDFFF) {
+    return str.charAt(i);
+  }
+  // High surrogate (could change last hex to 0xDB7F to treat high private
+  // surrogates as single characters)
+  if (0xD800 &lt;= code &amp;&amp; code &lt;= 0xDBFF) {
+    if (str.length &lt;= (i + 1)) {
+      throw &apos;High surrogate without following low surrogate&apos;;
+    }
+    var next = str.charCodeAt(i + 1);
+      if (0xDC00 &gt; next || next &gt; 0xDFFF) {
+        throw &apos;High surrogate without following low surrogate&apos;;
+      }
+      return str.charAt(i) + str.charAt(i + 1);
+  }
+  // Low surrogate (0xDC00 &lt;= code &amp;&amp; code &lt;= 0xDFFF)
+  if (i === 0) {
+    throw &apos;Low surrogate without preceding high surrogate&apos;;
+  }
+  var prev = str.charCodeAt(i - 1);
+  // (could change last hex to 0xDB7F to treat high private
+  // surrogates as single characters)
+  if (0xD800 &gt; prev || prev &gt; 0xDBFF) {
+    throw &apos;Low surrogate without preceding high surrogate&apos;;
+  }
+  // We can pass over low surrogates now as the second component
+  // in a pair which we have already processed
+  return false;
+}
+</prism-js>
+<p>In an exclusive JavaScript 1.7+ environment (such as Firefox) which allows destructured assignment, the following is a more succinct and somewhat more flexible alternative in that it does incrementing for an incrementing variable automatically (if the character warrants it in being a surrogate pair).</p>
+<prism-js language="javascript">var str = &apos;A\uD87E\uDC04Z&apos;; // We could also use a non-BMP character directly
+for (var i = 0, chr; i &lt; str.length; i++) {
+  [chr, i] = getWholeCharAndI(str, i);
+  // Adapt this line at the top of each loop, passing in the whole string and
+  // the current iteration and returning an array with the individual character
+  // and &apos;i&apos; value (only changed if a surrogate pair)
+  console.log(chr);
+}
+function getWholeCharAndI(str, i) {
+  var code = str.charCodeAt(i);
+  if (isNaN(code)) {
+    return &apos;&apos;; // Position not found
+  }
+  if (code &lt; 0xD800 || code &gt; 0xDFFF) {
+    return [str.charAt(i), i]; // Normal character, keeping &apos;i&apos; the same
+  }
+  // High surrogate (could change last hex to 0xDB7F to treat high private
+  // surrogates as single characters)
+  if (0xD800 &lt;= code &amp;&amp; code &lt;= 0xDBFF) {
+    if (str.length &lt;= (i + 1)) {
+      throw &apos;High surrogate without following low surrogate&apos;;
+    }
+    var next = str.charCodeAt(i + 1);
+      if (0xDC00 &gt; next || next &gt; 0xDFFF) {
+        throw &apos;High surrogate without following low surrogate&apos;;
+      }
+      return [str.charAt(i) + str.charAt(i + 1), i + 1];
+  }
+  // Low surrogate (0xDC00 &lt;= code &amp;&amp; code &lt;= 0xDFFF)
+  if (i === 0) {
+    throw &apos;Low surrogate without preceding high surrogate&apos;;
+  }
+  var prev = str.charCodeAt(i - 1);
+  // (could change last hex to 0xDB7F to treat high private surrogates
+  // as single characters)
+  if (0xD800 &gt; prev || prev &gt; 0xDBFF) {
+    throw &apos;Low surrogate without preceding high surrogate&apos;;
+  }
+  // Return the next character instead (and increment)
+  return [str.charAt(i + 1), i + 1];
+}
+</prism-js>
+<h3 id="Example.3A_Fixing_charAt()_to_support_non-Basic-Multilingual-Plane_(BMP)_characters">Example: Fixing <code>charAt()</code> to support non-Basic-Multilingual-Plane (BMP) characters</h3>
+<p>While the example above may be more frequently useful for those wishing to support non-BMP characters (since it does not require the caller to know where any non-BMP character might appear), in the event that one <em>does</em> wish, in choosing a character by index, to treat the surrogate pairs within a string as the single characters they represent, one can use the following:</p>
+<prism-js language="javascript">function fixedCharAt(str, idx) {
+  var ret = &apos;&apos;;
+  str += &apos;&apos;;
+  var end = str.length;
+  var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+  while ((surrogatePairs.exec(str)) != null) {
+    var li = surrogatePairs.lastIndex;
+    if (li - 2 &lt; idx) {
+      idx++;
+    } else {
+      break;
+    }
+  }
+  if (idx &gt;= end || idx &lt; 0) {
+    return &apos;&apos;;
+  }
+  ret += str.charAt(idx);
+  if (/[\uD800-\uDBFF]/.test(ret) &amp;&amp; /[\uDC00-\uDFFF]/.test(str.charAt(idx + 1))) {
+    // Go one further, since one of the &quot;characters&quot; is part of a surrogate pair
+    ret += str.charAt(idx + 1);
+  }
+  return ret;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.4" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.charAt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.charat" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.charAt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.indexOf()" title="The indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found."><code>String.prototype.indexOf()</code></a></li>
+ <li><a href="#/String.prototype.lastIndexOf()" title="The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex."><code>String.prototype.lastIndexOf()</code></a></li>
+ <li><a href="#/String.prototype.charCodeAt()" title="The charCodeAt() method returns the numeric Unicode value of the character at the given index (except for unicode codepoints &gt; 0x10000)."><code>String.prototype.charCodeAt()</code></a></li>
+ <li><a href="#/String.prototype.codePointAt()" title="The codePointAt() method returns a non-negative integer that is the UTF-16 encoded code point value."><code>String.prototype.codePointAt()</code></a></li>
+ <li><a href="#/String.prototype.split()" title="The split() method splits a String object into an array of strings by separating the string into substrings."><code>String.prototype.split()</code></a></li>
+ <li><a href="#/String.fromCodePoint()" title="The static String.fromCodePoint() method returns a string created by using the specified sequence of code points."><code>String.fromCodePoint()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt">String.prototype.charAt()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

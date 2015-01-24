@@ -1,0 +1,58 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>concat()</code></strong> method combines the text of two or more strings and returns a new string.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.concat(<var>string2</var>, <var>string3</var>[, ..., <var>stringN</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>string2...string<em>N</em></code></dt>
+ <dd>
+  Strings to concatenate to this string.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>concat()</code> function combines the text from one or more strings and returns a new string. Changes to the text in one string do not affect the other string.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_concat" name="Example:_Using_concat">Example: Using <code>concat()</code></h3>
+<p>The following example combines strings into a new string.</p>
+<prism-js language="javascript">var hello = &apos;Hello, &apos;;
+console.log(hello.concat(&apos;Kevin&apos;, &apos; have a nice day.&apos;));
+/* Hello, Kevin have a nice day. */
+</prism-js>
+<h2 id="Performance">Performance</h2>
+<p>It is strongly recommended that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators" title="An assignment operator assigns a value to its left operand based on the value of its right operand.">assignment operators</a> (<code>+</code>, <code>+=</code>) are used instead of the <code>concat()</code> method. See this <a class="external" href="http://jsperf.com/concat-vs-plus-vs-join">perfomance test</a>.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.concat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.concat" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.concat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" title="The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments."><code>Array.prototype.concat()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators" title="An assignment operator assigns a value to its left operand based on the value of its right operand.">Assignment operators</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat">String.prototype.concat()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

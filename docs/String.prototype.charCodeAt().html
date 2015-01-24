@@ -1,0 +1,114 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>charCodeAt()</code></strong> method returns the numeric Unicode value of the character at the given index (except for unicode codepoints &gt; 0x10000).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.charCodeAt(<var>index</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>index</code></dt>
+ <dd>An integer greater than or equal to 0 and less than the length of the string; if it is not a number, it defaults to 0.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Unicode code points range from 0 to 1114111 (0x10FFFF). The first 128 Unicode code points are a direct match of the ASCII character encoding. For information on Unicode, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals#Unicode">JavaScript Guide</a>.</p>
+<p>Note that <code>charCodeAt()</code> will always return a value that is less than 65536. This is because the higher code points are represented by a pair of (lower valued) &quot;surrogate&quot; pseudo-characters which are used to comprise the real character. Because of this, in order to examine or reproduce the full character for individual characters of value 65536 and above, for such characters, it is necessary to retrieve not only <code>charCodeAt(i)</code>, but also <code>charCodeAt(i+1)</code> (as if examining/reproducing a string with two letters). See example 2 and 3 below.</p>
+<p><code>charCodeAt()</code> returns <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a> if the given index is not greater than 0 or is greater than the length of the string.</p>
+<p>Backward compatibilty: In historic versions (like JavaScript 1.2) the <code>charCodeAt()</code> method returns a number indicating the ISO-Latin-1 codeset value of the character at the given index. The ISO-Latin-1 codeset ranges from 0 to 255. The first 0 to 127 are a direct match of the ASCII character set.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_charCodeAt" name="Example:_Using_charCodeAt">Example: Using <code>charCodeAt()</code></h3>
+<p>The following example returns 65, the Unicode value for A.</p>
+<prism-js language="javascript">&apos;ABC&apos;.charCodeAt(0); // returns 65
+</prism-js>
+<h3 id="Example.3A_Fixing_charCodeAt()_to_handle_non-Basic-Multilingual-Plane_characters_if_their_presence_earlier_in_the_string_is_unknown">Example: Fixing <code>charCodeAt()</code> to handle non-Basic-Multilingual-Plane characters if their presence earlier in the string is unknown</h3>
+<p>This version might be used in for loops and the like when it is unknown whether non-BMP characters exist before the specified index position.</p>
+<prism-js language="javascript">function fixedCharCodeAt(str, idx) {
+  // ex. fixedCharCodeAt(&apos;\uD800\uDC00&apos;, 0); // 65536
+  // ex. fixedCharCodeAt(&apos;\uD800\uDC00&apos;, 1); // false
+  idx = idx || 0;
+  var code = str.charCodeAt(idx);
+  var hi, low;
+  // High surrogate (could change last hex to 0xDB7F to treat high
+  // private surrogates as single characters)
+  if (0xD800 &lt;= code &amp;&amp; code &lt;= 0xDBFF) {
+    hi = code;
+    low = str.charCodeAt(idx + 1);
+    if (isNaN(low)) {
+      throw &apos;High surrogate not followed by low surrogate in fixedCharCodeAt()&apos;;
+    }
+    return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+  }
+  if (0xDC00 &lt;= code &amp;&amp; code &lt;= 0xDFFF) { // Low surrogate
+    // We return false to allow loops to skip this iteration since should have
+    // already handled high surrogate above in the previous iteration
+    return false;
+    /*hi = str.charCodeAt(idx - 1);
+    low = code;
+    return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;*/
+  }
+  return code;
+}
+</prism-js>
+<h3 id="Example.3A_Fixing_charCodeAt()_to_handle_non-Basic-Multilingual-Plane_characters_if_their_presence_earlier_in_the_string_is_known">Example: Fixing <code>charCodeAt()</code> to handle non-Basic-Multilingual-Plane characters if their presence earlier in the string is known</h3>
+<prism-js language="javascript">function knownCharCodeAt(str, idx) {
+  str += &apos;&apos;;
+  var code,
+      end = str.length;
+  var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+  while ((surrogatePairs.exec(str)) != null) {
+    var li = surrogatePairs.lastIndex;
+    if (li - 2 &lt; idx) {
+      idx++;
+    }
+    else {
+      break;
+    }
+  }
+  if (idx &gt;= end || idx &lt; 0) {
+    return NaN;
+  }
+  code = str.charCodeAt(idx);
+  var hi, low;
+  if (0xD800 &lt;= code &amp;&amp; code &lt;= 0xDBFF) {
+    hi = code;
+    low = str.charCodeAt(idx + 1);
+    // Go one further, since one of the &quot;characters&quot; is part of a surrogate pair
+    return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+  }
+  return code;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.charCodeAt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.charcodeat" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.charCodeAt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.fromCharCode()" title="The static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values."><code>String.fromCharCode()</code></a></li>
+ <li><a href="#/String.prototype.charAt()" title="The charAt() method returns the specified character from a string."><code>String.prototype.charAt()</code></a></li>
+ <li><a href="#/String.fromCodePoint()" title="The static String.fromCodePoint() method returns a string created by using the specified sequence of code points."><code>String.fromCodePoint()</code></a></li>
+ <li><a href="#/String.prototype.codePointAt()" title="The codePointAt() method returns a non-negative integer that is the UTF-16 encoded code point value."><code>String.prototype.codePointAt()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt">String.prototype.charCodeAt()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

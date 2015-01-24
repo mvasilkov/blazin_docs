@@ -1,0 +1,130 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>RegExp.prototype</code></strong> property represents the prototype object for the <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> constructor.</p>
+<div>
+ <table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>RegExp.prototype</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p>See <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> for a description of <code>RegExp</code> instances. <code>RegExp</code> instances inherit from <code>RegExp.prototype</code>. Modifications to the prototype object are propagated to all <code>RegExp</code> instances.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<p>See also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Deprecated_and_obsolete_features#RegExp_Properties">deprecated <code>RegExp</code> properties</a></p>
+<p>Note that several of the <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> properties have both long and short (Perl-like) names. Both names always refer to the same value. Perl is the programming language from which JavaScript modeled its regular expressions.</p>
+<dl>
+ <dt>
+  <code>RegExp.prototype.constructor</code></dt>
+ <dd>
+  Specifies the function that creates an object&apos;s prototype.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.global" title="The global property indicates whether or not the &quot;g&quot; flag is used with the regular expression. global is a read-only property of an individual regular expression instance."><code>RegExp.prototype.global</code></a></dt>
+ <dd>
+  Whether to test the regular expression against all possible matches in a string, or only against the first.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.ignoreCase" title="The ignoreCase property indicates whether or not the &quot;i&quot; flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance."><code>RegExp.prototype.ignoreCase</code></a></dt>
+ <dd>
+  Whether to ignore case while attempting a match in a string.</dd>
+ <dt>
+  <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>RegExp.prototype.lastIndex</code></a></dt>
+ <dd>
+  The index at which to start the next match.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.multiline" title="The multiline property indicates whether or not the &quot;m&quot; flag is used with the regular expression. multiline is a read-only property of an individual regular expression instance."><code>RegExp.prototype.multiline</code></a></dt>
+ <dd>
+  Whether or not to search in strings across multiple lines.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.source" title="The source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like &quot;g&quot;, &quot;i&quot; or &quot;m&quot;) of the regular expression."><code>RegExp.prototype.source</code></a></dt>
+ <dd>
+  The text of the pattern.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.sticky" title="The sticky property reflects whether or not the search is sticky (searches in strings only from the index indicated by the lastIndex property of this regular expression). sticky is a read-only property of an individual regular expression object."><code>RegExp.prototype.sticky</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Whether or not the search is sticky.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.flags" title="The flags property returns a string consists of the flags of the current regular expression object."><code>RegExp.prototype.flags</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  A string consists of the flags of a regex object.</dd>
+</dl>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Properties inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent"><code>__parent__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Proto"><code>__proto__</code></a></div>
+</div></div>
+<h2 id="Methods" name="Methods">Methods</h2>
+<p>See also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Deprecated_and_obsolete_features#RegExp_Methods">deprecated <code>RegExp</code> methods</a></p>
+<dl>
+ <dt>
+  <a href="#/RegExp.prototype.exec()" title="The exec() method executes a search for a match in a specified string. Returns a result array, or null."><code>RegExp.prototype.exec()</code></a></dt>
+ <dd>
+  Executes a search for a match in its string parameter.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.test()" title="The test() method executes a search for a match between a regular expression and a specified string. Returns true or false."><code>RegExp.prototype.test()</code></a></dt>
+ <dd>
+  Tests for a match in its string parameter.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>RegExp.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns an object literal representing the specified object; you can use this value to create a new object. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt>
+  <a href="#/RegExp.prototype.toString()" title="The toString() method returns a string representing the regular expression."><code>RegExp.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string representing the specified object. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+</dl>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineGetter"><code>__defineGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineSetter"><code>__defineSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/HasOwnProperty"><code>hasOwnProperty</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/IsPrototypeOf"><code>isPrototypeOf</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupGetter"><code>__lookupGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupSetter"><code>__lookupSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/NoSuchMethod"><code>__noSuchMethod__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/PropertyIsEnumerable"><code>propertyIsEnumerable</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/ToLocaleString"><code>toLocaleString</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Unwatch"><code>unwatch</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/ValueOf"><code>valueOf</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Watch"><code>watch</code></a></div>
+</div></div>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.5.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp.prototype" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.prototype&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular Expressions</a> chapter in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a></li>
+ <li><a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="The Function.prototype property represents the Function prototype object."><code>Function.prototype</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/prototype">RegExp.prototype</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/String.prototype.startsWith()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>startsWith()</code></strong> method determines whether a string begins with the characters of another string, returning <code>true</code> or <code>false</code> as appropriate.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.startsWith(<var>searchString</var>[, <var>position</var>])</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>searchString</code></dt>
+ <dd>
+  The characters to be searched for at the start of this string.</dd>
+ <dt>
+  <code>position</code></dt>
+ <dd>
+  Optional. The position in this string at which to begin searching for <code>searchString</code>; defaults to 0.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>This method lets you determine whether or not a string begins with another string.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_startsWith" name="Example:_Using_startsWith">Example: Using <code>startsWith()</code></h3>
+<prism-js language="javascript">var str = &apos;To be, or not to be, that is the question.&apos;;
+console.log(str.startsWith(&apos;To be&apos;));         // true
+console.log(str.startsWith(&apos;not to be&apos;));     // false
+console.log(str.startsWith(&apos;not to be&apos;, 10)); // true
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>This method has been added to the ECMAScript 6 specification and may not be available in all JavaScript implementations yet. However, you can polyfill <code>String.prototype.startsWith()</code> with the following snippet:</p>
+<prism-js language="javascript">if (!String.prototype.startsWith) {
+  Object.defineProperty(String.prototype, &apos;startsWith&apos;, {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+    value: function(searchString, position) {
+      position = position || 0;
+      return this.lastIndexOf(searchString, position) === position;
+    }
+  });
+}
+</prism-js>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.endsWith()" title="The endsWith() method determines whether a string ends with the characters of another string, returning true or false as appropriate."><code>String.prototype.endsWith()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></li>
+ <li><a href="#/String.prototype.includes()" title="The documentation about this has not yet been written; please consider contributing!"><code>String.prototype.contains()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></li>
+ <li><a href="#/String.prototype.indexOf()" title="The indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found."><code>String.prototype.indexOf()</code></a></li>
+ <li><a href="#/String.prototype.lastIndexOf()" title="The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found. The calling string is searched backward, starting at fromIndex."><code>String.prototype.lastIndexOf()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith">String.prototype.startsWith()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

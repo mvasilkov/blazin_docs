@@ -1,0 +1,78 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>JSON.parse()</strong></code> method parses a string as JSON, optionally transforming the value produced by parsing.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>JSON.parse(<em>text</em>[, <em>reviver</em>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>text</code></dt>
+ <dd>
+  The string to parse as JSON. See the <a href="#/JSON" title="The JSON object contains methods for parsing JavaScript Object Notation (JSON) and converting values to JSON. It can&apos;t be called or constructed, and aside from its two method properties it has no interesting functionality of its own."><code>JSON</code></a> object for a description of JSON syntax.</dd>
+ <dt>
+  <code>reviver</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  If a function, prescribes how the value originally produced by parsing is transformed, before being returned.</dd>
+</dl>
+<h3 id="Returns">Returns</h3>
+<p>Returns the Object corresponding to the given JSON <code>text</code>.</p>
+<h3 id="Exceptions">Exceptions</h3>
+<p>Throws a <a href="#/SyntaxError" title="The SyntaxError object represents an error when trying to interpret syntactically invalid code."><code>SyntaxError</code></a> exception if the string to parse is not valid JSON.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_JSON.parse()">Example: Using <code>JSON.parse()</code></h3>
+<prism-js language="javascript">JSON.parse(&apos;{}&apos;);              // {}
+JSON.parse(&apos;true&apos;);            // true
+JSON.parse(&apos;&quot;foo&quot;&apos;);           // &quot;foo&quot;
+JSON.parse(&apos;[1, 5, &quot;false&quot;]&apos;); // [1, 5, &quot;false&quot;]
+JSON.parse(&apos;null&apos;);            // null
+JSON.parse(&apos;{&quot;1&quot;: 1, &quot;2&quot;: 2}&apos;) //Object {1: 1, 2: 2}
+</prism-js>
+<h3 id="Example.3A_Using_the_reviver_parameter">Example: Using the <code>reviver</code> parameter</h3>
+<p>If a <code>reviver</code> is specified, the value computed by parsing is <em>transformed</em> before being returned. Specifically, the computed value, and all its properties (beginning with the most nested properties and proceeding to the original value itself), are individually run through the <code>reviver</code>, which is called with the object containing the property being processed as <code>this</code> and with the property name as a string and the property value as arguments. If the <code>reviver</code> function returns <code>undefined</code> (or returns no value, e.g. if execution falls off the end of the function), the property is deleted from the object. Otherwise the property is redefined to be the return value.</p>
+<p>The <code>reviver</code> is ultimately called with the empty string and the topmost value to permit transformation of the topmost value. Be certain to handle this case properly, usually by returning the provided value, or <code>JSON.parse</code> will return <code>undefined</code>.</p>
+<prism-js language="javascript">JSON.parse(&apos;{&quot;p&quot;: 5}&apos;, function (k, v) {
+    if(k === &quot;&quot;) return v;     // if topmost value, return it,
+    return v * 2;              // else return v * 2.
+});                            // { p: 10 }
+JSON.parse(&apos;{&quot;1&quot;: 1, &quot;2&quot;: 2,&quot;3&quot;: {&quot;4&quot;: 4, &quot;5&quot;: {&quot;6&quot;: 6}}}&apos;, function (k, v) {
+    console.log(k);            // log the current property name, the last is &quot;&quot;.
+    return v;                  // return the unchanged property value.
+});
+// 1
+// 2
+// 4
+// 6
+// 5
+// 3
+// &quot;&quot;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;JSON.parse&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition.<br>
+    Implemented in JavaScript 1.7.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-json.parse" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;JSON.parse&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_native_JSON">Using native JSON</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

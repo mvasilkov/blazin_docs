@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>blink()</code></strong> method creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blink" title="The HTML Blink Element (&lt;blink&gt;) is a non-standard element causing the enclosed text to flash slowly."><code>&lt;blink&gt;</code></a> HTML element that causes a string to blink.</p>
+<div class="warning">
+ <p><strong>Warning:</strong> Blinking text is frowned upon by several accessibility standards. The <code>&lt;blink&gt;</code> element itself is non-standard and deprecated!</p>
+</div>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.blink()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>blink()</code> method embeds a string in a <code>&lt;blink&gt;</code> tag: <code>&quot;&lt;blink&gt;str&lt;/blink&gt;&quot;</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_blink" name="Example:_Using_blink">Example: Using <code>blink()</code></h3>
+<p>The following example uses string methods to change the formatting of a string:</p>
+<prism-js language="javascript">var worldString = &apos;Hello, world&apos;;
+document.write(worldString.blink());
+document.write(worldString.bold());
+document.write(worldString.italics());
+document.write(worldString.strike());
+</prism-js>
+<p>This example produces the same output as the following HTML:</p>
+<prism-js language="javascript">&lt;blink&gt;Hello, world&lt;/blink&gt;
+&lt;b&gt;Hello, world&lt;/b&gt;
+&lt;i&gt;Hello, world&lt;/i&gt;
+&lt;strike&gt;Hello, world&lt;/strike&gt;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.blink" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.blink&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.bold()" title="The bold() method creates a &lt;b&gt; HTML element that causes a string to be displayed as bold."><code>String.prototype.bold()</code></a></li>
+ <li><a href="#/String.prototype.italics()" title="The italics() method creates an &lt;i&gt; HTML element that causes a string to be italic."><code>String.prototype.italics()</code></a></li>
+ <li><a href="#/String.prototype.strike()" title="The strike() method creates a &lt;strike&gt; HTML element that causes a string to be displayed as struck-out text."><code>String.prototype.strike()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/blink">String.prototype.blink()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

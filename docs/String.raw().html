@@ -1,0 +1,70 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/String.raw()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The static <strong><code>String.raw()</code></strong> method is a tag function of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">template strings</a>, like the <code>r</code> prefix in Python or the <code>@</code> prefix in C# for string literals, this function is used to get the raw string form of template strings.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>
+String.raw(<var>callSite</var>, <var>...substitutions</var>)
+String.raw`templateString`
+</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>callSite</code></dt>
+ <dd>Well-formed template call site object, like <code>{ raw: &apos;string&apos; }</code>.</dd>
+ <dt><code>...substitutions</code></dt>
+ <dd>Contains substitution values.</dd>
+ <dt><code>templateString</code></dt>
+ <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">template string</a>, optionally with substitutions (<code>${...}</code>).</dd>
+</dl>
+<h3 id="Throws">Throws</h3>
+<dl>
+ <dt><a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a></dt>
+ <dd>A <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> is thrown if the first argument is not a well formed object.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>In most cases <code>String.raw()</code> is used with template strings. The first syntax mentioned above is only rarely used because the JavaScript engine will call this with proper arguments for you, just like with other <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings#Tagged_template_strings">tag functions</a>.</p>
+<p>The <code>String.raw()</code> is the only built-in tag function of template strings, it works just like the default template function and performs concatenation, you can even re-implement it with normal JavaScript code.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_String.raw" name="Example:_String.raw">Example: Using <code>String.raw()</code></h3>
+<prism-js language="javascript">String.raw`Hi\n${2+3}!`;
+// &apos;Hi\\n5!&apos;, the character after &apos;Hi&apos; is not a newline character,
+// &apos;\&apos; and &apos;n&apos; are two characters.
+String.raw`Hi\u000A!`;
+// &apos;Hi\\u000A!&apos;, same here, this time we will get the
+//  \, u, 0, 0, 0, A, 6 characters.
+// All kinds of escape characters will be ineffective and
+// backslashes will be present in the output string.
+// You can confirm this by checking the .length property of the string.
+let name = &apos;Bob&apos;;
+String.raw`Hi\n${name}!`;
+// &apos;Hi\\nBob!&apos;, substitutions are processed.
+// Normally you would not call String.raw() as a function, but you can do so:
+String.raw({ raw: &apos;test&apos; }, 0, 1, 2);
+// &apos;t0e1s2t&apos;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.raw" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.raw&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">Template strings</a></li>
+ <li><a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar">Lexical grammar</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw">String.raw()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>anchor()</code></strong> method creates an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" title="The HTML &lt;a&gt; Element (or the HTML Anchor Element) defines a hyperlink, the named target destination for a hyperlink, or both."><code>&lt;a&gt;</code></a> HTML anchor element that is used as a hypertext target.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.anchor(<var>name</var>)</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt><code>name</code></dt>
+ <dd>A string representing the <code>name</code> attribute of the a tag to be created.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p>Use the <code>anchor()</code> method to programmatically create and display an anchor in a document.</p>
+<p>In the syntax, the text string represents the literal text that you want the user to see. The <code>name</code> parameter string represents the <code>name</code> attribute of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" title="The HTML &lt;a&gt; Element (or the HTML Anchor Element) defines a hyperlink, the named target destination for a hyperlink, or both."><code>&lt;a&gt;</code></a> element.</p>
+<p>Anchors created with the <code>anchor()</code> method become elements in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/document.anchors" title="anchors returns a list of all of the anchors in the document."><code>document.anchors</code></a> array.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_anchor()">Example: Using <code>anchor()</code></h3>
+<prism-js language="javascript">var myString = &apos;Table of Contents&apos;;
+document.body.innerHTML = myString.anchor(&apos;contents_anchor&apos;);
+</prism-js>
+<p>will output the following HTML:</p>
+<prism-js language="javascript">&lt;a name=&quot;contents_anchor&quot;&gt;Table of Contents&lt;/a&gt;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.anchor" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.anchor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.link()" title="The link() method creates an &lt;a&gt; HTML element that causes a string to be displayed as a hypertext link to another URL."><code>String.prototype.link()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/anchor">String.prototype.anchor()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

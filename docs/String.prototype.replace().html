@@ -1,0 +1,231 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>replace()</code></strong> method returns a new string with some or all matches of a <code>pattern</code> replaced by a <code>replacement</code>. The <code>pattern</code> can be a string or a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a>, and the <code>replacement</code> can be a string or a function to be called for each match.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.replace(<var>regexp</var>|<var>substr</var>, <var>newSubStr</var>|<var>function</var>[, <var>flags</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>regexp</code></dt>
+ <dd>
+  A <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object. The match is replaced by the return value of parameter #2.</dd>
+ <dt>
+  <code>substr</code></dt>
+ <dd>
+  A <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> that is to be replaced by <code>newSubStr</code>.</dd>
+ <dt>
+  <code>newSubStr</code></dt>
+ <dd>
+  The <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> that replaces the substring received from parameter #1. A number of special replacement patterns are supported; see the &quot;<a href="#/String.prototype.replace()#Specifying_a_string_as_a_parameter">Specifying a string as a parameter</a>&quot; section below.</dd>
+ <dt>
+  <code>function</code></dt>
+ <dd>
+  A function to be invoked to create the new substring (to put in place of the substring received from parameter #1). The arguments supplied to this function are described in the &quot;<a href="#/String.prototype.replace()#Specifying_a_function_as_a_parameter">Specifying a function as a parameter</a>&quot; section below.</dd>
+ <dt>
+  <code>flags</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  <p><strong>Note: The <code>flags</code> argument does not work in v8 Core (Chrome and NodeJs).</strong> A string specifying a combination of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Advanced_Searching_With_Flags">regular expression flags</a>. The use of the <code>flags</code> parameter in the <code>String.prototype.replace()</code> method is non-standard. Instead of using this parameter, use a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object with the corresponding flags. The value of this parameter if it is used should be a string consisting of one or more of the following characters to affect the operation as described:</p>
+  <dl>
+   <dt>
+    <code>g</code></dt>
+   <dd>
+    global match</dd>
+   <dt>
+    <code>i</code></dt>
+   <dd>
+    ignore case</dd>
+   <dt>
+    <code>m</code></dt>
+   <dd>
+    match over multiple lines</dd>
+   <dt>
+    <code>y</code> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+   <dd>
+    sticky</dd>
+  </dl>
+ </dd>
+</dl>
+<h3 id="Returns" name="Returns">Returns</h3>
+<p>A new string with some or all matches of a pattern replaced by a replacement.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>This method does not change the <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> object it is called on. It simply returns a new string.</p>
+<p>To perform a global search and replace, either include the <code>g</code> switch in the regular expression or if the first parameter is a string, include <code>g</code> in the <code>flags</code> parameter.</p>
+<h3 id="Specifying_a_string_as_a_parameter" name="Specifying_a_string_as_a_parameter">Specifying a string as a parameter</h3>
+<p>The replacement string can include the following special replacement patterns:</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <td class="header">Pattern</td>
+   <td class="header">Inserts</td>
+  </tr>
+  <tr>
+   <td><code>$$</code></td>
+   <td>Inserts a &quot;$&quot;.</td>
+  </tr>
+  <tr>
+   <td><code>$&amp;</code></td>
+   <td>Inserts the matched substring.</td>
+  </tr>
+  <tr>
+   <td><code>$`</code></td>
+   <td>Inserts the portion of the string that precedes the matched substring.</td>
+  </tr>
+  <tr>
+   <td><code>$&apos;</code></td>
+   <td>Inserts the portion of the string that follows the matched substring.</td>
+  </tr>
+  <tr>
+   <td><code>$<em>n</em></code> or <code>$<em>nn</em></code></td>
+   <td>Where <code><em>n</em></code> or <code><em>nn</em></code> are decimal digits, inserts the <em>n</em>th parenthesized submatch string, provided the first argument was a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object.</td>
+  </tr>
+ </tbody>
+</table>
+<h3 id="Specifying_a_function_as_a_parameter" name="Specifying_a_function_as_a_parameter">Specifying a function as a parameter</h3>
+<p>You can specify a function as the second parameter. In this case, the function will be invoked after the match has been performed. The function&apos;s result (return value) will be used as the replacement string. (Note: the above-mentioned special replacement patterns do <em>not</em> apply in this case.) Note that the function will be invoked multiple times for each full match to be replaced if the regular expression in the first parameter is global.</p>
+<p>The arguments to the function are as follows:</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <td class="header">Possible name</td>
+   <td class="header">Supplied value</td>
+  </tr>
+  <tr>
+   <td><code>match</code></td>
+   <td>The matched substring. (Corresponds to <code>$&amp;</code> above.)</td>
+  </tr>
+  <tr>
+   <td><code>p1, p2, ...</code></td>
+   <td>The <em>n</em>th parenthesized submatch string, provided the first argument to <code>replace()</code> was a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object. (Corresponds to <code>$1</code>, <code>$2</code>, etc. above.) For example, if&#xA0;<code>/(\a+)(\b+)/</code>, was given, <code>p1</code> is the match for <code>\a+</code>, and&#xA0;<code>p2</code> for <code>\b+</code>.</td>
+  </tr>
+  <tr>
+   <td><code>offset</code></td>
+   <td>The offset of the matched substring within the total string being examined. (For example, if the total string was <code>&apos;abcd&apos;</code>, and the matched substring was <code>&apos;bc&apos;</code>, then this argument will be 1.)</td>
+  </tr>
+  <tr>
+   <td><code>string</code></td>
+   <td>The total string being examined.</td>
+  </tr>
+ </tbody>
+</table>
+<p>(The exact number of arguments will depend on whether the first argument was a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object and, if so, how many parenthesized submatches it specifies.)</p>
+<p>The following example will set <code>newString</code> to&#xA0;<code>&apos;abc - 12345 - #$*%&apos;</code>:</p>
+<prism-js language="javascript">function replacer(match, p1, p2, p3, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p1, p2, p3].join(&apos; - &apos;);
+}
+var newString = &apos;abc12345#$*%&apos;.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+</prism-js>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_global_and_ignore_with_replace" name="Example:_Using_global_and_ignore_with_replace">Example: Using <code>global</code> and <code>ignore</code> with <code>replace()</code></h3>
+<p>In the following example, the regular expression includes the global and ignore case flags which permits <code>replace()</code> to replace each occurrence of &apos;apples&apos; in the string with &apos;oranges&apos;.</p>
+<prism-js language="javascript">var re = /apples/gi;
+var str = &apos;Apples are round, and apples are juicy.&apos;;
+var newstr = str.replace(re, &apos;oranges&apos;);
+console.log(newstr);
+</prism-js>
+<h3 id="Example:_Defining_the_regular_expression_in_replace" name="Example:_Defining_the_regular_expression_in_replace">Example: Defining the regular expression in <code>replace()</code></h3>
+<p>In the following example, the regular expression is defined in <code>replace()</code> and includes the ignore case flag.</p>
+<prism-js language="javascript">var str = &apos;Twas the night before Xmas...&apos;;
+var newstr = str.replace(/xmas/i, &apos;Christmas&apos;);
+console.log(newstr);
+</prism-js>
+<p>This prints &apos;Twas the night before Christmas...&apos;</p>
+<h3 id="Example:_Switching_words_in_a_string" name="Example:_Switching_words_in_a_string">Example: Switching words in a string</h3>
+<p>The following script switches the words in the string. For the replacement text, the script uses the <code>$1</code> and <code>$2</code> replacement patterns.</p>
+<prism-js language="javascript">var re = /(\w+)\s(\w+)/;
+var str = &apos;John Smith&apos;;
+var newstr = str.replace(re, &apos;$2, $1&apos;);
+console.log(newstr);
+</prism-js>
+<p>This prints &apos;Smith, John&apos;.</p>
+<h3 id="Example:_Using_an_inline_function_that_modifies_the_matched_characters" name="Example:_Using_an_inline_function_that_modifies_the_matched_characters">Example: Using an inline function that modifies the matched characters</h3>
+<p>In this example, all occurrences of capital letters in the string are converted to lower case, and a hyphen is inserted just before the match location. The important thing here is that additional operations are needed on the matched item before it is given back as a replacement.</p>
+<p>The replacement function accepts the matched snippet as its parameter, and uses it to transform the case and concatenate the hyphen before returning.</p>
+<prism-js language="javascript">function styleHyphenFormat(propertyName) {
+  function upperToHyphenLower(match) {
+    return &apos;-&apos; + match.toLowerCase();
+  }
+  return propertyName.replace(/[A-Z]/g, upperToHyphenLower);
+}
+</prism-js>
+<p>Given <code>styleHyphenFormat(&apos;borderTop&apos;)</code>, this returns &apos;border-top&apos;.</p>
+<p>Because we want to further transform the <em>result</em> of the match before the final substitution is made, we must use a function. This forces the evaluation of the match prior to the <a href="#/String.prototype.toLowerCase()" title="The toLowerCase() method returns the calling string value converted to lowercase."><code>toLowerCase()</code></a> method. If we had tried to do this using the match without a function, the <a href="#/String.prototype.toLowerCase()" title="The toLowerCase() method returns the calling string value converted to lowercase."><code>toLowerCase()</code></a> would have no effect.</p>
+<prism-js language="javascript">var newString = propertyName.replace(/[A-Z]/g, &apos;-&apos; + &apos;$&amp;&apos;.toLowerCase());  // won&apos;t work
+</prism-js>
+<p>This is because <code>&apos;$&amp;&apos;.toLowerCase()</code> would be evaluated first as a string literal (resulting in the same <code>&apos;$&amp;&apos;</code>) before using the characters as a pattern.</p>
+<h3 id="Example:_Replacing_a_Fahrenheit_degree_with_its_Celsius_equivalent" name="Example:_Replacing_a_Fahrenheit_degree_with_its_Celsius_equivalent">Example: Replacing a Fahrenheit degree with its Celsius equivalent</h3>
+<p>The following example replaces a Fahrenheit degree with its equivalent Celsius degree. The Fahrenheit degree should be a number ending with F. The function returns the Celsius number ending with C. For example, if the input number is 212F, the function returns 100C. If the number is 0F, the function returns -17.77777777777778C.</p>
+<p>The regular expression <code>test</code> checks for any number that ends with F. The number of Fahrenheit degree is accessible to the function through its second parameter, <code>p1</code>. The function sets the Celsius number based on the Fahrenheit degree passed in a string to the <code>f2c()</code> function. <code>f2c()</code> then returns the Celsius number. This function approximates Perl&apos;s <code>s///e</code> flag.</p>
+<prism-js language="javascript">function f2c(x) {
+  function convert(str, p1, offset, s) {
+    return ((p1 - 32) * 5/9) + &apos;C&apos;;
+  }
+  var s = String(x);
+  var test = /(\d+(?:\.\d*)?)F\b/g;
+  return s.replace(test, convert);
+}
+</prism-js>
+<h3 id="Example: Use an inline function with a regular expression to avoid for loops" name="Example: Use an inline function with a regular expression to avoid for loops">Example: Use an inline function with a regular expression to avoid <code>for</code> loops</h3>
+<p>The following example takes a string pattern and converts it into an array of objects.</p>
+<p><strong>Input:</strong></p>
+<p>A string made out of the characters <code>x</code>, <code>-</code> and <code>_</code></p>
+<pre>x-x_
+x---x---x---x---
+x-xxx-xx-x-
+x_x_x___x___x___
+</pre>
+<p><strong>Output:</strong></p>
+<p>An array of objects. An <code>&apos;x&apos;</code> denotes an <code>&apos;on&apos;</code> state, a <code>&apos;-&apos;</code> (hyphen) denotes an <code>&apos;off&apos;</code> state and an <code>&apos;_&apos;</code> (underscore) denotes the length of an <code>&apos;on&apos;</code> state.</p>
+<prism-js language="javascript">[
+  { on: true, length: 1 },
+  { on: false, length: 1 },
+  { on: true, length: 2 }
+  ...
+]
+</prism-js>
+<p><strong>Snippet:</strong></p>
+<prism-js language="javascript">var str = &apos;x-x_&apos;;
+var retArr = [];
+str.replace(/(x_*)|(-)/g, function(match, p1, p2) {
+  if (p1) { retArr.push({ on: true, length: p1.length }); }
+  if (p2) { retArr.push({ on: false, length: 1 }); }
+});
+console.log(retArr);
+</prism-js>
+<p>This snippet generates an array of 3 objects in the desired format without using a <code>for</code> loop.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.11" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.replace&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.replace" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.replace&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.match()" title="The match() method retrieves the matches when matching a string against a regular expression."><code>String.prototype.match()</code></a></li>
+ <li><a href="#/RegExp.prototype.exec()" title="The exec() method executes a search for a match in a specified string. Returns a result array, or null."><code>RegExp.prototype.exec()</code></a></li>
+ <li><a href="#/RegExp.prototype.test()" title="The test() method executes a search for a match between a regular expression and a specified string. Returns true or false."><code>RegExp.prototype.test()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace">String.prototype.replace()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

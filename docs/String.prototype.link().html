@@ -1,0 +1,51 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>link()</code></strong> method creates an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" title="The HTML &lt;a&gt; Element (or the HTML Anchor Element) defines a hyperlink, the named target destination for a hyperlink, or both."><code>&lt;a&gt;</code></a> HTML element that causes a string to be displayed as a hypertext link to another URL.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.link(<var>url</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>url</code></dt>
+ <dd>Any string that specifies the <code>href</code> attribute of the <code>&lt;a&gt;</code> tag; it should be a valid URL (relative or absolute), with any <code>&amp;</code> characters escaped as <code>&amp;amp;</code>, and any <code>&quot;</code> characters escaped as <code>&amp;quot;</code>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Use the <code>link()</code> method to create an HTML snippet for a hypertext link. The returned string can then be added to the document via <a href="https://developer.mozilla.org/en-US/docs/Web/API/document.write" title="Writes a string of text to a document stream opened by document.open()."><code>document.write()</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/element.innerHTML" title="innerHTML sets or gets the HTML syntax describing the element&apos;s descendants."><code>element.innerHTML</code></a>.</p>
+<p>Links created with the <code>link()</code> method become elements in the <code>links</code> array of the <code>document</code> object. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/document.links" title="The links property returns a collection of all &lt;area&gt; elements and &lt;a&gt; elements in a document with a value for the href attribute."><code>document.links</code></a>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_link" name="Example:_Using_link">Example: Using <code>link()</code></h3>
+<p>The following example displays the word &quot;MDN&quot; as a hypertext link that returns the user to the Mozilla Developer Network.</p>
+<prism-js language="javascript">var hotText = &apos;MDN&apos;;
+var URL = &apos;https://developer.mozilla.org/&apos;;
+document.write(&apos;Click to return to &apos; + hotText.link(URL));
+</prism-js>
+<p>This example produces the same output as the following HTML:</p>
+<prism-js language="javascript">Click to return to &lt;a href=&quot;https://developer.mozilla.org/&quot;&gt;MDN&lt;/a&gt;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.link" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.link&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Gecko-specific_notes" name="Gecko-specific_notes">Gecko-specific notes</h2>
+<ul>
+ <li>Starting Gecko 17.0 (Firefox 17 / Thunderbird 17 / SeaMonkey 2.14) the <code>&quot;</code> (quotation mark) is now automatically replaced by its HTML reference character <code>&amp;quot;</code> in the <code>url</code> parameter.</li>
+</ul>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.anchor()" title="The anchor() method creates an &lt;a&gt; HTML anchor element that is used as a hypertext target."><code>String.prototype.anchor()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/link">String.prototype.link()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

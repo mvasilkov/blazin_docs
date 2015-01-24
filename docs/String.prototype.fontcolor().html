@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>fontcolor()</code></strong> method creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font" title="The HTML Font Element (&lt;font&gt;) defines the font size, color and face for its content."><code>&lt;font&gt;</code></a> HTML element that causes a string to be displayed in the specified font color.</p>
+<div class="note">
+ <p><strong>Usage note:</strong> The &lt;font&gt; element has been removed in <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">HTML5</a> and shouldn&apos;t be used anymore. Instead web developers should use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> properties.</p>
+</div>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.fontcolor(<var>color</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>color</code></dt>
+ <dd>A string expressing the color as a hexadecimal RGB triplet or as a string literal. String literals for color names are listed in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">CSS color reference</a>.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If you express color as a hexadecimal RGB triplet, you must use the format <code>rrggbb</code>. For example, the hexadecimal RGB values for salmon are red=FA, green=80, and blue=72, so the RGB triplet for salmon is <code>&quot;FA8072&quot;</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_fontcolor" name="Example:_Using_fontcolor">Example: Using <code>fontcolor()</code></h3>
+<p>The following example uses the <code>fontcolor()</code> method to change the color of a string by producing a string with the HTML <code>&lt;font&gt;</code> tag.</p>
+<prism-js language="javascript">var worldString = &apos;Hello, world&apos;;
+console.log(worldString.fontcolor(&apos;red&apos;) +  &apos; is red in this line&apos;);
+// &apos;&lt;font color=&quot;red&quot;&gt;Hello, world&lt;/font&gt; is red in this line&apos;
+console.log(worldString.fontcolor(&apos;FF00&apos;) + &apos; is red in hexadecimal in this line&apos;);
+// &apos;&lt;font color=&quot;FF00&quot;&gt;Hello, world&lt;/font&gt; is red in hexadecimal in this line&apos;
+</prism-js>
+<p>With the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.style" title="The HTMLElement.style property returns a CSSStyleDeclaration object that represents the element&apos;s style attribute. See the CSS Properties Reference for a list of the CSS properties accessible via style."><code>element.style</code></a> object you can get the element&apos;s <code>style</code> attribute and manipulate it more generically, for example:</p>
+<prism-js language="javascript">document.getElementById(&apos;yourElemId&apos;).style.color = &apos;red&apos;;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.fontcolor" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.fontcolor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.fontsize()" title="The fontsize() method creates a &lt;font&gt; HTML element that causes a string to be displayed in the specified font size."><code>String.prototype.fontsize()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontcolor">String.prototype.fontcolor()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

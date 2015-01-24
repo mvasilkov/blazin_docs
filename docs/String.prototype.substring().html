@@ -1,0 +1,107 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>substring()</code></strong> method returns a subset of a <code>string</code> between one index and another, or through the end of the string.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.substring(<var>indexA</var>[, <var>indexB</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>indexA</code></dt>
+ <dd>
+  An integer between <code>0</code> and the length of the string, specifying the offset into the string of the first character to include in the returned substring.</dd>
+ <dt>
+  <code>indexB</code></dt>
+ <dd>
+  Optional. An integer between <code>0</code> and the length of the string, which specifies the offset into the string of the first character <strong>not</strong> to include in the returned substring.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>substring()</code> extracts characters from <code>indexA</code> up to but not including <code>indexB</code>. In particular:</p>
+<ul>
+ <li>If <code>indexA</code> equals <code>indexB</code>, <code>substring()</code> returns an empty string.</li>
+ <li>If <code>indexB</code> is omitted, <code>substring()</code> extracts characters to the end of the string.</li>
+ <li>If either argument is less than 0 or is <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>, it is treated as if it were 0.</li>
+ <li>If either argument is greater than <code>stringName.length</code>, it is treated as if it were <code>stringName.length</code>.</li>
+</ul>
+<p>If <code>indexA</code> is larger than <code>indexB</code>, then the effect of <code>substring()</code> is as if the two arguments were swapped; for example, <code><em>str</em>.substring(1, 0) == <em>str</em>.substring(0, 1)</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_substring" name="Example:_Using_substring">Example: Using <code>substring()</code></h3>
+<p>The following example uses <code>substring()</code> to display characters from the string <code>&apos;Mozilla&apos;</code>:</p>
+<prism-js language="javascript">var anyString = &apos;Mozilla&apos;;
+// Displays &apos;Moz&apos;
+console.log(anyString.substring(0, 3));
+console.log(anyString.substring(3, 0));
+// Displays &apos;lla&apos;
+console.log(anyString.substring(4, 7));
+console.log(anyString.substring(7, 4));
+// Displays &apos;Mozill&apos;
+console.log(anyString.substring(0, 6));
+// Displays &apos;Mozilla&apos;
+console.log(anyString.substring(0, 7));
+console.log(anyString.substring(0, 10));
+</prism-js>
+<h2 id="Examples_2">Examples</h2>
+<h3 id="Example.3A_Using_substring()_with_length_property">Example: Using <code>substring()</code> with length property</h3>
+<p>The following example uses the substring() method and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length">length property</a> to extract the last characters of a particular string. This method may be easier to remember, given that you don&apos;t need to know the starting and ending indices as you would in the above examples.</p>
+<prism-js language="javascript">// Displays &apos;illa&apos; the last 4 characters
+var anyString = &apos;Mozilla&apos;;
+var anyString4 = anyString.substring(anyString.length - 4);
+console.log(anyString4);
+// Displays &apos;zilla&apos; the last 5 characters
+var anyString = &apos;Mozilla&apos;;
+var anyString5 = anyString.substring(anyString.length - 5);
+console.log(anyString5);
+</prism-js>
+<h3 id="Example:_Replacing_a_substring_within_a_string" name="Example:_Replacing_a_substring_within_a_string">Example: Replacing a substring within a string</h3>
+<p>The following example replaces a substring within a string. It will replace both individual characters and substrings. The function call at the end of the example changes the string <code>&apos;Brave New World&apos;</code> into <code>&apos;Brave New Web&apos;</code>.</p>
+<prism-js language="javascript">// Replaces oldS with newS in the string fullS
+function replaceString(oldS, newS, fullS) {
+  for (var i = 0; i &lt; fullS.length; ++i) {
+    if (fullS.substring(i, i + oldS.length) == oldS) {
+      fullS = fullS.substring(0, i) + newS + fullS.substring(i + oldS.length, fullS.length);
+    }
+  }
+  return fullS;
+}
+replaceString(&apos;World&apos;, &apos;Web&apos;, &apos;Brave New World&apos;);
+</prism-js>
+<p>Note that this can result in an infinite loop if <code>oldS</code> is itself a substring of <code>newS</code>&#xA0;&#x2014; for example, if you attempted to replace &apos;World&apos; with &apos;OtherWorld&apos; here. A better method for replacing strings is as follows:</p>
+<prism-js language="javascript">function replaceString(oldS, newS, fullS) {
+  return fullS.split(oldS).join(newS);
+}
+</prism-js>
+<p>The code above serves as an example for substring operations. If you need to replace substrings, most of the time you will want to use <a href="#/String.prototype.replace()" title="The replace() method returns a new string with some or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match."><code>String.prototype.replace()</code></a>.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.15" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.substring&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.substring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.substring&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.substr()" title="The substr() method returns the characters in a string beginning at the specified location through the specified number of characters."><code>String.prototype.substr()</code></a></li>
+ <li><a href="#/String.prototype.slice()" title="The slice() method extracts a section of a string and returns a new string."><code>String.prototype.slice()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring">String.prototype.substring()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

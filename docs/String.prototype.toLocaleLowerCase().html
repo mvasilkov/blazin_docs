@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>toLocaleLowerCase()</code></strong> method returns the calling string value converted to lower case, according to any locale-specific case mappings.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.toLocaleLowerCase()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>toLocaleLowerCase()</code> method returns the value of the string converted to lower case according to any locale-specific case mappings. <code>toLocaleLowerCase()</code> does not affect the value of the string itself. In most cases, this will produce the same result as <a href="#/String.prototype.toLowerCase()" title="The toLowerCase() method returns the calling string value converted to lowercase."><code>toLowerCase()</code></a>, but for some locales, such as Turkish, whose case mappings do not follow the default case mappings in Unicode, there may be a different result.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toLocaleLowerCase" name="Example:_Using_toLocaleLowerCase">Example: Using <code>toLocaleLowerCase()</code></h3>
+<prism-js language="javascript">console.log(&apos;ALPHABET&apos;.toLocaleLowerCase()); // &apos;alphabet&apos;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.17" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.toLocaleLowerCase&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.tolocalelowercase" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.toLocaleLowerCase&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.toLocaleUpperCase()" title="The toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings."><code>String.prototype.toLocaleUpperCase()</code></a></li>
+ <li><a href="#/String.prototype.toLowerCase()" title="The toLowerCase() method returns the calling string value converted to lowercase."><code>String.prototype.toLowerCase()</code></a></li>
+ <li><a href="#/String.prototype.toUpperCase()" title="The toUpperCase() method returns the calling string value converted to uppercase."><code>String.prototype.toUpperCase()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase">String.prototype.toLocaleLowerCase()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,89 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>substr()</code></strong> method returns the characters in a string beginning at the specified location through the specified number of characters.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.substr(<var>start</var>[, <var>length</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>start</code></dt>
+ <dd>
+  Location at which to begin extracting characters. If a negative number is given, it is treated as&#xA0;<code>strLength + start</code> where <code>strLength</code> = to the length of the string (for example, if <code>start</code> is -3 it is treated as <code>strLength - 3</code>.)</dd>
+ <dt>
+  <code>length</code></dt>
+ <dd>
+  Optional. The number of characters to extract.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>start</code> is a character index. The index of the first character is 0, and the index of the last character is 1 less than the length of the string. <code>substr()</code> begins extracting characters at <code>start</code> and collects <code>length</code> characters (unless it reaches the end of the string first, in which case it will return fewer).</p>
+<p>If <code>start</code> is positive and is greater than or equal to the length of the string, <code>substr()</code> returns an empty string.</p>
+<p>If <code>start</code> is negative, <code>substr()</code> uses it as a character index from the end of the string. If <code>start</code> is negative and <code>abs(start)</code> is larger than the length of the string, <code>substr()</code> uses 0 as the start index. Note: the described handling of negative values of the <code>start</code> argument is not supported by Microsoft JScript.</p>
+<p>If <code>length</code> is 0 or negative, <code>substr()</code> returns an empty string. If <code>length</code> is omitted, <code>substr()</code> extracts characters to the end of the string.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_substr" name="Example:_Using_substr">Example: Using <code>substr()</code></h3>
+<prism-js language="javascript">var str = &apos;abcdefghij&apos;;
+console.log(&apos;(1, 2): &apos;   + str.substr(1, 2));   // &apos;(1, 2): bc&apos;
+console.log(&apos;(-3, 2): &apos;  + str.substr(-3, 2));  // &apos;(-3, 2): hi&apos;
+console.log(&apos;(-3): &apos;     + str.substr(-3));     // &apos;(-3): hij&apos;
+console.log(&apos;(1): &apos;      + str.substr(1));      // &apos;(1): bcdefghij&apos;
+console.log(&apos;(-20, 2): &apos; + str.substr(-20, 2)); // &apos;(-20, 2): ab&apos;
+console.log(&apos;(20, 2): &apos;  + str.substr(20, 2));  // &apos;(20, 2): &apos;
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>Microsoft&apos;s JScript does not support negative values for the start index. If you wish to make use of this feature, you can use the following compatibilty code to work around this bug:</p>
+<prism-js language="javascript">// only run when the substr() function is broken
+if (&apos;ab&apos;.substr(-1) != &apos;b&apos;) {
+  /**
+   *  Get the substring of a string
+   *  @param  {integer}  start   where to start the substring
+   *  @param  {integer}  length  how many characters to return
+   *  @return {string}
+   */
+  String.prototype.substr = function(substr) {
+    return function(start, length) {
+      // did we get a negative start, calculate how much it is
+      // from the beginning of the string
+      if (start &lt; 0) {
+        start = this.length + start;
+      }
+      // call the original function
+      return substr.call(this, start, length);
+    }
+  }(String.prototype.substr);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Defined in the (informative) Compatibility Annex B. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-B.2.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;String.prototype.substr&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Defined in the (informative) Compatibility Annex B</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.substr" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.substr&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.slice()" title="The slice() method extracts a section of a string and returns a new string."><code>String.prototype.slice()</code></a></li>
+ <li><a href="#/String.prototype.substring()" title="The substring() method returns a subset of a string between one index and another, or through the end of the string."><code>String.prototype.substring()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr">String.prototype.substr()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

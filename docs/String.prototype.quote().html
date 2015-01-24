@@ -1,0 +1,51 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div class="overheadIndicator obsolete obsoleteHeader"><p><strong>Obsolete since Gecko 37 (Firefox 37 / Thunderbird 37 / SeaMonkey 2.34)</strong><br>This feature is obsolete. Although it may still work in some browsers, its use is discouraged since it could be removed at any time. Try to avoid using it.</p></div></div>
+<div>
+  <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The non-standard <strong><code>quote()</code></strong> method returns a copy of the string, replacing various special characters in the string with their escape sequences and wrapping the result in double-quotes (<code>&quot;</code>).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.quote()</code></pre>
+<h2 id="Examples" name="Examples">Examples</h2>
+<p>In the table below the <code>quote()</code> method replaces any special characters and wraps the strings in double-quotes. Also note the third column where a wrapped <a href="#/eval()" title="The eval() method evaluates JavaScript code represented as a string."><code>eval()</code></a> evaluates the escape sequences again.</p>
+<table class="fullwidth-table">
+ <thead>
+  <tr>
+   <th class="header" scope="col"><code>str</code></th>
+   <th class="header" scope="col"><code>str.quote()</code></th>
+   <th class="header" scope="col"><code>eval(str.quote())</code></th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td><code>Hello world!</code></td>
+   <td><code>&quot;Hello world!&quot;</code></td>
+   <td><code>Hello world!</code></td>
+  </tr>
+  <tr>
+   <td><code style="white-space: pre;">Hello<br>
+    world!</code></td>
+   <td><code>&quot;Hello\n\tworld!&quot;</code></td>
+   <td><code style="white-space: pre;">Hello<br>
+    world!</code></td>
+  </tr>
+  <tr>
+   <td><code>&quot; \ &#x2014; &apos;</code></td>
+   <td><code>&quot;\&quot; \\ \u2014 &apos;&quot;</code></td>
+   <td><code>&quot; \ &#x2014; &apos;</code></td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<p>Not part of any standard. Implemented in JavaScript 1.3.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/JSON.stringify()" title="The JSON.stringify() method converts a value to JSON, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified."><code>JSON.stringify()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/quote">String.prototype.quote()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>trim()</code></strong> method removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.trim()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>trim()</code> method returns the string stripped of whitespace from both ends. <code>trim()</code> does not affect the value of the string itself.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_trim" name="Example:_Using_trim">Example: Using <code>trim()</code></h3>
+<p>The following example displays the lowercase string <code>&apos;foo&apos;</code>:</p>
+<prism-js language="javascript">var orig = &apos;   foo  &apos;;
+console.log(orig.trim()); // &apos;foo&apos;
+// Another example of .trim() removing whitespace from just one side.
+var orig = &apos;foo    &apos;;
+console.log(orig.trim()); // &apos;foo&apos;
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>Running the following code before any other code will create <code>trim()</code> if it&apos;s not natively available.</p>
+<prism-js language="javascript">if (!String.prototype.trim) {
+  (function() {
+    // Make sure we trim BOM and NBSP
+    var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+    String.prototype.trim = function() {
+      return this.replace(rtrim, &apos;&apos;);
+    };
+  })();
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.4.20" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.trim&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.trim" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;String.prototype.trim&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.trimLeft()" title="The trimLeft() removes whitespace from the left end of the string."><code>String.prototype.trimLeft()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></li>
+ <li><a href="#/String.prototype.trimRight()" title="The trimRight() method removes whitespace from the right end of the string."><code>String.prototype.trimRight()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim">String.prototype.trim()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

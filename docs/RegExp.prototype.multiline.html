@@ -1,0 +1,70 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>multiline</code></strong> property indicates whether or not the &quot;<code>m</code>&quot; flag is used with the regular expression. <code>multiline</code> is a read-only property of an individual regular expression instance.</p>
+<div><table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>RegExp.prototype.multiline</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p>The value of <code>multiline</code> is a <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> and is true if the &quot;<code>m</code>&quot; flag was used; otherwise, false. The &quot;<code>m</code>&quot; flag indicates that a multiline input string should be treated as multiple lines. For example, if &quot;<code>m</code>&quot; is used, &quot;<code>^</code>&quot; and &quot;<code>$</code>&quot; change from matching at only the start or end of the entire string to the start or end of any line within the string.</p>
+<p>You cannot change this property directly.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_multiline" name="Example:_Using_multiline">Example: Using <code>multiline</code></h3>
+<prism-js language="javascript">var regex = new RegExp(&apos;foo&apos;, &apos;m&apos;);
+console.log(regex.multiline); // true
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.<br>
+    JavaScript 1.5: <code>multiline</code> is a property of a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> instance, not the <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.7.4" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.prototype.multiline&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-get-regexp.prototype.multiline" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.prototype.multiline&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td><code>multiline</code> is now a prototype accessor property rather than an instance&apos;s own data property.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>RegExp.lastIndex</code></a></li>
+ <li><a href="#/RegExp.prototype.global" title="The global property indicates whether or not the &quot;g&quot; flag is used with the regular expression. global is a read-only property of an individual regular expression instance."><code>RegExp.prototype.global</code></a></li>
+ <li><a href="#/RegExp.prototype.ignoreCase" title="The ignoreCase property indicates whether or not the &quot;i&quot; flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance."><code>RegExp.prototype.ignoreCase</code></a></li>
+ <li><a href="#/RegExp.prototype.source" title="The source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like &quot;g&quot;, &quot;i&quot; or &quot;m&quot;) of the regular expression."><code>RegExp.prototype.source</code></a></li>
+ <li><a href="#/RegExp.prototype.sticky" title="The sticky property reflects whether or not the search is sticky (searches in strings only from the index indicated by the lastIndex property of this regular expression). sticky is a read-only property of an individual regular expression object."><code>RegExp.prototype.sticky</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/multiline">RegExp.prototype.multiline</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

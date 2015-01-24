@@ -1,0 +1,45 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>small()</code></strong> method creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/small" title="The HTML Small Element (&lt;small&gt;) makes the text font size one size smaller (for example, from large to medium, or from small to x-small) down to the browser&apos;s minimum font size.&#xA0; In HTML5, this element is repurposed to represent side-comments and small print, including copyright and legal text, independent of its styled presentation."><code>&lt;small&gt;</code></a> HTML element that causes a string to be displayed in a small font.</p>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.small()</code></pre>
+<h2 id="Description">Description</h2>
+<p>The <code>small()</code> method embeds a string in a <code>&lt;small&gt;</code> tag: <code>&quot;&lt;small&gt;str&lt;/small&gt;&quot;</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_small" name="Example:_Using_small">Example: Using <code>small()</code></h3>
+<p>The following example uses string methods to change the size of a string:</p>
+<prism-js language="javascript">var worldString = &apos;Hello, world&apos;;
+console.log(worldString.small());     // &lt;small&gt;Hello, world&lt;/small&gt;
+console.log(worldString.big());       // &lt;big&gt;Hello, world&lt;/big&gt;
+console.log(worldString.fontsize(7)); // &lt;font size=&quot;7&quot;&gt;Hello, world&lt;/fontsize&gt;
+</prism-js>
+<p>With the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.style" title="The HTMLElement.style property returns a CSSStyleDeclaration object that represents the element&apos;s style attribute. See the CSS Properties Reference for a list of the CSS properties accessible via style."><code>element.style</code></a> object you can get the element&apos;s <code>style</code> attribute and manipulate it more generically, for example:</p>
+<prism-js language="javascript">document.getElementById(&apos;yourElemId&apos;).style.fontSize = &apos;0.7em&apos;;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.small" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.small&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.fontsize()" title="The fontsize() method creates a &lt;font&gt; HTML element that causes a string to be displayed in the specified font size."><code>String.prototype.fontsize()</code></a></li>
+ <li><a href="#/String.prototype.big()" title="The big() method creates a &lt;big&gt; HTML element that causes a string to be displayed in a big font."><code>String.prototype.big()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/small">String.prototype.small()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

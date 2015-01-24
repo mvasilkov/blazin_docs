@@ -1,0 +1,135 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>JSON.stringify()</strong></code> method converts a JavaScript value&#xA0;to a JSON string, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>JSON.stringify(<em>value</em>[, <em>replacer</em> [, <em>space</em>]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>value</code></dt>
+ <dd>The value to convert to a JSON string.</dd>
+ <dt><code>replacer</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>If a function, transforms values and properties encountered while stringifying; if an array, specifies the set of properties included in objects in the final string.<br>
+ A detailed description of the <code>replacer</code> function is provided in the JavaScript guide article <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_native_JSON#The_replacer_parameter">Using native JSON</a>.</dd>
+ <dt><code>space</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>Causes the resulting string to be pretty-printed.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p><code>JSON.stringify</code> converts a value to JSON notation representing it:</p>
+<ul>
+ <li>Properties of non-array objects are not guaranteed to be stringified in any particular order. Do not rely on ordering of properties within the same object within the stringification.</li>
+ <li>Boolean, Number, and String objects are converted to the corresponding primitive values during stringification, in accord with the traditional conversion semantics.</li>
+ <li>If <code>undefined</code>, a function, or a symbol is encountered during conversion it is either omitted (when it is found in an object) or censored to null (when it is found in an array).</li>
+ <li>All symbol-keyed properties will be completely ignored, even when using the <code>replacer</code> function.</li>
+</ul>
+<prism-js language="javascript">JSON.stringify({});                        // &apos;{}&apos;
+JSON.stringify(true);                      // &apos;true&apos;
+JSON.stringify(&quot;foo&quot;);                     // &apos;&quot;foo&quot;&apos;
+JSON.stringify([1, &quot;false&quot;, false]);       // &apos;[1,&quot;false&quot;,false]&apos;
+JSON.stringify({ x: 5 });                  // &apos;{&quot;x&quot;:5}&apos;
+Examples:
+var JavascriptObject = {name: &quot;George&quot;, lastname: &quot;Batalinski&quot;};
+var ValidJSON = JSON.stringify({name: &quot;George&quot;, lastname: &quot;Batalinski&quot;});
+JSON.stringify({x: 5, y: 6});
+// &apos;{&quot;x&quot;:5,&quot;y&quot;:6}&apos; or &apos;{&quot;y&quot;:6,&quot;x&quot;:5}&apos;
+JSON.stringify([new Number(1), new String(&quot;false&quot;), new Boolean(false)]);
+// &apos;[1,&quot;false&quot;,false]&apos;
+// Symbols:
+JSON.stringify({x: undefined, y: Object, z: Symbol(&quot;&quot;)});
+// &apos;{}&apos;
+JSON.stringify({[Symbol(&quot;foo&quot;)]: &quot;foo&quot;});
+// &apos;{}&apos;
+JSON.stringify({[Symbol.for(&quot;foo&quot;)]: &quot;foo&quot;}, [Symbol.for(&quot;foo&quot;)]);
+// &apos;{}&apos;
+JSON.stringify({[Symbol.for(&quot;foo&quot;)]: &quot;foo&quot;}, function (k, v) {
+  if (typeof k === &quot;symbol&quot;){
+    return &quot;a symbol&quot;;
+  }
+});
+// &apos;{}&apos;
+</prism-js>
+<h3 id="space_argument"><code>space</code> argument</h3>
+<p>The space argument may be used to control spacing in the final string. If it is a number, successive levels in the stringification will each be indented by this many space characters (up to 10). If it is a string, successive levels will indented by this string (or the first ten characters of it).</p>
+<prism-js language="javascript">JSON.stringify({ a: 2 }, null, &quot; &quot;);   // &apos;{\n &quot;a&quot;: 2\n}&apos;</prism-js>
+<p>Using a tab character mimics standard pretty-print appearance:</p>
+<prism-js language="javascript">JSON.stringify({ uno: 1, dos : 2 }, null, &apos;\t&apos;)
+// returns the string:
+// &apos;{            \
+//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&quot;uno&quot;: 1, \
+//&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&quot;dos&quot;: 2  \
+//&#xA0;}&apos; </prism-js>
+<h3 id="toJSON_behavior">toJSON behavior</h3>
+<p>If an object being stringified has a property named <code>toJSON</code> whose value is a function, then the <code>toJSON</code> method customizes JSON stringification behavior: instead of the object being serialized, the value returned by the <code>toJSON</code> method when called will be serialized. For example:</p>
+<prism-js language="javascript">var obj = {
+  foo: &apos;foo&apos;,
+  toJSON: function () {
+    return &apos;bar&apos;;
+  }
+};
+JSON.stringify(obj);      // &apos;&quot;bar&quot;&apos;
+JSON.stringify({x: obj}); // &apos;{&quot;x&quot;:&quot;bar&quot;}&apos;
+</prism-js>
+<h3 id="Example_of_using_JSON.stringify_with_localStorage">Example of using JSON.stringify with localStorage</h3>
+<p>In a case where you want to store an object created by your user and allowing it to be restored even after the browser has been closed, the following example is a model for the applicability of <code>JSON.stringify</code>:</p>
+<div class="warning">
+<p>Functions are not a valid JSON data type so they will not work. Also some objects like Date will be a string after JSON.parse()</p>
+</div>
+<prism-js language="javascript">// Creating an example of JSON
+var session = {
+    &apos;screens&apos; : [],
+    &apos;state&apos; : true
+};
+session.screens.push({&quot;name&quot;:&quot;screenA&quot;, &quot;width&quot;:450, &quot;height&quot;:250});
+session.screens.push({&quot;name&quot;:&quot;screenB&quot;, &quot;width&quot;:650, &quot;height&quot;:350});
+session.screens.push({&quot;name&quot;:&quot;screenC&quot;, &quot;width&quot;:750, &quot;height&quot;:120});
+session.screens.push({&quot;name&quot;:&quot;screenD&quot;, &quot;width&quot;:250, &quot;height&quot;:60});
+session.screens.push({&quot;name&quot;:&quot;screenE&quot;, &quot;width&quot;:390, &quot;height&quot;:120});
+session.screens.push({&quot;name&quot;:&quot;screenF&quot;, &quot;width&quot;:1240, &quot;height&quot;:650});
+// Converting the JSON string with JSON.stringify
+// then saving with localStorage in the name of session
+localStorage.setItem(&apos;session&apos;, JSON.stringify(session));
+// Example of how to transform the String generated through
+// JSON.stringify and saved in localStorage in JSON object again
+var restoredSession = JSON.parse(localStorage.getItem(&apos;session&apos;));
+// Now restoredSession variable contains the object that was saved
+// in localStorage
+console.log(restoredSession);
+</prism-js>
+<h3 id="Example_of_using_replacer_parameter_JSON.stringify(javascriptObject.2C_method).3B">Example of using replacer parameter JSON.stringify(javascriptObject, method);</h3>
+<prism-js language="javascript">function replacer(key, value) {
+  if (typeof value === &quot;string&quot;) {
+    return undefined;
+  }
+  return value;
+}
+var foo = {foundation: &quot;Mozilla&quot;, model: &quot;box&quot;, week: 45, transport: &quot;car&quot;, month: 7};
+var jsonString = JSON.stringify(foo, replacer);
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;JSON.stringify&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition.<br>
+    Implemented in JavaScript 1.7.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-json.stringify" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;JSON.stringify&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_native_JSON">Using native JSON</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

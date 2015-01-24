@@ -1,0 +1,77 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the ECMAScript 6 (Harmony) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/RegExp.prototype.sticky#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>sticky</code></strong> property reflects whether or not the search is sticky (searches in strings only from the index indicated by the <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property of this regular expression). <code>sticky</code> is a read-only property of an individual regular expression object.</p>
+<div><table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>RegExp.prototype.sticky</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p>The value of <code>sticky</code> is a <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> and true if the &quot;<code>y</code>&quot; flag was used; otherwise, false. The &quot;<code>y</code>&quot; flag indicates that it matches only from the index indicated by the <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property of this regular expression in the target string (and does not attempt to match from any later indexes). This allows the match-only-at-start capabilities of the character &quot;<code>^</code>&quot; to effectively be used at any location in a string by changing the value of the <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property.</p>
+<p>You cannot change this property directly.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_a_regular_expression_with_the_.22sticky.22_flag" name="Example:_Using_a_regular_expression_with_the_.22sticky.22_flag">Example: Using a regular expression with the &quot;sticky&quot; flag</h3>
+<p>This example demonstrates how one could use the sticky flag on regular expressions to match individual lines of multiline input.</p>
+<prism-js language="javascript">var text = &apos;First line\nsecond line&apos;;
+var regex = /(\S+) line\n?/y;
+var match = regex.exec(text);
+console.log(match[1]);        // prints &apos;First&apos;
+console.log(regex.lastIndex); // prints &apos;11&apos;
+var match2 = regex.exec(text);
+console.log(match2[1]);       // prints &apos;Second&apos;
+console.log(regex.lastIndex); // prints &apos;22&apos;
+var match3 = regex.exec(text);
+console.log(match3 === null); // prints &apos;true&apos;
+</prism-js>
+<h2 id="Compatibility_test" name="Compatibility_test">Compatibility test</h2>
+<p>One can test at runtime whether the sticky flag is supported, using <code>try&#xA0;{&#xA0;&#x2026;&#xA0;} catch&#xA0;{&#xA0;&#x2026;&#xA0;}</code>. For this, either an <code>eval(&#x2026;)</code> expression or the <code>RegExp(<var>regex-string</var>,&#xA0;<var>flags-string</var>)</code> syntax must be used (since the <code>/<var>regex</var>/<var>flags</var></code> notation is processed at compile-time, so it throws an exception before the <code>catch</code> block is encountered). For example:</p>
+<prism-js language="javascript">var supports_sticky;
+try { RegExp(&apos;&apos;, &apos;y&apos;); supports_sticky = true; }
+catch(e) { supports_sticky = false; }
+console.log(supports_sticky); // prints &apos;false&apos; in Firefox 2, &apos;true&apos; in Firefox 3+
+</prism-js>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-get-regexp.prototype.sticky" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.prototype.sticky&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>RegExp.lastIndex</code></a></li>
+ <li><a href="#/RegExp.prototype.global" title="The global property indicates whether or not the &quot;g&quot; flag is used with the regular expression. global is a read-only property of an individual regular expression instance."><code>RegExp.prototype.global</code></a></li>
+ <li><a href="#/RegExp.prototype.ignoreCase" title="The ignoreCase property indicates whether or not the &quot;i&quot; flag is used with the regular expression. ignoreCase is a read-only property of an individual regular expression instance."><code>RegExp.prototype.ignoreCase</code></a></li>
+ <li><a href="#/RegExp.prototype.multiline" title="The multiline property indicates whether or not the &quot;m&quot; flag is used with the regular expression. multiline is a read-only property of an individual regular expression instance."><code>RegExp.prototype.multiline</code></a></li>
+ <li><a href="#/RegExp.prototype.source" title="The source property returns a String containing the text of the pattern, excluding the forward slashes. It is a read-only property of an individual regular expression instance. source does not contain any flags (like &quot;g&quot;, &quot;i&quot; or &quot;m&quot;) of the regular expression."><code>RegExp.prototype.source</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/sticky">RegExp.prototype.sticky</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

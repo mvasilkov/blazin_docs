@@ -1,0 +1,56 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The static <strong><code>String.fromCharCode()</code></strong> method returns a string created by using the specified sequence of Unicode values.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>String.fromCharCode(<var>num1</var>[, ...[, <var>numN</var>]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>num1, ..., num<em>N</em></code></dt>
+ <dd>A sequence of numbers that are Unicode values.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>This method returns a string and not a <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> object.</p>
+<p>Because <code>fromCharCode()</code> is a static method of <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a>, you always use it as <code>String.fromCharCode()</code>, rather than as a method of a <a href="#/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> object you created.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_fromCharCode" name="Example:_Using_fromCharCode">Example: Using <code>fromCharCode()</code></h3>
+<p>The following example returns the string &quot;ABC&quot;.</p>
+<prism-js language="javascript">String.fromCharCode(65, 66, 67);  // &quot;ABC&quot;
+</prism-js>
+<h2 id="Getting_it_to_work_with_higher_values" name="Getting_it_to_work_with_higher_values">Getting it to work with higher values</h2>
+<p>Although most common Unicode values can be represented with one 16-bit number (as expected early on during JavaScript standardization) and <code>fromCharCode()</code> can be used to return a single character for the most common values (i.e., UCS-2 values which are the subset of UTF-16 with the most common characters), in order to deal with ALL legal Unicode values (up to 21 bits), <code>fromCharCode()</code> alone is inadequate. Since the higher code point characters use two (lower value) &quot;surrogate&quot; numbers to form a single character, <a href="#/String.fromCodePoint()" title="The static String.fromCodePoint() method returns a string created by using the specified sequence of code points."><code>String.fromCodePoint()</code></a> (part of the ES6 draft) can be used to return such a pair and thus adequately represent these higher valued characters.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.5.3.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;StringfromCharCode&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.fromcharcodes" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.fromCharCode&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.fromCodePoint()" title="The static String.fromCodePoint() method returns a string created by using the specified sequence of code points."><code>String.fromCodePoint()</code></a></li>
+ <li><a href="#/String.prototype.charAt()" title="The charAt() method returns the specified character from a string."><code>String.prototype.charAt()</code></a></li>
+ <li><a href="#/String.prototype.charCodeAt()" title="The charCodeAt() method returns the numeric Unicode value of the character at the given index (except for unicode codepoints &gt; 0x10000)."><code>String.prototype.charCodeAt()</code></a></li>
+ <li><a href="#/String.prototype.codePointAt()" title="The codePointAt() method returns a non-negative integer that is the UTF-16 encoded code point value."><code>String.prototype.codePointAt()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode">String.fromCharCode()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

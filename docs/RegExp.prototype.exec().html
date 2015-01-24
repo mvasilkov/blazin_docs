@@ -1,0 +1,138 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>exec()</code></strong> method executes a search for a match in a specified string. Returns a result array, or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>.</p>
+<p>If you are executing a match simply to find true or false, use the <a href="#/RegExp.prototype.test()" title="The test() method executes a search for a match between a regular expression and a specified string. Returns true or false."><code>RegExp.prototype.test()</code></a> method or the <a href="#/String.prototype.search()" title="The search() method executes a search for a match between a regular expression and this String object."><code>String.prototype.search()</code></a> method.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>regexObj</var>.exec(<var>str</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>str</code></dt>
+ <dd>The string against which to match the regular expression.</dd>
+</dl>
+<h3 id="Returns" name="Returns">Returns</h3>
+<p>If the match succeeds, the <code>exec()</code> method returns an array and updates properties of the regular expression object. The returned array has the matched text as the first item, and then one item for each capturing parenthesis that matched containing the text that was captured.</p>
+<p>If the match fails, the <code>exec()</code> method returns <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>Consider the following example:</p>
+<prism-js language="javascript">// Match &quot;quick brown&quot; followed by &quot;jumps&quot;, ignoring characters in between
+// Remember &quot;brown&quot; and &quot;jumps&quot;
+// Ignore case
+var re = /quick\s(brown).+?(jumps)/ig;
+var result = re.exec(&apos;The Quick Brown Fox Jumps Over The Lazy Dog&apos;);
+</prism-js>
+<p>The following table shows the results for this script:</p>
+<table class="fullwidth-table">
+ <tbody>
+  <tr>
+   <td class="header">Object</td>
+   <td class="header">Property/Index</td>
+   <td class="header">Description</td>
+   <td class="header">Example</td>
+  </tr>
+  <tr>
+   <td rowspan="4"><code>result</code></td>
+   <td><code>[0]</code></td>
+   <td>The full string of characters matched</td>
+   <td><code>Quick Brown Fox Jumps</code></td>
+  </tr>
+  <tr>
+   <td><code>[1], ...[<i>n</i>]</code></td>
+   <td>The parenthesized substring matches, if any. The number of possible parenthesized substrings is unlimited.</td>
+   <td><code>[1] = Brown<br>
+    [2] = Jumps</code></td>
+  </tr>
+  <tr>
+   <td><code>index</code></td>
+   <td>The 0-based index of the match in the string.</td>
+   <td><code>4</code></td>
+  </tr>
+  <tr>
+   <td><code>input</code></td>
+   <td>The original string.</td>
+   <td><code>The Quick Brown Fox Jumps Over The Lazy Dog</code></td>
+  </tr>
+  <tr>
+   <td rowspan="5"><code>re</code></td>
+   <td><code>lastIndex</code></td>
+   <td>The index at which to start the next match.</td>
+   <td><code>25</code></td>
+  </tr>
+  <tr>
+   <td><code>ignoreCase</code></td>
+   <td>Indicates if the &quot;<code>i</code>&quot; flag was used to ignore case.</td>
+   <td><code>true</code></td>
+  </tr>
+  <tr>
+   <td><code>global</code></td>
+   <td>Indicates if the &quot;<code>g</code>&quot; flag was used for a global match.</td>
+   <td><code>true</code></td>
+  </tr>
+  <tr>
+   <td><code>multiline</code></td>
+   <td>Indicates if the &quot;<code>m</code>&quot; flag was used to search in strings across multiple line.</td>
+   <td><code>false</code></td>
+  </tr>
+  <tr>
+   <td><code>source</code></td>
+   <td>The text of the pattern.</td>
+   <td><code>quick\s(brown).+?(jumps)</code></td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Finding_successive_matches" name="Example:_Finding_successive_matches">Example: Finding successive matches</h3>
+<p>If your regular expression uses the &quot;<code>g</code>&quot; flag, you can use the <code>exec()</code> method multiple times to find successive matches in the same string. When you do so, the search starts at the substring of <code>str</code> specified by the regular expression&apos;s <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property (<a href="#/RegExp.prototype.test()" title="The test() method executes a search for a match between a regular expression and a specified string. Returns true or false."><code>test()</code></a> will also advance the <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property). For example, assume you have this script:</p>
+<prism-js language="javascript">var myRe = /ab*/g;
+var str = &apos;abbcdefabh&apos;;
+var myArray;
+while ((myArray = myRe.exec(str)) !== null) {
+  var msg = &apos;Found &apos; + myArray[0] + &apos;. &apos;;
+  msg += &apos;Next match starts at &apos; + myRe.lastIndex;
+  console.log(msg);
+}
+</prism-js>
+<p>This script displays the following text:</p>
+<pre>Found abb. Next match starts at 3
+Found ab. Next match starts at 9
+</pre>
+<p>Note: Do not place the regular expression literal (or <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> constructor) within the <code>while</code> condition or it will create an infinite loop if there is a match due to the <a href="#/RegExp.lastIndex" title="The lastIndex is a read/write integer property of regular expressions that specifies the index at which to start the next match."><code>lastIndex</code></a> property being reset upon each iteration.</p>
+<h3 id="Example:_Using_exec_with_RegExp_literals" name="Example:_Using_exec_with_RegExp_literals">Example: Using <code>exec()</code> with <code>RegExp</code> literals</h3>
+<p>You can also use <code>exec()</code> without creating a <a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a> object:</p>
+<prism-js language="javascript">var matches = /(hello \S+)/.exec(&apos;This is a hello world!&apos;);
+console.log(matches[1]);
+</prism-js>
+<p>This will display an alert containing &apos;hello world!&apos;.</p>
+<h2 id="Specifications" name="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.2.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.10.6.21" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.exec&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-regexp.prototype.exec" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;RegExp.exec&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular Expressions</a> chapter in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a></li>
+ <li><a href="#/RegExp" title="The RegExp constructor creates a regular expression object for matching text with a pattern."><code>RegExp</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec">RegExp.prototype.exec()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

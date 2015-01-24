@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>fontsize()</code></strong> method creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/font" title="The HTML Font Element (&lt;font&gt;) defines the font size, color and face for its content."><code>&lt;font&gt;</code></a> HTML element that causes a string to be displayed in the specified font size.</p>
+<div class="note">
+ <p><strong>Usage note:</strong> The &lt;font&gt; element has been removed in <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">HTML5</a> and shouldn&apos;t be used anymore. Instead web developers should use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> properties.</p>
+</div>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.fontsize(<var>size</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>size</code></dt>
+ <dd>An integer between 1 and 7, a string representing a signed integer between 1 and 7.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>When you specify size as an integer, you set the font size of <code>str</code> to one of the 7 defined sizes. When you specify <code>size</code> as a string such as &quot;-2&quot;, you adjust the font size of <code>str</code> relative to the size set in the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont" title="The HTML basefont element (&lt;basefont&gt;) establishes a default font size for a document. Font size then can be varied relative to the base font size using the &lt;font&gt; element."><code>&lt;basefont&gt;</code></a> tag.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_fontsize" name="Example:_Using_fontsize">Example: Using <code>fontsize()</code></h3>
+<p>The following example uses string methods to change the size of a string:</p>
+<prism-js language="javascript">var worldString = &apos;Hello, world&apos;;
+console.log(worldString.small());     // &lt;small&gt;Hello, world&lt;/small&gt;
+console.log(worldString.big());       // &lt;big&gt;Hello, world&lt;/big&gt;
+console.log(worldString.fontsize(7)); // &lt;font size=&quot;7&quot;&gt;Hello, world&lt;/fontsize&gt;
+</prism-js>
+<p>With the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.style" title="The HTMLElement.style property returns a CSSStyleDeclaration object that represents the element&apos;s style attribute. See the CSS Properties Reference for a list of the CSS properties accessible via style."><code>element.style</code></a> object you can get the element&apos;s <code>style</code> attribute and manipulate it more generically, for example:</p>
+<prism-js language="javascript">document.getElementById(&apos;yourElemId&apos;).style.fontSize = &apos;0.7em&apos;;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.fontsize" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.fontsize&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.big()" title="The big() method creates a &lt;big&gt; HTML element that causes a string to be displayed in a big font."><code>String.prototype.big()</code></a></li>
+ <li><a href="#/String.prototype.small()" title="The small() method creates a &lt;small&gt; HTML element that causes a string to be displayed in a small font."><code>String.prototype.small()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fontsize">String.prototype.fontsize()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

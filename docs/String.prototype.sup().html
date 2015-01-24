@@ -1,0 +1,45 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>sup()</code></strong> method creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sup" title="The HTML Superscript Element (&lt;sup&gt;) defines a span of text that should be displayed, for typographic reasons, higher, and often smaller, than the main span of text."><code>&lt;sup&gt;</code></a> HTML element that causes a string to be displayed as superscript.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>str</var>.sup()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>sup()</code> method embeds a string in a <code>&lt;sup&gt;</code> tag: <code>&quot;&lt;sup&gt;str&lt;/sup&gt;&quot;</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_sub_and_sup_methods_to_format_a_string" name="Example:_Using_sub_and_sup_methods_to_format_a_string">Example: Using <code>sub()</code> and <code>sup()</code> methods</h3>
+<p>The following example uses the <a href="#/String.prototype.sub()" title="The sub() method creates a &lt;sub&gt; HTML element that causes a string to be displayed as subscript."><code>sub()</code></a> and <code>sup()</code> methods to format a string:</p>
+<prism-js language="javascript">var superText = &apos;superscript&apos;;
+var subText = &apos;subscript&apos;;
+document.write(&apos;This is what a &apos; + superText.sup() + &apos; looks like.&apos;);
+document.write(&apos;This is what a &apos; + subText.sub() + &apos; looks like.&apos;);
+</prism-js>
+<p>This example produces the same output as the following HTML:</p>
+<prism-js language="javascript">This is what a &lt;sup&gt;superscript&lt;/sup&gt; looks like.
+This is what a &lt;sub&gt;subscript&lt;/sub&gt; looks like.
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-string.prototype.sup" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;String.prototype.sup&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.0.<br>
+    Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/String.prototype.sub()" title="The sub() method creates a &lt;sub&gt; HTML element that causes a string to be displayed as subscript."><code>String.prototype.sub()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/sup">String.prototype.sup()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
