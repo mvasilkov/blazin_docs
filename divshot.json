@@ -1,6 +1,7 @@
 {
   "name": "ss15-jesuischarlie",
   "root": "./",
+  "exclude": ["mdn.txt", "fetch_mdn.js", "mdn_cache"],
   "clean_urls": false,
   "error_page": "blue_screen_of_death.html"
 }

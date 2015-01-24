@@ -1,0 +1,20 @@
+{
+  "name": "ss15-jesuischarlie",
+  "version": "0.0.0",
+  "description": "The Static Showdown is a worldwide 48 hour hackathon featuring static web apps.",
+  "main": "fetch_mdn.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/staticshowdown/ss15-jesuischarlie.git"
+  },
+  "author": "Mark Vasilkov <mvasilkov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/staticshowdown/ss15-jesuischarlie/issues"
+  },
+  "homepage": "https://github.com/staticshowdown/ss15-jesuischarlie",
+  "private": true,
+  "dependencies": {
+    "request": "^2.51.0"
+  }
+}
