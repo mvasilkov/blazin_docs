@@ -29,7 +29,8 @@ function buildPage(url) {
 
     var $article = $('#wikiArticle')
     assert.ok($article.length)
-    var html = '<template><div class="wikiArticle">' + $article.html() + '</div></template>'
+    var html = '<template><div class="wikiArticle text-content">' + $article.html() +
+               '</div></template>'
     html = html.split('\n')
         .map(function (line) { return line.trim() })
         .filter(function (line) { return line.length != 0 })
