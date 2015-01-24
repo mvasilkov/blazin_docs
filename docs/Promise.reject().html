@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Promise.reject()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Promise.reject(reason)</strong></code> method returns a <code>Promise</code> object that is rejected with the given reason.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><var>Promise.reject(reason)</var>;</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  reason</dt>
+ <dd>
+  Reason why this <code>Promise</code> rejected.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The static <code>Promise.reject</code> function returns a <code>Promise</code> that is rejected. For debugging purposes, it is useful to make <code>reason</code> an <code>instanceof</code> <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Using_the_static_Promise.reject_method">Using the static <code>Promise.reject</code> method</h3>
+<prism-js language="javascript">Promise.reject(&quot;Testing static reject&quot;).then(function(reason) {
+  // not called
+}, function(reason) {
+  console.log(reason); // &quot;Testing static reject&quot;
+});
+Promise.reject(new Error(&quot;fail&quot;)).then(function(error) {
+  // not called
+}, function(error) {
+  console.log(error); // Stacktrace
+});</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="https://github.com/domenic/promises-unwrapping">domenic/promises-unwrapping</a></td>
+   <td>Draft</td>
+   <td>Standardization work is taking place here.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise.reject" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Promise.reject&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition in an ECMA standard.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="#/Promise" title="The Promise object is used for deferred and asynchronous computations. A Promise is in one of the three states:"><code>Promise</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject">Promise.reject()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

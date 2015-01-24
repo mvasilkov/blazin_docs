@@ -1,0 +1,105 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Promise.resolve()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Promise.resolve(value)</strong></code> method returns a <code>Promise</code> object that is resolved with the given value. If the value is a thenable (i.e. has a <code>then</code> method), the returned promise will &quot;follow&quot; that thenable, adopting its eventual state; otherwise the returned promise will be fulfilled with the value.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><var>Promise.resolve(value)</var>;
+Promise.resolve(promise);
+Promise.resolve(thenable);
+</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  value</dt>
+ <dd>
+  Argument to be resolved by this <code>Promise</code>. Can also be a <code>Promise</code> or a thenable to resolve.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The static <code>Promise.resolve</code> function returns a <code>Promise</code> that is resolved.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Using_the_static_Promise.resolve_method">Using the static <code>Promise.resolve</code> method</h3>
+<prism-js language="javascript">Promise.resolve(&quot;Success&quot;).then(function(value) {
+  console.log(value); // &quot;Success&quot;
+}, function(value) {
+  // not called
+});
+</prism-js>
+<h3 id="Resolving_an_array">Resolving an array</h3>
+<prism-js language="javascript">var p = Promise.resolve([1,2,3]);
+p.then(function(v) {
+  console.log(v[0]); // 1
+});
+</prism-js>
+<h3 id="Resolving_another_Promise">Resolving another <code>Promise</code></h3>
+<prism-js language="javascript">var original = Promise.resolve(true);
+var cast = Promise.resolve(original);
+cast.then(function(v) {
+  console.log(v); // true
+});
+</prism-js>
+<h3 id="Resolving_thenables_and_throwing_Errors">Resolving thenables and throwing Errors</h3>
+<prism-js language="javascript">// Resolving a thenable object
+var p1 = Promise.resolve({
+  then: function(onFulfill, onReject) { onFulfill(&quot;fulfilled!&quot;); }
+});
+console.log(p1 instanceof Promise) // true, object casted to a Promise
+p1.then(function(v) {
+    console.log(v); // &quot;fulfilled!&quot;
+  }, function(e) {
+    // not called
+});
+// Thenable throws before callback
+// Promise rejects
+var thenable = { then: function(resolve) {
+  throw new TypeError(&quot;Throwing&quot;);
+  resolve(&quot;Resolving&quot;);
+}};
+var p2 = Promise.resolve(thenable);
+p2.then(function(v) {
+  // not called
+}, function(e) {
+  console.log(e); // TypeError: Throwing
+});
+// Thenable throws after callback
+// Promise resolves
+var thenable = { then: function(resolve) {
+  resolve(&quot;Resolving&quot;);
+  throw new TypeError(&quot;Throwing&quot;);
+}};
+var p3 = Promise.resolve(thenable);
+p3.then(function(v) {
+  console.log(v); // &quot;Resolving&quot;
+}, function(e) {
+  // not called
+});
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="https://github.com/domenic/promises-unwrapping">domenic/promises-unwrapping</a></td>
+   <td>Draft</td>
+   <td>Standardization work is taking place here.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-promise.resolve" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Promise.resolve&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition in an ECMA standard.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="#/Promise" title="The Promise object is used for deferred and asynchronous computations. A Promise is in one of the three states:"><code>Promise</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve">Promise.resolve()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
