@@ -36,7 +36,7 @@ function buildPage(url) {
     assert.ok($article.length)
     var html = '<link rel="import" href="/bower_components/prism-js/prism-js.html">\n' +
                '<template><div class="wikiArticle text-content">\n' + $article.html().trim() +
-               '\n</div></template>'
+               '\n' + mdnFooter(url) + '\n</div></template>'
     html = html.split('\n')
         .map(function (line) { return line.trimRight() })
         .filter(function (line) { return line.length != 0 })
@@ -47,6 +47,12 @@ function buildPage(url) {
 
 function filenamePage(url) {
     return pageNameCache[url] + '.html'
+}
+
+function mdnFooter(url) {
+    return '<div class="mdnLicenseFooter">This page on MDN: <a href="' + url + '">' + pageNameCache[url] +
+           '</a>, by Mozilla Contributors.<br>Licensed under the terms of ' +
+           'Creative Commons Attribution-ShareAlike.</div>'
 }
 
 function saveDocsIndex() {
