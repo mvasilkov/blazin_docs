@@ -17,6 +17,8 @@ function loadPageName(url) {
     var $ = cheerio.load(html)
 
     pageNameCache[url] = $('#wiki-document-head h1').text().trim()
+    if (pageNameCache[url] == 'Test API')
+        pageNameCache[url] = 'Boolean'
     assert.ok(pageNameCache[url])
 }
 

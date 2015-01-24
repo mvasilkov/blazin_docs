@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>name</strong></code> property represents a name for the type of error. The initial value is &quot;Error&quot;.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>By default, <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a> instances are given the name &quot;Error&quot;. The <code>name</code> property, in addition to the <a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>message</code></a> property, is used by the <a href="#/Error.prototype.toString()" title="The toString() method returns a string representing the specified Error object."><code>Error.prototype.toString()</code></a> method to create a string representation of the error.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Throwing_a_custom_error" name="Example:_Throwing_a_custom_error">Example: Throwing a custom error</h3>
+<prism-js language="javascript">var e = new Error(&apos;Malformed input&apos;); // e.name is &apos;Error&apos;
+e.name = &apos;ParseError&apos;;
+throw e;
+// e.toString() would return &apos;ParseError: Malformed input&apos;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.4.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Error.prototype.name&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-error.prototype.name" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Error.prototype.name&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>Error.prototype.message</code></a></li>
+ <li><a href="#/Error.prototype.toString()" title="The toString() method returns a string representing the specified Error object."><code>Error.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name">Error.prototype.name</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

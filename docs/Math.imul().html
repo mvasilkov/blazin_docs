@@ -1,0 +1,59 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.imul()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.imul()</strong></code> function returns the result of the C-like 32-bit multiplication of the two parameters.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Math.imul(a, b)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>a</code></dt>
+ <dd>
+  First number.</dd>
+ <dt>
+  <code>b</code></dt>
+ <dd>
+  Second number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>Math.imul</code> allows for fast 32-bit integer multiplication with C-like semantics. This feature is useful for projects like <a class="external" href="http://en.wikipedia.org/wiki/Emscripten">Emscripten</a>.&#xA0; Because <code>imul</code> is a static method of <code>Math</code>, you always use it as <code>Math.imul()</code>, rather than as a method of a <code>Math</code> object you created.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">Math.imul(2, 4)   // 8
+Math.imul(-1, 8)  //-8
+Math.imul(-2, -2) // 4
+Math.imul(0xffffffff, 5) //-5
+Math.imul(0xfffffffe, 5) //-10
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>This can be emulated with the following function:</p>
+<prism-js language="javascript">function imul(a, b) {
+  var ah  = (a &gt;&gt;&gt; 16) &amp; 0xffff;
+  var al = a &amp; 0xffff;
+  var bh  = (b &gt;&gt;&gt; 16) &amp; 0xffff;
+  var bl = b &amp; 0xffff;
+  // the shift by 0 fixes the sign on the high part
+  // the final |0 converts the unsigned value into a signed value
+  return ((al * bl) + (((ah * bl + al * bh) &lt;&lt; 16) &gt;&gt;&gt; 0)|0);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.imul" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.imul&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul">Math.imul()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

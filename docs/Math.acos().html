@@ -1,0 +1,65 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.acos()</strong></code> function returns the arccosine (in radians) of a number, that is</p>
+<p><math><semantics><mrow><mo>&#x2200;</mo><mi>x</mi><mo>&#x220A;</mo><mo stretchy="false">[</mo><mrow><mo>-</mo><mn>1</mn></mrow><mo>;</mo><mn>1</mn><mo stretchy="false">]</mo><mo>,</mo><mspace width="thickmathspace"></mspace><mstyle mathvariant="monospace"><mrow><mo lspace="0em" rspace="thinmathspace">Math.acos</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle><mo>=</mo><mo lspace="0em" rspace="0em">arccos</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mtext> the unique </mtext><mspace width="thickmathspace"></mspace><mi>y</mi><mo>&#x220A;</mo><mo stretchy="false">[</mo><mn>0</mn><mo>;</mo><mi>&#x3C0;</mi><mo stretchy="false">]</mo><mspace width="thinmathspace"></mspace><mtext>such that</mtext><mspace width="thickmathspace"></mspace><mo lspace="0em" rspace="0em">cos</mo><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="TeX">\forall x \in [{-1};1],\;\mathtt{\operatorname{Math.acos}(x)} = \arccos(x) = \text{ the unique } \; y \in [0; \pi] \, \text{such that} \; \cos(y) = x</annotation></semantics></math></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">
+Math.acos(<em>x</em>) </pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>x</code></dt>
+ <dd>A number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>acos</code> method returns a numeric value between 0 and pi radians for x between -1 and 1. If the value of <code>number</code> is outside this range, it returns <code>NaN</code>.</p>
+<p>Because <code>acos</code> is a static method of <code>Math</code>, you always use it as <code>Math.acos()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.acos" name="Example:_Using_Math.acos">Example: Using <code>Math.acos</code></h3>
+<prism-js language="javascript">
+Math.acos(-2);  // NaN
+Math.acos(-1);  // 3.141592653589793
+Math.acos(0);   // 1.5707963267948966
+Math.acos(0.5); // 1.0471975511965979
+Math.acos(1);   // 0
+Math.acos(2);   // NaN
+</prism-js>
+<p>For values less than -1 or greater than 1, <code>Math.acos</code> returns <code>NaN</code>.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition. Implemented in JavaScript 1.0</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math.acos&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.acos" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math.acos&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li>The <a href="#/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. It is not a function object."><code>Math</code></a> object it belongs to.</li>
+ <li><a href="#/Math.asin()" title="The Math.asin() function returns the arcsine (in radians) of a number, that is"><code>Math.asin()</code></a></li>
+ <li><a href="#/Math.atan()" title="The Math.atan() function returns the arctangent (in radians) of a number, that is"><code>Math.atan()</code></a></li>
+ <li><a href="#/Math.atan2()" title="The Math.atan2() function returns the arctangent of the quotient of its arguments."><code>Math.atan2()</code></a></li>
+ <li><a href="#/Math.cos()" title="The Math.cos() function returns the cosine of a number."><code>Math.cos()</code></a></li>
+ <li><a href="#/Math.sin()" title="The Math.sin() function returns the sine of a number."><code>Math.sin()</code></a></li>
+ <li><a href="#/Math.tan()" title="The Math.tan() function returns the tangent of a number."><code>Math.tan()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/acos">Math.acos()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

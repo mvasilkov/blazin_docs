@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.random()</strong></code> function returns a floating-point, pseudo-random number in the range <code>[0,&#xA0;1)</code> that is, from 0 (inclusive) up to but not including 1 (exclusive), which you can then scale to your desired range.&#xA0; The implementation selects the initial seed to the random number generation algorithm; it cannot be chosen or reset by the user.</p>
+<div class="note">
+ <p><strong>Note:</strong> <code>Math.random()</code> <strong>does not</strong> provide cryptographically secure random numbers. Do not use them for anything related to security. Use the Web Crypto API instead, and more precisely the <a href="https://developer.mozilla.org/en-US/docs/Web/API/RandomSource.getRandomValues" title="The RandomSource.getRandomValues() method lets you get cryptographically random values. The array giving in parameter is filled with random numbers (random in its cryptographic meaning)."><code>window.crypto.getRandomValues()</code></a> method.</p>
+</div>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Math.random()</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<p>None.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.random" name="Example:_Using_Math.random">Example: Using <code>Math.random</code></h3>
+<p>Note that as numbers in JavaScript are IEEE 754 floating point numbers with round-to-nearest-even behavior, the ranges claimed for the functions below (excluding the one for <code>Math.random()</code> itself) aren&apos;t exact.&#xA0; If extremely large bounds are chosen (2<sup>53</sup> or higher), it&apos;s possible in <em>extremely</em> rare cases to calculate the usually-excluded upper bound.</p>
+<prism-js language="javascript">// Returns a random number between 0 (inclusive) and 1 (exclusive)
+function getRandom() {
+  return Math.random();
+}</prism-js>
+<prism-js language="javascript">// Returns a random number between min (inclusive) and max (exclusive)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}</prism-js>
+<prism-js language="javascript">// Returns a random integer between min (included) and max (excluded)
+// Using Math.round() will give you a non-uniform distribution!
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}</prism-js>
+<p></p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition. JavaScript 1.0 (UNIX Only) / JavaScript 1.1 (All platform)</td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.14" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math.random&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.random" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math.random&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">Math.random()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

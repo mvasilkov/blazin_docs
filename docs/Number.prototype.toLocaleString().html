@@ -50,7 +50,7 @@
 console.log(number.toLocaleString()); // Displays &quot;3,500&quot; if in U.S. English locale
 </prism-js>
 <h3 id="Example:_Checking_for_support_for_locales_and_options_arguments" name="Example:_Checking_for_support_for_locales_and_options_arguments">Example: Checking for support for <code>locales</code> and <code>options</code> arguments</h3>
-<p>The <code>locales</code> and <code>options</code> arguments are not supported in all browsers yet. To check whether an implementation supports them already, you can use the requirement that illegal language tags are rejected with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a> exception:</p>
+<p>The <code>locales</code> and <code>options</code> arguments are not supported in all browsers yet. To check whether an implementation supports them already, you can use the requirement that illegal language tags are rejected with a <a href="#/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a> exception:</p>
 <prism-js language="javascript">function toLocaleStringSupportsLocales() {
   var number = 0;
   try {

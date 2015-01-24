@@ -16,7 +16,7 @@
 </dl>
 <h2 id="Description" name="Description">Description</h2>
 <p><code>encodeURIComponent</code> escapes all characters except the following: alphabetic, decimal digits, <code>- _ .&#xA0;! ~ * &apos; ( )</code></p>
-<p>Note that an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
+<p>Note that an <a href="#/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
 <prism-js language="javascript">// high-low pair ok
 alert(encodeURIComponent(&apos;\uD800\uDFFF&apos;));
 // lone high surrogate throws &quot;URIError: malformed URI sequence&quot;

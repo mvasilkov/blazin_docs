@@ -1,0 +1,161 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>Error</code></strong> constructor creates an error object. Instances of <code>Error</code> objects are thrown when runtime errors occur. The <code>Error</code> object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">new Error([<var>message</var>[, <var>fileName</var>[, <var>lineNumber</var>]]])</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>message</code></dt>
+ <dd>Optional. Human-readable description of the error.</dd>
+ <dt><code>fileName</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Optional. The value for the <code>fileName</code> property on the created <code>Error</code> object. Defaults to the name of the file containing the code that called the <code>Error()</code> constructor.</dd>
+ <dt><code>lineNumber</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Optional. The value for the <code>lineNumber</code> property on the created <code>Error</code> object. Defaults to the line number containing the <code>Error()</code> constructor invocation.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Runtime errors result in new <code>Error</code> objects being created and thrown.</p>
+<p>This page documents the use of the <code>Error</code> object itself and its use as a constructor function. For a list of properties and methods inherited by <code>Error</code> instances, see <a href="#/Error.prototype" title="The Error.prototype property represents the prototype for the Error constructor."><code>Error.prototype</code></a>.</p>
+<h3 id="Error_types" name="Error_types">Error types</h3>
+<p>Besides the generic <code>Error</code> constructor, there are six other core error constructors in JavaScript. For client-side exceptions, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Statements#Exception_Handling_Statements">Exception Handling Statements</a>.</p>
+<dl>
+ <dt><a href="#/EvalError" title="The EvalError object indicates an error regarding the global eval() function."><code>EvalError</code></a></dt>
+ <dd>Creates an instance representing an error that occurs regarding the global function <a href="#/eval()" title="The eval() method evaluates JavaScript code represented as a string."><code>eval()</code></a>.</dd>
+ <dt><a href="#/InternalError" title="The InternalError object indicates an error that occurred internally in the JavaScript engine. For example: &quot;InternalError: too much recursion&quot;."><code>InternalError</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Creates an instance representing an error that occurs when an internal error in the JavaScript engine is thrown. E.g. &quot;too much recursion&quot;.</dd>
+ <dt><a href="#/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a></dt>
+ <dd>Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.</dd>
+ <dt><a href="#/ReferenceError" title="The ReferenceError object represents an error when a non-existent variable is referenced."><code>ReferenceError</code></a></dt>
+ <dd>Creates an instance representing an error that occurs when de-referencing an invalid reference.</dd>
+ <dt><a href="#/SyntaxError" title="The SyntaxError object represents an error when trying to interpret syntactically invalid code."><code>SyntaxError</code></a></dt>
+ <dd>Creates an instance representing a syntax error that occurs while parsing code in <a href="#/eval()" title="The eval() method evaluates JavaScript code represented as a string."><code>eval()</code></a>.</dd>
+ <dt><a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a></dt>
+ <dd>Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.</dd>
+ <dt><a href="#/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a></dt>
+ <dd>Creates an instance representing an error that occurs when <a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI()</code></a> or <a href="#/decodeURI()" title="The decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine."><code>decodeURl()</code></a> are passed invalid parameters.</dd>
+</dl>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt><a href="#/Error.prototype" title="The Error.prototype property represents the prototype for the Error constructor."><code>Error.prototype</code></a></dt>
+ <dd>Allows the addition of properties to <code>Error</code> instances.</dd>
+</dl>
+<h2 id="Methods" name="Methods">Methods</h2>
+<p>The global <code>Error</code> object contains no methods of its own, however, it does inherit some methods through the prototype chain.</p>
+<h2 id="Error_instances" name="Error_instances"><code>Error</code> instances</h2>
+<div><p>All <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a> instances and instances of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Error_types" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types.">non-generic errors</a> inherit from <code>Error.prototype</code>. As with all constructor functions, you can use the prototype of the constructor to add properties or methods to all instances created with that constructor.</p></div>
+<h3 id="Properties_2">Properties</h3>
+<div><h3 id="Standard_properties" name="Standard_properties">Standard properties</h3>
+<dl><dt><code>Error.prototype.constructor</code></dt>
+ <dd>Specifies the function that created an instance&apos;s prototype.</dd>
+ <dt><a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>Error.prototype.message</code></a></dt>
+ <dd>Error message.</dd>
+ <dt><a href="#/Error.prototype.name" title="The name property represents a name for the type of error. The initial value is &quot;Error&quot;."><code>Error.prototype.name</code></a></dt>
+ <dd>Error name.</dd>
+</dl><h3 id="Vendor-specific_extensions" name="Vendor-specific_extensions">Vendor-specific extensions</h3>
+<div><div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h4 id="Microsoft" name="Microsoft">Microsoft</h4>
+<dl><dt><a class="new" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/description" title="The documentation about this has not yet been written; please consider contributing!"><code>Error.prototype.description</code></a></dt>
+ <dd>Error description. Similar to <a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>message</code></a>.</dd>
+ <dt><a class="new" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/number" title="The documentation about this has not yet been written; please consider contributing!"><code>Error.prototype.number</code></a></dt>
+ <dd>Error number.</dd>
+</dl><h4 id="Mozilla" name="Mozilla">Mozilla</h4>
+<dl><dt><a href="#/Error.prototype.fileName" title="The fileName property contains the path to the file that raised this error."><code>Error.prototype.fileName</code></a></dt>
+ <dd>Path to file that raised this error.</dd>
+ <dt><a href="#/Error.prototype.lineNumber" title="The lineNumber property contains the line number in the file that raised this error."><code>Error.prototype.lineNumber</code></a></dt>
+ <dd>Line number in file that raised this error.</dd>
+ <dt><a href="#/Error.prototype.columnNumber" title="The columnNumber property contains the column number in the line of the file that raised this error."><code>Error.prototype.columnNumber</code></a></dt>
+ <dd>Column number in line that raised this error.</dd>
+ <dt><a href="#/Error.prototype.stack" title="The non-standard stack property of Error objects offer a trace of which functions were called, in what order, from which line and file, and with what arguments. The stack string proceeds from the most recent calls to earlier ones, leading back to the original global scope call."><code>Error.prototype.stack</code></a></dt>
+ <dd>Stack trace.</dd>
+</dl></div>
+<h3 id="Methods_2">Methods</h3>
+<div><dl><dt><a href="#/Error.prototype.toSource()" title="The toSource() method returns code that could eval to the same error."><code>Error.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>Returns a string containing the source of the specified <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a> object; you can use this value to create a new object. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt><a href="#/Error.prototype.toString()" title="The toString() method returns a string representing the specified Error object."><code>Error.prototype.toString()</code></a></dt>
+ <dd>Returns a string representing the specified object. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+</dl></div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Throwing_a_generic_error" name="Example:_Throwing_a_generic_error">Example: Throwing a generic error</h3>
+<p>Usually you create an <code>Error</code> object with the intention of raising it using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw" title="The throw statement throws a user-defined exception. Execution of the current function will stop (the statements after throw won&apos;t be executed), and control will be passed to the first catch block in the call stack. If no catch block exists among caller functions, the program will terminate."><code>throw</code></a> keyword. You can handle the error using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" title="The try...catch statement marks a block of statements to try, and specifies a response, should an exception be thrown."><code>try...catch</code></a> construct:</p>
+<prism-js language="javascript">try {
+  throw new Error(&apos;Whoops!&apos;);
+} catch (e) {
+  alert(e.name + &apos;: &apos; + e.message);
+}
+</prism-js>
+<h3 id="Example:_Handling_a_specific_error" name="Example:_Handling_a_specific_error">Example: Handling a specific error</h3>
+<p><span class="comment">this should probably be removed</span> You can choose to handle only specific error types by testing the error type with the error&apos;s <a href="#/Object.prototype.constructor" title="Returns a reference to the Object function that created the instance&apos;s prototype. Note that the value of this property is a reference to the function itself, not a string containing the function&apos;s name. The value is only read-only for primitive values such as&#xA0;1,&#xA0;true and&#xA0;&quot;test&quot;."><code>constructor</code></a> property or, if you&apos;re writing for modern JavaScript engines, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof" title="The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor."><code>instanceof</code></a> keyword:</p>
+<prism-js language="javascript">try {
+  foo.bar();
+} catch (e) {
+  if (e instanceof EvalError) {
+    alert(e.name + &apos;: &apos; + e.message);
+  } else if (e instanceof RangeError) {
+    alert(e.name + &apos;: &apos; + e.message);
+  }
+  // ... etc
+}
+</prism-js>
+<h3 id="Example.3A_Custom_Error_Types">Example: Custom Error Types</h3>
+<p>You might want to define your own error types deriving from <code>Error</code> to be able to <code>throw new MyError()</code> and use <code>instanceof MyError</code> to check the kind of error in the exception handler. The common way to do this is demonstrated below.</p>
+<div class="warning">
+<p>Note that the thrown <code>MyError</code> will report incorrect <code>lineNumber</code> and <code>fileName</code> at least in Firefox.</p>
+</div>
+<p>See also the <a class="external" href="http://stackoverflow.com/questions/1382107/whats-a-good-way-to-extend-error-in-javascript">&quot;What&apos;s a good way to extend Error in JavaScript?&quot; discussion on Stackoverflow</a>.</p>
+<prism-js language="javascript">// Create a new object, that prototypally inherits from the Error constructor.
+function MyError(message) {
+  this.name = &apos;MyError&apos;;
+  this.message = message || &apos;Default Message&apos;;
+}
+MyError.prototype = Object.create(Error.prototype);
+MyError.prototype.constructor = MyError;
+try {
+  throw new MyError();
+} catch (e) {
+  console.log(e.name);     // &apos;MyError&apos;
+  console.log(e.message);  // &apos;Default Message&apos;
+}
+try {
+  throw new MyError(&apos;custom message&apos;);
+} catch (e) {
+  console.log(e.name);     // &apos;MyError&apos;
+  console.log(e.message);  // &apos;custom message&apos;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.11" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Error&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-error-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Error&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Error.prototype" title="The Error.prototype property represents the prototype for the Error constructor."><code>Error.prototype</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw" title="The throw statement throws a user-defined exception. Execution of the current function will stop (the statements after throw won&apos;t be executed), and control will be passed to the first catch block in the call stack. If no catch block exists among caller functions, the program will terminate."><code>throw</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" title="The try...catch statement marks a block of statements to try, and specifies a response, should an exception be thrown."><code>try...catch</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

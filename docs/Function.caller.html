@@ -1,0 +1,53 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong><em>function</em>.caller</strong></code> property returns the function that invoked the specified function.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>If the function <code>f</code> was invoked by the top level code, the value of <code>f.caller</code> is <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>, otherwise it&apos;s the function that called <code>f</code>.</p>
+<p>This property replaces the obsolete <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments/caller" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments.caller</code></a> property of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments</code></a> object.</p>
+<p>The special property <code>__caller__</code>, which returned the activation object of the caller thus allowing to reconstruct the stack, was removed for security reasons.</p>
+<h3 id="Notes" name="Notes">Notes</h3>
+<p>Note that in case of recursion, you can&apos;t reconstruct the call stack using this property. Consider:</p>
+<prism-js language="javascript">function f(n) { g(n - 1); }
+function g(n) { if (n &gt; 0) { f(n); } else { stop(); } }
+f(2);
+</prism-js>
+<p>At the moment <code>stop()</code> is called the call stack will be:</p>
+<pre class="eval">f(2) -&gt; g(1) -&gt; f(1) -&gt; g(0) -&gt; stop()
+</pre>
+<p>The following is true:</p>
+<pre class="eval">stop.caller === g &amp;&amp; f.caller === g &amp;&amp; g.caller === f
+</pre>
+<p>so if you tried to get the stack trace in the <code>stop()</code> function like this:</p>
+<prism-js language="javascript">var f = stop;
+var stack = &apos;Stack trace:&apos;;
+while (f) {
+  stack += &apos;\n&apos; + f.name;
+  f = f.caller;
+}
+</prism-js>
+<p>the loop would never stop.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Checking_the_value_of_a_function.27s_caller_property" name="Example:_Checking_the_value_of_a_function.27s_caller_property">Example: Checking the value of a function&apos;s <code>caller</code> property</h3>
+<p>The following code checks the value a function&apos;s <code>caller</code> property.</p>
+<prism-js language="javascript">function myFunc() {
+  if (myFunc.caller == null) {
+    return &apos;The function was called from the top!&apos;;
+  } else {
+    return &apos;This function\&apos;s caller was &apos; + myFunc.caller;
+  }
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<p>Not part of any specification. Implemented in JavaScript 1.5.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li>Implementation bug for SpiderMonkey <a class="external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=65683" title="FIXED: Function objects should have a caller property">bug&#xA0;65683</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller">Function.caller</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

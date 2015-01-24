@@ -1,0 +1,165 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>bind()</strong></code> method creates a new function that, when called, has its <code>this</code> keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>fun</var>.bind(<var>thisArg</var>[, <var>arg1</var>[, <var>arg2</var>[, ...]]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>thisArg</code></dt>
+ <dd>The value to be passed as the <code>this</code> parameter to the target function when the bound function is called. The value is ignored if the bound function is constructed using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a> operator.</dd>
+ <dt><code>arg1, arg2, ...</code></dt>
+ <dd>Arguments to prepend to arguments provided to the bound function when invoking the target function.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>bind()</code> function creates a new function (a <strong>bound function</strong>) with the same function body (internal <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>call</code></a> property in ECMAScript 5 terms) as the function it is being called on (the bound function&apos;s <strong>target function</strong>) with the <code>this</code> value bound to the first argument of <code>bind()</code>, which cannot be overridden. <code>bind()</code> also accepts leading default arguments to provide to the target function when the bound function is called. A bound function may also be constructed using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a> operator: doing so acts as though the target function had instead been constructed. The provided <code>this</code> value is ignored, while prepended arguments are provided to the emulated function.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example.3A_Creating_a_bound_function">Example: Creating a bound function</h3>
+<p>The simplest use of <code>bind()</code> is to make a function that, no matter how it is called, is called with a particular <code>this</code> value. A common mistake for new JavaScript programmers is to extract a method from an object, then to later call that function and expect it to use the original object as its <code>this</code> (e.g. by using that method in callback-based code). Without special care, however, the original object is usually lost. Creating a bound function from the function, using the original object, neatly solves this problem:</p>
+<prism-js language="javascript">this.x = 9;
+var module = {
+&#xA0; x: 81,
+&#xA0; getX: function() { return this.x; }
+};
+module.getX(); // 81
+var getX = module.getX;
+getX(); // 9, because in this case, &quot;this&quot; refers to the global object
+// Create a new function with &apos;this&apos; bound to module
+var boundGetX = getX.bind(module);
+boundGetX(); // 81
+</prism-js>
+<h3 id="Example.3A_Partial_Functions">Example: Partial Functions</h3>
+<p>The next simplest use of <code>bind()</code> is to make a function with pre-specified initial arguments. These arguments (if any) follow the provided <code>this</code> value and are then inserted at the start of the arguments passed to the target function, followed by the arguments passed to the bound function, whenever the bound function is called.</p>
+<prism-js language="javascript">function list() {
+  return Array.prototype.slice.call(arguments);
+}
+var list1 = list(1, 2, 3); // [1, 2, 3]
+// Create a function with a preset leading argument
+var leadingThirtysevenList = list.bind(undefined, 37);
+var list2 = leadingThirtysevenList(); // [37]
+var list3 = leadingThirtysevenList(1, 2, 3); // [37, 1, 2, 3]
+</prism-js>
+<h3 id="Example.3A_With_setTimeout">Example: With setTimeout</h3>
+<p>By default within <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.setTimeout" title="The documentation about this has not yet been written; please consider contributing!"><code>window.setTimeout()</code></a>, the <code>this</code> keyword will be set to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/window" title="The window object represents a window containing a DOM document; the document property points to the DOM document loaded in that window."><code>window</code></a> (or <code>global</code>) object. When working with class methods that require <code>this</code> to refer to class instances, you may explicitly bind <code>this</code> to the callback function, in order to maintain the instance.</p>
+<prism-js language="javascript">function LateBloomer() {
+  this.petalCount = Math.ceil(Math.random() * 12) + 1;
+}
+// Declare bloom after a delay of 1 second
+LateBloomer.prototype.bloom = function() {
+  window.setTimeout(this.declare.bind(this), 1000);
+};
+LateBloomer.prototype.declare = function() {
+  console.log(&apos;I am a beautiful flower with &apos; +
+    this.petalCount + &apos; petals!&apos;);
+};
+</prism-js>
+<h3 id="Example.3A_Bound_functions_used_as_constructors">Example: Bound functions used as constructors</h3>
+<div class="warning">
+<p><strong>Warning:</strong> This section demonstrates JavaScript capabilities and documents some edge cases of the <code>bind()</code> method. The methods shown below are not the best way to do things and probably should not be used in any production environment.</p>
+</div>
+<p>Bound functions are automatically suitable for use with the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a> operator to construct new instances created by the target function. When a bound function is used to construct a value, the provided <code>this</code> is ignored. However, provided arguments are still prepended to the constructor call:</p>
+<prism-js language="javascript">function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+Point.prototype.toString = function() {
+  return this.x + &apos;,&apos; + this.y;
+};
+var p = new Point(1, 2);
+p.toString(); // &apos;1,2&apos;
+var emptyObj = {};
+var YAxisPoint = Point.bind(emptyObj, 0/*x*/);
+// not supported in the polyfill below,
+// works fine with native bind:
+var YAxisPoint = Point.bind(null, 0/*x*/);
+var axisPoint = new YAxisPoint(5);
+axisPoint.toString(); // &apos;0,5&apos;
+axisPoint instanceof Point; // true
+axisPoint instanceof YAxisPoint; // true
+new Point(17, 42) instanceof YAxisPoint; // true
+</prism-js>
+<p>Note that you need do nothing special to create a bound function for use with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a>. The corollary is that you need do nothing special to create a bound function to be called plainly, even if you would rather require the bound function to only be called using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a>.</p>
+<prism-js language="javascript">// Example can be run directly in your JavaScript console
+// ...continuing from above
+// Can still be called as a normal function
+// (although usually this is undesired)
+YAxisPoint(13);
+emptyObj.x + &apos;,&apos; + emptyObj.y;
+// &gt;  &apos;0,13&apos;
+</prism-js>
+<p>If you wish to support use of a bound function only using&#xA0;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a>, or only by calling it, the target function must enforce that restriction.</p>
+<h3 id="Example:_Creating_shortcuts" name="Example:_Creating_shortcuts">Example: Creating shortcuts</h3>
+<p><code>bind()</code> is also helpful in cases where you want to create a shortcut to a function which requires a specific <code>this</code> value.</p>
+<p>Take <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" title="The slice() method returns a shallow copy of a portion of an array into a new array object."><code>Array.prototype.slice</code></a>, for example, which you want to use for converting an array-like object to a real array. You could create a shortcut like this:</p>
+<prism-js language="javascript">var slice = Array.prototype.slice;
+// ...
+slice.call(arguments);
+</prism-js>
+<p>With <code>bind()</code>, this can be simplified. In the following piece of code, <code>slice</code> is a bound function to the <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>call()</code></a> function of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="The Function.prototype property represents the Function prototype object."><code>Function.prototype</code></a>, with the <code>this</code> value set to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" title="The slice() method returns a shallow copy of a portion of an array into a new array object."><code>slice()</code></a> function of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype" title="The Array.prototype property represents the prototype for the Array constructor."><code>Array.prototype</code></a>. This means that additional <code>call()</code> calls can be eliminated:</p>
+<prism-js language="javascript">// same as &quot;slice&quot; in the previous example
+var unboundSlice = Array.prototype.slice;
+var slice = Function.prototype.call.bind(unboundSlice);
+// ...
+slice(arguments);
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>The <code>bind</code> function is a recent addition to ECMA-262, 5th edition; as such it may not be present in all browsers. You can partially work around this by inserting the following code at the beginning of your scripts, allowing use of much of the functionality of <code>bind()</code> in implementations that do not natively support it.</p>
+<prism-js language="javascript">if (!Function.prototype.bind) {
+  Function.prototype.bind = function(oThis) {
+    if (typeof this !== &apos;function&apos;) {
+      // closest thing possible to the ECMAScript 5
+      // internal IsCallable function
+      throw new TypeError(&apos;Function.prototype.bind - what is trying to be bound is not callable&apos;);
+    }
+    var aArgs   = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP    = function() {},
+        fBound  = function() {
+          return fToBind.apply(this instanceof fNOP &amp;&amp; oThis
+                 ? this
+                 : oThis,
+                 aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+    return fBound;
+  };
+}
+</prism-js>
+<p>Some of the many differences (there may well be others, as this list does not seriously attempt to be exhaustive) between this algorithm and the specified algorithm are:</p>
+<ul>
+ <li>The partial implementation relies on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" title="The slice() method returns a shallow copy of a portion of an array into a new array object."><code>Array.prototype.slice()</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" title="The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments."><code>Array.prototype.concat()</code></a>, <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a> and <a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>Function.prototype.apply()</code></a>, built-in methods to have their original values.</li>
+ <li>The partial implementation creates functions that do not have immutable &quot;poison pill&quot; <a href="#/Function.caller" title="The function.caller property returns the function that invoked the specified function."><code>caller</code></a> and <code>arguments</code> properties that throw a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> upon get, set, or deletion. (This could be added if the implementation supports <a href="#/Object.defineProperty()" title="The Object.defineProperty() method defines a new property directly on an object, or modifies an existing property on an object, and returns the object."><code>Object.defineProperty</code></a>, or partially implemented [without throw-on-delete behavior] if the implementation supports the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineGetter" title="The documentation about this has not yet been written; please consider contributing!"><code>__defineGetter__</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineSetter" title="The documentation about this has not yet been written; please consider contributing!"><code>__defineSetter__</code></a> extensions.)</li>
+ <li>The partial implementation creates functions that have a <code>prototype</code> property. (Proper bound functions have none.)</li>
+ <li>The partial implementation creates bound functions whose <a href="#/Function.length" title="The length property specifies the number of arguments expected by the function."><code>length</code></a> property does not agree with that mandated by ECMA-262: it creates functions with length 0, while a full implementation, depending on the length of the target function and the number of pre-specified arguments, may return a non-zero length.</li>
+</ul>
+<p>If you choose to use this partial implementation, <strong>you must not rely on those cases where behavior deviates from ECMA-262, 5th edition!</strong> With some care, however (and perhaps with additional modification to suit specific needs), this partial implementation may be a reasonable bridge to the time when <code>bind()</code> is widely implemented according to the specification.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.bind&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function.prototype.bind" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.bind&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>Function.prototype.apply()</code></a></li>
+ <li><a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope" title="The documentation about this has not yet been written; please consider contributing!">Functions and function scope</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Function.prototype.bind()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

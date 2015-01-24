@@ -28,7 +28,7 @@ console.log(Object.keys(my_obj)); // console: [&apos;foo&apos;]
 </prism-js>
 <p>If you want all properties, even not enumerables, see <a href="#/Object.getOwnPropertyNames()" title="The Object.getOwnPropertyNames() method returns an array of all properties (enumerable or not) found directly upon a given object."><code>Object.getOwnPropertyNames()</code></a>.</p>
 <h2 id="Notes" name="Notes">Notes</h2>
-<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be coerced to an object.</p>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be coerced to an object.</p>
 <prism-js language="javascript">&gt; Object.keys(&quot;foo&quot;)
 TypeError: &quot;foo&quot; is not an object // ES5 code
 &gt; Object.keys(&quot;foo&quot;)

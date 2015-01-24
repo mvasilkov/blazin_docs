@@ -41,7 +41,7 @@
  </tbody>
 </table>
 <p>Note that <code>encodeURI</code> by itself <em>cannot</em> form proper HTTP GET and POST requests, such as for XMLHTTPRequests, because &quot;&amp;&quot;, &quot;+&quot;, and &quot;=&quot; are not encoded, which are treated as special characters in GET and POST requests. <a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a>, however, does encode these characters.</p>
-<p>Note that an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
+<p>Note that an <a href="#/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
 <prism-js language="javascript">// high-low pair ok
 alert(encodeURI(&apos;\uD800\uDFFF&apos;));
 // lone high surrogate throws &quot;URIError: malformed URI sequence&quot;

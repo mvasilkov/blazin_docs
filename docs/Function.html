@@ -1,0 +1,196 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Function</code> constructor</strong> creates a new <code>Function</code> object. In JavaScript every function is actually a <code>Function</code> object.</p>
+<h2 id="Syntax" name="Syntax">Constructor</h2>
+<pre class="syntaxbox"><code>new Function ([<var>arg1</var>[, <var>arg2</var>[, ...<var>argN</var>]],] <var>functionBody</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>arg1, arg2, ... arg<em>N</em></code></dt>
+ <dd>
+  Names to be used by the function as formal argument names. Each must be a string that corresponds to a valid JavaScript identifier or a list of such strings separated with a comma; for example &quot;<code>x</code>&quot;, &quot;<code>theValue</code>&quot;, or &quot;<code>a,b</code>&quot;.</dd>
+ <dt>
+  <code>functionBody</code></dt>
+ <dd>
+  A string containing the JavaScript statements comprising the function definition.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>Function</code> objects created with the <code>Function</code> constructor are parsed when the function is created. This is less efficient than declaring a function with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function statement</a> and calling it within your code, because such functions are parsed with the rest of the code.</p>
+<p>All arguments passed to the function are treated as the names of the identifiers of the parameters in the function to be created, in the order in which they are passed.</p>
+<div class="note">
+ <p><strong>Note:</strong> Functions created with the <code>Function</code> constructor do not create closures to their creation contexts; they always are created in the global scope. When running them, they will only be able to access their own local variables and global ones, not the ones from the scope in which the <code>Function</code> constructor was called. This is different from using <a href="#/eval()" title="The eval() method evaluates JavaScript code represented as a string."><code>eval</code></a> with code for a function expression.</p>
+</div>
+<p>Invoking the <code>Function</code> constructor as a function (without using the <code>new</code> operator) has the same effect as invoking it as a constructor.</p>
+<h2 id="Properties_and_Methods_of_Function">Properties and Methods of <code>Function</code></h2>
+<p>The global <code>Function</code> object has no methods or properties of its own, however, since it is a function itself it does inherit some methods and properties through the prototype chain from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="The Function.prototype property represents the Function prototype object."><code>Function.prototype</code></a>.</p>
+<h2 id="Function_prototype_object"><code>Function</code> prototype object</h2>
+<h3 id="Properties">Properties</h3>
+<div>
+ <dl><dt>
+  <a href="#/Function.arguments" title="The function.arguments property refers to an an array-like object corresponding to the arguments passed to a function. Use the simple variable arguments instead."><code>Function.arguments</code></a> <span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></dt>
+ <dd>
+  An array corresponding to the arguments passed to a function. This is deprecated as property of <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a>, use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments</code></a> object available within the function instead.</dd>
+ <dt>
+  <s class="obsoleteElement"><a href="#/Function.arity" title="The arity property used to return the number of arguments expected by the function, however, it no longer exists and has been replaced by the Function.prototype.length property."><code>Function.arity</code></a> <span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></s></dt>
+ <dd>
+  <s class="obsoleteElement">Used to specifiy the number of arguments expected by the function, but has been removed. Use the <a href="#/Function.length" title="The length property specifies the number of arguments expected by the function."><code>length</code></a> property instead.</s></dd>
+ <dt>
+  <a href="#/Function.caller" title="The function.caller property returns the function that invoked the specified function."><code>Function.caller</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Specifies the function that invoked the currently executing function.</dd>
+ <dt>
+  <a href="#/Function.length" title="The length property specifies the number of arguments expected by the function."><code>Function.length</code></a></dt>
+ <dd>
+  Specifies the number of arguments expected by the function.</dd>
+ <dt>
+  <a href="#/Function.name" title="The function.name property returns the name of the function."><code>Function.name</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  The name of the function.</dd>
+ <dt>
+  <a href="#/Function.displayName" title="The function.displayName property returns the display name of the function."><code>Function.displayName</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  The display name of the function.</dd>
+ <dt>
+  <code>Function.prototype.constructor</code></dt>
+ <dd>
+  Specifies the function that creates an object&apos;s prototype. See <a href="#/Object.prototype.constructor" title="Returns a reference to the Object function that created the instance&apos;s prototype. Note that the value of this property is a reference to the function itself, not a string containing the function&apos;s name. The value is only read-only for primitive values such as&#xA0;1,&#xA0;true and&#xA0;&quot;test&quot;."><code>Object.prototype.constructor</code></a> for more details.</dd>
+</dl></div>
+<h3 id="Methods" name="Methods">Methods</h3>
+<div>
+ <dl><dt>
+  <a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>Function.prototype.apply()</code></a></dt>
+ <dd>
+  Applies the method of another object in the context of a different object (the calling object); arguments can be passed as an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> object.</dd>
+ <dt>
+  <a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>Function.prototype.bind()</code></a></dt>
+ <dd>
+  Creates a new function which, when called, itself calls this function in the context of the provided value, with a given sequence of arguments preceding any provided when the new function was called.</dd>
+ <dt>
+  <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a></dt>
+ <dd>
+  Calls (executes) a method of another object in the context of a different object (the calling object); arguments can be passed as they are.</dd>
+ <dt>
+  <a href="#/Function.prototype.isGenerator()" title="The isGenerator() method determines whether or not a function is a generator."><code>Function.prototype.isGenerator()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns <code>true</code> if the function is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators">generator</a>; otherwise returns <code>false</code>.</dd>
+ <dt>
+  <a href="#/Function.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Function.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns a string representing the source code of the function. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource</code></a> method.</dd>
+ <dt>
+  <a href="#/Function.prototype.toString()" title="The toString() method returns a string representing the source code of the function."><code>Function.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string representing the source code of the function. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString</code></a> method.</dd>
+</dl></div>
+<h2 id="Function_instances" name="Function_instances"><code>Function</code> instances</h2>
+<p><code>Function</code> instances inherit methods and properties from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="The Function.prototype property represents the Function prototype object."><code>Function.prototype</code></a>. As with all constructors, you can change the constructor&apos;s prototype object to make changes to all <code>Function</code> instances.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example.3A_Specifying_arguments_with_the_Function_constructor" name="Example.3A_Specifying_arguments_with_the_Function_constructor">Example: Specifying arguments with the <code>Function</code> constructor</h3>
+<p>The following code creates a <code>Function</code> object that takes two arguments.</p>
+<prism-js language="javascript">// Example can be run directly in your JavaScript console
+// Create a function that takes two arguments and returns the sum of those arguments
+var adder = new Function(&apos;a&apos;, &apos;b&apos;, &apos;return a + b&apos;);
+// Call the function
+adder(2, 6);
+// &gt; 8
+</prism-js>
+<p>The arguments &quot;<code>a</code>&quot; and &quot;<code>b</code>&quot; are formal argument names that are used in the function body, &quot;<code>return a + b</code>&quot;.</p>
+<h3 id="Example:_A_recursive_shortcut_to_massively_modify_the_DOM" name="Example:_A_recursive_shortcut_to_massively_modify_the_DOM">Example: A recursive shortcut to massively modify the DOM</h3>
+<p>Creating functions with the <code>Function</code> constructor is one of the ways to dynamically create an indeterminate number of new objects with some executable code into the global scope from a function. The following example (a recursive shortcut to massively modify the DOM) is impossible without the invocation of the <code>Function</code> constructor for each new query if you want to avoid closures.</p>
+<prism-js language="javascript">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;title&gt;MDN Example - a recursive shortcut to massively modify the DOM&lt;/title&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var domQuery = (function() {
+  var aDOMFunc = [
+    Element.prototype.removeAttribute,
+    Element.prototype.setAttribute,
+    CSSStyleDeclaration.prototype.removeProperty,
+    CSSStyleDeclaration.prototype.setProperty
+  ];
+  function setSomething(bStyle, sProp, sVal) {
+    var bSet = Boolean(sVal), fAction = aDOMFunc[bSet | bStyle &lt;&lt; 1],
+        aArgs = Array.prototype.slice.call(arguments, 1, bSet ? 3 : 2),
+        aNodeList = bStyle ? this.cssNodes : this.nodes;
+    if (bSet &amp;&amp; bStyle) { aArgs.push(&apos;&apos;); }
+    for (
+      var nItem = 0, nLen = this.nodes.length;
+      nItem &lt; nLen;
+      fAction.apply(aNodeList[nItem++], aArgs)
+    );
+    this.follow = setSomething.caller;
+    return this;
+  }
+  function setStyles(sProp, sVal) { return setSomething.call(this, true, sProp, sVal); }
+  function setAttribs(sProp, sVal) { return setSomething.call(this, false, sProp, sVal); }
+  function getSelectors() { return this.selectors; };
+  function getNodes() { return this.nodes; };
+  return (function(sSelectors) {
+    var oQuery = new Function(&apos;return arguments.callee.follow.apply(arguments.callee, arguments);&apos;);
+    oQuery.selectors = sSelectors;
+    oQuery.nodes = document.querySelectorAll(sSelectors);
+    oQuery.cssNodes = Array.prototype.map.call(oQuery.nodes, function(oInlineCSS) { return oInlineCSS.style; });
+    oQuery.attributes = setAttribs;
+    oQuery.inlineStyle = setStyles;
+    oQuery.follow = getNodes;
+    oQuery.toString = getSelectors;
+    oQuery.valueOf = getNodes;
+    return oQuery;
+  });
+})();
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;testClass&quot;&gt;Lorem ipsum&lt;/div&gt;
+&lt;p&gt;Some text&lt;/p&gt;
+&lt;div class=&quot;testClass&quot;&gt;dolor sit amet&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+domQuery(&apos;.testClass&apos;)
+  .attributes(&apos;lang&apos;, &apos;en&apos;)(&apos;title&apos;, &apos;Risus abundat in ore stultorum&apos;)
+  .inlineStyle(&apos;background-color&apos;, &apos;black&apos;)(&apos;color&apos;, &apos;white&apos;)(&apos;width&apos;, &apos;100px&apos;)(&apos;height&apos;, &apos;50px&apos;);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope" title="The documentation about this has not yet been written; please consider contributing!"><code>Functions and function scope</code></a></li>
+ <li><a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" title="The function declaration defines a function with the specified parameters."><code>function statement</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function" title="The function keyword can be used to define a function inside an expression."><code>function expression</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*" title="The function* declaration (function keyword followed by an asterisk) defines a generator function."><code>function* statement</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function*" title="The function* keyword can be used to define a generator function inside an expression."><code>function* expression</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction" title="The GeneratorFunction constructor creates a new generator function object. In JavaScript every generator function is actually a GeneratorFunction object."><code>GeneratorFunction</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

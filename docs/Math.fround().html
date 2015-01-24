@@ -1,0 +1,52 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.fround()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.fround()</strong></code> function returns the nearest <a class="external" href="http://en.wikipedia.org/wiki/Single_precision" title="link to the wikipedia page on single precision">single precision</a> float representation of a number.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Math.fround(<em>x</em>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  A number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Because <code>fround</code> is a static method of <code>Math</code>, you always use it as <code>Math.fround()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">Math.fround(0)     // 0
+Math.fround(1)     // 1
+Math.fround(1.337) // 1.3370000123977661
+Math.fround(1.5)   // 1.5
+Math.fround(NaN)   // NaN</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>This can be emulated with the following function, if Float32Array are supported:</p>
+<prism-js language="javascript">function fround(x) {
+  var f32 = new Float32Array(1);
+  return f32[0] = x, f32[0];
+}</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.fround" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.fround&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li>The <a href="#/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object."><code>Math</code></a> object it belongs to.</li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround">Math.fround()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

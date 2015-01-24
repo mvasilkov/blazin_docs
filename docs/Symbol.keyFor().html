@@ -1,0 +1,47 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Symbol.keyFor()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Symbol.keyFor(sym)</strong></code> method retrieves a shared symbol key from the global symbol registry for the given symbol.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><var>Symbol.keyFor(sym)</var>;</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  sym</dt>
+ <dd>
+  Symbol, required. The symbol to find a key for.</dd>
+</dl>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">var globalSym = Symbol.for(&quot;foo&quot;); // create a new global symbol
+Symbol.keyFor(globalSym); // &quot;foo&quot;
+var localSym = Symbol();
+Symbol.keyFor(localSym); // undefined
+// well-known symbols are not symbols registered
+// in the global symbol registry
+Symbol.keyFor(Symbol.iterator) // undefined
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol.keyfor" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Symbol.keyFor&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/Symbol.for()" title="The Symbol.for(key) method searches for existing symbols in a runtime-wide symbol registry with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key."><code>Symbol.prototype.for()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/keyFor">Symbol.keyFor()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,69 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.tanh()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.tanh()</strong></code> function returns the hyperbolic tangent of a number, that is</p>
+<p><math display="block"><semantics><mrow><mo lspace="0em" rspace="0em">tanh</mo><mi>x</mi><mo>=</mo><mfrac><mrow><mo lspace="0em" rspace="0em">sinh</mo><mi>x</mi></mrow><mrow><mo lspace="0em" rspace="0em">cosh</mo><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>-</mo><msup><mi>e</mi><mrow><mo>-</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>-</mo><mi>x</mi></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mn>2</mn><mi>x</mi></mrow></msup><mo>-</mo><mn>1</mn></mrow><mrow><msup><mi>e</mi><mrow><mn>2</mn><mi>x</mi></mrow></msup><mo>+</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="TeX">\tanh x = \frac{\sinh x}{\cosh x} = \frac {e^x - e^{-x}} {e^x + e^{-x}} = \frac{e^{2x} - 1}{e^{2x}+1}</annotation></semantics></math></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">
+Math.tanh(<em>x</em>)</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  A number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Because <code>tanh</code> is a static method of <code>Math</code>, you always use it as <code>Math.tanh()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.tan" name="Example:_Using_Math.tan">Example: Using <code>Math.tanh</code></h3>
+<prism-js language="javascript">
+Math.tanh(0)        // 0
+Math.tanh(Infinity) // 1
+Math.tanh(1)        // 0.7615941559557649</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>This can be emulated with the help of the <a href="#/Math.exp()" title="The Math.exp() function returns ex, where x is the argument, and e is Euler&apos;s constant, the base of the natural logarithms."><code>Math.exp()</code></a><code> </code>function:</p>
+<prism-js language="javascript">
+function tanh(x) {
+  if(x === Infinity) {
+    return 1;
+  } else if(x === -Infinity) {
+    return -1;
+  } else {
+    return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
+  }
+}</prism-js>
+<p>or using only one call to <a href="#/Math.exp()" title="The Math.exp() function returns ex, where x is the argument, and e is Euler&apos;s constant, the base of the natural logarithms."><code>Math.exp()</code></a><code> :</code></p>
+<prism-js language="javascript">
+function tanh(x) {
+  if(x === Infinity) {
+    return 1;
+  } else if(x === -Infinity) {
+    return -1;
+  } else {
+    var y = Math.exp(2 * x);
+    return (y - 1) / (y + 1);
+  }
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.tanh" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.tanh&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tanh">Math.tanh()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

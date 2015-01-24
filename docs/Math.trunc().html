@@ -1,0 +1,61 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.trunc()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.trunc()</strong></code> function returns the integral part of a number by removing any fractional digits. It does not round any numbers. The function can be expressed with the <a href="#/Math.floor()" title="The Math.floor(x) function returns the largest integer less than or equal to a number &quot;x&quot;."><code>floor()</code></a> and <a href="#/Math.ceil()" title="The Math.ceil(x) function returns the smallest integer greater than or equal to a number &quot;x&quot;."><code>ceil()</code></a> function:</p>
+<p><math display="block"><semantics><mrow><mstyle mathvariant="monospace"><mrow><mo lspace="0em" rspace="thinmathspace">Math.trunc</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left"><mtr><mtd><mrow><mo>&#x230A;</mo><mi>x</mi><mo>&#x230B;</mo></mrow></mtd><mtd><mtext>if</mtext></mtd><mtd><mi>x</mi><mo>&#x2265;</mo><mn>0</mn></mtd></mtr><mtr><mtd><mrow><mo>&#x2308;</mo><mi>x</mi><mo>&#x2309;</mo></mrow></mtd><mtd><mtext>if</mtext></mtd><mtd><mi>x</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr></mtable></mrow></mrow><annotation encoding="TeX">\mathtt{\operatorname{Math.trunc}(x)} = \begin{cases} \left\lfloor x \right\rfloor &amp; \text{if} &amp; x \geq 0 \\ \left\lceil x \right\rceil &amp; \text{if} &amp;x &lt; 0 \end{cases}</annotation></semantics></math></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">
+Math.trunc(<em>x</em>)</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  A number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Because <code>trunc</code> is a static method of <code>Math</code>, you always use it as <code>Math.trunc()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.tan" name="Example:_Using_Math.tan">Example: Using <code>Math.trunc</code></h3>
+<prism-js language="javascript">
+Math.trunc(13.37)   // 13
+Math.trunc(42.84)   // 42
+Math.trunc(0.123)   //  0
+Math.trunc(-0.123)  // -0
+Math.trunc(&quot;-1.123&quot;)// -1
+Math.trunc(NaN)     // NaN
+Math.trunc(&quot;foo&quot;)   // NaN
+Math.trunc()        // NaN</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<prism-js language="javascript">
+function trunc(x) {
+  return x &lt; 0 ? Math.ceil(x) : Math.floor(x);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.trunc" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.trunc&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="#/Math.round()" title="The Math.round() function returns the value of a number rounded to the nearest integer."><code>Math.round()</code></a></li>
+ <li><a href="#/Math.floor()" title="The Math.floor(x) function returns the largest integer less than or equal to a number &quot;x&quot;."><code>Math.floor()</code></a></li>
+ <li><a href="#/Math.ceil()" title="The Math.ceil(x) function returns the smallest integer greater than or equal to a number &quot;x&quot;."><code>Math.ceil()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc">Math.trunc()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

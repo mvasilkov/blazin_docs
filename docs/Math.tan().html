@@ -1,0 +1,54 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.tan()</strong></code> function returns the tangent of a number.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">Math.tan(<em>x</em>)</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  A number representing an angle in radians.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>tan</code> method returns a numeric value that represents the tangent of the angle.</p>
+<p>Because <code>tan</code> is a static method of <code>Math</code>, you always use it as <code>Math.tan()</code>, rather than as a method of a <code>Math</code> object.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.tan" name="Example:_Using_Math.tan">Example: Using <code>Math.tan</code></h3>
+<prism-js language="javascript">Math.tan(1); // 1.5574077246549023</prism-js>
+<p>Because the <code>Math.tan()</code> function accepts radians, but it is often easier to work with degrees, the following function accepts a value in degrees, converts it to radians and returns the tangent.</p>
+<prism-js language="javascript">function getTanDeg(deg) {
+   var rad = deg * Math.PI/180;
+   return Math.tan(rad);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.18" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Math.tan&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.tan" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.tan&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/tan">Math.tan()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

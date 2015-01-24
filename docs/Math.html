@@ -1,0 +1,229 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p><strong>Math</strong> is a built-in object that has properties and methods for mathematical constants and functions. It is not a function object.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>Unlike the other global objects, <code>Math</code> is not a constructor. All properties and methods of <code>Math</code> are static. You refer to the constant pi as <code>Math.PI</code> and you call the sine function as <code>Math.sin(x)</code>, where <code>x</code> is the method&apos;s argument. Constants are defined with the full precision of real numbers in JavaScript.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt>
+  <a href="#/Math.E" title="The Math.E property represents the base of natural logarithms, e, approximately 2.718."><code>Math.E</code></a></dt>
+ <dd>
+  Euler&apos;s constant and the base of natural logarithms, approximately 2.718.</dd>
+ <dt>
+  <a href="#/Math.LN2" title="The Math.LN2 property represents the natural logarithm of 2, approximately 0.693:"><code>Math.LN2</code></a></dt>
+ <dd>
+  Natural logarithm of 2, approximately 0.693.</dd>
+ <dt>
+  <a href="#/Math.LN10" title="The Math.LN10 property represents the natural logarithm of 10, approximately 2.302:"><code>Math.LN10</code></a></dt>
+ <dd>
+  Natural logarithm of 10, approximately 2.303.</dd>
+ <dt>
+  <a href="#/Math.LOG2E" title="The Math.LOG2E property represents the base 2 logarithm of e, approximately 1.442:"><code>Math.LOG2E</code></a></dt>
+ <dd>
+  Base 2 logarithm of E, approximately 1.443.</dd>
+ <dt>
+  <a href="#/Math.LOG10E" title="The Math.LOG10E property represents the base 10 logarithm of e, approximately 0.434:"><code>Math.LOG10E</code></a></dt>
+ <dd>
+  Base 10 logarithm of E, approximately 0.434.</dd>
+ <dt>
+  <a href="#/Math.PI" title="The Math.PI property represents the ratio of the circumference of a circle to its diameter, approximately 3.14159:"><code>Math.PI</code></a></dt>
+ <dd>
+  Ratio of the circumference of a circle to its diameter, approximately 3.14159.</dd>
+ <dt>
+  <a href="#/Math.SQRT1_2" title="The Math.SQRT1_2 property represents the square root of 1/2 which is approximately 0.707:"><code>Math.SQRT1_2</code></a></dt>
+ <dd>
+  Square root of 1/2; equivalently, 1 over the square root of 2, approximately 0.707.</dd>
+ <dt>
+  <a href="#/Math.SQRT2" title="The Math.SQRT2 property represents the square root of 2, approximately 1.414:"><code>Math.SQRT2</code></a></dt>
+ <dd>
+  Square root of 2, approximately 1.414.</dd>
+</dl>
+<h2 id="Methods" name="Methods">Methods</h2>
+<div class="note">
+ Note that the trigonometric functions (sin, cos, tan, asin, acos, atan, atan2) expect or return angles in radians. To convert radians to degrees, divide by (Math.PI / 180), and multiply by this to convert the other way.</div>
+<div class="note">
+ Note a lot of the math functions have a precision that&apos;s implementation-dependent. This means that different browsers can give a different result, and even the same JS engine on a different OS or architecture can give different results.</div>
+<dl>
+</dl>
+<dl>
+ <dt>
+  <a href="#/Math.abs()" title="The Math.abs(x) function returns the absolute value of a number &quot;x&quot;."><code>Math.abs(x)</code></a></dt>
+ <dd>
+  Returns the absolute value of a number.</dd>
+ <dt>
+  <a href="#/Math.acos()" title="The Math.acos() function returns the arccosine (in radians) of a number, that is"><code>Math.acos(x)</code></a></dt>
+ <dd>
+  Returns the arccosine of a number.</dd>
+ <dt>
+  <a href="#/Math.acosh()" title="The Math.acosh() function returns the hyperbolic arc-cosine of a number"><code>Math.acosh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic arccosine of a number.</dd>
+ <dt>
+  <a href="#/Math.asin()" title="The Math.asin() function returns the arcsine (in radians) of a number, that is"><code>Math.asin(x)</code></a></dt>
+ <dd>
+  Returns the arcsine of a number.</dd>
+ <dt>
+  <a href="#/Math.asinh()" title="The Math.asinh() function returns the hyperbolic arcsine of a number, that is"><code>Math.asinh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic arcsine of a number.</dd>
+ <dt>
+  <a href="#/Math.atan()" title="The Math.atan() function returns the arctangent (in radians) of a number, that is"><code>Math.atan(x)</code></a></dt>
+ <dd>
+  Returns the arctangent of a number.</dd>
+ <dt>
+  <a href="#/Math.atanh()" title="The Math.atanh() function returns the hyperbolic arctangent of a number, that is"><code>Math.atanh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic arctangent of a number.</dd>
+ <dt>
+  <a href="#/Math.atan2()" title="The Math.atan2() function returns the arctangent of the quotient of its arguments."><code>Math.atan2(y, x)</code></a></dt>
+ <dd>
+  Returns the arctangent of the quotient of its arguments.</dd>
+ <dt>
+  <a href="#/Math.cbrt()" title="The Math.cbrt() function returns the cube root of a number, that is"><code>Math.cbrt(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the cube root of a number.</dd>
+ <dt>
+  <a href="#/Math.ceil()" title="The Math.ceil(x) function returns the smallest integer greater than or equal to a number &quot;x&quot;."><code>Math.ceil(x)</code></a></dt>
+ <dd>
+  Returns the smallest integer greater than or equal to a number.</dd>
+ <dt>
+  <a href="#/Math.clz32()" title="The Math.clz32() function returns the number of leading zero bits in the 32-bit binary representation of a number."><code>Math.clz32(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the number of leading zeroes of a 32-bit integer.</dd>
+ <dt>
+  <a href="#/Math.cos()" title="The Math.cos() function returns the cosine of a number."><code>Math.cos(x)</code></a></dt>
+ <dd>
+  Returns the cosine of a number.</dd>
+ <dt>
+  <a href="#/Math.cosh()" title="The Math.cosh() function returns the hyperbolic cosine of a number, that can be expressed using the constant e:"><code>Math.cosh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic cosine of a number.</dd>
+ <dt>
+  <a href="#/Math.exp()" title="The Math.exp() function returns ex, where x is the argument, and e is Euler&apos;s constant, the base of the natural logarithms."><code>Math.exp(x)</code></a></dt>
+ <dd>
+  Returns E<sup>x</sup>, where <var>x</var> is the argument, and E is Euler&apos;s constant (2.718...), the base of the natural logarithm.</dd>
+ <dt>
+  <a href="#/Math.expm1()" title="The Math.expm1() function returns ex - 1, where x is the argument, and e the base of the natural logarithms."><code>Math.expm1(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns subtracting 1 from exp(x).</dd>
+ <dt>
+  <a href="#/Math.floor()" title="The Math.floor(x) function returns the largest integer less than or equal to a number &quot;x&quot;."><code>Math.floor(x)</code></a></dt>
+ <dd>
+  Returns the largest integer less than or equal to a number.</dd>
+ <dt>
+  <a href="#/Math.fround()" title="The Math.fround() function returns the nearest single precision float representation of a number."><code>Math.fround(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the nearest <a class="external" href="http://en.wikipedia.org/wiki/Single_precision" title="link to the wikipedia page on single precision">single precision</a> float representation of a number.</dd>
+ <dt>
+  <a href="#/Math.hypot()" title="The Math.hypot() function returns the square root of the sum of squares of its arguments, that is"><code>Math.hypot([x[,y[,&#x2026;]]])</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the square root of the sum of squares of its arguments.</dd>
+ <dt>
+  <a href="#/Math.imul()" title="The Math.imul() function returns the result of the C-like 32-bit multiplication of the two parameters."><code>Math.imul(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the result of a 32-bit integer multiplication.</dd>
+ <dt>
+  <a href="#/Math.log()" title="The Math.log() function returns the natural logarithm (base e) of a number, that is"><code>Math.log(x)</code></a></dt>
+ <dd>
+  Returns the natural logarithm (log<sub>e</sub>, also ln) of a number.</dd>
+ <dt>
+  <a href="#/Math.log1p()" title="The Math.log1p() function returns the natural logarithm (base e) of 1 + a number, that is"><code>Math.log1p(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the natural logarithm of 1 + x (log<sub>e</sub>, also ln) of a number.</dd>
+ <dt>
+  <a href="#/Math.log10()" title="The Math.log10() function returns the base 10 logarithm of a number, that is"><code>Math.log10(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the base 10 logarithm of x.</dd>
+ <dt>
+  <a href="#/Math.log2()" title="The Math.log2() function returns the base 2 logarithm of a number, that is"><code>Math.log2(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the base 2 logarithm of x.</dd>
+ <dt>
+  <a href="#/Math.max()" title="The Math.max() function returns the largest of zero or more numbers."><code>Math.max([x[,y[,&#x2026;]]])</code></a></dt>
+ <dd>
+  Returns the largest of zero or more numbers.</dd>
+ <dt>
+  <a href="#/Math.min()" title="The Math.min() function returns the smallest of zero or more numbers."><code>Math.min([x[,y[,&#x2026;]]])</code></a></dt>
+ <dd>
+  Returns the smallest of zero or more numbers.</dd>
+ <dt>
+  <a href="#/Math.pow()" title="The Math.pow() function returns the base to the exponent Power, that is, baseexponent."><code>Math.pow(x,y)</code></a></dt>
+ <dd>
+  Returns base to the exponent power, that is, base<sup>exponent</sup>.</dd>
+ <dt>
+  <a href="#/Math.random()" title="The Math.random() function returns a floating-point, pseudo-random number in the range [0,&#xA0;1[ that is, from 0 (inclusive) up to but not including 1 (exclusive), which you can then scale to your desired range.&#xA0; The implementation selects the initial seed to the random number generation algorithm; it cannot be chosen or reset by the user."><code>Math.random()</code></a></dt>
+ <dd>
+  Returns a pseudo-random number between 0 and 1.</dd>
+ <dt>
+  <a href="#/Math.round()" title="The Math.round() function returns the value of a number rounded to the nearest integer."><code>Math.round(x)</code></a></dt>
+ <dd>
+  Returns the value of a number rounded to the nearest integer.</dd>
+ <dt>
+  <a href="#/Math.sign()" title="The Math.sign() function returns the sign of a number, indicating whether the number is positive, negative or zero."><code>Math.sign(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the sign of the x, indicating whether x is positive, negative or zero.</dd>
+ <dt>
+  <a href="#/Math.sin()" title="The Math.sin() function returns the sine of a number."><code>Math.sin(x)</code></a></dt>
+ <dd>
+  Returns the sine of a number.</dd>
+ <dt>
+  <a href="#/Math.sinh()" title="The Math.sinh() function returns the hyperbolic sine of a number, that can be expressed using the constant e:"><code>Math.sinh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic sine of a number.</dd>
+ <dt>
+  <a href="#/Math.sqrt()" title="The Math.sqrt() function returns the square root of a number, that is"><code>Math.sqrt(x)</code></a></dt>
+ <dd>
+  Returns the positive square root of a number.</dd>
+ <dt>
+  <a href="#/Math.tan()" title="The Math.tan() function returns the tangent of a number."><code>Math.tan(x)</code></a></dt>
+ <dd>
+  Returns the tangent of a number.</dd>
+ <dt>
+  <a href="#/Math.tanh()" title="The Math.tanh() function returns the hyperbolic tangent of a number, that is"><code>Math.tanh(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the hyperbolic tangent of a number.</dd>
+ <dt>
+  <code>Math.toSource()</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns the string <code>&quot;Math&quot;</code>.</dd>
+ <dt>
+  <a href="#/Math.trunc()" title="The Math.trunc() function returns the integral part of a number by removing any fractional digits. It does not round any numbers. The function can be expressed with the floor() and ceil() function:"><code>Math.trunc(x)</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Returns the integral part of the number x, removing any fractional digits.</dd>
+</dl>
+<div>
+ <h2 id="Specifications">Specifications</h2>
+ <table class="standard-table">
+  <tbody>
+   <tr>
+    <th scope="col">Specification</th>
+    <th scope="col">Status</th>
+    <th scope="col">Comment</th>
+   </tr>
+   <tr>
+    <td>ECMAScript 1st Edition. Implemented in JavaScript 1.1</td>
+    <td>Standard</td>
+    <td>Initial definition.</td>
+   </tr>
+   <tr>
+    <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.8" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math&apos; in that specification.</small></a></td>
+    <td><span class="spec-Standard">Standard</span></td>
+    <td>&#xA0;</td>
+   </tr>
+   <tr>
+    <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math-object" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Math&apos; in that specification.</small></a></td>
+    <td><span class="spec-Draft">Draft</span></td>
+    <td>New methods <code>log10</code>, <code>log2()</code>, <code>log1p()</code>, <code>expm1()</code>, <code>cosh()</code>, <code>sinh()</code>, <code>tanh()</code>, <code>acosh()</code>, <code>asinh()</code>, <code>atanh()</code>, <code>hypot()</code>, <code>trunc()</code>, <code>sign()</code>, <code>imul()</code>, <code>fround()</code>, <code>cbrt()</code> and <code>clz32()</code> added.</td>
+   </tr>
+  </tbody>
+ </table>
+ <h2 id="See_also" name="See_also">See also</h2>
+ <ul>
+  <li>The <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> global object</li>
+ </ul>
+</div>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">Math</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

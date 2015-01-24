@@ -1,0 +1,82 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>length</strong></code> property specifies the number of arguments expected by the function.</p>
+<div>
+ <table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>Function.length</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>length</code> is a property of a function object, and indicates how many arguments the function expects, i.e. the number of formal parameters. This number does not include the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/rest_parameters" title="Representation of an indefinite number of arguments as an array.">rest parameter</a>. By contrast, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments/length" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments.length</code></a> is local to a function and provides the number of arguments actually passed to the function.</p>
+<h3 id="Data_property_of_the_Function_constructor">Data property of the <code>Function</code> constructor</h3>
+<p>The <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> constructor is itself a <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> object. Its <code>length</code> data property has a value of 1. The property attributes are: Writable: <code>false</code>, Enumerable: <code>false</code>, Configurable: <code>true</code>.</p>
+<h3 id="Property_of_the_Function_prototype_object">Property of the <code>Function</code> prototype object</h3>
+<p>The length property of the <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> prototype object has a value of 0.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<prism-js language="javascript">console.log(Function.length); /* 1 */
+console.log((function()        {}).length); /* 0 */
+console.log((function(a)       {}).length); /* 1 */
+console.log((function(a, b)    {}).length); /* 2 etc. */
+console.log((function(...args) {}).length); /* 0, rest parameter is not counted */
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><code>length</code> property of the <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> constructor:<br>
+    <a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.3.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a><br>
+    <code>length</code> property of the <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> prototype object:<br>
+    <a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-properties-of-the-function-prototype-object" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a><br>
+    <code>length</code> property of <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> instances:<br>
+    <a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.5.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><code>length</code> property of the <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> constructor:<br>
+    <a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function.length" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a><br>
+    <code>length</code> property of the <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> prototype object:<br>
+    <a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-15.3.4" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a><br>
+    <code>length</code> property of <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> instances:<br>
+    <a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function-instances-length" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.length&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>The <code>configurable</code> attribute of this property is now <code>true</code>.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length">Function.length</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

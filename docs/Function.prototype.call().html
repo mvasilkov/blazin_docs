@@ -1,0 +1,92 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong>call()</strong></code> method calls a function with a given <code>this</code> value and arguments provided individually.</p>
+<div class="note">
+ <p><strong>Note:</strong> While the syntax of this function is almost identical to that of <a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>apply()</code></a>, the fundamental difference is that <code>call()</code> accepts an <strong>argument list</strong>, while <code>apply()</code> accepts a <strong>single array of arguments</strong>.</p>
+</div>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>fun</var>.call(<var>thisArg</var>[, <var>arg1</var>[, <var>arg2</var>[, ...]]])</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt><code>thisArg</code></dt>
+ <dd>The value of <code>this</code> provided for the call to <em><code>fun</code></em>. Note that <code>this</code> may not be the actual value seen by the method: if the method is a function in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" title="The documentation about this has not yet been written; please consider contributing!">non-strict mode</a> code, <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> and <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> will be replaced with the global object, and primitive values will be boxed.</dd>
+ <dt><code>arg1, arg2, ...</code></dt>
+ <dd>Arguments for the object.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p>You can assign a different <code>this</code> object when calling an existing function. <code>this</code> refers to the current object, the calling object. With <code>call</code>, you can write a method once and then inherit it in another object, without having to rewrite the method for the new object.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_call_to_chain_constructors_for_an_object">Example: Using <code>call</code> to chain constructors for an object</h3>
+<p>You can use <code>call</code> to chain constructors for an object, similar to Java. In the following example, the constructor for the <code>Product</code> object is defined with two parameters, <code>name</code> and <code>price</code>. Two other functions <code>Food</code> and <code>Toy</code> invoke <code>Product</code> passing <code>this</code> and <code>name</code> and <code>price</code>. Product initializes the properties <code>name</code> and <code>price</code>, both specialized functions define the <code>category</code>.</p>
+<prism-js language="javascript">function Product(name, price) {
+  this.name = name;
+  this.price = price;
+  if (price &lt; 0) {
+    throw RangeError(&apos;Cannot create product &apos; +
+                      this.name + &apos; with a negative price&apos;);
+  }
+  return this;
+}
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = &apos;food&apos;;
+}
+Food.prototype = Object.create(Product.prototype);
+function Toy(name, price) {
+  Product.call(this, name, price);
+  this.category = &apos;toy&apos;;
+}
+Toy.prototype = Object.create(Product.prototype);
+var cheese = new Food(&apos;feta&apos;, 5);
+var fun = new Toy(&apos;robot&apos;, 40);
+</prism-js>
+<h3 id="Example.3A_Using_call_to_invoke_an_anonymous_function">Example: Using <code>call</code> to invoke an anonymous function</h3>
+<p>In this purely constructed example, we create anonymous function and use <code>call</code> to invoke it on every object in an array. The main purpose of the anonymous function here is to add a print function to every object, which is able to print the right index of the object in the array. Passing the object as <code>this</code> value was not strictly necessary, but is done for explanatory purpose.</p>
+<prism-js language="javascript">var animals = [
+  { species: &apos;Lion&apos;, name: &apos;King&apos; },
+  { species: &apos;Whale&apos;, name: &apos;Fail&apos; }
+];
+for (var i = 0; i &lt; animals.length; i++) {
+  (function(i) {
+    this.print = function() {
+      console.log(&apos;#&apos; + i + &apos; &apos; + this.species
+                  + &apos;: &apos; + this.name);
+    }
+    this.print();
+  }).call(animals[i], i);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.3.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.4" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.call&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function.prototype.call" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.call&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>Function.prototype.bind()</code></a></li>
+ <li><a href="#/Function.prototype.apply()" title="The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object)."><code>Function.prototype.apply()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call">Function.prototype.call()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

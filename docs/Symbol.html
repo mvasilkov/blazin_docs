@@ -1,0 +1,175 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Symbol#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>A <strong>symbol</strong> is a unique and immutable data type and may be used as an identifier for object properties. The <em>symbol object</em> is an implicit object wrapper for the symbol <a class="glossaryLink" href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive" title="primitive data type: A primitive (primitive value, primitive data type) is data that is not an Object and does not have any methods.">primitive data type</a>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Symbol(<em>[description]</em>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>description</code> <span class="inlineIndicator optional optionalInline">Optional</span></dt>
+ <dd>
+  Optional, string. A description of the symbol which can be used for debugging but not to access the symbol itself.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>To create a new primitive symbol, you simply write <code>Symbol()</code> with an optional string as its description:</p>
+<prism-js language="javascript">var sym1 = Symbol();
+var sym2 = Symbol(&quot;foo&quot;);
+var sym3 = Symbol(&quot;foo&quot;);
+</prism-js>
+<p>The above code creates three new symbols. Note that <code>Symbol(&quot;foo&quot;)</code> does not coerce the string &quot;foo&quot; into a symbol. It creates a new symbol each time:</p>
+<prism-js language="javascript">Symbol(&quot;foo&quot;) === Symbol(&quot;foo&quot;); // false</prism-js>
+<p>The following syntax with the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a> operator will throw a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>:</p>
+<prism-js language="javascript">var sym = new Symbol(); // TypeError</prism-js>
+<p>This prevents authors from creating an explicit <code>Symbol</code> wrapper object instead of a new symbol value. Creating an explicit wrapper object around primitive data types is no longer supported starting with ECMAScript 6. However, existing primitive wrapper objects like <code>new Boolean</code>, <code>new String</code> and <code>new Number</code> can still be created for legacy reasons.</p>
+<p>And if you really want to create a <code>Symbol</code> wrapper object, you can use <code>Object()</code> function:</p>
+<prism-js language="javascript">var sym = Symbol(&quot;foo&quot;);
+typeof sym;     // &quot;symbol&quot;
+var symObj = Object(sym);
+typeof symObj;  // &quot;object&quot;
+</prism-js>
+<h3 id="Shared_symbols_in_the_global_symbol_registry">Shared symbols in the global symbol registry</h3>
+<p>The above syntax using the <code>Symbol()</code> function will not create a global symbol that is available in your whole codebase. To create symbols available across files and in a global scope-like environment, use the methods <a href="#/Symbol.for()" title="The Symbol.for(key) method searches for existing symbols in a runtime-wide symbol registry with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key."><code>Symbol.for()</code></a> and <a href="#/Symbol.keyFor()" title="The Symbol.keyFor(sym) method retrieves a shared symbol key from the global symbol registry for the given symbol."><code>Symbol.keyFor()</code></a> to set and retrieve symbols from the global symbol registry.</p>
+<h3 id="Finding_symbol_properties_on_objects">Finding symbol properties on objects</h3>
+<p>The method <a href="#/Object.getOwnPropertySymbols()" title="The Object.getOwnPropertySymbols() method returns an array of all symbol properties found directly upon a given object."><code>Object.getOwnPropertySymbols()</code></a> returns an array of symbols and lets you find symbol properties on a given object. Note that every object is initialized with no own symbol properties, so that this array will be empty unless you&apos;ve set symbol properties on the object.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt>
+  <code>Symbol.length</code></dt>
+ <dd>
+  Length property whose value is 1.</dd>
+ <dt>
+  <a href="#/Symbol.prototype" title="The Symbol.prototype property represents the prototype for the Symbol constructor."><code>Symbol.prototype</code></a></dt>
+ <dd>
+  Represents the prototype for the <code>Symbol</code> constructor.</dd>
+</dl>
+<h3 id="Well-known_symbols">Well-known symbols</h3>
+<p>In addition to your own symbols, JavaScript has some built-in symbols which represent internal language behaviors which were not exposed to developers in ECMAScript 5 and before. These symbols can be accessed using the following properties:</p>
+<dl>
+ <dt>
+  Symbol.hasInstance</dt>
+ <dd>
+  Specified as @@hasInstance. A method determining if a constructor object recognizes an object as its instance. Used by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof" title="The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor."><code>instanceof</code></a>.</dd>
+ <dt>
+  Symbol.isConcatSpreadable</dt>
+ <dd>
+  Specified as @@isConcatSpreadable. A Boolean value indicating if an object should be flattened to its array elements. Used by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" title="The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments."><code>Array.prototype.concat()</code></a>.</dd>
+ <dt>
+  Symbol.isRegExp</dt>
+ <dd>
+  Specified as @@isRegExp. A Boolean value indicating if an object may be used as a regular expression.</dd>
+ <dt>
+  Symbol.iterator</dt>
+ <dd>
+  Specified as @@iterator. A method returning the default iterator for an object. Used by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of"><code>for...of</code></a>.</dd>
+ <dt>
+  Symbol.toPrimitive</dt>
+ <dd>
+  Specified as @@toPrimitive. A method converting an object to a primitive value.</dd>
+ <dt>
+  Symbol.toStringTag</dt>
+ <dd>
+  Specified as @@toStringTag. A string value used for the default description of an object. Used by <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a></dd>
+ <dt>
+  Symbol.unscopables</dt>
+ <dd>
+  Specified as @@unscopables. An Array of string values that are property values. These are excluded from the with environment bindings of the associated objects.</dd>
+</dl>
+<h2 id="Methods" name="Methods">Methods</h2>
+<dl>
+ <dt>
+  <a href="#/Symbol.for()" title="The Symbol.for(key) method searches for existing symbols in a runtime-wide symbol registry with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key."><code>Symbol.for(key)</code></a></dt>
+ <dd>
+  Searches for existing symbols with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key.</dd>
+ <dt>
+  <a href="#/Symbol.keyFor()" title="The Symbol.keyFor(sym) method retrieves a shared symbol key from the global symbol registry for the given symbol."><code>Symbol.keyFor(sym)</code></a></dt>
+ <dd>
+  Retrieves a shared symbol key from the global symbol registry for the given symbol.</dd>
+</dl>
+<h2 id="Boolean_instances" name="Boolean_instances"><code>Symbol</code> prototype</h2>
+<p>All Symbols inherit from <a href="#/Symbol.prototype" title="The Symbol.prototype property represents the prototype for the Symbol constructor."><code>Symbol.prototype</code></a>.</p>
+<h3 id="Properties_2">Properties</h3>
+<p></p><dl><dt>
+  <code>Symbol.prototype.constructor</code></dt>
+ <dd>
+  Returns the function that created an instance&apos;s prototype. This is the <a href="#/Symbol" title="A symbol is a unique and immutable data type and may be used as an identifier for object properties. The symbol object is an implicit object wrapper for the symbol primitive data type."><code>Symbol</code></a> function by default.</dd>
+</dl><p></p>
+<h3 id="Methods_2">Methods</h3>
+<p></p><dl><dt>
+  <a href="#/Symbol.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Symbol.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns a string containing the source of the <a href="#/Symbol" title="A symbol is a unique and immutable data type and may be used as an identifier for object properties. The symbol object is an implicit object wrapper for the symbol primitive data type."><code>Symbol</code></a> object. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt>
+  <a href="#/Symbol.prototype.toString()" title="The toString() method returns a string representing the specified Symbol object."><code>Symbol.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string of containing the description of the Symbol. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+ <dt>
+  <a href="#/Symbol.prototype.valueOf()" title="The valueOf() method returns the primitive value of a Symbol object."><code>Symbol.prototype.valueOf()</code></a></dt>
+ <dd>
+  Returns the primitive value of the <a href="#/Symbol" title="A symbol is a unique and immutable data type and may be used as an identifier for object properties. The symbol object is an implicit object wrapper for the symbol primitive data type."><code>Symbol</code></a> object. Overrides the <a href="#/Object.prototype.valueOf()" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a> method.</dd>
+</dl><p></p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Creating_Boolean_objects_with_an_initial_value_of_false" name="Creating_Boolean_objects_with_an_initial_value_of_false">Using the <code>typeof</code> operator with symbols</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof" title="The typeof operator returns a string indicating the type of the unevaluated operand."><code>typeof</code></a> operator can help you to identify symbols.</p>
+<prism-js language="javascript">typeof Symbol() === &apos;symbol&apos;
+typeof Symbol(&apos;foo&apos;) === &apos;symbol&apos;
+typeof Symbol.iterator === &apos;symbol&apos;
+</prism-js>
+<h3 id="Symbol_type_conversions">Symbol type conversions</h3>
+<p>Some things to note when working with type conversion of symbols.</p>
+<ul>
+ <li>When trying to convert a symbol to a number, a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> will be thrown<br>
+  (e.g. <code>+sym</code> or <code>sym | 0</code>).</li>
+ <li>When using loose equality, <code>Object(sym) == sym</code> returns <code>true.</code></li>
+ <li><code>Symbol(&quot;foo&quot;) + &quot;bar&quot; </code>throws a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> (can&apos;t convert symbol to string). This prevents you from silently creating a new string property name from a symbol, for example.</li>
+ <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion">&quot;safer&quot; <code>String(sym)</code> conversion</a> works like a call to <a href="#/Symbol.prototype.toString()" title="The toString() method returns a string representing the specified Symbol object."><code>Symbol.prototype.toString()</code></a> with symbols, but note that&#xA0;<code>new String(sym)</code> will throw.</li>
+</ul>
+<h3 id="Symbols_and_for...in_iteration">Symbols and <code>for...in</code> iteration</h3>
+<p>Symbols are not visible in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> iterations. In addition, <a href="#/Object.getOwnPropertyNames()" title="The Object.getOwnPropertyNames() method returns an array of all properties (enumerable or not) found directly upon a given object."><code>Object.getOwnPropertyNames()</code></a> will not return symbol object properties, however, you can use <a href="#/Object.getOwnPropertySymbols()" title="The Object.getOwnPropertySymbols() method returns an array of all symbol properties found directly upon a given object."><code>Object.getOwnPropertySymbols()</code></a> to get these.</p>
+<prism-js language="javascript">var obj = {};
+obj[Symbol(&quot;a&quot;)] = &quot;a&quot;;
+obj[Symbol.for(&quot;b&quot;)] = &quot;b&quot;;
+obj[&quot;c&quot;] = &quot;c&quot;;
+obj.d = &quot;d&quot;;
+for (var i in obj) {
+   console.log(i); // logs &quot;c&quot; and &quot;d&quot;
+}</prism-js>
+<h3 id="Symbols_and_JSON.stringify()">Symbols and <code>JSON.stringify()</code></h3>
+<p>Symbol-keyed properties will be completely ignored when using <code>JSON.stringify()</code>:</p>
+<prism-js language="javascript">JSON.stringify({[Symbol(&quot;foo&quot;)]: &quot;foo&quot;});
+// &apos;{}&apos;</prism-js>
+<p>For more details, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" title="The JSON.stringify() method converts a value to JSON, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified."><code>JSON.stringify()</code></a>.</p>
+<h3 id="Symbol_wrapper_objects_as_property_keys">Symbol wrapper objects as property keys</h3>
+<p>When a Symbol wrapper object is used as a property key, this object will be coerced to its wrapped symbol:</p>
+<prism-js language="javascript">var sym = Symbol(&quot;foo&quot;);
+var obj = {[sym]: 1};
+obj[sym];            // 1
+obj[Object(sym)];    // still 1
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Symbol&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Symbol">Glossary: Symbol data type</a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof" title="The typeof operator returns a string indicating the type of the unevaluated operand."><code>typeof</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Data types and data structures</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

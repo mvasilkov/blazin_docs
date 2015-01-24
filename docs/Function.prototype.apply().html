@@ -1,0 +1,124 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>apply()</strong></code> method calls a function with a given <code>this</code> value and <code>arguments</code> provided as an array (or an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Predefined_Core_Objects#Working_with_Array-like_objects">array-like object</a>).</p>
+<div class="note">
+<p><strong>Note:</strong> While the syntax of this function is almost identical to that of <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>call()</code></a>, the fundamental difference is that <code>call()</code> accepts an argument list, while <code>apply()</code> accepts a single array of arguments.</p>
+</div>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>fun</var>.apply(<var>thisArg, </var>[<var>argsArray</var>])</code></pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt><code>thisArg</code></dt>
+ <dd>The value of <code>this</code> provided for the call to <em><code>fun</code></em>. Note that <code>this</code> may not be the actual value seen by the method: if the method is a function in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" title="The documentation about this has not yet been written; please consider contributing!">non-strict mode</a> code, <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> and <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> will be replaced with the global object, and primitive values will be boxed.</dd>
+ <dt><code>argsArray</code></dt>
+ <dd>An array-like object, specifying the arguments with which <em><code>fun</code></em> should be called, or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a> or <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> if no arguments should be provided to the function. Starting with ECMAScript 5 these arguments can be a generic array-like object instead of an array. See below for <a href="#/Function.prototype.apply()#Browser_compatibility">browser compatibility</a> information.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>You can assign a different <code>this</code> object when calling an existing function. <code>this</code> refers to the current object, the calling object. With <code>apply</code>, you can write a method once and then inherit it in another object, without having to rewrite the method for the new object.</p>
+<p><code>apply</code> is very similar to <a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>call()</code></a>, except for the type of arguments it supports. You can use an arguments array instead of a named set of parameters. With <code>apply</code>, you can use an array literal, for example, <code><em>fun</em>.apply(this, [&apos;eat&apos;, &apos;bananas&apos;])</code>, or an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" title="The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects."><code>Array</code></a> object, for example, <code><em>fun</em>.apply(this, new Array(&apos;eat&apos;, &apos;bananas&apos;))</code>.</p>
+<p>You can also use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments</code></a> for the <code>argsArray</code> parameter. <code>arguments</code> is a local variable of a function. It can be used for all unspecified arguments of the called object. Thus, you do not have to know the arguments of the called object when you use the <code>apply</code> method. You can use <code>arguments</code> to pass all the arguments to the called object. The called object is then responsible for handling the arguments.</p>
+<p>Since ECMAScript 5th Edition you can also use any kind of object which is array-like, so in practice this means it&apos;s going to have a property <code>length</code> and integer properties in the range <code>[0...length)</code>. As an example you can now use a <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList" title="NodeList objects are collections of nodes such as those returned by Node.childNodes and the document.querySelectorAll method."><code>NodeList</code></a> or a own custom object like <code>{ &apos;length&apos;: 2, &apos;0&apos;: &apos;eat&apos;, &apos;1&apos;: &apos;bananas&apos; }</code>.</p>
+<div><div class="note"><strong>Note:</strong>&#xA0;Most browsers, including Chrome 14 and Internet Explorer 9, still do not accept array-like objects and will throw an exception.</div></div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_apply_to_chain_constructors" name="Example:_Using_apply_to_chain_constructors">Example: Using <code>apply</code> to chain constructors</h3>
+<p>You can use <code>apply</code> to chain <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function.">constructors</a> for an object, similar to Java. In the following example we will create a global <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> method called <code>construct</code>, which will make you able to use an array-like object with a constructor instead of an arguments list.</p>
+<prism-js language="javascript">Function.prototype.construct = function(aArgs) {
+  var fConstructor = this, fNewConstr = function() { fConstructor.apply(this, aArgs); };
+  fNewConstr.prototype = fConstructor.prototype;
+  return new fNewConstr();
+};
+</prism-js>
+<p>Example usage:</p>
+<prism-js language="javascript">function MyConstructor() {
+  for (var nProp = 0; nProp &lt; arguments.length; nProp++) {
+    this[&apos;property&apos; + nProp] = arguments[nProp];
+  }
+}
+var myArray = [4, &apos;Hello world!&apos;, false];
+var myInstance = MyConstructor.construct(myArray);
+alert(myInstance.property1);                // alerts &apos;Hello world!&apos;
+alert(myInstance instanceof MyConstructor); // alerts &apos;true&apos;
+alert(myInstance.constructor);              // alerts &apos;MyConstructor&apos;
+</prism-js>
+<div class="note">
+<p><strong>Note:</strong> This non-native <code>Function.construct</code> method will not work with some native constructors (like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a>, for example). In these cases you have to use the <a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>Function.prototype.bind</code></a> method (for example, imagine to have an array like the following, to be used with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> constructor: <code>[2012, 11, 4]</code>; in this case you have to write something like: <code>new (Function.prototype.bind.apply(Date, [null].concat([2012, 11, 4])))()</code>&#xA0;&#x2014; anyhow this is not the best way to do things and probably should not be used in any production environment).</p>
+</div>
+<h3 id="Example.3A_Using_apply_and_built-in_functions">Example: Using <code>apply</code> and built-in functions</h3>
+<p>Clever usage of <code>apply</code> allows you to use built-ins functions for some tasks that otherwise probably would have been written by looping over the array values. As an example here we are going to use <code>Math.max</code>/<code>Math.min</code> to find out the maximum/minimum value in an array.</p>
+<prism-js language="javascript">/* min/max number in an array */
+var numbers = [5, 6, 2, 3, 7];
+/* using Math.min/Math.max apply */
+var max = Math.max.apply(null, numbers); /* This about equal to Math.max(numbers[0], ...)
+                                            or Math.max(5, 6, ...) */
+var min = Math.min.apply(null, numbers);
+/* vs. simple loop based algorithm */
+max = -Infinity, min = +Infinity;
+for (var i = 0; i &lt; numbers.length; i++) {
+  if (numbers[i] &gt; max) {
+    max = numbers[i];
+  }
+  if (numbers[i] &lt; min) {
+    min = numbers[i];
+  }
+}
+</prism-js>
+<p>But beware: in using <code>apply</code> this way, you run the risk of exceeding the JavaScript engine&apos;s argument length limit. The consequences of applying a function with too many arguments (think more than tens of thousands of arguments) vary across engines (JavaScriptCore has hard-coded <a class="external link-https" href="https://bugs.webkit.org/show_bug.cgi?id=80797">argument limit of 65536</a>), because the limit (indeed even the nature of any excessively-large-stack behavior) is unspecified. Some engines will throw an exception. More perniciously, others will arbitrarily limit the number of arguments actually passed to the applied function. (To illustrate this latter case: if such an engine had a limit of four arguments [actual limits are of course significantly higher], it would be as if the arguments <code>5, 6, 2, 3</code> had been passed to <code>apply</code> in the examples above, rather than the full array.) If your value array might grow into the tens of thousands, use a hybrid strategy: apply your function to chunks of the array at a time:</p>
+<prism-js language="javascript">function minOfArray(arr) {
+  var min = Infinity;
+  var QUANTUM = 32768;
+  for (var i = 0, len = arr.length; i &lt; len; i += QUANTUM) {
+    var submin = Math.min.apply(null, arr.slice(i, Math.min(i + QUANTUM, len)));
+    min = Math.min(submin, min);
+  }
+  return min;
+}
+var min = minOfArray([5, 6, 2, 3, 7]);
+</prism-js>
+<h3 id="Example.3A_Using_apply_in_.22monkey-patching.22">Example: Using apply in &quot;monkey-patching&quot;</h3>
+<p>Apply can be the best way to monkey-patch a builtin function of Firefox, or JS libraries. Given <code>someobject.foo</code> function, you can modify the function in a somewhat hacky way, like so:</p>
+<prism-js language="javascript">var originalfoo = someobject.foo;
+someobject.foo = function() {
+  // Do stuff before calling function
+  console.log(arguments);
+  // Call the function as it would have been called normally:
+  originalfoo.apply(this, arguments);
+  // Run stuff after, here.
+}
+</prism-js>
+<p>This method is especially handy where you want to debug events, or interface with something that has no API like the various <code>.on([event]...</code> events, such as those usable on the <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector#Developer_API">Devtools Inspector</a>).</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.3.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.apply&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function.prototype.apply" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Function.prototype.apply&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments" title="The documentation about this has not yet been written; please consider contributing!"><code>arguments</code></a> object</li>
+ <li><a href="#/Function.prototype.bind()" title="The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called."><code>Function.prototype.bind()</code></a></li>
+ <li><a href="#/Function.prototype.call()" title="The call() method calls a function with a given this value and arguments provided individually."><code>Function.prototype.call()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope" title="The documentation about this has not yet been written; please consider contributing!">Functions and function scope</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">Function.prototype.apply()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

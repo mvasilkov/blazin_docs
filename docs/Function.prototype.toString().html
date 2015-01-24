@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>toString()</strong></code> method returns a string representing the source code of the function.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>function</var>.toString(indentation)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>indentation</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span> <span class="inlineIndicator obsolete obsoleteInline" title="(Firefox 17 / Thunderbird 17 / SeaMonkey 2.14)">Obsolete since Gecko 17</span></dt>
+ <dd>The amount of spaces to indent the string representation of the source code. If <code>indentation</code> is less than or equal to <code>-1</code>, most unnecessary spaces are removed.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> object overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>toString</code></a> method inherited from <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>; it does not inherit <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString</code></a>. For <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> objects, the <code>toString</code> method returns a string representation of the object in the form of a function declaration. That is, <code>toString</code> decompiles the function, and the string returned includes the <code>function</code> keyword, the argument list, curly braces, and the source of the function body.</p>
+<p>JavaScript calls the <code>toString</code> method automatically when a <a href="#/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> is to be represented as a text value, e.g. when a function is concatenated with a string.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.3.4.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Function.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-function.prototype.tostring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Function.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString">Function.prototype.toString()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

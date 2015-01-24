@@ -16,7 +16,7 @@ var obj = Object.create(proto);
 Object.getPrototypeOf(obj) === proto; // true
 </prism-js>
 <h2 id="Notes" name="Notes">Notes</h2>
-<p>In ES5, it will throw a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception if the <code>obj</code> parameter isn&apos;t an object. In ES6, the parameter will be coerced to an <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>.</p>
+<p>In ES5, it will throw a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception if the <code>obj</code> parameter isn&apos;t an object. In ES6, the parameter will be coerced to an <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a>.</p>
 <prism-js language="javascript">&gt; Object.getPrototypeOf(&quot;foo&quot;);
 TypeError: &quot;foo&quot; is not an object  // ES5 code
 &gt; Object.getPrototypeOf(&quot;foo&quot;);

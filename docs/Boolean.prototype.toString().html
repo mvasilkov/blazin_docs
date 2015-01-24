@@ -1,0 +1,50 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>toString()</strong></code> method returns a string representing the specified Boolean object.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>bool</var>.toString()</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<p>None.</p>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> object overrides the <code>toString</code> method of the <a href="#/Object" title="The Object constructor creates an object wrapper."><code>Object</code></a> object; it does not inherit <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a>. For Boolean objects, the <code>toString</code> method returns a string representation of the object.</p>
+<p>JavaScript calls the <code>toString</code> method automatically when a <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> is to be represented as a text value or when a <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> is referred to in a string concatenation.</p>
+<p>For <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> objects and values, the built-in <code>toString</code> method returns the string &quot;<code>true</code>&quot; or &quot;<code>false</code>&quot; depending on the value of the boolean object.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_Using_toString">Example: Using <code>toString</code></h3>
+<p>In the following code, <code>flag.toString()</code> returns &quot;<code>true</code>&quot;:</p>
+<prism-js language="javascript">var flag = new Boolean(true);
+var myVar = flag.toString();
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition. Implemented in JavaScript 1.1</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.6.4.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Boolean.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-boolean.prototype.tostring" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Boolean.prototype.toString&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/toString">Boolean.prototype.toString()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -14,7 +14,7 @@
   The object to freeze.</dd>
 </dl>
 <h2 id="Description" name="Description">Description</h2>
-<p>Nothing can be added to or removed from the properties set of a frozen object. Any attempt to do so will fail, either silently or by throwing a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception (most commonly, but not exclusively, when in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" title="The documentation about this has not yet been written; please consider contributing!">strict mode</a>).</p>
+<p>Nothing can be added to or removed from the properties set of a frozen object. Any attempt to do so will fail, either silently or by throwing a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> exception (most commonly, but not exclusively, when in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode" title="The documentation about this has not yet been written; please consider contributing!">strict mode</a>).</p>
 <p>Values cannot be changed for data properties. Accessor properties (getters and setters) work the same (and still give the illusion that you are changing the value). Note that values that are objects can still be modified, unless they are also frozen.</p>
 <h2 id="Examples" name="Examples">Examples</h2>
 <prism-js language="javascript">var obj = {
@@ -73,7 +73,7 @@ obj2.internal.a = &apos;anotherValue&apos;;
 obj2.internal.a; // undefined
 </prism-js>
 <h2 id="Notes" name="Notes">Notes</h2>
-<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be treated as if it was a &#xA0;frozen ordinary object, simply return it.</p>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object argument will be treated as if it was a &#xA0;frozen ordinary object, simply return it.</p>
 <prism-js language="javascript">&gt; Object.freeze(1)
 TypeError: 1 is not an object // ES5 code
 &gt; Object.freeze(1)

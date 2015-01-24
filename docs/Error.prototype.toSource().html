@@ -1,0 +1,30 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>toSource()</strong></code> method returns code that could eval to the same error.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>e</var>.toSource()</code></pre>
+<h2 id="Description" name="Description">Description</h2>
+<p>Calling the <code>toSource</code> method of an <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a> instance (including <i><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Error_types">NativeErrors</a></i>) will return a string containing the source code of the error. This string can be evaluated to create an (approximately) equal object. Naturally, the string containing the source follows the structure of the <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a> constructor. For example:</p>
+<prism-js language="javascript">(new <i>name</i>(<i>message</i> ,<i>fileName</i>, <i>lineNumber</i>))
+</prism-js>
+<p>where these attributes correspond to the respective properties of the error instance.</p>
+<div class="note">
+ <p><strong>Note:</strong> Be aware that the properties used by the <code>toSource</code> method in the creation of this string are mutable and may not accurately reflect the function used to create an error instance or the filename or line number where the actual error occurred.</p>
+</div>
+<h2 id="Specifications">Specifications</h2>
+<p>Not part of any standard. Implemented in JavaScript 1.3.</p>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Error.prototype.fileName" title="The fileName property contains the path to the file that raised this error."><code>Error.prototype.fileName</code></a></li>
+ <li><a href="#/Error.prototype.lineNumber" title="The lineNumber property contains the line number in the file that raised this error."><code>Error.prototype.lineNumber</code></a></li>
+ <li><a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>Error.prototype.message</code></a></li>
+ <li><a href="#/Error.prototype.name" title="The name property represents a name for the type of error. The initial value is &quot;Error&quot;."><code>Error.prototype.name</code></a></li>
+ <li><a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/toSource">Error.prototype.toSource()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,74 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Symbol.for()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Symbol.for(key)</strong></code> method searches for existing symbols in a runtime-wide symbol registry with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><var>Symbol.for(key)</var>;</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  key</dt>
+ <dd>
+  String, required. The key for the symbol (and also used for the description of the symbol).</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>In contrast to <code>Symbol()</code>, the <code>Symbol.for()</code> function creates a symbol available in a global symbol registry list. <code>Symbol.for()</code> does also not necessarily create a new symbol on every call, but checks first if a symbol with the given <code>key</code> is already present in the registry. In that case, that symbol is returned. If no symbol with the given key is found, <code>Symbol.for()</code> will create a new global symbol.</p>
+<h3 id="Global_symbol_registry">Global symbol registry</h3>
+<p>The global symbol registry is a list with the following record structure and it is initialized empty:</p>
+<table class="standard-table">
+ <caption>
+  A record in the global symbol registry</caption>
+ <tbody>
+  <tr>
+   <th>Field name</th>
+   <th>Value</th>
+  </tr>
+  <tr>
+   <td>[[key]]</td>
+   <td>A string key used to identify a symbol.</td>
+  </tr>
+  <tr>
+   <td>[[symbol]]</td>
+   <td>A symbol that is stored globally.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">Symbol.for(&quot;foo&quot;); // create a new global symbol
+Symbol.for(&quot;foo&quot;); // retrieve the already created symbol
+// Same global symbol, but not locally
+Symbol.for(&quot;bar&quot;) === Symbol.for(&quot;bar&quot;); // true
+Symbol(&quot;bar&quot;) === Symbol(&quot;bar&quot;); // false
+// The key is also used as the description
+var sym = Symbol.for(&quot;mario&quot;);
+sym.toString(); // &quot;Symbol(mario)&quot;
+</prism-js>
+<p>To avoid name clashes with your global symbol keys and other (library code) global symbols, it might be a good idea to prefix your symbols:</p>
+<prism-js language="javascript">Symbol.for(&quot;mdn.foo&quot;);
+Symbol.for(&quot;mdn.bar&quot;);
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-symbol.for" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Symbol.for&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/Symbol.keyFor()" title="The Symbol.keyFor(sym) method retrieves a shared symbol key from the global symbol registry for the given symbol."><code>Symbol.prototype.keyFor()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for">Symbol.for()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

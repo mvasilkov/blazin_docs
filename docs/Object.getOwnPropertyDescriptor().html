@@ -62,7 +62,7 @@ d = Object.getOwnPropertyDescriptor(o, &apos;baz&apos;);
 // d is { value: 8675309, writable: false, enumerable: false, configurable: false }
 </prism-js>
 <h2 id="Notes" name="Notes">Notes</h2>
-<p>In ES5, if the first argument to this method is not an object (a primitive), then it will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object first argument will be coerced to an object at first.</p>
+<p>In ES5, if the first argument to this method is not an object (a primitive), then it will cause a <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a>. In ES6, a non-object first argument will be coerced to an object at first.</p>
 <prism-js language="javascript">&gt; Object.getOwnPropertyDescriptor(&quot;foo&quot;, 0)
 TypeError: &quot;foo&quot; is not an object  // ES5 code
 &gt; Object.getOwnPropertyDescriptor(&quot;foo&quot;, 0)

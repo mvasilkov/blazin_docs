@@ -1,0 +1,47 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator nonStandard nonStandardHeader">
+      <p><strong>Non-standard</strong><br>
+      This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p>
+      </div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong><em>function</em>.displayName</strong></code> property returns the display name of the function.</p>
+<h2 id="Description">Description</h2>
+<p>When defined, the <code>displayName</code> property returns the display name of a function:</p>
+<prism-js language="javascript">function doSomething() {}
+alert(doSomething.displayName); // &quot;undefined&quot;
+var popup = function(content) { alert(content); };
+popup.displayName = &apos;Show Popup&apos;;
+alert(popup.displayName); // &quot;Show Popup&quot;
+</prism-js>
+<p>You can define a function with a display name in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope" title="The documentation about this has not yet been written; please consider contributing!">function expression</a>:</p>
+<prism-js language="javascript">var object = {
+  someMethod: function() {}
+};
+object.someMethod.displayName = &apos;someMethod&apos;;
+alert(object.someMethod.displayName); // alerts &quot;someMethod&quot;
+try { someMethod } catch(e) { alert(e); }
+// ReferenceError: someMethod is not defined
+</prism-js>
+<p>You can dynamically change the <code>displayName</code> of a function:</p>
+<prism-js language="javascript">var object = {
+  // anonymous
+  someMethod: function(value) {
+    this.displayName = &apos;someMethod (&apos; + value + &apos;)&apos;;
+  }
+};
+alert(object.someMethod.displayName); // &quot;undefined&quot;
+object.someMethod(&apos;123&apos;)
+alert(object.someMethod.displayName); // &quot;someMethod (123)&quot;
+</prism-js>
+<h2 id="Examples">Examples</h2>
+<p>It is usually preferred by consoles and profilers over <a href="#/Function.name" title="The function.name property returns the name of the function."><code>func.name</code></a> to display the name of a function.</p>
+<p>By entering the following in a console, it should display as something like &quot;<code>function My Function()</code>&quot;:</p>
+<prism-js language="javascript">var a = function() {};
+a.displayName = &apos;My Function&apos;;
+a
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<p>Not part of any specification.</p>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/displayName">Function.displayName</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

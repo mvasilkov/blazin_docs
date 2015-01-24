@@ -1,0 +1,128 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>TypeError</strong></code> object represents an error when a value is not of the expected type.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>new TypeError([<var>message</var>[, <var>fileName</var>[, <var>lineNumber</var>]]])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>message</code></dt>
+ <dd>
+  Optional. Human-readable description of the error</dd>
+ <dt>
+  <code>fileName</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Optional. The name of the file containing the code that caused the exception</dd>
+ <dt>
+  <code>lineNumber</code> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Optional. The line number of the code that caused the exception</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>A <code>TypeError</code> is thrown when an operand or argument passed to a function is incompatible with the type expected by that operator or function.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError/prototype" title="The TypeError.prototype property represents the prototype for the TypeError constructor."><code>TypeError.prototype</code></a></dt>
+ <dd>
+  Allows the addition of properties to a <code>TypeError</code> object.</dd>
+</dl>
+<h2 id="Methods" name="Methods">Methods</h2>
+<p>The global <code>TypeError</code> contains no methods of its own, however, it does inherit some methods through the prototype chain.</p>
+<h2 id="TypeError_instances" name="TypeError_instances"><code>TypeError</code> instances</h2>
+<h3 id="Properties_of_TypeError_instances" name="Properties_of_TypeError_instances">Properties</h3>
+<div>
+ <dl><dt>
+  <code>TypeError.prototype.constructor</code></dt>
+ <dd>
+  Specifies the function that created an instance&apos;s prototype.</dd>
+ <dt>
+  <a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>TypeError.prototype.message</code></a></dt>
+ <dd>
+  Error message. Although ECMA-262 specifies that <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> should provide its own <code>message</code> property, in <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey">SpiderMonkey</a>, it inherits <a href="#/Error.prototype.message" title="The message property is a human-readable description of the error."><code>Error.prototype.message</code></a>.</dd>
+ <dt>
+  <a href="#/Error.prototype.name" title="The name property represents a name for the type of error. The initial value is &quot;Error&quot;."><code>TypeError.prototype.name</code></a></dt>
+ <dd>
+  Error name. Inherited from <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</dd>
+ <dt>
+  <a href="#/Error.prototype.fileName" title="The fileName property contains the path to the file that raised this error."><code>TypeError.prototype.fileName</code></a></dt>
+ <dd>
+  Path to file that raised this error. Inherited from <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</dd>
+ <dt>
+  <a href="#/Error.prototype.lineNumber" title="The lineNumber property contains the line number in the file that raised this error."><code>TypeError.prototype.lineNumber</code></a></dt>
+ <dd>
+  Line number in file that raised this error. Inherited from <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</dd>
+ <dt>
+  <a href="#/Error.prototype.columnNumber" title="The columnNumber property contains the column number in the line of the file that raised this error."><code>TypeError.prototype.columnNumber</code></a></dt>
+ <dd>
+  Column number in line that raised this error. Inherited from <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</dd>
+ <dt>
+  <a href="#/Error.prototype.stack" title="The non-standard stack property of Error objects offer a trace of which functions were called, in what order, from which line and file, and with what arguments. The stack string proceeds from the most recent calls to earlier ones, leading back to the original global scope call."><code>TypeError.prototype.stack</code></a></dt>
+ <dd>
+  Stack trace. Inherited from <a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a>.</dd>
+</dl></div>
+<h3 id="Methods_of_TypeError_instances" name="Methods_of_TypeError_instances">Methods</h3>
+<div>
+ <p>Although the <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> prototype object does not contain any methods of its own, <a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a> instances do inherit some methods through the prototype chain.</p></div>
+<h2 id="Examples">Examples</h2>
+<h3 id="Catch_an_TypeError">Catch an TypeError</h3>
+<prism-js language="javascript">try {
+  null.f();
+} catch (e) {
+  console.log(e instanceof TypeError); // true
+  console.log(e.message);              // &quot;null has no properties&quot;
+  console.log(e.name);                 // &quot;TypeError&quot;
+  console.log(e.fileName);             // &quot;Scratchpad/1&quot;
+  console.log(e.lineNumber);           // 2
+  console.log(e.columnNumber);         // 2
+  console.log(e.stack);                // &quot;@Scratchpad/2:2:3\n&quot;
+}
+</prism-js>
+<h3 id="Create_an_TypeError">Create an TypeError</h3>
+<prism-js language="javascript">try {
+  throw new TypeError(&quot;Hello&quot;, &quot;someFile.js&quot;, 10);
+} catch (e) {
+  console.log(e instanceof TypeError); // true
+  console.log(e.message);              // &quot;Hello&quot;
+  console.log(e.name);                 // &quot;TypeError&quot;
+  console.log(e.fileName);             // &quot;someFile.js&quot;
+  console.log(e.lineNumber);           // 10
+  console.log(e.columnNumber);         // 0
+  console.log(e.stack);                // &quot;@Scratchpad/2:2:9\n&quot;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.11.6.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;TypeError&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-native-error-types-used-in-this-standard-typeerror" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;TypeError&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li><a href="#/Error" title="The Error constructor creates an error object. Instances of Error objects are thrown when runtime errors occur. The Error object can also be used as a base objects for user-defined exceptions. See below for standard built-in error types."><code>Error</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError/prototype" title="The TypeError.prototype property represents the prototype for the TypeError constructor."><code>TypeError.prototype</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError">TypeError</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

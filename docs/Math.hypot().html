@@ -1,0 +1,75 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.hypot()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.hypot()</strong></code> function returns the square root of the sum of squares of its arguments, that is</p>
+<p><math display="block"><semantics><mrow><mstyle mathvariant="monospace"><mrow><mo lspace="0em" rspace="thinmathspace">Math.hypot</mo><mo stretchy="false">(</mo><msub><mi>v</mi><mn>1</mn></msub><mo>,</mo><msub><mi>v</mi><mn>2</mn></msub><mo>,</mo><mo>&#x2026;</mo><mo>,</mo><msub><mi>v</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow></mstyle><mo>=</mo><msqrt><mrow><munderover><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>v</mi><mi>i</mi><mn>2</mn></msubsup></mrow></msqrt><mo>=</mo><msqrt><mrow><msubsup><mi>v</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>v</mi><mn>2</mn><mn>2</mn></msubsup><mo>+</mo><mo>&#x2026;</mo><mo>+</mo><msubsup><mi>v</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="TeX">\mathtt{\operatorname{Math.hypot}(v_1, v_2, \dots, v_n)} = \sqrt{\sum_{i=1}^n v_i^2} = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}</annotation></semantics></math></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">
+<code>Math.hypot([<em>value1</em>[,<em>value2</em>, ...]]) </code></pre>
+<h2 id="Parameters" name="Parameters">Parameters</h2>
+<dl>
+ <dt>
+  <code>value1, value2, ...</code></dt>
+ <dd>
+  Numbers.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Because <code>hypot</code> is a static method of <code>Math</code>, you always use it as <code>Math.hypot()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<p>If no arguments are given, the result is +0.</p>
+<p>If at least one of arguments cannot be converted to a number, the result is <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</p>
+<p>With one argument, <code>Math.hypot(x)</code> returns the same as <code>Math.abs(x)</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.max" name="Example:_Using_Math.max">Example: Using <code>Math.hypot</code></h3>
+<prism-js language="javascript">
+Math.hypot(3, 4)        // 5
+Math.hypot(3, 4, 5)     // 7.0710678118654755
+Math.hypot()            // 0
+Math.hypot(NaN)         // NaN
+Math.hypot(3, 4, &quot;foo&quot;) // NaN, +&quot;foo&quot; =&gt; NaN
+Math.hypot(3, 4, &quot;5&quot;)   // 7.0710678118654755, +&quot;5&quot; =&gt; 5
+Math.hypot(-3)          // 3, the same as Math.abs(-3)
+</prism-js>
+<h2 id="Polyfill">Polyfill</h2>
+<p>This can be emulated using the following function:</p>
+<prism-js language="javascript">
+if (!Math.hypot) {
+  Math.hypot = function hypot() {
+    var y = 0;
+    var length = arguments.length;
+    for (var i = 0; i &lt; length; i++) {
+      if(arguments[i] === Infinity || arguments[i] === -Infinity) {
+        return Infinity;
+      }
+      y += arguments[i] * arguments[i];
+    }
+    return Math.sqrt(y);
+  };
+}
+</prism-js>
+<div>
+ <h2 id="Specifications">Specifications</h2>
+ <table class="standard-table">
+  <tbody>
+   <tr>
+    <th scope="col">Specification</th>
+    <th scope="col">Status</th>
+    <th scope="col">Comment</th>
+   </tr>
+   <tr>
+    <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.hypot" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.hypot&apos; in that specification.</small></a></td>
+    <td><span class="spec-Draft">Draft</span></td>
+    <td>Initial definition</td>
+   </tr>
+  </tbody>
+ </table>
+ <h2 id="See_also" name="See_also">See also</h2>
+ <ul>
+  <li>The <a href="#/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object."><code>Math</code></a> object it belongs to.</li>
+ </ul>
+</div>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot">Math.hypot()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

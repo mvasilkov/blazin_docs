@@ -1,0 +1,67 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.log()</strong></code> function returns the natural logarithm (<a href="#/Math.E">base <code>e</code></a>) of a number, that is</p>
+<p><math display="block"><semantics><mrow><mo>&#x2200;</mo><mi>x</mi><mo>&gt;</mo><mn>0</mn><mo>,</mo><mstyle mathvariant="monospace"><mrow><mo lspace="0em" rspace="thinmathspace">Math.log</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mstyle><mo>=</mo><mo lspace="0em" rspace="0em">ln</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>the unique</mtext><mspace width="thickmathspace"></mspace><mi>y</mi><mspace width="thickmathspace"></mspace><mtext>such that</mtext><mspace width="thickmathspace"></mspace><msup><mi>e</mi><mi>y</mi></msup><mo>=</mo><mi>x</mi></mrow><annotation encoding="TeX">\forall x &gt; 0, \mathtt{\operatorname{Math.log}(x)} = \ln(x) = \text{the unique} \; y \; \text{such that} \; e^y = x</annotation></semantics></math></p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">
+<code>Math.log(<em>x</em>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>x</code></dt>
+ <dd>
+  A number.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>If the value of <code>number</code> is negative, the return value is always <code>NaN</code>.</p>
+<p>Because <code>log</code> is a static method of <code>Math</code>, you always use it as <code>Math.log()</code>, rather than as a method of a <code>Math</code> object you created.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_Math.log" name="Example:_Using_Math.log">Example: Using <code>Math.log</code></h3>
+<prism-js language="javascript">
+Math.log(-1); // NaN, out of range
+Math.log(0);  // -Infinity
+Math.log(1);  // 0
+Math.log(10); // 2.302585092994046</prism-js>
+<h3 id="Example.3A_Using_Math.log_with_a_different_base">Example: Using <code>Math.log</code> with a different base</h3>
+<p>The following function returns the logarithm of <code>y</code> with base <code>x</code> (ie. log<sub>x</sub> y):</p>
+<prism-js language="javascript">
+function getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+}</prism-js>
+<p>If you run <code>getBaseLog(10, 1000)</code> it returns <code>2.9999999999999996</code> due to floating-point rounding, which is very close to the actual answer of 3.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition. Implemented in JavaScript 1.0</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.8.2.10" lang="en" title="The definition of &apos;Math.log&apos; in that specification.">ECMAScript Language Specification 5.1th Edition (ECMA-262)</a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.log" lang="en" title="The definition of &apos;Math.log&apos; in that specification.">ECMAScript Language Specification 6th Edition (ECMA-262)</a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li>The <a href="#/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object."><code>Math</code></a> object it belongs to.</li>
+ <li><a href="#/Math.exp()" title="The Math.exp() function returns ex, where x is the argument, and e is Euler&apos;s constant, the base of the natural logarithms."><code>Math.exp()</code></a></li>
+ <li><a href="#/Math.pow()" title="The Math.pow() function returns the base to the&#xA0;exponent Power,&#xA0; that is, baseexponent."><code>Math.pow()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/log">Math.log()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,148 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Boolean</code></strong> object is an object wrapper for a boolean value.</p>
+<h2 id="Syntax" name="Syntax">Constructor</h2>
+<pre class="syntaxbox"><code>new Boolean([<var>value</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>value</code></dt>
+ <dd>
+  Optional. The initial value of the <code>Boolean</code> object.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The value passed as the first parameter is converted to a boolean value, if necessary. If value is omitted or is <code>0</code>, <code>-0</code>, <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>, <code>false</code>, <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>, <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a>, or the empty string (<code>&quot;&quot;</code>), the object has an initial value of <code>false</code>. All other values, including any object or the string <code>&quot;false&quot;</code>, create an object with an initial value of <code>true</code>.</p>
+<p>Do not confuse the primitive <code>Boolean</code> values <code>true</code> and <code>false</code> with the <code>true</code> and <code>false</code> values of the <code>Boolean</code> object.</p>
+<p>Any object whose value is not <a href="#/undefined" title="The global undefined value property represents the value undefined. It is one of JavaScript&apos;s primitive types."><code>undefined</code></a> or <a href="#/null" title="The value null is a JavaScript literal representing null or an &quot;empty&quot; value, i.e. no object value is present. It is one of JavaScript&apos;s primitive values."><code>null</code></a>, including a <code>Boolean</code> object whose value is <code>false</code>, evaluates to <code>true</code> when passed to a conditional statement. For example, the condition in the following <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else" title="The if statement executes a statement if a specified condition is true. If the condition is false, another statement can be executed."><code>if</code></a> statement evaluates to <code>true</code>:</p>
+<prism-js language="javascript">x = new Boolean(false);
+if (x) {
+  // this code is executed
+}
+</prism-js>
+<p>This behavior does not apply to <code>Boolean</code> primitives. For example, the condition in the following <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else" title="The if statement executes a statement if a specified condition is true. If the condition is false, another statement can be executed."><code>if</code></a> statement evaluates to <code>false</code>:</p>
+<prism-js language="javascript">x = false;
+if (x) {
+  // this code is not executed
+}
+</prism-js>
+<p>Do not use a <code>Boolean</code> object to convert a non-boolean value to a boolean value. Instead, use <code>Boolean</code> as a function to perform this task:</p>
+<prism-js language="javascript">x = Boolean(expression);     // preferred
+x = new Boolean(expression); // don&apos;t use
+</prism-js>
+<p>If you specify any object, including a <code>Boolean</code> object whose value is <code>false</code>, as the initial value of a <code>Boolean</code> object, the new <code>Boolean</code> object has a value of <code>true</code>.</p>
+<prism-js language="javascript">myFalse = new Boolean(false);   // initial value of false
+g = new Boolean(myFalse);       // initial value of true
+myString = new String(&apos;Hello&apos;); // string object
+s = new Boolean(myString);      // initial value of true
+</prism-js>
+<p>Do not use a <code>Boolean</code> object in place of a <code>Boolean</code> primitive.</p>
+<h2 id="Properties" name="Properties">Properties</h2>
+<div>
+ <small><em>For properties available on <code>Test API</code> instances, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/prototype#Properties">Properties of Test API instances</a>.</em></small></div>
+<dl>
+ <dt>
+  <code>Boolean.length</code></dt>
+ <dd>
+  Length property whose value is 1.</dd>
+ <dt>
+  <a href="#/Boolean.prototype" title="The Boolean.prototype property represents the prototype for the Boolean constructor."><code>Boolean.prototype</code></a></dt>
+ <dd>
+  Represents the prototype for the <code>Boolean</code> constructor.</dd>
+</dl>
+<p></p><div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Properties inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Arity"><code>arity</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Caller"><code>caller</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Constructor"><code>constructor</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Length"><code>length</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Name"><code>name</code></a></div>
+</div><p></p>
+<h2 id="Methods" name="Methods">Methods</h2>
+<div>
+ <small><em>For methods available on <code>Test API</code> instances, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean/prototype#Methods">Methods of Test API instances</a>.</em></small></div>
+<p>The global <code>Boolean</code> object contains no methods of its own, however, it does inherit some methods through the prototype chain:</p>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Apply"><code>apply</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Call"><code>call</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/ToSource"><code>toSource</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/ToString"><code>toString</code></a></div>
+</div></div>
+<h2 id="Boolean_instances" name="Boolean_instances"><code>Boolean</code> instances</h2>
+<p>All <code>Boolean</code> instances inherit from <a href="#/Boolean.prototype" title="The Boolean.prototype property represents the prototype for the Boolean constructor."><code>Boolean.prototype</code></a>. As with all constructors, the prototype object dictates instances&apos; inherited properties and methods.</p>
+<h3 id="Properties_2">Properties</h3>
+<div>
+ <dl><dt>
+  <code>Boolean.prototype.constructor</code></dt>
+ <dd>
+  Returns the function that created an instance&apos;s prototype. This is the <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> function by default.</dd>
+</dl><div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Properties inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent"><code>__parent__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Proto"><code>__proto__</code></a></div>
+</div></div></div>
+<h3 id="Methods_2">Methods</h3>
+<div>
+ <dl><dt>
+  <a href="#/Boolean.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Boolean.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns a string containing the source of the <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> object; you can use this string to create an equivalent object. Overrides the <a href="#/Object.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt>
+  <a href="#/Boolean.prototype.toString()" title="The toString() method returns a string representing the specified Boolean object."><code>Boolean.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string of either <code>&quot;true&quot;</code> or <code>&quot;false&quot;</code> depending upon the value of the object. Overrides the <a href="#/Object.prototype.toString()" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+ <dt>
+  <a href="#/Boolean.prototype.valueOf()" title="The valueOf() method returns the primitive value of a Boolean object."><code>Boolean.prototype.valueOf()</code></a></dt>
+ <dd>
+  Returns the primitive value of the <a href="#/Boolean" title="The Boolean object is an object wrapper for a boolean value."><code>Boolean</code></a> object. Overrides the <a href="#/Object.prototype.valueOf()" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a> method.</dd>
+</dl><div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineGetter"><code>__defineGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineSetter"><code>__defineSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/HasOwnProperty"><code>hasOwnProperty</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/IsPrototypeOf"><code>isPrototypeOf</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupGetter"><code>__lookupGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupSetter"><code>__lookupSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/NoSuchMethod"><code>__noSuchMethod__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/PropertyIsEnumerable"><code>propertyIsEnumerable</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/ToLocaleString"><code>toLocaleString</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Unwatch"><code>unwatch</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Watch"><code>watch</code></a></div>
+</div></div></div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Creating_Boolean_objects_with_an_initial_value_of_false" name="Example:_Creating_Boolean_objects_with_an_initial_value_of_false">Example: Creating <code>Boolean</code> objects with an initial value of <code>false</code></h3>
+<prism-js language="javascript">var bNoParam = new Boolean();
+var bZero = new Boolean(0);
+var bNull = new Boolean(null);
+var bEmptyString = new Boolean(&apos;&apos;);
+var bfalse = new Boolean(false);
+</prism-js>
+<h3 id="Example:_Creating_Boolean_objects_with_an_initial_value_of_true" name="Example:_Creating_Boolean_objects_with_an_initial_value_of_true">Example: Creating <code>Boolean</code> objects with an initial value of <code>true</code></h3>
+<prism-js language="javascript">var btrue = new Boolean(true);
+var btrueString = new Boolean(&apos;true&apos;);
+var bfalseString = new Boolean(&apos;false&apos;);
+var bSuLin = new Boolean(&apos;Su Lin&apos;);
+var bArrayProto = new Boolean([]);
+var bObjProto = new Boolean({});
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.0.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.6" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Boolean&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-boolean-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Boolean&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Boolean.prototype" title="The Boolean.prototype property represents the prototype for the Boolean constructor."><code>Boolean.prototype</code></a></li>
+ <li><a class="glossaryLink" href="https://developer.mozilla.org/en-US/docs/Glossary/Boolean" title="Boolean: In any computer programming language, a Boolean is a logical data type that can have one of two possible values: true or false.">Boolean</a></li>
+ <li><a class="external" href="http://en.wikipedia.org/wiki/Boolean_data_type">Boolean data type (Wikipedia)</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

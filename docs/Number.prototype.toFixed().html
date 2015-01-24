@@ -14,9 +14,9 @@
 <p>A string representation of <code>numObj</code> that does not use exponential notation and has exactly <code>digits</code> digits after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length. If <code>numObj</code> is greater than <code>1e+21</code>, this method simply calls <a href="#/Number.prototype.toString()" title="The toString() method returns a string representing the specified Number object."><code>Number.prototype.toString()</code></a> and returns a string in exponential notation.</p>
 <h3 id="Throws" name="Throws">Throws</h3>
 <dl>
- <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a></dt>
- <dd>If <code>digits</code> is too small or too large. Values between 0 and 20, inclusive, will not cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a>. Implementations are allowed to support larger and smaller values as well.</dd>
- <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a></dt>
+ <dt><a href="#/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a></dt>
+ <dd>If <code>digits</code> is too small or too large. Values between 0 and 20, inclusive, will not cause a <a href="#/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a>. Implementations are allowed to support larger and smaller values as well.</dd>
+ <dt><a href="#/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a></dt>
  <dd>If this method is invoked on an object that is not a <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a>.</dd>
 </dl>
 <h2 id="Examples" name="Examples">Examples</h2>

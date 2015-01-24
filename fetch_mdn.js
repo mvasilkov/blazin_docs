@@ -28,7 +28,7 @@ function savePageAs(url, path, done) {
         console.log('Saving to', path)
         fs.writeFile(path, txt, function (_) {
             if (_) throw _
-            done()
+            setTimeout(done, 2000)
         })
     })
 }

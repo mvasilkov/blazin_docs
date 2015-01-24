@@ -1,0 +1,61 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+  <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Math.clz32()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>Math.clz32()</strong></code> function returns the number of leading zero bits in the 32-bit binary representation of a number.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Math.clz32 (x)
+</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  x</dt>
+ <dd>
+  A number.</dd>
+</dl>
+<h2 id="Description" style="line-height: 30px;">Description</h2>
+<p>&quot;clz32&quot; is short for CountLeadingZeroes32.</p>
+<p>If <code>x</code>&#xA0;is not a number, then it will be converted to a number first, then converted to a&#xA0;32-bit unsigned integer.&#xA0;</p>
+<p>If the converted 32-bit unsigned integer&#xA0;is <code>0</code>, then return <code>32</code>, because all bits are <code>0</code>.</p>
+<p><span>This function&#xA0;</span><span>is particularly useful for systems that compile to JS, like <a href="https://developer.mozilla.org/en-US/docs/Emscripten">Emscripten</a>.</span></p>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">Math.clz32(1)                // 31
+Math.clz32(1000)             // 22
+Math.clz32()                 // 32
+[NaN, Infinity, -Infinity, 0, -0, null, undefined, &quot;foo&quot;, {}, []].filter(
+function (n) {
+  return Math.clz32(n) !== 32
+})                           // []
+Math.clz32(true)             // 31
+Math.clz32(3.5)              // 30
+</prism-js>
+<h2 id="Compatibility" name="Compatibility">Polyfill</h2>
+<prism-js language="javascript">Math.clz32 = Math.clz32 || function(value) {
+    var value = Number(value) &gt;&gt;&gt; 0;
+    return value ? 32 - value.toString(2).length : 32;
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-math.clz32" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Math.clz32&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object."><code>Math</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32">Math.clz32()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
