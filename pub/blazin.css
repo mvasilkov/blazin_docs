@@ -1,5 +1,9 @@
-.wikiArticle {
+.content {
     background: #fff;
+}
+
+.wikiArticle {
+    padding: 16px 24px;
 }
 
 #mainPanel {
@@ -12,9 +16,25 @@
 }
 
 #searchResults core-icon {
-    color: rgba(0, 0, 0, 0.25);
+    color: rgba(0,0,0,0.25);
+    margin-right: 8px;
 }
 
 #searchResults paper-ripple {
-    color: rgba(0, 0, 0, 0.3333);
+    color: rgba(0,0,0,0.3333);
+}
+
+core-icon.heading-icon {
+    margin-right: 8px;
+    top: -2px;
+}
+
+#searchField {
+    background: #fff;
+    border-radius: 20px;
+}
+
+#searchField input {
+    margin-right: 8px;
+    width: 240px;
 }

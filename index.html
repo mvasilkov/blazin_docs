@@ -27,7 +27,7 @@
                 <core-scaffold drawerWidth="320px">
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
-                            <core-field>
+                            <core-field id="searchField">
                                 <core-icon icon="search"></core-icon>
                                 <input is="core-input" value="{{search}}" placeholder="Search" flex>
                             </core-field>
@@ -44,11 +44,9 @@
                             </core-item>
                         </core-menu>
                     </core-header-panel>
-                    <div tool>
-                        EVERYTHING IS MISPLACED FOREVER
-                    </div>
+                    <div tool><core-icon class="heading-icon" icon="bookmark"></core-icon>{{title}}</div>
                     <div class="content">
-                        <app-router mode="hash" id="router">
+                        <app-router mode="hash" id="router" on-activate-route-start="{{loading}}">
                             <app-route path="*" import="/docs/Infinity.html" template></app-route>
                         </app-router>
                     </div>
@@ -57,6 +55,10 @@
 
             <script>
                 Polymer('blazin-app', {
+                    publish: {
+                        search: '',
+                        title: ''
+                    },
                     ready: function () {
                         for (var i = 0; i < window.blazinAllPages.length; ++i) {
                             var name = window.blazinAllPages[i]
@@ -66,6 +68,9 @@
                             route.setAttribute('template', '')
                             this.$.router.insertBefore(route, this.$.router.firstChild)
                         }
+                    },
+                    loading: function (event) {
+                        this.title = event.detail.path.substr(1)
                     }
                 })
             </script>
