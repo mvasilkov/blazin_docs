@@ -1,0 +1,86 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+<div>
+<div></div>
+</div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>encodeURIComponent()</strong></code> method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">encodeURIComponent(str);</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>str</code></dt>
+ <dd>String. A component of a URI.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>encodeURIComponent</code> escapes all characters except the following: alphabetic, decimal digits, <code>- _ .&#xA0;! ~ * &apos; ( )</code></p>
+<p>Note that an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
+<prism-js language="javascript">// high-low pair ok
+alert(encodeURIComponent(&apos;\uD800\uDFFF&apos;));
+// lone high surrogate throws &quot;URIError: malformed URI sequence&quot;
+alert(encodeURIComponent(&apos;\uD800&apos;));
+// lone low surrogate throws &quot;URIError: malformed URI sequence&quot;
+alert(encodeURIComponent(&apos;\uDFFF&apos;));
+</prism-js>
+<p>To avoid unexpected requests to the server, you should call <code>encodeURIComponent</code> on any user-entered parameters that will be passed as part of a URI. For example, a user could type &quot;<code>Thyme &amp;time=again</code>&quot; for a variable <code>comment</code>. Not using <code>encodeURIComponent</code> on this variable will give <code>comment=Thyme%20&amp;time=again</code>. Note that the ampersand and the equal sign mark a new key and value pair. So instead of having a POST <code>comment</code> key equal to &quot;<code>Thyme &amp;time=again</code>&quot;, you have two POST keys, one equal to &quot;<code>Thyme </code>&quot; and another (<code>time</code>) equal to <code>again</code>.</p>
+<p>For <a class="external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#application/x-www-form-urlencoded-encoding-algorithm"><code>application/x-www-form-urlencoded</code></a>, spaces are to be replaced by &apos;+&apos;, so one may wish to follow a <code>encodeURIComponent</code> replacement with an additional replacement of &quot;%20&quot; with &quot;+&quot;.</p>
+<p>To be more stringent in adhering to <a class="external" href="http://tools.ietf.org/html/rfc3986">RFC 3986</a> (which reserves !, &apos;, (, ), and *), even though these characters have no formalized URI delimiting uses, the following can be safely used:</p>
+<prism-js language="javascript">function fixedEncodeURIComponent (str) {
+  return encodeURIComponent(str).replace(/[!&apos;()*]/g, function(c) {
+    return &apos;%&apos; + c.charCodeAt(0).toString(16);
+  });
+}
+</prism-js>
+<h2 id="See_also" name="See_also">Examples</h2>
+<p>The following example provides the special encoding required within UTF-8 <code>Content-Disposition</code> and <code>Link</code> server response header parameters (e.g., UTF-8 filenames):</p>
+<prism-js language="javascript">var fileName = &apos;my file(2).txt&apos;;
+var header = &quot;Content-Disposition: attachment; filename*=UTF-8&apos;&apos;&quot;
+             + encodeRFC5987ValueChars(fileName);
+console.log(header);
+// logs &quot;Content-Disposition: attachment; filename*=UTF-8&apos;&apos;my%20file%282%29.txt&quot;
+function encodeRFC5987ValueChars (str) {
+&#xA0;&#xA0;&#xA0; return encodeURIComponent(str).
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; // Note that although RFC3986 reserves &quot;!&quot;, RFC5987 does not,
+        // so we do not need to escape it
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; replace(/[&apos;()]/g, escape). // i.e., %27 %28 %29
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; replace(/\*/g, &apos;%2A&apos;).
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; // The following are not required for percent-encoding per RFC5987,
+            // so we can allow for a little better readability over the wire: |`^
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; replace(/%(?:7C|60|5E)/g, unescape);
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.4" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;encodeURIComponent&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-encodeuricomponent-uricomponent" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;encodeURIComponent&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/decodeURI()" title="The decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine."><code>decodeURI</code></a></li>
+ <li><a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a></li>
+ <li><a href="#/decodeURIComponent()" title="The decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine."><code>decodeURIComponent</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Number.isNaN()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary">Summary</h2>
+<p>The <strong><code>Number.isNaN()</code></strong> method determines whether the passed value is <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>. More robust version of the original global <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in Number.isNaN() as defined in ECMAScript 6 or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Number.isNaN(<var>testValue</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>testValue</code></dt>
+ <dd>The value to be tested for <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p>Due to both equality operators, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Equality" title="JavaScript has both strict and type&#x2013;converting comparisons. A strict comparison (e.g., ===) is only true if the operands are of the same type. The more commonly used abstract comparison (e.g. ==) converts the operands to the same Type before making the comparison. For relational abstract comparisons (e.g., &lt;=), the operands are first converted to primitives, then to the same type, before comparison."><code>==</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Identity" title="JavaScript has both strict and type&#x2013;converting comparisons. A strict comparison (e.g., ===) is only true if the operands are of the same type. The more commonly used abstract comparison (e.g. ==) converts the operands to the same Type before making the comparison. For relational abstract comparisons (e.g., &lt;=), the operands are first converted to primitives, then to the same type, before comparison."><code>===</code></a>, evaluating to <code>false</code> when checking if <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a> <em>is</em> <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>, the function <code>Number.isNaN()</code> has become necessary. This situation is unlike all other possible value comparisons in JavaScript.</p>
+<p>In comparison to the global <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in Number.isNaN() as defined in ECMAScript 6 or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a> function, <code>Number.isNaN()</code> doesn&apos;t suffer the problem of forcefully converting the parameter to a number. This means it is now safe to pass values that would normally convert to <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>, but aren&apos;t actually the same value as <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>. This also means that only values of the type number, that are also <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>, return <code>true</code>.</p>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">Number.isNaN(NaN); // true
+Number.isNaN(Number.NaN); // true
+Number.isNaN(0 / 0) // true
+// everything else: false
+Number.isNaN(undefined);
+Number.isNaN({});
+Number.isNaN(true);
+Number.isNaN(null);
+Number.isNaN(37);
+Number.isNaN(&apos;37&apos;);
+Number.isNaN(&apos;37.37&apos;);
+Number.isNaN(&apos;&apos;);
+Number.isNaN(&apos; &apos;);
+Number.isNaN(&apos;NaN&apos;);
+Number.isNaN(&apos;blabla&apos;); // e.g. this would have been true with isNaN()
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>
+    <p><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.isnan" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.isnan&apos; in that specification.</small></a></p>
+   </td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also">See also</h2>
+<ul>
+ <li>The <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object it belongs to.</li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN">Number.isNaN()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

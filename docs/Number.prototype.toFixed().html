@@ -1,0 +1,66 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>toFixed()</code></strong> method formats a number using fixed-point notation.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>numObj</var>.toFixed([<var>digits</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>digits</code></dt>
+ <dd>Optional. The number of digits to appear after the decimal point; this may be a value between 0 and 20, inclusive, and implementations may optionally support a larger range of values. If this argument is omitted, it is treated as 0.</dd>
+</dl>
+<h3 id="Returns" name="Returns">Returns</h3>
+<p>A string representation of <code>numObj</code> that does not use exponential notation and has exactly <code>digits</code> digits after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length. If <code>numObj</code> is greater than <code>1e+21</code>, this method simply calls <a href="#/Number.prototype.toString()" title="The toString() method returns a string representing the specified Number object."><code>Number.prototype.toString()</code></a> and returns a string in exponential notation.</p>
+<h3 id="Throws" name="Throws">Throws</h3>
+<dl>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a></dt>
+ <dd>If <code>digits</code> is too small or too large. Values between 0 and 20, inclusive, will not cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a>. Implementations are allowed to support larger and smaller values as well.</dd>
+ <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="The TypeError object represents an error when a value is not of the expected type."><code>TypeError</code></a></dt>
+ <dd>If this method is invoked on an object that is not a <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a>.</dd>
+</dl>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toFixed" name="Example:_Using_toFixed">Example: Using <code>toFixed</code></h3>
+<prism-js language="javascript">var numObj = 12345.6789;
+numObj.toFixed();       // Returns &apos;12346&apos;: note rounding, no fractional part
+numObj.toFixed(1);      // Returns &apos;12345.7&apos;: note rounding
+numObj.toFixed(6);      // Returns &apos;12345.678900&apos;: note added zeros
+(1.23e+20).toFixed(2);  // Returns &apos;123000000000000000000.00&apos;
+(1.23e-10).toFixed(2);  // Returns &apos;0.00&apos;
+2.34.toFixed(1);        // Returns &apos;2.3&apos;
+-2.34.toFixed(1);       // Returns -2.3 (due to operator precedence, negative number literals don&apos;t return a string...)
+(-2.34).toFixed(1);     // Returns &apos;-2.3&apos; (...unless you use parentheses)
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.5" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Number.prototype.toFixed&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.prototype.tofixed" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.prototype.toFixed&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Number.prototype.toExponential()" title="The toExponential() method returns a string representing the Number object in exponential notation"><code>Number.prototype.toExponential()</code></a></li>
+ <li><a href="#/Number.prototype.toPrecision()" title="The toPrecision() method returns a string representing the Number object to the specified precision."><code>Number.prototype.toPrecision()</code></a></li>
+ <li><a href="#/Number.prototype.toString()" title="The toString() method returns a string representing the specified Number object."><code>Number.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed">Number.prototype.toFixed()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

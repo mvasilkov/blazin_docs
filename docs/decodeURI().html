@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  </div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>decodeURI()</strong></code> function decodes a Uniform Resource Identifier (URI) previously created by <a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a> or by a similar routine.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>decodeURI(<i>encodedURI</i>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>encodedURI</code></dt>
+ <dd>
+  A complete, encoded Uniform Resource Identifier.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Replaces each escape sequence in the encoded URI with the character that it represents, but does not decode escape sequences that could not have been introduced by <a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a>. The character &#x201C;<code>#</code>&#x201D; is not decoded from escape sequences.</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Decoding_a_Cyrillic_URL">Decoding a Cyrillic URL</h3>
+<prism-js language="javascript">decodeURI(&quot;https://developer.mozilla.org/ru/docs/JavaScript_%D1%88%D0%B5%D0%BB%D0%BB%D1%8B&quot;);
+// &quot;https://developer.mozilla.org/ru/docs/JavaScript_&#x448;&#x435;&#x43B;&#x43B;&#x44B;&quot;
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;decodeURI&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-decodeuri-encodeduri" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;decodeURI&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/decodeURIComponent()" title="The decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine."><code>decodeURIComponent</code></a></li>
+ <li><a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a></li>
+ <li><a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI">decodeURI()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

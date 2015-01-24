@@ -1,0 +1,70 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Number.MIN_VALUE</code></strong> property represents the smallest positive numeric value representable in JavaScript.</p>
+<div><table class="standard-table">
+  <thead>
+    <tr>
+      <th class="header" colspan="2">Property attributes of <code>Number.MIN_VALUE</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Writable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Enumerable</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Configurable</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>MIN_VALUE</code> property is the number closest to 0, not the most negative number, that JavaScript can represent.</p>
+<p><code>MIN_VALUE</code> has a value of approximately <code>5e-324</code>. Values smaller than <code>MIN_VALUE</code> (&quot;underflow values&quot;) are converted to 0.</p>
+<p>Because <code>MIN_VALUE</code> is a static property of <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a>, you always use it as <code>Number.MIN_VALUE</code>, rather than as a property of a <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object you created.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_MIN_VALUE" name="Example:_Using_MIN_VALUE">Example: Using <code>MIN_VALUE</code></h3>
+<p>The following code divides two numeric values. If the result is greater than or equal to <code>MIN_VALUE</code>, the <code>func1</code> function is called; otherwise, the <code>func2</code> function is called.</p>
+<prism-js language="javascript">if (num1 / num2 &gt;= Number.MIN_VALUE) {
+  func1();
+} else {
+  func2();
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Number.MIN_VALUE&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.min_value" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.MIN_VALUE&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Number.MAX_VALUE" title="The Number.MAX_VALUE property represents the maximum numeric value representable in JavaScript."><code>Number.MAX_VALUE</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_VALUE">Number.MIN_VALUE</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

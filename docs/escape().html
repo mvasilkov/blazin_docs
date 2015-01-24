@@ -1,0 +1,62 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  <div>
+    <div class="overheadIndicator deprecated deprecatedHeader">
+            <p><strong>Deprecated</strong><br>This feature has been removed from the Web standards. Though some browsers may still support it, it is in the process of being dropped. Do not use it in old or new projects. Pages or Web apps using it may break at any time.</p>
+        </div></div>
+ </div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The deprecated <code><strong>escape()</strong></code> method computes a new string in which certain characters have been replaced by a hexadecimal escape sequence. Use <a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a> or <a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a> instead.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>escape(str)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>str</code></dt>
+ <dd>
+  A string to be encoded.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>escape</code> function is a property of the <em>global object</em>. Special characteres are encoded with the exception of: @*_+-./</p>
+<p>The hexadecimal form for characters, whose code unit value is 0xFF or less, is a two-digit escape sequence: %xx. For characters with a greater code unit, the four-digit format %<strong>u</strong>xxxx is used.</p>
+<h2 id="Examples">Examples</h2>
+<prism-js language="javascript">escape(&quot;abc123&quot;);     // &quot;abc123&quot;
+escape(&quot;&#xE4;&#xF6;&#xFC;&quot;);        // &quot;%E4%F6%FC&quot;
+escape(&quot;&#x107;&quot;);          // &quot;%u0107&quot;
+// special characters
+escape(&quot;@*_+-./&quot;);    // &quot;@*_+-./&quot;</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-B.2.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;escape&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Defined in the (informative) Compatibility Annex B</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-escape-string" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;escape&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Defined in the (normative) Annex B for Additional ECMAScript Features for Web Browsers</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/encodeURI()" title="The encodeURI() method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURI</code></a></li>
+ <li><a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape">escape()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

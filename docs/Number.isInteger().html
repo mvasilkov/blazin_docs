@@ -1,0 +1,62 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div> <div class="overheadIndicator" style="background: #9CF49C;">
+    <p><strong>This is an experimental technology, part of the Harmony (ECMAScript 6) proposal.</strong><br>Because this technology&apos;s specification has not stabilized, check the <a href="#/Number.isInteger()#Browser_compatibility">compatibility table</a> for usage in various browsers. Also note that the syntax and behavior of an experimental technology is subject to change in future version of browsers as the spec changes.</p>
+</div></div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Number.isInteger()</code></strong> method determines whether the passed value is an integer.</p>
+<p>If the target value is an integer, return <code>true</code>, otherwise return <code>false</code>. If the value is <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a> or infinite, return <code>false</code>.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>Number.isInteger(<var>testValue</var>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt><code>testValue</code></dt>
+ <dd>The value to be tested for being an integer.</dd>
+</dl>
+<h2 id="Example" name="Example">Examples</h2>
+<prism-js language="javascript">Number.isInteger(0.1);     // false
+Number.isInteger(1);       // true
+Number.isInteger(Math.PI); // false
+</prism-js>
+<h2 id="Polyfill" name="Polyfill">Polyfill</h2>
+<p>The following algorithm matches <a class="external" href="http://wiki.ecmascript.org/doku.php?id=harmony:number.isinteger">the one specified in ECMA harmony</a>:</p>
+<prism-js language="javascript">/*\
+|*|
+|*|  :: Number.isInteger() polyfill ::
+|*|
+|*|  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+|*|
+\*/
+if (!Number.isInteger) {
+  Number.isInteger = function isInteger(nVal) {
+    return typeof nVal === &apos;number&apos;
+      &amp;&amp; isFinite(nVal)
+      &amp;&amp; nVal &gt; -9007199254740992
+      &amp;&amp; nVal &lt; 9007199254740992
+      &amp;&amp; Math.floor(nVal) === nVal;
+  };
+}
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>
+    <p><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.isinteger" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.isInteger&apos; in that specification.</small></a></p>
+   </td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>Initial definition.</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li>The <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object it belongs to.</li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger">Number.isInteger()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

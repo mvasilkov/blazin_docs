@@ -1,0 +1,202 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>Number</code></strong> JavaScript object is a wrapper object allowing you to work with numerical values. A <code>Number</code> object is created using the <code>Number()</code> constructor.</p>
+<h2 id="Syntax" name="Syntax">Constructor</h2>
+<pre class="syntaxbox">new Number(value);</pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>value</code></dt>
+ <dd>
+  The numeric value of the object being created.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The primary uses for the <code>Number</code> object are:</p>
+<ul>
+ <li>If the argument cannot be converted into a number, it returns <a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a>.</li>
+ <li>In a non-constructor context (i.e., without the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function."><code>new</code></a> operator), <code>Number</code> can be used to perform a type conversion.</li>
+</ul>
+<h2 id="Properties" name="Properties">Properties</h2>
+<dl>
+ <dt>
+  <a href="#/Number.EPSILON" title="The Number.EPSILON property represents the difference between one and the smallest value greater than one that can be represented as a Number."><code>Number.EPSILON</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  The smallest interval between two representable numbers.</dd>
+ <dt>
+  <a href="#/Number.MAX_SAFE_INTEGER" title="The Number.MAX_SAFE_INTEGER constant represents the maximum safe integer in JavaScript (253 - 1)."><code>Number.MAX_SAFE_INTEGER</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  The maximum safe integer in JavaScript (<code>2<sup>53</sup> - 1</code>).</dd>
+ <dt>
+  <a href="#/Number.MAX_VALUE" title="The Number.MAX_VALUE property represents the maximum numeric value representable in JavaScript."><code>Number.MAX_VALUE</code></a></dt>
+ <dd>
+  The largest positive representable number.</dd>
+ <dt>
+  <a href="#/Number.MIN_SAFE_INTEGER" title="The Number.MIN_SAFE_INTEGER constant represents the minimum safe integer in JavaScript (-(253 - 1))."><code>Number.MIN_SAFE_INTEGER</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  The minimum safe integer in JavaScript (<code>-(2<sup>53</sup> - 1)</code>).</dd>
+ <dt>
+  <a href="#/Number.MIN_VALUE" title="The Number.MIN_VALUE property represents the smallest positive numeric value representable in JavaScript."><code>Number.MIN_VALUE</code></a></dt>
+ <dd>
+  The smallest positive representable number - that is, the positive number closest to zero (without actually being zero).</dd>
+ <dt>
+  <a href="#/Number.NaN" title="The Number.NaN property represents Not-A-Number. Equivalent of NaN."><code>Number.NaN</code></a></dt>
+ <dd>
+  Special &quot;not a number&quot; value.</dd>
+ <dt>
+  <a href="#/Number.NEGATIVE_INFINITY" title="The Number.NEGATIVE_INFINITY property represents the negative Infinity value."><code>Number.NEGATIVE_INFINITY</code></a></dt>
+ <dd>
+  Special value representing negative infinity; returned on overflow.</dd>
+ <dt>
+  <a href="#/Number.POSITIVE_INFINITY" title="The Number.POSITIVE_INFINITY property represents the positive Infinity value."><code>Number.POSITIVE_INFINITY</code></a></dt>
+ <dd>
+  Special value representing infinity; returned on overflow.</dd>
+ <dt>
+  <a href="#/Number.prototype" title="The Number.prototype property represents the prototype for the Number constructor."><code>Number.prototype</code></a></dt>
+ <dd>
+  Allows the addition of properties to a <code>Number</code> object.</dd>
+</dl>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Properties inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Arity"><code>arity</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Caller"><code>caller</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Constructor"><code>constructor</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Length"><code>length</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Name"><code>name</code></a></div>
+</div></div>
+<h2 id="Methods" name="Methods">Methods</h2>
+<div>
+ <small><em>For methods available on <code>Number</code> instances, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/prototype#Methods">Methods of Number instances</a>.</em></small></div>
+<dl>
+ <dt>
+  <a href="#/Number.isNaN()" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>Number.isNaN()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Determine whether the passed value is NaN.</dd>
+ <dt>
+  <a href="#/Number.isFinite()" title="The Number.isFinite() method determines whether the passed value is finite."><code>Number.isFinite()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Determine whether the type of and the passed value itself is a finite number.</dd>
+ <dt>
+  <a href="#/Number.isInteger()" title="The Number.isInteger() method determines whether the passed value is an integer."><code>Number.isInteger()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Determine whether the type of the passed value is &quot;number&quot; and the passed value is an integer.</dd>
+ <dt>
+  <a href="#/Number.isSafeInteger()" title="The Number.isSafeInteger() method determines whether the provided value is a number that is a safe integer. A safe integer is an integer that"><code>Number.isSafeInteger()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  Determine whether the type of the passed value is a safe integer (number between <code>-(2<sup>53</sup> - 1)</code> and <code>2<sup>53</sup> - 1</code>).</dd>
+ <dt>
+  <s class="obsoleteElement"><a href="#/Number.toInteger()" title="The Number.toInteger() method used to evaluate the passed value and convert it to an integer, but its implementation has been removed."><code>Number.toInteger()</code></a> <span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></s></dt>
+ <dd>
+  <s class="obsoleteElement">Used to evaluate the passed value and convert it to an integer (or <a href="#/Infinity" title="The global Infinity property is a numeric value representing infinity."><code>Infinity</code></a>), but has been removed.</s></dd>
+ <dt>
+  <a href="#/Number.parseFloat()" title="The Number.parseFloat() method parses a string argument and returns a floating point number. This method behaves identically to the global function parseFloat() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseFloat()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  The value is the same as <a href="#/parseFloat()" title="The parseFloat() function parses a string argument and returns a floating point number."><code>parseFloat</code></a> of the global object.</dd>
+ <dt>
+  <a href="#/Number.parseInt()" title="The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base. This method behaves identically to the global function parseInt() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseInt()</code></a> <span title="This is an experimental API that should not be used in production code."><i class="icon-beaker"> </i></span></dt>
+ <dd>
+  The value is the same as <a href="#/parseInt()" title="The parseInt() function parses a string argument and returns an integer of the specified radix or base."><code>parseInt</code></a> of the global object.</dd>
+</dl>
+<div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Apply"><code>apply</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Call"><code>call</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/ToSource"><code>toSource</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/ToString"><code>toString</code></a></div>
+</div></div>
+<h2 id="Number_instances" name="Number_instances"><code>Number</code> instances</h2>
+<p>All <code>Number</code> instances inherit from <a href="#/Number.prototype" title="The Number.prototype property represents the prototype for the Number constructor."><code>Number.prototype</code></a>. The prototype object of the <code>Number</code> constructor can be modified to affect all <code>Number</code> instances.</p>
+<h3 id="Methods_of_Number_instance" name="Methods_of_Number_instance">Methods</h3>
+<div>
+ <dl><dt>
+  <a href="#/Number.prototype.toExponential()" title="The toExponential() method returns a string representing the Number object in exponential notation"><code>Number.prototype.toExponential()</code></a></dt>
+ <dd>
+  Returns a string representing the number in exponential notation.</dd>
+ <dt>
+  <a href="#/Number.prototype.toFixed()" title="The toFixed() method formats a number using fixed-point notation."><code>Number.prototype.toFixed()</code></a></dt>
+ <dd>
+  Returns a string representing the number in fixed-point notation.</dd>
+ <dt>
+  <a href="#/Number.prototype.toLocaleString()" title="The toLocaleString() method returns a string with a language sensitive representation of this number."><code>Number.prototype.toLocaleString()</code></a></dt>
+ <dd>
+  Returns a string with a language sensitive representation of this number. Overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString" title="The toLocaleString() method returns a string representing the object. This method is meant to be overriden by derived objects for locale-specific purposes."><code>Object.prototype.toLocaleString()</code></a> method.</dd>
+ <dt>
+  <a href="#/Number.prototype.toPrecision()" title="The toPrecision() method returns a string representing the Number object to the specified precision."><code>Number.prototype.toPrecision()</code></a></dt>
+ <dd>
+  Returns a string representing the number to a specified precision in fixed-point or exponential notation.</dd>
+ <dt>
+  <a href="#/Number.prototype.toSource()" title="The toSource() method returns a string representing the source code of the object."><code>Number.prototype.toSource()</code></a> <span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></dt>
+ <dd>
+  Returns an object literal representing the specified <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object; you can use this value to create a new object. Overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource" title="The toSource() method returns a string representing the source code of the object."><code>Object.prototype.toSource()</code></a> method.</dd>
+ <dt>
+  <a href="#/Number.prototype.toString()" title="The toString() method returns a string representing the specified Number object."><code>Number.prototype.toString()</code></a></dt>
+ <dd>
+  Returns a string representing the specified object in the specified radix (base). Overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" title="The toString() method returns a string representing object."><code>Object.prototype.toString()</code></a> method.</dd>
+ <dt>
+  <a href="#/Number.prototype.valueOf()" title="The valueOf() method returns the primitive value of a Number object."><code>Number.prototype.valueOf()</code></a></dt>
+ <dd>
+  Returns the primitive value of the specified object. Overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" title="The valueOf() method returns the primitive value of the specified object."><code>Object.prototype.valueOf()</code></a> method.</dd>
+</dl><div>
+ <div class="inheritsbox template-jsOverrides" style="border: 5px solid #D1D1FF; background: #f5f5ff; padding: 2px 10px; margin: 25px 0; overflow: hidden;">
+<div><span style="font-weight: 700;">Methods inherited from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a>:</span></div>
+<div><a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineGetter"><code>__defineGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/DefineSetter"><code>__defineSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/HasOwnProperty"><code>hasOwnProperty</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/IsPrototypeOf"><code>isPrototypeOf</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupGetter"><code>__lookupGetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/LookupSetter"><code>__lookupSetter__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/NoSuchMethod"><code>__noSuchMethod__</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/PropertyIsEnumerable"><code>propertyIsEnumerable</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Unwatch"><code>unwatch</code></a>, <a class="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/Watch"><code>watch</code></a></div>
+</div></div></div>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_the_Number_object_to_assign_values_to_numeric_variables" name="Example:_Using_the_Number_object_to_assign_values_to_numeric_variables">Example: Using the <code>Number</code> object to assign values to numeric variables</h3>
+<p>The following example uses the <code>Number</code> object&apos;s properties to assign values to several numeric variables:</p>
+<prism-js language="javascript">var biggestNum = Number.MAX_VALUE;
+var smallestNum = Number.MIN_VALUE;
+var infiniteNum = Number.POSITIVE_INFINITY;
+var negInfiniteNum = Number.NEGATIVE_INFINITY;
+var notANum = Number.NaN;
+</prism-js>
+<h3 id="Example:_Using_Number_to_convert_a_Date_object" name="Example:_Using_Number_to_convert_a_Date_object">Example: Integer range for <code>Number</code></h3>
+<p>The following example shows minimum and maximum integer values that can be represented as <code>Number</code> object (for details, refer to EcmaScript standard, chapter <em>8.5 The Number Type</em>):</p>
+<prism-js language="javascript">var biggestInt = 9007199254740992;
+var smallestInt = -9007199254740992;
+</prism-js>
+<p>When parsing data that has been serialized to JSON, integer values falling out of this range can be expected to become corrupted when JSON parser coerces them to <code>Number</code> type. Using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" title="The String global object is a constructor for strings, or a sequence of characters."><code>String</code></a> instead is a possible workaround.</p>
+<h3 id="Example:_Using_Number_to_convert_a_Date_object" name="Example:_Using_Number_to_convert_a_Date_object">Example: Using <code>Number</code> to convert a <code>Date</code> object</h3>
+<p>The following example converts the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" title="Creates a JavaScript Date instance that represents a single moment in time. Date objects are based on a time value that is the number of milliseconds since 1 January, 1970 UTC."><code>Date</code></a> object to a numerical value using <code>Number</code> as a function:</p>
+<prism-js language="javascript">var d = new Date(&apos;December 17, 1995 03:24:00&apos;);
+print(Number(d));
+</prism-js>
+<p>This displays &quot;819199440000&quot;.</p>
+<h3 id="Example.3A_Convert_numeric_strings_to_numbers">Example: Convert numeric strings to numbers</h3>
+<prism-js language="javascript">Number(&quot;123&quot;)     // 123
+Number(&quot;&quot;)        // 0
+Number(&quot;0x11&quot;)    // 17
+Number(&quot;0b11&quot;)    // 3
+Number(&quot;0o11&quot;)    // 9
+Number(&quot;foo&quot;)     // NaN
+Number(&quot;100a&quot;)    // NaN
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.1.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;Number&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number-objects" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;Number&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>New methods and properties added: (<a href="#/Number.EPSILON" title="The Number.EPSILON property represents the difference between one and the smallest value greater than one that can be represented as a Number."><code>EPSILON</code></a>, <a href="#/Number.isFinite()" title="The Number.isFinite() method determines whether the passed value is finite."><code>isFinite</code></a>, <a href="#/Number.isInteger()" title="The Number.isInteger() method determines whether the passed value is an integer."><code>isInteger</code></a>, <a href="#/Number.isNaN()" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>isNaN</code></a>, <a href="#/Number.parseFloat()" title="The Number.parseFloat() method parses a string argument and returns a floating point number. This method behaves identically to the global function parseFloat() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>parseFloat</code></a>, <a href="#/Number.parseInt()" title="The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base. This method behaves identically to the global function parseInt() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>parseInt</code></a>)</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/NaN" title="The global NaN property is a value representing Not-A-Number."><code>NaN</code></a></li>
+ <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" title="Math is a built-in object that has properties and methods for mathematical constants and functions. Not a function object."><code>Math</code></a> global object</li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

@@ -1,0 +1,68 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ </div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <strong><code>toPrecision()</code></strong> method returns a string representing the <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object to the specified precision.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code><var>numObj</var>.toPrecision([<var>precision</var>])</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>precision</code></dt>
+ <dd>
+  Optional. An integer specifying the number of significant digits.</dd>
+</dl>
+<h3 id="Returns" name="Returns">Returns</h3>
+<p>A string representing a <a href="#/Number" title="The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor."><code>Number</code></a> object in fixed-point or exponential notation rounded to <code>precision</code> significant digits. See the discussion of rounding in the description of the <a href="#/Number.prototype.toFixed()" title="The toFixed() method formats a number using fixed-point notation."><code>Number.prototype.toFixed()</code></a> method, which also applies to <code>toPrecision()</code>.</p>
+<p>If the <code>precision</code> argument is omitted, behaves as <a href="#/Number.prototype.toString()" title="Editorial review completed."><code>Number.prototype.toString()</code></a>. If it is a non-integer value, it is rounded to the nearest integer.</p>
+<h3 id="Throws">Throws</h3>
+<dl>
+ <dt>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a></dt>
+ <dd>
+  If <code>precison</code> is not between 1 and 100 (inclusive), a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError" title="The RangeError object indicates an error when a value is not in the set or range of allowed values."><code>RangeError</code></a> is thrown. Implementations are allowed to support larger and smaller values as well. ECMA-262 only requires a precision of up to 21 significant digits.</dd>
+</dl>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_toPrecision" name="Example:_Using_toPrecision">Example: Using <code>toPrecision</code></h3>
+<prism-js language="javascript">var numObj = 5.123456;
+console.log(numObj.toPrecision());    // logs 5.123456
+console.log(numObj.toPrecision(5));   // logs 5.1235
+console.log(numObj.toPrecision(2));   // logs 5.1
+console.log(numObj.toPrecision(1));   // logs 5
+// note that exponential notation might be returned in some circumstances
+console.log((1234.5).toPrecision(2)); // logs 1.2e+3
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition. Implemented in JavaScript 1.5.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.4.7" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;Number.prototype.toPrecision&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.prototype.toprecision" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;Number.prototype.toPrecision&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_also" name="See_also">See also</h2>
+<ul>
+ <li><a href="#/Number.prototype.toFixed()" title="The toFixed() method formats a number using fixed-point notation."><code>Number.prototype.toFixed()</code></a></li>
+ <li><a href="#/Number.prototype.toExponential()" title="The toExponential() method returns a string representing the Number object in exponential notation"><code>Number.prototype.toExponential()</code></a></li>
+ <li><a href="#/Number.prototype.toString()" title="Editorial review completed."><code>Number.prototype.toString()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision">Number.prototype.toPrecision()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

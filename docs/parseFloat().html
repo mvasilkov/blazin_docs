@@ -1,0 +1,89 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  <div>
+   </div>
+ </div>
+</div>
+<h2 id="Summary">Summary</h2>
+<p>The <code><strong>parseFloat()</strong></code> function parses a string argument and returns a floating point number.</p>
+<h2 id="Syntax">Syntax</h2>
+<pre class="syntaxbox">parseFloat(<em>string</em>)</pre>
+<h3 id="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>string</code></dt>
+ <dd>
+  A string that represents the value you want to parse.</dd>
+</dl>
+<h2 id="Description">Description</h2>
+<p><code>parseFloat</code> is a top-level function and is not associated with any object.</p>
+<p><code>parseFloat</code> parses its argument, a string, and returns a floating point number. If it encounters a character other than a sign (+ or -), numeral (0-9), a decimal point, or an exponent, it returns the value up to that point and ignores that character and all succeeding characters. Leading and trailing spaces are allowed.</p>
+<p>If the first character cannot be converted to a number, <code>parseFloat</code> returns <code>NaN</code>.</p>
+<p>For arithmetic purposes, the <code>NaN</code> value is not a number in any radix. You can call the <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN</code></a> function to determine if the result of <code>parseFloat</code> is <code>NaN</code>. If <code>NaN</code> is passed on to arithmetic operations, the operation results will also be <code>NaN</code>.</p>
+<p><code>parseFloat</code> can also parse and return the value <code>Infinity</code>. You can use the <a href="#/isFinite()" title="The global isFinite() function determines whether the passed value is a finite number. If needed, the parameter is first converted to a number."><code>isFinite</code></a> function to determine if the result is a finite number (not <code>Infinity</code>, <code>-Infinity</code>, or <code>NaN</code>).</p>
+<h2 id="Examples">Examples</h2>
+<h3 id="Example.3A_parseFloat_returning_a_number">Example: <code>parseFloat</code> returning a number</h3>
+<p>The following examples all return <strong>3.14</strong></p>
+<prism-js language="javascript">parseFloat(&quot;3.14&quot;);
+parseFloat(&quot;314e-2&quot;);
+parseFloat(&quot;0.0314E+2&quot;);
+parseFloat(&quot;3.14more non-digit characters&quot;);
+</prism-js>
+<h3 id="Example.3A_parseFloat_returning_NaN">Example: <code>parseFloat</code> returning NaN</h3>
+<p>The following example returns <code>NaN</code></p>
+<prism-js language="javascript">parseFloat(&quot;FF2&quot;);
+</prism-js>
+<h3 id="A_stricter_parse_function">A stricter parse function</h3>
+<p>It is sometime useful to have a stricter way to parse float values, regular expressions can help :</p>
+<prism-js language="javascript">var filterFloat = function (value) {
+    if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+      .test(value))
+      return Number(value);
+  return NaN;
+}
+console.log(filterFloat(&apos;421&apos;));               // 421
+console.log(filterFloat(&apos;-421&apos;));              // -421
+console.log(filterFloat(&apos;+421&apos;));              // 421
+console.log(filterFloat(&apos;Infinity&apos;));          // Infinity
+console.log(filterFloat(&apos;1.61803398875&apos;));     // 1.61803398875
+console.log(filterFloat(&apos;421e+0&apos;));            // NaN
+console.log(filterFloat(&apos;421hop&apos;));            // NaN
+console.log(filterFloat(&apos;hop1.61803398875&apos;));  // NaN
+</prism-js>
+<p>Note that this code is an example only; it does not accept valid numbers such as <code>1.</code> or <code>.5</code>.</p>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;parseFloat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-parsefloat-string" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;parseFloat&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/parseInt()" title="The parseInt() function parses a string argument and returns an integer of the specified radix or base."><code>parseInt()</code></a></li>
+ <li><a href="#/Number.parseFloat()" title="The Number.parseFloat() method parses a string argument and returns a floating point number. This method behaves identical to the global function parseFloat() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseFloat()</code></a></li>
+ <li><a href="#/Number.parseInt()" title="The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base. This method behaves identical to the global function parseInt() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseInt()</code></a></li>
+ <li><a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat">parseFloat()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

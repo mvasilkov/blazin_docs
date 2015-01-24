@@ -2038,7 +2038,7 @@ dl {
 .inlineIndicator,
 .overheadIndicator {
     margin: 0 0 1.5em;
-    border: 5px solid;
+    border: 5px solid rgba(0, 0, 0, 0.05);
     padding: 10px 10px 0;
     background: none;
     font-size: 12px

@@ -1,0 +1,87 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  <div>
+   </div>
+ </div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>encodeURI()</strong></code> method encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>encodeURI(<em>URI</em>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>URI</code></dt>
+ <dd>
+  A complete Uniform Resource Identifier.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>Assumes that the URI is a complete URI, so does not encode reserved characters that have special meaning in the URI.</p>
+<p><code>encodeURI</code> replaces all characters except the following with the appropriate UTF-8 escape sequences:</p>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <td class="header">Type</td>
+   <td class="header">Includes</td>
+  </tr>
+  <tr>
+   <td>Reserved characters</td>
+   <td><code>;</code> <code>,</code> <code>/</code> <code>?</code> <code>:</code> <code>@</code> <code>&amp;</code> <code>=</code> <code>+</code> <code>$</code></td>
+  </tr>
+  <tr>
+   <td>Unescaped characters</td>
+   <td>alphabetic, decimal digits, <code>-</code> <code>_</code> <code>.</code> <code>!</code> <code>~</code> <code>*</code> <code>&apos;</code> <code>(</code> <code>)</code></td>
+  </tr>
+  <tr>
+   <td>Score</td>
+   <td><code>#</code></td>
+  </tr>
+ </tbody>
+</table>
+<p>Note that <code>encodeURI</code> by itself <em>cannot</em> form proper HTTP GET and POST requests, such as for XMLHTTPRequests, because &quot;&amp;&quot;, &quot;+&quot;, and &quot;=&quot; are not encoded, which are treated as special characters in GET and POST requests. <a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a>, however, does encode these characters.</p>
+<p>Note that an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError" title="The URIError object represents an error when a global URI handling function was used in a wrong way."><code>URIError</code></a> will be thrown if one attempts to encode a surrogate which is not part of a high-low pair, e.g.,</p>
+<prism-js language="javascript">// high-low pair ok
+alert(encodeURI(&apos;\uD800\uDFFF&apos;));
+// lone high surrogate throws &quot;URIError: malformed URI sequence&quot;
+alert(encodeURI(&apos;\uD800&apos;));
+// lone low surrogate throws &quot;URIError: malformed URI sequence&quot;
+alert(encodeURI(&apos;\uDFFF&apos;)); </prism-js>
+<p>Also note that if one wishes to follow the more recent <a class="external" href="http://tools.ietf.org/html/rfc3986">RFC3986</a> for URLs, which makes square brackets reserved (for IPv6) and thus not encoded when forming something which could be part of a URL (such as a host), the following code snippet may help:</p>
+<prism-js language="javascript">function fixedEncodeURI (str) {
+    return encodeURI(str).replace(/%5B/g, &apos;[&apos;).replace(/%5D/g, &apos;]&apos;);
+}</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 3rd Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.3.3" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small>The definition of &apos;encodeURI&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-encodeuri-uri" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small>The definition of &apos;encodeURI&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/decodeURI()" title="The decodeURI() function decodes a Uniform Resource Identifier (URI) previously created by encodeURI or by a similar routine."><code>decodeURI</code></a></li>
+ <li><a href="#/encodeURIComponent()" title="The encodeURIComponent() method encodes a Uniform Resource Identifier (URI) component by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two &quot;surrogate&quot; characters)."><code>encodeURIComponent</code></a></li>
+ <li><a href="#/decodeURIComponent()" title="The decodeURIComponent() method decodes a Uniform Resource Identifier (URI) component previously created by encodeURIComponent or by a similar routine."><code>decodeURIComponent</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">encodeURI()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

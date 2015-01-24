@@ -1,0 +1,132 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  <div>
+   </div>
+ </div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>parseInt()</strong></code> function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems).</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox">parseInt(<em>string</em>, <em>radix</em>);</pre>
+<h2 id="Parameters" name="Parameters">Parameters</h2>
+<dl>
+ <dt>
+  <code>string</code></dt>
+ <dd>
+  The value to parse. If <code>string</code> is not a string, then it is converted to one. Leading whitespace in the string is ignored.</dd>
+</dl>
+<dl>
+ <dt>
+  <code>radix</code></dt>
+<dd>An integer between 2 and 36 that represents the <var>radix</var> (the base in mathematical numeral systems) of the above mentioned string. Specify <code>10</code> for the decimal numeral system commonly used by humans. <strong>Always specify this parameter</strong> to eliminate reader confusion and to guarantee predictable behavior. Different implementations produce different results when a radix is not specified.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p>The <code>parseInt</code> function converts its first argument to a string, parses it, and returns an integer or <code>NaN</code>. If not <code>NaN</code>, the returned value will be the decimal integer representation of the first argument taken as a number in the specified <var>radix</var> (base). For example, a <var>radix</var> of 10 indicates to convert from a decimal number, 8 octal, 16 hexadecimal, and so on. For radices above <code>10</code>, the letters of the alphabet indicate numerals greater than <code>9</code>. For example, for hexadecimal numbers (base 16), <code>A</code> through <code>F</code> are used.</p>
+<p>If <code>parseInt</code> encounters a character that is not a numeral in the specified radix, it ignores it and all succeeding characters and returns the integer value parsed up to that point. <code>parseInt</code> truncates numbers to integer values. Leading and trailing spaces are allowed.</p>
+<p>If <var>radix</var> is <code>undefined</code> or 0 (or absent), JavaScript assumes the following:</p>
+<ul>
+ <li>If the input <code>string</code> begins with &quot;0x&quot; or &quot;0X&quot;, <var>radix</var> is 16 (hexadecimal) and the remainder of the string is parsed.</li>
+ <li>If the input <code>string</code> begins with &quot;0&quot;, <var>radix</var> is eight (octal) or 10 (decimal).&#xA0; Exactly which radix is chosen is implementation-dependent.&#xA0; ECMAScript 5 specifies that 10 (decimal) is used, but not all browsers support this yet.&#xA0; For this reason <strong>always specify a radix when using <code>parseInt</code></strong>.</li>
+ <li>If the input <code>string</code> begins with any other value, the radix is 10 (decimal).</li>
+</ul>
+<p>If the first character cannot be converted to a number, <code>parseInt</code> returns <code>NaN</code>.</p>
+<p>For arithmetic purposes, the <code>NaN</code> value is not a number in any radix. You can call the <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN</code></a> function to determine if the result of <code>parseInt</code> is <code>NaN</code>. If <code>NaN</code> is passed on to arithmetic operations, the operation results will also be <code>NaN</code>.</p>
+<p>To convert number to its string literal in a particular radix use <code>intValue.toString(radix)</code>.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<h3 id="Example:_Using_parseInt" name="Example:_Using_parseInt">Example: Using <code>parseInt</code></h3>
+<p>The following examples all return <strong><code>15</code></strong>:</p>
+<prism-js language="javascript">parseInt(&quot; 0xF&quot;, 16);
+parseInt(&quot; F&quot;, 16);
+parseInt(&quot;17&quot;, 8);
+parseInt(021, 8);
+parseInt(&quot;015&quot;, 10);
+parseInt(15.99, 10);
+parseInt(&quot;FXX123&quot;, 16);
+parseInt(&quot;1111&quot;, 2);
+parseInt(&quot;15*3&quot;, 10);
+parseInt(&quot;15e2&quot;, 10);
+parseInt(&quot;15px&quot;, 10);
+parseInt(&quot;12&quot;, 13);
+</prism-js>
+<p>The following examples all return <strong><code>NaN</code></strong>:</p>
+<prism-js language="javascript">parseInt(&quot;Hello&quot;, 8); // Not a number at all
+parseInt(&quot;546&quot;, 2);   // Digits are not valid for binary representations
+</prism-js>
+<p>The following examples all return <strong><code>-15</code></strong>:</p>
+<prism-js language="javascript">parseInt(&quot;-F&quot;, 16);
+parseInt(&quot;-0F&quot;, 16);
+parseInt(&quot;-0XF&quot;, 16);
+parseInt(-15.1, 10)
+parseInt(&quot; -17&quot;, 8);
+parseInt(&quot; -15&quot;, 10);
+parseInt(&quot;-1111&quot;, 2);
+parseInt(&quot;-15e1&quot;, 10);
+parseInt(&quot;-12&quot;, 13);
+</prism-js>
+<p>The following example returns <strong><code>224</code></strong>:</p>
+<prism-js language="javascript">parseInt(&quot;0e0&quot;, 16);
+</prism-js>
+<h2 id="Octal_interpretations_with_no_radix">Octal interpretations with no radix</h2>
+<p>Although discouraged by ECMAScript 3 and forbidden by ECMAScript 5, many implementations interpret a numeric string beginning with a leading <code>0</code> as octal. The following may have an octal result, or it may have a decimal result.&#xA0; <strong>Always specify a radix to avoid this unreliable behavior.</strong></p>
+<prism-js language="javascript">parseInt(&quot;0e0&quot;); // 0
+parseInt(&quot;08&quot;); // 0, &apos;8&apos; is not an octal digit.
+</prism-js>
+<h3 id="ECMAScript_5_removes_octal_interpretation">ECMAScript 5 removes octal interpretation</h3>
+<p>The ECMAScript 5 specification of the function <code>parseInt</code> no longer allows implementations to treat Strings beginning with a <code>0</code> character as octal values. ECMAScript 5 states:</p>
+<p>The <code>parseInt</code> function produces an integer value dictated by interpretation of the contents of the string argument according to the specified radix. Leading white space in string is ignored. If radix is undefined or <code>0</code>, it is assumed to be <code>10</code> except when the number begins with the character pairs <code>0x</code> or <code>0X</code>, in which case a radix of 16 is assumed. If radix is <code>16</code>, number may also optionally begin with the character pairs <code>0x</code> or <code>0X</code>.</p>
+<p>This differs from ECMAScript 3, which discouraged but allowed octal interpretation.</p>
+<p>Many implementations have not adopted this behavior as of 2013, and because older browsers must be supported, <strong>always specify a radix</strong>.</p>
+<h2 id="A_stricter_parse_function">A stricter parse function</h2>
+<p>It is sometimes useful to have a stricter way to parse int values. Regular expressions can help:</p>
+<prism-js language="javascript">filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+console.log(filterInt(&apos;421&apos;));               // 421
+console.log(filterInt(&apos;-421&apos;));              // -421
+console.log(filterInt(&apos;+421&apos;));              // 421
+console.log(filterInt(&apos;Infinity&apos;));          // Infinity
+console.log(filterInt(&apos;421e+0&apos;));            // NaN
+console.log(filterInt(&apos;421hop&apos;));            // NaN
+console.log(filterInt(&apos;hop1.61803398875&apos;));  // NaN
+console.log(filterInt(&apos;1.61803398875&apos;));     // NaN
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.2" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;parseInt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-parseint-string-radix" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;parseInt&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/parseFloat()" title="The parseFloat() function parses a string argument and returns a floating point number."><code>parseFloat()</code></a></li>
+ <li><a href="#/Number.parseFloat()" title="The Number.parseFloat() method parses a string argument and returns a floating point number. This method behaves identically to the global function parseFloat() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseFloat()</code></a></li>
+ <li><a href="#/Number.parseInt()" title="The Number.parseInt() method parses a string argument and returns an integer of the specified radix or base. This method behaves identically to the global function parseInt() and is part of ECMAScript 6 (its purpose is modularization of globals)."><code>Number.parseInt()</code></a></li>
+ <li><a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a></li>
+ <li><a href="#/Number.prototype.toString()" title="The toString() method returns a string representing the specified Number object."><code>Number.toString()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" title="The valueOf() method returns the primitive value of the specified object."><code>Object.valueOf</code></a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">parseInt()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>

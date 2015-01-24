@@ -36,7 +36,7 @@
 <p>The initial value of <code>NaN</code> is Not-A-Number &#x2014; the same as the value of <code>Number.NaN</code>. In modern browsers, <code>NaN</code> is a non-configurable, non-writable property. Even when this is not the case, avoid overriding it.</p>
 <p>It is rather rare to use <code>NaN</code> in a program. It is the returned value when Math functions fail (<code>Math.sqrt(-1)</code>) or when a function trying to parse a number fails (<code>parseInt(&quot;blabla&quot;)</code>).</p>
 <h3 id="Testing_against_NaN">Testing against <code>NaN</code></h3>
-<p>Equality operator (<code>==</code> and <code>===</code>) cannot be used to test a value against <code>NaN</code>. Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>Number.isNaN()</code></a> or <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a> instead.</p>
+<p>Equality operator (<code>==</code> and <code>===</code>) cannot be used to test a value against <code>NaN</code>. Use <a href="#/Number.isNaN()" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>Number.isNaN()</code></a> or <a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a> instead.</p>
 <prism-js language="javascript">NaN === NaN;        // false
 Number.NaN === NaN; // false
 isNaN(NaN);         // true
@@ -69,8 +69,8 @@ isNaN(Number.NaN);  // true
 </table>
 <h2 id="See_also" name="See_also">See also</h2>
 <ul>
- <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NaN" title="The Number.NaN property represents Not-A-Number. Equivalent of NaN."><code>Number.NaN</code></a></li>
- <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>Number.isNaN()</code></a></li>
+ <li><a href="#/Number.NaN" title="The Number.NaN property represents Not-A-Number. Equivalent of NaN."><code>Number.NaN</code></a></li>
+ <li><a href="#/Number.isNaN()" title="The Number.isNaN() method determines whether the passed value is NaN. More robust version of the original global isNaN()."><code>Number.isNaN()</code></a></li>
  <li><a href="#/isNaN()" title="The isNaN() function determines whether a value is NaN or not. Note: coercion inside the isNaN function has interesting rules; you may alternatively want to use Number.isNaN(), as defined in ECMAScript 6, or you can use typeof to determine if the value is Not-A-Number."><code>isNaN()</code></a></li>
 </ul>
 <div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN">NaN</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
