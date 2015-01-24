@@ -42,10 +42,10 @@ function buildPage(url) {
     var $article = $('#wikiArticle')
     assert.ok($article.length)
     var html = '<link rel="import" href="/bower_components/prism-js/prism-js.html">\n' +
-               '<template><div class="wikiArticle text-content">\n' + $article.html().trim() +
+               '<template><div class="wikiArticle text-content redesign">\n' + $article.html().trim() +
                '\n' + mdnFooter(url) + '\n</div></template>'
     html = html.split('\n')
-        .map(function (line) { return line.trimRight() })
+        .map(function (line) { return line.trimRight().replace('<p>&#xA0;</p>', '') })
         .filter(function (line) { return line.length != 0 })
         .join('\n')
 

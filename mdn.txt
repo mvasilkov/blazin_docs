@@ -1,3 +1,10 @@
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/uneval
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/POSITIVE_INFINITY

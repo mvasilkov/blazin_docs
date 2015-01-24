@@ -1,0 +1,128 @@
+<link rel="import" href="/bower_components/prism-js/prism-js.html">
+<template><div class="wikiArticle text-content redesign">
+<div>
+ <div>
+  <div>
+   </div>
+ </div>
+</div>
+<h2 id="Summary" name="Summary">Summary</h2>
+<p>The <code><strong>eval()</strong></code> method evaluates JavaScript code represented as a string.</p>
+<h2 id="Syntax" name="Syntax">Syntax</h2>
+<pre class="syntaxbox"><code>eval(<em>string</em>)</code></pre>
+<h3 id="Parameters" name="Parameters">Parameters</h3>
+<dl>
+ <dt>
+  <code>string</code></dt>
+ <dd>
+  A string representing a JavaScript expression, statement, or sequence of statements. The expression can include variables and properties of existing objects.</dd>
+</dl>
+<h2 id="Description" name="Description">Description</h2>
+<p><code>eval()</code> is a function property of the global object.</p>
+<p>The argument of the <code>eval()</code> function is a string. If the string represents an expression, <code>eval()</code> evaluates the expression. If the argument represents one or more JavaScript statements, <code>eval()</code>&#xA0;evaluates the statements. Do not call <code>eval()</code> to evaluate an arithmetic expression; JavaScript evaluates arithmetic expressions automatically.</p>
+<p>If you construct an arithmetic expression as a string, you can use <code>eval()</code> to evaluate it at a later time. For example, suppose you have a variable <code>x</code>. You can postpone evaluation of an expression involving <code>x</code> by assigning the string value of the expression, say &quot;<code>3 * x + 2</code>&quot;, to a variable, and then calling <code>eval()</code> at a later point in your script.</p>
+<p>If the argument of <code>eval()</code> is not a string, <code>eval()</code> returns the argument unchanged. In the following example, the <code>String</code> constructor is specified, and <code>eval()</code> returns a <code>String</code> object rather than evaluating the string.</p>
+<prism-js language="javascript">eval(new String(&quot;2 + 2&quot;)); // returns a String object containing &quot;2 + 2&quot;
+eval(&quot;2 + 2&quot;);             // returns 4
+</prism-js>
+<p>You can work around this limitation in a generic fashion by using <code>toString()</code>.</p>
+<prism-js language="javascript">var expression = new String(&quot;2 + 2&quot;);
+eval(expression.toString());
+</prism-js>
+<p>You cannot indirectly use the <code>eval</code> function by invoking it via a name other than <code>eval()</code>; if you do, a runtime error might occur. For example, you should not use the following code:</p>
+<prism-js language="javascript">var x = 2;
+var y = 4;
+var myEval = eval;
+myEval(&quot;x + y&quot;);
+</prism-js>
+<h2 id="Don.27t_use_eval.21" name="Don.27t_use_eval.21"><a name="dont-use-it">Don&apos;t use eval needlessly!</a></h2>
+<p><code>eval()</code> is a dangerous function, which executes the code it&apos;s passed with the privileges of the caller. If you run <code>eval()</code> with a string that could be affected by a malicious party, you may end up running malicious code on the user&apos;s machine with the permissions of your webpage / extension. More importantly, third party code can see the scope in which <code>eval()</code> was invoked, which can lead to possible attacks in ways to which the similar <a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" title="The Function constructor creates a new Function object. In JavaScript every function is actually a Function object."><code>Function</code></a> is not susceptible.</p>
+<p><code>eval()</code> is also generally slower than the alternatives, since it has to invoke the JS interpreter, while many other constructs are optimized by modern JS engines.</p>
+<p>There are safer (and faster!) alternatives to <code>eval()</code> for common use-cases.</p>
+<h3 id="Accessing_member_properties" name="Accessing_member_properties">Accessing member properties</h3>
+<p>You should not use <code>eval()</code> to convert property names into properties. Consider the following example where the property of the object to be&#xA0;accessed is not known until the code is executed. This can be done with eval:</p>
+<prism-js language="javascript">var obj = { a: 20, b: 30 };
+var propname = getPropName();  //returns &quot;a&quot; or &quot;b&quot;
+eval( &quot;var result = obj.&quot; + propname );
+</prism-js>
+<p>However, <code>eval()</code> is not necessary here. In fact, its use here is discouraged. Instead, use the <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Member_Operators" title="JavaScript/Reference/Operators/Member_Operators">member operators</a>, which are much faster and safer:</p>
+<prism-js language="javascript">var obj = { a: 20, b: 30 };
+var propname = getPropName();  //returns &quot;a&quot; or &quot;b&quot;
+var result = obj[ propname ];  //  obj[ &quot;a&quot; ] is the same as obj.a
+</prism-js>
+<h3 id="Use_functions_instead_of_evaluating_snippets_of_code" name="Use_functions_instead_of_evaluating_snippets_of_code">Use functions instead of evaluating snippets of code</h3>
+<p>JavaScript has <a class="external" href="http://en.wikipedia.org/wiki/First-class_function" title="http://en.wikipedia.org/wiki/First-class_function">first-class functions</a>, which means you can pass functions as arguments to other APIs, store them in variables and objects&apos; properties, and so on. Many DOM APIs are designed with this in mind, so you can (and should) write:</p>
+<prism-js language="javascript">// instead of setTimeout(&quot; ... &quot;, 1000) use:
+setTimeout(function() { ... }, 1000);
+// instead of elt.setAttribute(&quot;onclick&quot;, &quot;...&quot;) use:
+elt.addEventListener(&quot;click&quot;, function() { ... } , false); </prism-js>
+<p><a href="/en-US/docs/Web/JavaScript/Guide/Closures" title="JavaScript/Guide/Closures">Closures</a> are also helpful as a way to create parametrized functions without concatenating strings.</p>
+<h3 id="Parsing_JSON_(converting_strings_to_JavaScript_objects)" name="Parsing_JSON_(converting_strings_to_JavaScript_objects)">Parsing JSON (converting strings to JavaScript objects)</h3>
+<p>If the string you&apos;re calling <code>eval()</code> on contains data (for example, an array: <code>&quot;[1, 2, 3]&quot;</code>), as opposed to code, you should consider switching to <a href="/en-US/docs/JSON" title="JSON">JSON</a>, which allows the string to use a subset of JavaScript syntax to represent data. See also <a href="/en-US/docs/Downloading_JSON_and_JavaScript_in_extensions" title="Downloading_JSON_and_JavaScript_in_extensions">Downloading JSON and JavaScript in extensions</a>.</p>
+<p>Note that since JSON syntax is limited compared to JavaScript syntax, many valid JavaScript literals will not parse as JSON. For example, trailing commas are not allowed in JSON, and property names (keys) in object literals must be enclosed in quotes. Be sure to use a JSON serializer to generate strings that will be later parsed as JSON.</p>
+<h3 id="Pass_data_instead_of_code" name="Pass_data_instead_of_code">Pass data instead of code</h3>
+<p>For example, an extension designed to scrape contents of web-pages could have the scraping rules defined in <a href="/en-US/docs/XPath" title="XPath">XPath</a> instead of JavaScript code.</p>
+<h3 id="Run_code_with_limited_privileges" name="Run_code_with_limited_privileges">Run code with limited privileges</h3>
+<p>If must run code, consider running it with reduced privileges. This advice applies mainly to extensions and XUL applications, which can use <a href="/en-US/docs/Components.utils.evalInSandbox" title="Components.utils.evalInSandbox">Components.utils.evalInSandbox</a> for this.</p>
+<h2 id="Examples" name="Examples">Examples</h2>
+<p>The following examples display output using <a href="/en-US/docs/Web/API/document.write"><code>document.write</code></a>. In server-side JavaScript, you can display the same output by calling the <code>write()</code> function instead of using <code>document.write()</code>.</p>
+<h3 id="Example:_Using_eval" name="Example:_Using_eval">Example: Using <code>eval</code></h3>
+<p>In the following code, both of the statements containing <code>eval()</code> return 42. The first evaluates the string &quot;<code>x + y + 1</code>&quot;; the second evaluates the string &quot;<code>42</code>&quot;.</p>
+<prism-js language="javascript">var x = 2;
+var y = 39;
+var z = &quot;42&quot;;
+eval(&quot;x + y + 1&quot;); // returns 42
+eval(z);           // returns 42
+</prism-js>
+<h3 id="Example:_Using_eval_to_evaluate_a_string_of_JavaScript_statements" name="Example:_Using_eval_to_evaluate_a_string_of_JavaScript_statements">Example: Using <code>eval</code> to evaluate a string of JavaScript statements</h3>
+<p>The following example uses <code>eval()</code> to evaluate the string <code>str</code>. This string consists of JavaScript statements that open an alert dialog box and assign <code>z</code> a value of 42 if <code>x</code> is five, and assigns 0 to <code>z</code> otherwise. When the second statement is executed, <code>eval()</code> will cause these statements to be performed, and it will also evaluate the set of statements and return the value that is assigned to <code>z</code>.</p>
+<prism-js language="javascript">var x = 5;
+var str = &quot;if (x == 5) {alert(&apos;z is 42&apos;); z = 42;} else z = 0; &quot;;
+document.write(&quot;&lt;P&gt;z is &quot;, eval(str));</prism-js>
+<h3 id="Return_value" name="Return_value">Example: Last expression is evaluated</h3>
+<p><code>eval()</code> returns the value of the last expression evaluated.</p>
+<prism-js language="javascript">var str = &quot;if ( a ) { 1+1; } else { 1+2; }&quot;;
+var a = true;
+var b = eval(str);  // returns 2
+alert(&quot;b is : &quot; + b);
+a = false;
+b = eval(str);  // returns 3
+alert(&quot;b is : &quot; + b);</prism-js>
+<h3 id="Example.3A_eval_a_string_defining_function_required_.22(.22_and_.22).22_as_prefix_and_suffix">Example: eval a string defining function required &quot;(&quot; and &quot;)&quot; as prefix and suffix</h3>
+<prism-js style="font-size: 14px;" language="javascript">var fctStr1 = &quot;function a() {}&quot;
+var fctStr2 = &quot;(function a() {})&quot;
+var fct1 = eval(fctStr1)  // return undefined
+var fct2 = eval(fctStr2)  // return a function
+</prism-js>
+<h2 id="Specifications">Specifications</h2>
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td>ECMAScript 1st Edition.</td>
+   <td>Standard</td>
+   <td>Initial definition.</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.1.2.1" hreflang="en" lang="en">ECMAScript 5.1 (ECMA-262)<br><small lang="en-US">The definition of &apos;eval&apos; in that specification.</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&#xA0;</td>
+  </tr>
+  <tr>
+   <td><a class="external" href="http://people.mozilla.org/~jorendorff/es6-draft.html#sec-eval-x" hreflang="en" lang="en">ECMAScript 6 (ECMA-262)<br><small lang="en-US">The definition of &apos;eval&apos; in that specification.</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&#xA0;</td>
+  </tr>
+ </tbody>
+</table>
+<h2 id="See_Also" name="See_Also">See also</h2>
+<ul>
+ <li><a href="#/uneval()" title="The uneval() method creates an string representation of the source code of an Object."><code>uneval()</code></a></li>
+ <li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Member_Operators">Member operators</a></li>
+</ul>
+<div class="mdnLicenseFooter">This page on MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">eval()</a>, by Mozilla Contributors.<br>Licensed under the terms of Creative Commons Attribution-ShareAlike.</div>
+</div></template>
