@@ -96,6 +96,8 @@
                         }
                         this.$.searchResults.selected = undefined
                         this.injectBoundHTML(html, this.$.searchResults)
+                        if (count == 1)
+                            this.$.router.go('/' + results[0][1])
                     }
                 })
             </script>
