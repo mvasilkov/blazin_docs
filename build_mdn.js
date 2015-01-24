@@ -43,6 +43,13 @@ function filenamePage(url) {
     return pageNameCache[url] + '.html'
 }
 
+function saveDocsIndex() {
+    var names = Object.keys(pageNameCache)
+        .map(function (k) { return pageNameCache[k] })
+    var script = 'window.blazinAllPages=' + JSON.stringify(names) + '\n'
+    fs.writeFileSync('docs/index.js', script)
+}
+
 function main() {
     var pages = fs.readFileSync('mdn.txt', {encoding: 'utf8'})
         .split('\n')
@@ -51,6 +58,7 @@ function main() {
     pages.forEach(loadPageName)
     console.log(pageNameCache)
     pages.forEach(buildPage)
+    saveDocsIndex()
 }
 
 if (require.main === module) main()

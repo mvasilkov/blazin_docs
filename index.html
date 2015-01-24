@@ -21,10 +21,10 @@
         <link rel="import" href="/bower_components/core-item/core-item.html">
         <link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
     </head>
-    <body unresolved>
+    <body fullbleed unresolved>
         <polymer-element name="blazin-app">
             <template>
-                <core-scaffold>
+                <core-scaffold drawerWidth="320px">
                     <core-header-panel navigation flex mode="seamed">
                         <core-toolbar>
                             <core-field>
@@ -34,8 +34,13 @@
                         </core-toolbar>
                         <core-menu id="searchResults">
                             <core-item icon="bookmark" label="Infinity">
-                                <a href="#/Infinity"></a>
-                                <paper-ripple fit></paper-ripple>
+                                <a href="#/Infinity"><paper-ripple fit></paper-ripple></a>
+                            </core-item>
+                            <core-item icon="bookmark" label="Number.NEGATIVE_INFINITY">
+                                <a href="#/Number.NEGATIVE_INFINITY"><paper-ripple fit></paper-ripple></a>
+                            </core-item>
+                            <core-item icon="bookmark" label="Number.POSITIVE_INFINITY">
+                                <a href="#/Number.POSITIVE_INFINITY"><paper-ripple fit></paper-ripple></a>
                             </core-item>
                         </core-menu>
                     </core-header-panel>
@@ -43,7 +48,7 @@
                         EVERYTHING IS MISPLACED FOREVER
                     </div>
                     <div class="content">
-                        <app-router mode="hash">
+                        <app-router mode="hash" id="router">
                             <app-route path="*" import="/docs/Infinity.html" template></app-route>
                         </app-router>
                     </div>
@@ -52,10 +57,21 @@
 
             <script>
                 Polymer('blazin-app', {
+                    ready: function () {
+                        for (var i = 0; i < window.blazinAllPages.length; ++i) {
+                            var name = window.blazinAllPages[i]
+                            var route = document.createElement('app-route')
+                            route.setAttribute('path', '/' + name)
+                            route.setAttribute('import', '/docs/' + name + '.html')
+                            route.setAttribute('template', '')
+                            this.$.router.insertBefore(route, this.$.router.firstChild)
+                        }
+                    }
                 })
             </script>
         </polymer-element>
 
+        <script src="/docs/index.js"></script>
         <blazin-app></blazin-app>
     </body>
 </html>
