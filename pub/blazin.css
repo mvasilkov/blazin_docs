@@ -63,7 +63,9 @@ core-icon.heading-icon {
 
 :host /deep/ .nothingFound {
     /* background: #ff4080; */
-    background: rgba(0,0,0,0.6666);
+    background: #546e7a;
+    border-bottom: 3px solid #455a64;
+    border-radius: 3px;
     color: #fff;
     padding: 8px 12px;
     position:relative;
@@ -78,7 +80,7 @@ core-icon.heading-icon {
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-bottom-color: rgba(0,0,0,0.6666);
+    border-bottom-color: #546e7a;
     border-width: 9px;
     margin-left: -9px;
 }
