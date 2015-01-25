@@ -3,23 +3,21 @@ Get the docs, fast
 
 **Blazin' Docs** is a search-oriented API documentation browser.
 
-The project solves a practical problem: it finds the reference pages you're looking for. The search results appear instantly as you type.
+This app solves a practical problem: it gives you the reference pages you're looking for. The search results appear instantly as you type.
 
-How to use
-----------
+Usage
+-----
 
 Try searching for a JavaScript object or method, such as `Function` or `parseFloat()`.
 
 System requirements
 -------------------
 
-Blazin' Docs works in any modern browser. Known working browsers are:
+Blazin' Docs works in any modern browser. Mobile devices are considered first-class platforms. Known working browsers are:
 
 * Firefox (desktop and Android)
 * Chrome (desktop and Android)
 * Safari (Mac OS X and iOS)
-
-Mobile devices are considered first-class platforms.
 
 Kudos and attribution
 ---------------------
@@ -49,6 +47,6 @@ Blazin' Docs is inspired by [Dash.app][7].
 Known limitations
 -----------------
 
-Right now Blazin' Docs contains only the JavaScript reference, courtesy of [Mozilla][8]. More docsets are planned.
+Right now Blazin' Docs contains only the JavaScript reference (or a subset thereof), courtesy of [Mozilla][8]. More docsets are planned.
 
 [8]: https://developer.mozilla.org/en-US/
